@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
     private accountApi: UserServiceService
   ) {
     // Fill email and password
-    this.user.email = 'admin';
+    this.user.username = 'admin';
     this.user.password = 'admin';
   }
 
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   public login() {
     this.accountApi.login(this.user).subscribe(
-      (user: any) => {
+      () => {
         this.router.navigate(['/']);
       },
       (error) => {

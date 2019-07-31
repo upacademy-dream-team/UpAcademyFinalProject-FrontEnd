@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../models';
 import { ReplaySubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserServiceService {
+
+  private apiUrl = 'http://localhost:8080/Tetses-RecemLicensiados/api/user/login';
+
     private currentUser: User = new User();
   
-    constructor() { }
+    constructor(
+      private http: HttpClient,
+    ) { }
   
     public isAuthenticated(): boolean {
       if (this.currentUser.id) {
@@ -19,28 +25,12 @@ export class UserServiceService {
       }
     }
   
-    public getCurrentId(): number {
-      return this.currentUser.id;
+    public getUserName(): string {
+      return this.currentUser.username;
     }
   
-    public getCurrentName(): string {
-      return this.currentUser.name;
-    }
-  
-    public login(user: User): ReplaySubject<Account> {
-      // Simulate Jax-rs Api request
-      if (user.email === 'admin' && user.password === 'admin') {
-        user.id = 1;
-        user.name = 'Ze Carlos';
-        this.currentUser = user;
-      }
-      const response: ReplaySubject<any> = new ReplaySubject(1);
-      if (user.id) {
-        response.next(user);
-      } else {
-        response.error({ msg: 'Deu erro' });
-      }
-      return response;
+    public login(user: any) {
+      return this.http.get(this.apiUrl + "/" + user.username + "/" + user.password);
     }
   
     public logout() {
