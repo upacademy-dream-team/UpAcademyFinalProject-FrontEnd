@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccountServiceService } from 'src/app/core';
+import { UserServiceService } from 'src/app/core';
 
 
 
@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   public name: string;
   constructor(
     private router: Router,
-    private accountApi: AccountServiceService
+    private accountApi: UserServiceService
   ) {
     this.name = accountApi.getCurrentName();
   }

@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Account } from '../../models';
+import { User } from '../../models';
 import { ReplaySubject } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class AccountServiceService {
-    private currentAccount: Account = new Account();
+export class UserServiceService {
+    private currentUser: User = new User();
   
     constructor() { }
   
     public isAuthenticated(): boolean {
-      if (this.currentAccount.id) {
+      if (this.currentUser.id) {
         return true;
       } else {
         return false;
@@ -19,23 +20,23 @@ export class AccountServiceService {
     }
   
     public getCurrentId(): number {
-      return this.currentAccount.id;
+      return this.currentUser.id;
     }
   
     public getCurrentName(): string {
-      return this.currentAccount.name;
+      return this.currentUser.name;
     }
   
-    public login(account: Account): ReplaySubject<Account> {
+    public login(user: User): ReplaySubject<Account> {
       // Simulate Jax-rs Api request
-      if (account.email === 'admin' && account.password === 'admin') {
-        account.id = 1;
-        account.name = 'Ze Carlos';
-        this.currentAccount = account;
+      if (user.email === 'admin' && user.password === 'admin') {
+        user.id = 1;
+        user.name = 'Ze Carlos';
+        this.currentUser = user;
       }
       const response: ReplaySubject<any> = new ReplaySubject(1);
-      if (account.id) {
-        response.next(account);
+      if (user.id) {
+        response.next(user);
       } else {
         response.error({ msg: 'Deu erro' });
       }
@@ -43,6 +44,6 @@ export class AccountServiceService {
     }
   
     public logout() {
-      this.currentAccount = null;
+      this.currentUser = null;
     }
 }

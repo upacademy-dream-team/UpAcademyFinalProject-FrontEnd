@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Account } from '../core/models';
+import { User } from '../core/models';
 import { Router } from '@angular/router';
 
-import { AccountServiceService } from '../core';
+import { UserServiceService } from '../core';
 
 @Component({
   selector: 'app-login',
@@ -10,24 +10,24 @@ import { AccountServiceService } from '../core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  public account: Account = new Account();
+  public user: User = new User();
   public msg: string;
 
   constructor(
     private router: Router,
-    private accountApi: AccountServiceService
+    private accountApi: UserServiceService
   ) {
     // Fill email and password
-    this.account.email = 'admin';
-    this.account.password = 'admin';
+    this.user.email = 'admin';
+    this.user.password = 'admin';
   }
 
   ngOnInit() {
   }
 
   public login() {
-    this.accountApi.login(this.account).subscribe(
-      (account: any) => {
+    this.accountApi.login(this.user).subscribe(
+      (user: any) => {
         this.router.navigate(['/']);
       },
       (error) => {
