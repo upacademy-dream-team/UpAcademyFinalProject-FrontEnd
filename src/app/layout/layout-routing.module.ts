@@ -12,6 +12,7 @@ children: [
     path:'',
     component:MainComponent
   }
+  
 ]}
 ];
 

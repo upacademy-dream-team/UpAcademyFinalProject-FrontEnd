@@ -23,6 +23,7 @@ export class UserServiceService {
         return false;
       }
     }
+    
   
     public getUserName(): string {
       return this._currentUser.username;
