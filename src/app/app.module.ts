@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TestingPageComponent } from './testing-page/testing-page.component';
+import { NoPermissionComponent } from './no-permission/no-permission.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { TestingPageComponent } from './testing-page/testing-page.component';
     AppComponent,
     LoginComponent,
     NotFoundComponent,
-    TestingPageComponent
+    TestingPageComponent,
+    NoPermissionComponent
   ],
   imports: [
     HttpClientModule,
