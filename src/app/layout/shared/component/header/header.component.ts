@@ -11,11 +11,15 @@ import { UserServiceService } from 'src/app/core';
 })
 export class HeaderComponent implements OnInit {
   public name: string;
+  public accessType: string;
+
+
   constructor(
     private router: Router,
     private accountApi: UserServiceService
   ) {
     this.name = accountApi.getUserName();
+    this.accessType = accountApi.getAccessType();
   }
 
   ngOnInit() {

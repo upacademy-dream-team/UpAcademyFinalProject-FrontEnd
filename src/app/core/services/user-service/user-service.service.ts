@@ -36,6 +36,10 @@ export class UserServiceService {
     public getUserName(): string {
       return this._currentUser.username;
     }
+
+    public getAccessType(): string {
+      return this._currentUser.accessType;
+    }
   
     public login(user: any) {
       return this.http.get(this.apiUrl + user.username + "/" + user.password);
