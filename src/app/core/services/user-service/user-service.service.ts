@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../models';
-import { ReplaySubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -9,16 +8,16 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserServiceService {
 
-  private apiUrl = 'http://localhost:8080/Tetses-RecemLicensiados/api/user/login';
+    private apiUrl = "http://localhost:8080/Testes-RecemLicenciados/api/user/login/";
 
-    private currentUser: User = new User();
+    private _currentUser: User = new User();
   
     constructor(
       private http: HttpClient,
     ) { }
   
     public isAuthenticated(): boolean {
-      if (this.currentUser.id) {
+      if (this._currentUser.id) {
         return true;
       } else {
         return false;
@@ -26,14 +25,18 @@ export class UserServiceService {
     }
   
     public getUserName(): string {
-      return this.currentUser.username;
+      return this._currentUser.username;
     }
   
     public login(user: any) {
-      return this.http.get(this.apiUrl + "/" + user.username + "/" + user.password);
+      return this.http.get(this.apiUrl + user.username + "/" + user.password);
     }
   
     public logout() {
-      this.currentUser = null;
+      this._currentUser = null;
+    }
+
+    public setCurrentUser(currentUser: any){
+      this._currentUser = currentUser;
     }
 }
