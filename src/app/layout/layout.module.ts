@@ -15,7 +15,7 @@ import { SettingsComponent } from './settings/settings.component';
 
 
 @NgModule({
-  declarations: [LayoutComponent, MainComponent, ConsultarResultadosComponent, ConsultarEnunciadosComponent, CriarTestesComponent, SettingsComponent],
+  declarations: [LayoutComponent, MainComponent, ConsultarResultadosComponent, ConsultarEnunciadosComponent, CriarTestesComponent],
   imports: [
     CommonModule,
     LayoutRoutingModule,

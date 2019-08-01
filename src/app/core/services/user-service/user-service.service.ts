@@ -25,7 +25,7 @@ export class UserServiceService {
     }
 
     public isAdmin(): boolean {
-      if(this._currentUser.accessType === 'admin'){
+      if(this._currentUser.accessType == 'admin'){
         return true;
       }
       else {

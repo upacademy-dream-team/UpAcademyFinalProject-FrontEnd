@@ -5,7 +5,6 @@ import { MainComponent } from './main/main.component';
 import { CriarTestesComponent } from './criar-testes/criar-testes.component'
 import { ConsultarEnunciadosComponent } from './consultar-enunciados/consultar-enunciados.component'
 import { ConsultarResultadosComponent } from './consultar-resultados/consultar-resultados.component'
-import { SettingsComponent } from './settings/settings.component';
 import { AccessTypeGuard } from '../core';
 
 
@@ -18,7 +17,9 @@ children: [
   {path:'createTest',component: CriarTestesComponent},
   {path:'tests',component: ConsultarEnunciadosComponent},
   {path:'results', component: ConsultarResultadosComponent},
-  {path:'settings', component: SettingsComponent, canActivate: [AccessTypeGuard]}
+  {path:'settings', 
+  loadChildren:() => import('./settings/settings.module').then(module => module.SettingsModule), 
+  canActivate: [AccessTypeGuard]}
 ]}
 
 ];

@@ -20,7 +20,7 @@ export class AccessTypeGuard implements CanActivate {
     if(this.accountApi.isAdmin()){
       return true
     } else {
-      this.router.navigate(['']);
+      this.router.navigate([' ']);
     } 
   }
 }
