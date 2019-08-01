@@ -23,6 +23,15 @@ export class UserServiceService {
         return false;
       }
     }
+
+    public isAdmin(): boolean {
+      if(this._currentUser.accessType === 'admin'){
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
     
   
     public getUserName(): string {
