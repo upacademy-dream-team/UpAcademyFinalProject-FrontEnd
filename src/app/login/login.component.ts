@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
     private accountApi: UserServiceService
   ) {
     // Fill email and password
-    this.user.username = 'admin';
-    this.user.password = 'admin';
+    this.user.username = 'joao';
+    this.user.password = 'atum';
   }
 
   ngOnInit() {
@@ -27,7 +27,9 @@ export class LoginComponent implements OnInit {
 
   public login() {
     this.accountApi.login(this.user).subscribe(
-      () => {
+      (data:any) => {
+        console.log(data);
+        this.accountApi.setCurrentUser(data);
         this.router.navigate(['/']);
       },
       (error) => {

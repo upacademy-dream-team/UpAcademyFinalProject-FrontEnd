@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private accountApi: UserServiceService
   ) {
-    this.name = accountApi.getCurrentName();
+    this.name = accountApi.getUserName();
   }
 
   ngOnInit() {
