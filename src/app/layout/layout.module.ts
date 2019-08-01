@@ -7,6 +7,7 @@ import { MainComponent } from './main/main.component';
 import { HeaderComponent } from './shared/component/header/header.component';
 import { SharedModule } from './shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { FooterComponent } from './shared/component/footer/footer.component';
 
 
 @NgModule({
