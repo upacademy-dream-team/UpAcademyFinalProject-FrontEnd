@@ -12,7 +12,7 @@ import { UserServiceService } from 'src/app/core';
 export class HeaderComponent implements OnInit {
   public name: string;
   public accessType: string;
-
+  public isAdmin: boolean;
 
   constructor(
     private router: Router,
@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isAdmin = this.accountApi.isAdmin();
   }
 
   public logout() {

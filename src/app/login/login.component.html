@@ -2,7 +2,7 @@
 
   <div class="wrapper">
     <a href="https://www.aubay.pt//" target="_blank">
-      <img src="assets/aubayCopy.png" class="w-100 pb-3 anim_logo_hover_back" />
+      <img src="assets/aubayCopy.png" class="w-100" />
     </a>
     <form role="form">
       <div class="form-content">
@@ -14,7 +14,7 @@
           <input class="w-100" name="password" type="password" [(ngModel)]="user.password" placeholder="password" />
         </div>
       </div>
-      <button type="button" class="btn btn-primary w-100" (click)="login()"> Entrar </button>
+      <button type="button" style="background-color:#e64415;" class="btn w-100 text-white" (click)="login()"> Entrar </button>
       {{msg}}
     </form>
   </div>
