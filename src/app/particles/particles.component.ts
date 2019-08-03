@@ -7,7 +7,7 @@ import { fromEvent } from 'rxjs';
   styleUrls: ['./particles.component.scss']
 })
 export class ParticlesComponent implements AfterViewInit, OnDestroy {
-  number = 200;
+  number = 60;
   linkDistance = 120;
   linkWidth = 1;
   moveSpeed = 8;
@@ -164,7 +164,7 @@ export class ParticlesComponent implements AfterViewInit, OnDestroy {
     const dist = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
     if (dist <= this.linkDistance) {
       if (.7 - (dist / (1 / .7)) / this.linkDistance > 0) {
-        this.context.strokeStyle = 'rgba(255,165,0, 0.2)';
+        this.context.strokeStyle = 'rgba(255,165,0, 0.5)';
         this.context.lineWidth = this.linkWidth;
         this.context.beginPath();
         this.context.moveTo(p1.x, p1.y);
