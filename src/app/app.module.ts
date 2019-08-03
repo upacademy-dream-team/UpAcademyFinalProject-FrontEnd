@@ -9,6 +9,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TestingPageComponent } from './testing-page/testing-page.component';
 import { NoPermissionComponent } from './no-permission/no-permission.component';
+import { ParticlesComponent } from './particles/particles.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { NoPermissionComponent } from './no-permission/no-permission.component';
     LoginComponent,
     NotFoundComponent,
     TestingPageComponent,
-    NoPermissionComponent
+    NoPermissionComponent,
+    ParticlesComponent
   ],
   imports: [
     HttpClientModule,
