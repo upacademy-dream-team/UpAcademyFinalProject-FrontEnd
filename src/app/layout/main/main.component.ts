@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserServiceService } from 'src/app/core';
 
 @Component({
   selector: 'app-main',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  isAdmin: boolean;
+  accessType: string;
 
-  constructor() { }
+  constructor(
+    private accountApi: UserServiceService
+  ) { 
+    this.accessType = accountApi.getAccessType();
+  }
 
   ngOnInit() {
+    this.isAdmin = this.accountApi.isAdmin();
   }
 
 }
