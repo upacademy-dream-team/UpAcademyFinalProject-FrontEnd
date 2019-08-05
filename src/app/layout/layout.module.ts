@@ -12,10 +12,11 @@ import { ConsultarResultadosComponent } from './consultar-resultados/consultar-r
 import { ConsultarEnunciadosComponent } from './consultar-enunciados/consultar-enunciados.component';
 import { CriarTestesComponent } from './criar-testes/criar-testes.component';
 import { SettingsComponent } from './settings/settings.component';
+import { IniciarTesteComponent } from './iniciar-teste/iniciar-teste.component';
 
 
 @NgModule({
-  declarations: [LayoutComponent, MainComponent, ConsultarResultadosComponent, ConsultarEnunciadosComponent, CriarTestesComponent],
+  declarations: [LayoutComponent, MainComponent, ConsultarResultadosComponent, ConsultarEnunciadosComponent, CriarTestesComponent, IniciarTesteComponent],
   imports: [
     CommonModule,
     LayoutRoutingModule,
