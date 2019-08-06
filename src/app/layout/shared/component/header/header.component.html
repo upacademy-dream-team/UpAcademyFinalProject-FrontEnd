@@ -1,27 +1,41 @@
 <nav class="navbar navbar-expand-lg navbar-light " id="nav">
-  <a class="navbar-brand mb-0 h1 text-white" routerLink="" translate>{{accessType}}</a>
+  <a class="navbar-brand mb-0 h1 text-white" routerLink="">{{accessType}}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
+  <div class="collapse navbar-collapse justify-content-center" id="navbarNavHome" *ngIf="router.url === '/'">
+    <ul class="navbar-nav">
+      <h4 class="nav-item" style="color: white">
+        Bem vindo ao Aubay Tester, {{name}}
+      </h4>
+    </ul>
+  </div>
+  <div class="collapse navbar-collapse" id="navbarNav" *ngIf="router.url !== '/'">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-item nav-link text-white" [routerLinkActive]="['active']" routerLink="/createTest" translate>Gerir Testes</a>
+        <a class="nav-item nav-link text-white" [routerLinkActive]="['active']" routerLink="/startTest" >Iniciar Teste</a>
       </li>
       <li class="nav-item">
-        <a class="nav-item nav-link text-white" [routerLinkActive]="['active']" routerLink="/tests" translate>Enunciados</a>
+        <a class="nav-item nav-link text-white" [routerLinkActive]="['active']" routerLink="/createTest">Gerir
+          Testes</a>
       </li>
       <li class="nav-item">
-        <a class="nav-item nav-link text-white" [routerLinkActive]="['active']" routerLink="/results" translate>Resultados</a>
+        <a class="nav-item nav-link text-white" [routerLinkActive]="['active']" routerLink="/tests"
+        >Enunciados</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-item nav-link text-white" [routerLinkActive]="['active']" routerLink="/results"
+        >Resultados</a>
       </li>
       <li class="nav-item" *ngIf="isAdmin">
-        <a class="nav-item nav-link text-white" [routerLinkActive]="['active']" routerLink="/settings" translate>Definicoes</a>
+        <a class="nav-item nav-link text-white" [routerLinkActive]="['active']" routerLink="/settings"
+        >Definicoes</a>
       </li>
     </ul>
   </div>
-  <span class="navbar-text mx-3 text-white">
+  <span class="navbar-text mx-3 text-white" *ngIf="router.url != '/'">
     {{name}}
   </span>
-  <button class="btn btn-outline-light text-white" (click)="logout()" translate>Logout</button>
+  <button class="btn btn-outline-light text-white" (click)="logout()">Logout</button>
 </nav>

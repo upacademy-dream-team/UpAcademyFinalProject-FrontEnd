@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './component/footer/footer.component';
 import { ModalsComponent } from 'src/app/modals/modals.component';
 
+
 @NgModule({
   declarations: [
     HeaderComponent,
