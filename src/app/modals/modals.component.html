@@ -1,19 +1,26 @@
 <ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+  <div class="modal-header" id="modal-basic-header">
+    <h4 class="modal-title" id="modal-basic-title">Novo utilizador</h4>
+    <button type="button" style="color:white;" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
     <form>
       <div class="form-group">
-        <label for="dateOfBirth">Date of birth</label>
+        <label for="nomeUtilizador">Nome Utilizador :</label>
         <div class="input-group">
-          <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" >
-          <div class="input-group-append">
-            <button class="btn btn-outline-secondary calendar" type="button"></button>
-          </div>
+          <input id="nomeUtilizador" class="form-control" placeholder="Nome Utilizador" name="nomeUtilizador" >
+        </div>
+        <br>
+        <label for="emailUtilizador">Email :</label>
+        <div class="input-group">
+          <input id="emailUtilizador" class="form-control" placeholder="emailUtilizador" name="emailUtilizador" >
+        </div>
+        <br>
+        <label for="acessoUser">Permissoes:</label>
+        <div class="input-group">
+          <input id="acessoUser" class="form-control" placeholder="Nome Utilizador" name="nomeUtilizador" >
         </div>
       </div>
     </form>
@@ -23,8 +30,6 @@
   </div>
 </ng-template>
 
-<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
-
-<hr>
-
-<pre>{{closeResult}}</pre>
+<button class="btn btn-lg w-100 rec" id="btnModal" (click)="open(content)">Novo Utilizador</button>
+<!-- <pre>{{closeResult}}</pre> -->
+<p></p>
