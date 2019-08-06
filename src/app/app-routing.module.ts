@@ -8,14 +8,14 @@ import { NoPermissionComponent } from './no-permission/no-permission.component';
 
 const routes: Routes = [
 {
-  path:'',
-  loadChildren:() => import('./layout/layout.module').then(module => module.LayoutModule),
+  path: '',
+  loadChildren: () => import('./layout/layout.module').then(module => module.LayoutModule),
   canActivate: [AuthGuard]
 },
-  {path:'login',component:LoginComponent},
-  {path:'not-found', component: NotFoundComponent},
-  {path:'no-permission', component: NoPermissionComponent},
-  {path:"**", redirectTo:"not-found"}
+  {path: 'login', component: LoginComponent},
+  {path: 'not-found', component: NotFoundComponent},
+  {path: 'no-permission', component: NoPermissionComponent},
+  {path: ' ** ', redirectTo: 'not-found'}
 
 ];
 
