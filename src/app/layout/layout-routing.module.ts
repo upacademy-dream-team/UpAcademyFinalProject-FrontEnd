@@ -7,6 +7,7 @@ import { ConsultarEnunciadosComponent } from './consultar-enunciados/consultar-e
 import { ConsultarResultadosComponent } from './consultar-resultados/consultar-resultados.component';
 import { AccessTypeGuard } from '../core';
 import { SettingsComponent } from './settings/settings.component';
+import { IniciarTesteComponent } from './iniciar-teste/iniciar-teste.component';
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
 
 children: [
   {path: '', component: MainComponent},
+  {path: 'startTest', component: IniciarTesteComponent},
   {path: 'createTest', component: CriarTestesComponent},
   {path: 'tests', component: ConsultarEnunciadosComponent},
   {path: 'results', component: ConsultarResultadosComponent},
