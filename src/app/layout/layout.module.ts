@@ -20,7 +20,8 @@ import { IniciarTesteComponent } from './iniciar-teste/iniciar-teste.component';
     ConsultarResultadosComponent,
     ConsultarEnunciadosComponent,
     CriarTestesComponent,
-    SettingsComponent
+    SettingsComponent,
+    IniciarTesteComponent
   ],
   imports: [
     CommonModule,
