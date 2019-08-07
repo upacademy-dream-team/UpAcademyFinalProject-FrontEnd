@@ -25,7 +25,7 @@ export class UserServiceService {
     }
 
     public isAdmin(): boolean {
-      if(this._currentUser.accessType == 'Admin'){
+      if(this._currentUser.accessType === 'Admin'){
         return true;
       }
       else {
@@ -40,6 +40,10 @@ export class UserServiceService {
     public getAccessType(): string {
       return this._currentUser.accessType;
     }
+
+    public getLastLogin(): string {
+      return this._currentUser.lastLogin;
+    }
   
     public login(user: any) {
       return this.http.get(this.apiUrl + user.username + "/" + user.password);
@@ -52,4 +56,5 @@ export class UserServiceService {
     public setCurrentUser(currentUser: any){
       this._currentUser = currentUser;
     }
+
 }
