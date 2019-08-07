@@ -5,13 +5,15 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './component/footer/footer.component';
 import { ModalsComponent } from 'src/app/modals/modals.component';
+import { TablesComponent } from './component/tables/tables.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
-    ModalsComponent
+    ModalsComponent,
+    TablesComponent
   ],
   imports: [
     CommonModule,
