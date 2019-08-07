@@ -1,0 +1,19 @@
+#thead{
+  background-color: #e64415;
+
+}
+
+#btn{
+  position: absolute; right:15px;
+}
+
+table td{
+  vertical-align: middle;
+}
+
+@media (max-width: 576px) {
+  #lefttable {
+    width: 100% !important;
+    padding-left: 0 !important;
+  }
+}
