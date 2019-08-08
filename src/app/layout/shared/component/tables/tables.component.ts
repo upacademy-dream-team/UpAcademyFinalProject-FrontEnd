@@ -8,7 +8,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class TablesComponent implements OnInit {
   @Input() header: any;
   @Input() data$: any;
-  @Output() clickedRow = new EventEmitter(); 
+  @Output() clickedRow = new EventEmitter();
 
   constructor() { }
 
