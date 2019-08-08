@@ -26,7 +26,7 @@ export class UserServiceService {
     }
 
     public isAdmin(): boolean {
-      if(this._currentUser.accessType === 'Admin'){
+      if (this._currentUser.accessType === 'Admin') {
         return true;
       } else {
         return false;
@@ -44,16 +44,18 @@ export class UserServiceService {
     public getLastLogin(): string {
       return this._currentUser.lastLogin;
     }
-  
+    public getemail(): string {
+      return this._currentUser.email;
+    }
     public login(user: any) {
-      return this.http.get(this.apiUrl + user.username + "/" + user.password);
+      return this.http.get(this.apiUrl + user.username + '/' + user.password);
     }
 
     public logout() {
       this._currentUser = null;
     }
 
-    public setCurrentUser(currentUser: any){
+    public setCurrentUser(currentUser: any) {
       this._currentUser = currentUser;
     }
 
