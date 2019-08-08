@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { EmailValidator } from '@angular/forms';
 
 
 @Component({
@@ -27,6 +28,10 @@ export class ModalsComponent implements OnInit {
 
   }
 
+  save(content){
+
+  }
+
   private getDismissReason( reason: any ): string {
 
     if (reason === ModalDismissReasons.ESC) {
@@ -38,6 +43,9 @@ export class ModalsComponent implements OnInit {
     }
 
   }
+
+
+
 }
 
 
