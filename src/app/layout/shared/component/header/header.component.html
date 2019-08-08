@@ -37,5 +37,12 @@
   <span class="navbar-text mx-3 text-white" *ngIf="router.url != '/'">
     {{name}}
   </span>
-  <button class="btn btn-outline-light text-white" (click)="logout()">Logout</button>
+  <div ngbDropdown class="d-inline-block">
+      <i class="icon fas fa-bars fa-2x pr-1" id="dropdownNavbar" ngbDropdownToggle style="color: white"></i>
+      <div ngbDropdownMenu aria-labelledby="dropdownNavbar" class="dropdown-menu-right">
+        <button ngbDropdownItem routerLink="/profile" >Perfil</button>
+        <hr>
+        <button ngbDropdownItem (click)="logout()">Logout</button>
+      </div>
+    </div>
 </nav>

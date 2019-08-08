@@ -12,6 +12,7 @@ import { UserServiceService } from '../core';
 export class LoginComponent implements OnInit {
   public user: User = new User();
   public msg: string;
+  public check: number;
 
   constructor(
     private router: Router,
@@ -34,8 +35,13 @@ export class LoginComponent implements OnInit {
       },
       (error) => {
         console.log(this.msg = error.msg);
+        this.check = 1 ;
       }
     );
+  }
+
+  public checkReset() {
+    this.check = 0;
   }
 
 }

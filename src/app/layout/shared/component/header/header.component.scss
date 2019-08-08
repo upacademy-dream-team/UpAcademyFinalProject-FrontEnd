@@ -7,3 +7,7 @@
     background:#e64415;
 
 }
+
+.dropdown-toggle::after {
+    display:none;
+}
