@@ -28,10 +28,6 @@ export class ModalsComponent implements OnInit {
 
   }
 
-  save(content){
-
-  }
-
   private getDismissReason( reason: any ): string {
 
     if (reason === ModalDismissReasons.ESC) {
