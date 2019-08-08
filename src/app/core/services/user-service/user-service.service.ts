@@ -8,14 +8,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserServiceService {
 
-    private apiUrl = "http://localhost:8080/Testes-RecemLicenciados/api/user/login/";
+    private apiUrl = 'http://localhost:8080/Testes-RecemLicenciados/api/user/login/';
 
+    // tslint:disable-next-line: variable-name
     private _currentUser: User = new User();
-  
+
     constructor(
       private http: HttpClient,
     ) { }
-  
+
     public isAuthenticated(): boolean {
       if (this._currentUser.id) {
         return true;
@@ -27,12 +28,11 @@ export class UserServiceService {
     public isAdmin(): boolean {
       if(this._currentUser.accessType == 'Admin'){
         return true;
-      }
-      else {
+      } else {
         return false;
       }
     }
-    
+
     public getUserName(): string {
       return this._currentUser.username;
     }
@@ -40,11 +40,11 @@ export class UserServiceService {
     public getAccessType(): string {
       return this._currentUser.accessType;
     }
-  
+
     public login(user: any) {
       return this.http.get(this.apiUrl + user.username + "/" + user.password);
     }
-  
+
     public logout() {
       this._currentUser = null;
     }

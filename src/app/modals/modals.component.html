@@ -15,18 +15,21 @@
         <br>
         <label for="emailUtilizador">Email :</label>
         <div class="input-group">
-          <input id="emailUtilizador" class="form-control" placeholder="emailUtilizador" name="emailUtilizador" >
+          <input id="emailUtilizador" class="form-control" placeholder="Email Utilizador" name="emailUtilizador" >
         </div>
         <br>
         <label for="acessoUser">Permissoes:</label>
         <div class="input-group">
-          <input id="acessoUser" class="form-control" placeholder="Nome Utilizador" name="nomeUtilizador" >
+          <select>
+            <option value="Admin">Administrator</option>
+            <option value="Recrutador">Recrutador</option>
+          </select>
         </div>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.save('Save click')">Add</button>
   </div>
 </ng-template>
 

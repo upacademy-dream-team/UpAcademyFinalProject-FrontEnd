@@ -5,10 +5,8 @@
     <br />
     <div class="row rounded">
       <div class="col-sm-12 col-md-3 col-lg-3">
-
         <div id="lefttable" class="pt-5 w-75 pl-5">
-
-            <app-modals ></app-modals>
+          <app-modals></app-modals>
 
           <table class="table table-bordered bg-white border-secondary">
             <thead class="text-center" id="thead">
@@ -19,76 +17,46 @@
             <tbody>
               <tr>
                 <th>
-                  <div class="btn-group w-100">
-                    <button type="button" class="btn text-dark border-secondary bg-light w-75">
-                      Permissoes
-                    </button>
-                    <button
-                      type="button"
-                      class="btn text-dark border-secondary bg-light dropdown-toggle dropdown-toggle-split"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
+                  <div class="text-center">
+                    <input
+                      class="form-control mr-sm-2"
+                      type="search"
+                      placeholder="Search"
+                      aria-label="Search"
+                    />
+                    <br />
+                    <button id="btnSelect"
+                      class="btn text-secondary"
+                      type="submit"
                     >
-                      <span class="sr-only">Toggle Dropdown</span>
+                      Search
                     </button>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Separated link</a>
-                    </div>
+                  </div>
+                </th>
+              </tr>
+
+              <tr>
+                <th>
+                  <div>
+                    <select class="text-center text-secondary btn-lg btn-group w-100">
+                      <option disabled selected>Permissoes</option>
+                      <option value="Admin">Administrator</option>
+                      <option value="Recrutador">Recrutador</option>
+                      <option value="Todas">Todas</option>
+                    </select>
                   </div>
                 </th>
               </tr>
               <tr>
                 <th>
-                  <div class="btn-group w-100">
-                    <button type="button" class="btn text-dark border-secondary bg-light w-75">
-                      Ultimo Login
-                    </button>
-                    <button
-                      type="button"
-                      class="btn text-dark border-secondary bg-light dropdown-toggle dropdown-toggle-split"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Separated link</a>
-                    </div>
-                  </div>
-                </th>
-              </tr>
-              <tr>
-                <th>
-                  <div class="btn-group w-100">
-                    <button type="button" class="btn text-dark border-secondary bg-light w-75">
-                      Teste Realizados
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn text-dark border-secondary bg-light dropdown-toggle dropdown-toggle-split"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    >
-                      <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Separated link</a>
-                    </div>
+                  <div>
+                    <select class="text-center text-secondary btn-lg btn-group w-100">
+                      <option disabled selected>Ultimo-login</option>
+                      <option value="maiortres"> > 3 meses</option>
+                      <option value="maiorseis"> > 6 meses</option>
+                      <option value="maiornove"> > 9 meses</option>
+                      <option value="maiordoze"> > 12 meses</option>
+                    </select>
                   </div>
                 </th>
               </tr>
@@ -97,8 +65,9 @@
         </div>
       </div>
 
-      <div class="col-sm-12 col-md-9 .offset col-md-1 col-lg-9 .offset col-lg-1 ">
-
+      <div
+        class="col-sm-12 col-md-9 .offset col-md-1 col-lg-9 .offset col-lg-1 "
+      >
         <div class="pt-5 pr-5">
           <table
             class="table table-bordered bg-white border-secondary text-center"
