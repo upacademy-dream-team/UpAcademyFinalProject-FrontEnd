@@ -71,6 +71,7 @@ export class UserServiceService {
         (res: any) => {
           this.users = res;
           this.users$.next(res);
+          console.log("Zre carlos", res);
         }
       );
     }

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { User, UserServiceService } from '../core';
 
 
@@ -18,7 +18,7 @@ export class ModalsComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private userApi: UserServiceService,
-    ) {
+  ) {
     this.user.accessType = 'Recrutador';
 
   }
@@ -26,9 +26,9 @@ export class ModalsComponent implements OnInit {
   ngOnInit() {
   }
 
-  open( content: any ) {
+  open(content: any) {
 
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -37,17 +37,26 @@ export class ModalsComponent implements OnInit {
   }
 
   save(user: User) {
-    this.userApi.addUser(user).subscribe(data => {console.log(data); }, error => console.log(error));
+    this.userApi.addUser(user).subscribe(
+      data => {
+        console.log(data);
+        this.userApi.getAllUsers();
+
+      }, error => {
+        console.log(error);
+        this.userApi.getAllUsers();
+      });
+
   }
 
-  private getDismissReason( reason: any ): string {
+  private getDismissReason(reason: any): string {
 
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
 
   }

@@ -9,6 +9,7 @@ export class TablesComponent implements OnInit {
   @Input() header: any;
   @Input() data$: any;
   @Input() labels: any;
+  @Input() icons: any;
   @Output() clickedRow = new EventEmitter();
 
   constructor() { }
@@ -18,6 +19,10 @@ export class TablesComponent implements OnInit {
 
   clickRow(row) {
     this.clickedRow.emit(row);
+  }
+
+  onClickFas(event) {
+    console.log(event)
   }
 
 }
