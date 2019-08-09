@@ -12,6 +12,7 @@ import { NoPermissionComponent } from './no-permission/no-permission.component';
 import { ParticlesComponent } from './particles/particles.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,14 +20,14 @@ import { ParticlesComponent } from './particles/particles.component';
     NotFoundComponent,
     TestingPageComponent,
     NoPermissionComponent,
-    ParticlesComponent
+    ParticlesComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    NgbModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

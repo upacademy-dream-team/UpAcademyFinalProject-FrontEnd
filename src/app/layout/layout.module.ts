@@ -11,6 +11,7 @@ import { ConsultarEnunciadosComponent } from './consultar-enunciados/consultar-e
 import { CriarTestesComponent } from './criar-testes/criar-testes.component';
 import { SettingsComponent } from './settings/settings.component';
 import { IniciarTesteComponent } from './iniciar-teste/iniciar-teste.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -21,13 +22,14 @@ import { IniciarTesteComponent } from './iniciar-teste/iniciar-teste.component';
     ConsultarEnunciadosComponent,
     CriarTestesComponent,
     SettingsComponent,
-    IniciarTesteComponent
+    IniciarTesteComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,
     LayoutRoutingModule,
     FormsModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class LayoutModule { }

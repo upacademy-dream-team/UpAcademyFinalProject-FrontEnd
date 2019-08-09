@@ -8,6 +8,7 @@ import { ConsultarResultadosComponent } from './consultar-resultados/consultar-r
 import { AccessTypeGuard } from '../core';
 import { SettingsComponent } from './settings/settings.component';
 import { IniciarTesteComponent } from './iniciar-teste/iniciar-teste.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ children: [
   {path: 'createTest', component: CriarTestesComponent},
   {path: 'tests', component: ConsultarEnunciadosComponent},
   {path: 'results', component: ConsultarResultadosComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: 'settings',  component: SettingsComponent, canActivate: [AccessTypeGuard]}
 ]}
 
