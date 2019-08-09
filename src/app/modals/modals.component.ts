@@ -42,10 +42,7 @@ export class ModalsComponent implements OnInit {
         console.log(data);
         this.userApi.getAllUsers();
         this.modalService.dismissAll();
-      }, /*error => {
-        console.log(error);
-        this.userApi.getAllUsers();
-      }*/);
+      });
       
 
   }
