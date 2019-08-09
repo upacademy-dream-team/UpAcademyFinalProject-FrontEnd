@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
-import { EmailValidator } from '@angular/forms';
+import { User, UserServiceService } from '../core';
 
 
 @Component({
@@ -12,8 +12,16 @@ import { EmailValidator } from '@angular/forms';
 export class ModalsComponent implements OnInit {
 
   closeResult: string;
+  user = new User();
 
-  constructor(private modalService: NgbModal) { }
+
+  constructor(
+    private modalService: NgbModal,
+    private userApi: UserServiceService,
+    ) {
+    this.user.accessType = 'Recrutador';
+
+  }
 
   ngOnInit() {
   }
@@ -26,6 +34,10 @@ export class ModalsComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
 
+  }
+
+  save(user: User) {
+    this.userApi.addUser(user);
   }
 
   private getDismissReason( reason: any ): string {

@@ -10,17 +10,17 @@
       <div class="form-group">
         <label for="nomeUtilizador">Nome Utilizador :</label>
         <div class="input-group">
-          <input id="nomeUtilizador" class="form-control" placeholder="Nome Utilizador" name="nomeUtilizador" >
+          <input id="nomeUtilizador" [(ngModel)]="user.username" class="form-control" placeholder="Nome Utilizador" name="nomeUtilizador" >
         </div>
         <br>
         <label for="emailUtilizador">Email :</label>
         <div class="input-group">
-          <input id="emailUtilizador" class="form-control" placeholder="Email Utilizador" name="emailUtilizador" >
+          <input id="emailUtilizador" [(ngModel)]="user.email" class="form-control" placeholder="Email Utilizador" name="emailUtilizador" >
         </div>
         <br>
         <label for="acessoUser">Permissoes:</label>
         <div class="input-group">
-          <select>
+          <select [(ngModel)]="user.accessType" name="accessType">
             <option value="Admin">Administrator</option>
             <option value="Recrutador">Recrutador</option>
           </select>
@@ -29,7 +29,7 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.save('Save click')">Add</button>
+    <button type="button" class="btn btn-outline-dark" (click)="save(user)">Add</button>
   </div>
 </ng-template>
 

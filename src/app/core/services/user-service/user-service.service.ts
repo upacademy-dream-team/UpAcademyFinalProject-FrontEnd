@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserServiceService {
 
-    private apiUrl = 'http://localhost:8080/Testes-RecemLicenciados/api/user/login/';
+    private apiUrl = 'http://localhost:8080/Testes-RecemLicenciados/api/user/';
 
     // tslint:disable-next-line: variable-name
     private _currentUser: User = new User();
@@ -42,14 +42,19 @@ export class UserServiceService {
     }
 
     public login(user: any) {
-      return this.http.get(this.apiUrl + user.username + "/" + user.password);
+      return this.http.get(this.apiUrl + 'login/' + user.username + '/' + user.password);
+    }
+
+    public addUser(user: User){
+      console.log(user);
+      return this.http.post(this.apiUrl + 'add', user);
     }
 
     public logout() {
       this._currentUser = null;
     }
 
-    public setCurrentUser(currentUser: any){
+    public setCurrentUser(currentUser: any) {
       this._currentUser = currentUser;
     }
 }

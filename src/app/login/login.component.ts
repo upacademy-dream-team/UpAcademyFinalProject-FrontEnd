@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   public login() {
     this.accountApi.login(this.user).subscribe(
-      (data:any) => {
+      (data: any) => {
         console.log(data);
         this.accountApi.setCurrentUser(data);
         this.router.navigate(['/']);
