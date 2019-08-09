@@ -13,6 +13,8 @@ export class ModalsComponent implements OnInit {
 
   closeResult: string;
   user = new User();
+  msg: any;
+  check: number;
 
 
   constructor(
@@ -42,7 +44,13 @@ export class ModalsComponent implements OnInit {
         console.log(data);
         this.userApi.getAllUsers();
         this.modalService.dismissAll();
-      });
+      },
+      (error) => {
+        console.log(error.error);
+        this.msg=error.error;
+        this.check = 1 ;
+      }
+      );
       
 
   }
