@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../models';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ReplaySubject } from 'rxjs';
 
 
@@ -15,6 +15,7 @@ export class UserServiceService {
     private _currentUser: User = new User();
     public users$: ReplaySubject<any[]> = new ReplaySubject(1);
     private users: any[];
+  header: HttpHeaders | { [header: string]: string | string[]; };
 
     constructor(
       private http: HttpClient,
@@ -56,7 +57,7 @@ export class UserServiceService {
 
     public addUser(user: User) {
       console.log(user);
-      return this.http.post(this.apiUrl + 'add', user);
+      return this.http.post(this.apiUrl + 'add', user, {headers: this.header , responseType:'text'});
     }
 
     public logout() {

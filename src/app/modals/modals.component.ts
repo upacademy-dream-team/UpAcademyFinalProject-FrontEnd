@@ -41,11 +41,12 @@ export class ModalsComponent implements OnInit {
       data => {
         console.log(data);
         this.userApi.getAllUsers();
-
-      }, error => {
+        this.modalService.dismissAll();
+      }, /*error => {
         console.log(error);
         this.userApi.getAllUsers();
-      });
+      }*/);
+      
 
   }
 
