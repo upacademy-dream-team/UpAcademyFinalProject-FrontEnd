@@ -9,7 +9,7 @@ import { ReplaySubject } from 'rxjs';
 })
 export class UserServiceService {
 
-    private apiUrl = 'http://localhost:8080/Testes-RecemLicenciados/api/user';
+    private apiUrl = 'http://localhost:8080/Testes-RecemLicenciados/api/user/';
 
     // tslint:disable-next-line: variable-name
     private _currentUser: User = new User();
@@ -51,7 +51,12 @@ export class UserServiceService {
       return this._currentUser.email;
     }
     public login(user: any) {
-      return this.http.get(this.apiUrl +"/login/"+ user.username + "/" + user.password);
+      return this.http.get(this.apiUrl + 'login/' + user.username + '/' + user.password);
+    }
+
+    public addUser(user: User) {
+      console.log(user);
+      return this.http.post(this.apiUrl + 'add', user);
     }
 
     public logout() {
@@ -71,23 +76,19 @@ export class UserServiceService {
     }
 
 
-    public resetPassword(user: User){
-      return this.http.put(this.apiUrl+"/resetPassword",user);
-    }
-
-    public addUser(user: User){
-      return this.http.post(this.apiUrl+"/add", user);
+    public resetPassword(user: User) {
+      return this.http.put(this.apiUrl + 'resetPassword', user);
     }
 
     public editUser(user: User){
-      return this.http.put(this.apiUrl+"/edit",user);
+      return this.http.put(this.apiUrl + 'edit', user);
     }
 
     public removeUser(id: Number){
-      return this.http.delete(this.apiUrl+"/remove/"+id);
+      return this.http.delete(this.apiUrl + 'remove/' + id);
     }
 
     public updaterPassword(username: String, oldPassword: String, newPassword: String){
-      return this.http.put(this.apiUrl+"/changePassword/"+username+"/"+oldPassword+"/"+newPassword,{});
+      return this.http.put(this.apiUrl+"changePassword/"+username+"/"+oldPassword+"/"+newPassword,{});
     }
 }
