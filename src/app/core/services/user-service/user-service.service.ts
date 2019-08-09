@@ -67,7 +67,7 @@ export class UserServiceService {
       this._currentUser = currentUser;
     }
     public getAllUsers(){
-      return this.http.get(this.apiUrl+"/all").subscribe(
+      return this.http.get(this.apiUrl+"all").subscribe(
         (res: any) => {
           this.users = res;
           this.users$.next(res);
