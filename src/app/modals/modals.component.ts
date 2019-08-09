@@ -37,7 +37,7 @@ export class ModalsComponent implements OnInit {
   }
 
   save(user: User) {
-    this.userApi.addUser(user);
+    this.userApi.addUser(user).subscribe(data => {console.log(data); }, error => console.log(error));
   }
 
   private getDismissReason( reason: any ): string {

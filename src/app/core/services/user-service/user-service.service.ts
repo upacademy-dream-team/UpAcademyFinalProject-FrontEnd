@@ -12,7 +12,7 @@ export class UserServiceService {
 
     // tslint:disable-next-line: variable-name
     private _currentUser: User = new User();
-
+    public error: any;
     constructor(
       private http: HttpClient,
     ) { }
@@ -51,7 +51,7 @@ export class UserServiceService {
       return this.http.get(this.apiUrl + 'login/' + user.username + '/' + user.password);
     }
 
-    public addUser(user: User){
+    public addUser(user: User) {
       console.log(user);
       return this.http.post(this.apiUrl + 'add', user);
     }
@@ -64,23 +64,23 @@ export class UserServiceService {
       this._currentUser = currentUser;
     }
     public getAllUsers(){
-      return this.http.get(this.apiUrl+"/all");
+      return this.http.get(this.apiUrl + 'all' );
     }
 
 
-    public resetPassword(user: User){
-      return this.http.put(this.apiUrl+"/resetPassword",user);
+    public resetPassword(user: User) {
+      return this.http.put(this.apiUrl + 'resetPassword', user);
     }
 
     public editUser(user: User){
-      return this.http.put(this.apiUrl+"/edit",user);
+      return this.http.put(this.apiUrl + 'edit', user);
     }
 
     public removeUser(id: Number){
-      return this.http.delete(this.apiUrl+"/remove/"+id);
+      return this.http.delete(this.apiUrl + 'remove/' + id);
     }
 
     public updaterPassword(username: String, oldPassword: String, newPassword: String){
-      return this.http.put(this.apiUrl+"/changePassword/"+username+"/"+oldPassword+"/"+newPassword,{});
+      return this.http.put(this.apiUrl+"changePassword/"+username+"/"+oldPassword+"/"+newPassword,{});
     }
 }
