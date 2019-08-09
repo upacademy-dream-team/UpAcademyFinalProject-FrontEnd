@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../models';
 import { HttpClient } from '@angular/common/http';
+import { ReplaySubject } from 'rxjs';
 
 
 @Injectable({
@@ -12,6 +13,8 @@ export class UserServiceService {
 
     // tslint:disable-next-line: variable-name
     private _currentUser: User = new User();
+    public users$: ReplaySubject<any[]> = new ReplaySubject(1);
+    private users: any[];
 
     constructor(
       private http: HttpClient,
@@ -59,7 +62,12 @@ export class UserServiceService {
       this._currentUser = currentUser;
     }
     public getAllUsers(){
-      return this.http.get(this.apiUrl+"/all");
+      return this.http.get(this.apiUrl+"/all").subscribe(
+        (res: any) => {
+          this.users = res;
+          this.users$.next(res);
+        }
+      );
     }
 
 
