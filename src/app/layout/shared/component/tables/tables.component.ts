@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { UserServiceService } from 'src/app/core';
 
 @Component({
   selector: 'app-tables',
@@ -12,7 +13,7 @@ export class TablesComponent implements OnInit {
   @Input() icons: any;
   @Output() clickedRow = new EventEmitter();
 
-  constructor() { }
+  constructor(private userApi: UserServiceService) { }
 
   ngOnInit() {
   }
@@ -21,8 +22,23 @@ export class TablesComponent implements OnInit {
     this.clickedRow.emit(row);
   }
 
-  onClickFas(event) {
-    console.log(event)
+  onClickFas(id, event) {
+    console.log(event.target.classList.value);
+    console.log(id);
+    //we should not be able to delete own user (to avoid an all-users delete)
+    if(event.target.classList.value=="fas fa-trash")
+      this.userApi.removeUser(id).subscribe(
+        data => {
+          console.log(data);
+          this.userApi.getAllUsers();
+        },
+      );
+      /*else if(event.target.classList.value=="fas fa-power-off")
+        this.userApi.resetPassword(users[id]).subscribe(
+        data => {
+          console.log(data);
+        },
+      );*/
   }
 
 }

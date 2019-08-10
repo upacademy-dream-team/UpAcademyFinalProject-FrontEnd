@@ -13,7 +13,7 @@
                 {{row[col]}}
               </td>
               <td *ngFor="let col of icons" (click)="clickRow(row)" >
-                <i class="{{col}}" (click)= "onClickFas($event)"></i>
+                <i class="{{col}}" (click)= "onClickFas(row['id'], $event)"></i>
               </td>
             </tr>
           </tbody>

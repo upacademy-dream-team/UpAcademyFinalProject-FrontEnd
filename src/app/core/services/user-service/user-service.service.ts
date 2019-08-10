@@ -79,7 +79,7 @@ export class UserServiceService {
 
 
     public resetPassword(user: User) {
-      return this.http.put(this.apiUrl + 'resetPassword', user);
+      return this.http.put(this.apiUrl + 'resetPassword', user, {headers: this.header , responseType:'text'});
     }
 
     public editUser(user: User){
@@ -87,7 +87,7 @@ export class UserServiceService {
     }
 
     public removeUser(id: Number){
-      return this.http.delete(this.apiUrl + 'remove/' + id);
+      return this.http.delete(this.apiUrl + 'remove/' + id, {headers: this.header , responseType:'text'});
     }
 
     public updaterPassword(username: String, oldPassword: String, newPassword: String){
