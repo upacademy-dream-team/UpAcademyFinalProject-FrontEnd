@@ -22,9 +22,10 @@ export class TablesComponent implements OnInit {
     this.clickedRow.emit(row);
   }
 
-  onClickFas(id, event) {
+  onClickFas(user, event) {
     console.log(event.target.classList.value);
-    console.log(id);
+    console.log(user["id"]);
+    let id=user["id"];
     //we should not be able to delete own user (to avoid an all-users delete)
     if(event.target.classList.value=="fas fa-trash")
       this.userApi.removeUser(id).subscribe(
@@ -33,12 +34,12 @@ export class TablesComponent implements OnInit {
           this.userApi.getAllUsers();
         },
       );
-      /*else if(event.target.classList.value=="fas fa-power-off")
-        this.userApi.resetPassword(users[id]).subscribe(
+      else if(event.target.classList.value=="fas fa-power-off")
+        this.userApi.resetPassword(user).subscribe(
         data => {
           console.log(data);
         },
-      );*/
+      );
   }
 
 }
