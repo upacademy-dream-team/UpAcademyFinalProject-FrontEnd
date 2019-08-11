@@ -37,6 +37,10 @@ export class UserServiceService {
       }
     }
 
+    public getCurrentUser(): User{
+        return this._currentUser;
+    }
+
     public getUserName(): string {
       return this._currentUser.username;
     }
