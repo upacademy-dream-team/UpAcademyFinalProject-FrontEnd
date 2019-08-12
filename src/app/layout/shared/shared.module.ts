@@ -9,6 +9,7 @@ import { TablesComponent } from './component/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
+
 @NgModule({
   declarations: [
     HeaderComponent,

@@ -37,7 +37,7 @@ export class UserServiceService {
       }
     }
 
-    public getCurrentUser(): User{
+    public getCurrentUser(): User {
         return this._currentUser;
     }
 
@@ -71,8 +71,8 @@ export class UserServiceService {
     public setCurrentUser(currentUser: any) {
       this._currentUser = currentUser;
     }
-    public getAllUsers(){
-      return this.http.get(this.apiUrl+ 'all').subscribe(
+    public getAllUsers() {
+      return this.http.get(this.apiUrl + 'all').subscribe(
         (res: any) => {
           this.users = res;
           this.users$.next(res);
@@ -83,7 +83,7 @@ export class UserServiceService {
 
 
     public resetPassword(user: User) {
-      return this.http.put(this.apiUrl + 'resetPassword', user, {headers: this.header , responseType:'text'});
+      return this.http.put(this.apiUrl + 'resetPassword', user, {headers: this.header , responseType: 'text'});
     }
 
     public editUser(user: User) {
@@ -92,7 +92,7 @@ export class UserServiceService {
 
     // tslint:disable-next-line: ban-types
     public removeUser(id: Number ) {
-      return this.http.delete(this.apiUrl + 'remove/' + id, {headers: this.header , responseType:'text'});
+      return this.http.delete(this.apiUrl + 'remove/' + id, {headers: this.header , responseType: 'text'});
     }
 
     // tslint:disable-next-line: ban-types
