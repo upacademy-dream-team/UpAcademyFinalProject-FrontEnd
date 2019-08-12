@@ -14,7 +14,7 @@
                     {{row[col]}}
                 </td>
                 <td *ngFor="let col of icons" (click)="clickRow(row)" >
-                  <i class="{{col}}" (click)= "onClickFas(row, $event)"></i>
+                  <i id="icon" class="{{col}} fa-lg" (click)= "onClickFas(row, $event)"></i>
                 </td>
               </ng-container>
             </tr>
