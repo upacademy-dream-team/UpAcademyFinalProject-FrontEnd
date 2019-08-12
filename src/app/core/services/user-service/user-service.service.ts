@@ -53,7 +53,7 @@ export class UserServiceService {
 
     public addUser(user: User) {
       console.log(user);
-      return this.http.post(this.apiUrl + 'add', user);
+      return this.http.post<string>(this.apiUrl + 'add', user);
     }
 
     public logout() {
