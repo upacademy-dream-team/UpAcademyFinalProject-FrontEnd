@@ -15,7 +15,7 @@ export class UserServiceService {
     private _currentUser: User = new User();
     public users$: ReplaySubject<any[]> = new ReplaySubject(1);
     private users: any[];
-  header: HttpHeaders | { [header: string]: string | string[]; };
+    header: HttpHeaders | { [header: string]: string | string[]; };
 
     constructor(
       private http: HttpClient,
