@@ -7,6 +7,8 @@ import { FooterComponent } from './component/footer/footer.component';
 import { ModalsComponent } from 'src/app/modals/modals.component';
 import { TablesComponent } from './component/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+
 
 
 @NgModule({
@@ -20,7 +22,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CommonModule,
     RouterModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    NgxDatatableModule
   ],
   exports: [
     HeaderComponent,
