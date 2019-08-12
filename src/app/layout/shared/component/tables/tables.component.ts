@@ -15,7 +15,10 @@ export class TablesComponent implements OnInit {
 
   constructor(private userApi: UserServiceService) { }
 
+  private current_id: number = this.userApi.getCurrentUser().id;
+
   ngOnInit() {
+    console.log(this.current_id);
   }
 
   clickRow(row) {

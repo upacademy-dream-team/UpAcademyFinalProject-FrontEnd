@@ -9,12 +9,14 @@
           </thead>
           <tbody>
             <tr *ngFor="let row of data$ | async">
-              <td *ngFor="let col of header">
-                {{row[col]}}
-              </td>
-              <td *ngFor="let col of icons" (click)="clickRow(row)" >
-                <i class="{{col}}" (click)= "onClickFas(row, $event)"></i>
-              </td>
+              <ng-container *ngIf="row.id!=this.current_id">
+                <td *ngFor="let col of header">
+                    {{row[col]}}
+                </td>
+                <td *ngFor="let col of icons" (click)="clickRow(row)" >
+                  <i class="{{col}}" (click)= "onClickFas(row, $event)"></i>
+                </td>
+              </ng-container>
             </tr>
           </tbody>
         </table>
