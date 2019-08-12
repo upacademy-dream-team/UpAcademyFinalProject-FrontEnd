@@ -1,1 +1,41 @@
-<p>criar-testes works!</p>
+<div class="container pt-3" >
+
+
+<ngb-tabset [justify]="'fill'">
+  <ngb-tab title="Gerador de Testes">
+    <ng-template ngbTabContent>
+      <br>
+
+      <label for="nomeTestes">Nome:</label> <input type="text" placeholder="Nome do teste">
+      <label for="duracaoTestes">Duracao:</label> <input type="Number" placeholder="minutos">
+      <br>
+      <label for="categoriaTestes">Categoria:</label>
+      <select name="" id="">
+        <option value="java">JAVA</option>
+        <option value="javaScript">JAVASCRIPT</option>
+        <option value="sql">SQL</option>
+        <option value="c++">C++</option>
+      </select>
+
+      <label for="perguntasTestes">N Perguntas:</label><input type="Number" placeholder="num Perguntas">
+
+
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Gerador de Perguntas">
+    <ng-template ngbTabContent>
+      <br>
+    </ng-template>
+  </ngb-tab>
+  <ngb-tab title="Gerador de Categorias">
+    <ng-template ngbTabContent>
+        <br>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
+
+
+</div>
+
+
+
