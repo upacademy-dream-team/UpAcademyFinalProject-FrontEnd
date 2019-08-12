@@ -28,6 +28,9 @@
       </div>
     </form>
   </div>
+  <ngb-alert type="danger" *ngIf="check == 1" [dismissible]="false" class="mt-2 danger">
+    <strong>Warning!</strong> {{msg}}
+  </ngb-alert>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="save(user)">Add</button>
   </div>

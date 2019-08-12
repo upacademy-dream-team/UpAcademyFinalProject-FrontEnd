@@ -25,7 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   exports: [
     HeaderComponent,
     FooterComponent,
-    ModalsComponent
+    ModalsComponent,
+    TablesComponent
   ]
 })
 export class SharedModule { }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../../models';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ReplaySubject } from 'rxjs';
 
 
 @Injectable({
@@ -12,7 +13,10 @@ export class UserServiceService {
 
     // tslint:disable-next-line: variable-name
     private _currentUser: User = new User();
-    public error: any;
+    public users$: ReplaySubject<any[]> = new ReplaySubject(1);
+    private users: any[];
+  header: HttpHeaders | { [header: string]: string | string[]; };
+
     constructor(
       private http: HttpClient,
     ) { }
@@ -31,6 +35,10 @@ export class UserServiceService {
       } else {
         return false;
       }
+    }
+
+    public getCurrentUser(): User{
+        return this._currentUser;
     }
 
     public getUserName(): string {
@@ -53,7 +61,7 @@ export class UserServiceService {
 
     public addUser(user: User) {
       console.log(user);
-      return this.http.post<string>(this.apiUrl + 'add', user);
+      return this.http.post(this.apiUrl + 'add', user, {headers: this.header , responseType: 'text'});
     }
 
     public logout() {
@@ -63,13 +71,19 @@ export class UserServiceService {
     public setCurrentUser(currentUser: any) {
       this._currentUser = currentUser;
     }
-    public getAllUsers() {
-      return this.http.get(this.apiUrl + 'all' );
+    public getAllUsers(){
+      return this.http.get(this.apiUrl+ 'all').subscribe(
+        (res: any) => {
+          this.users = res;
+          this.users$.next(res);
+          console.log( 'Zre carlos', res);
+        }
+      );
     }
 
 
     public resetPassword(user: User) {
-      return this.http.put(this.apiUrl + 'resetPassword', user);
+      return this.http.put(this.apiUrl + 'resetPassword', user, {headers: this.header , responseType:'text'});
     }
 
     public editUser(user: User) {
@@ -77,8 +91,8 @@ export class UserServiceService {
     }
 
     // tslint:disable-next-line: ban-types
-    public removeUser(id: Number) {
-      return this.http.delete(this.apiUrl + 'remove/' + id);
+    public removeUser(id: Number ) {
+      return this.http.delete(this.apiUrl + 'remove/' + id, {headers: this.header , responseType:'text'});
     }
 
     // tslint:disable-next-line: ban-types
