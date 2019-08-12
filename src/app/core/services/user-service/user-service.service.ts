@@ -37,7 +37,7 @@ export class UserServiceService {
       }
     }
 
-    public getCurrentUser(): User{
+    public getCurrentUser(): User {
         return this._currentUser;
     }
 
@@ -61,7 +61,7 @@ export class UserServiceService {
 
     public addUser(user: User) {
       console.log(user);
-      return this.http.post(this.apiUrl + 'add', user, {headers: this.header , responseType:'text'});
+      return this.http.post(this.apiUrl + 'add', user, {headers: this.header , responseType: 'text'});
     }
 
     public logout() {
@@ -71,30 +71,32 @@ export class UserServiceService {
     public setCurrentUser(currentUser: any) {
       this._currentUser = currentUser;
     }
-    public getAllUsers(){
-      return this.http.get(this.apiUrl+"all").subscribe(
+    public getAllUsers() {
+      return this.http.get(this.apiUrl + 'all').subscribe(
         (res: any) => {
           this.users = res;
           this.users$.next(res);
-          console.log("Zre carlos", res);
+          console.log( 'Zre carlos', res);
         }
       );
     }
 
 
     public resetPassword(user: User) {
-      return this.http.put(this.apiUrl + 'resetPassword', user, {headers: this.header , responseType:'text'});
+      return this.http.put(this.apiUrl + 'resetPassword', user, {headers: this.header , responseType: 'text'});
     }
 
-    public editUser(user: User){
+    public editUser(user: User) {
       return this.http.put(this.apiUrl + 'edit', user);
     }
 
-    public removeUser(id: Number){
-      return this.http.delete(this.apiUrl + 'remove/' + id, {headers: this.header , responseType:'text'});
+    // tslint:disable-next-line: ban-types
+    public removeUser(id: Number ) {
+      return this.http.delete(this.apiUrl + 'remove/' + id, {headers: this.header , responseType: 'text'});
     }
 
-    public updaterPassword(username: String, oldPassword: String, newPassword: String){
-      return this.http.put(this.apiUrl+"changePassword/"+username+"/"+oldPassword+"/"+newPassword,{});
+    // tslint:disable-next-line: ban-types
+    public updaterPassword(username: String , oldPassword: String, newPassword: String) {
+      return this.http.put(this.apiUrl + 'changePassword/' + username + '/' + oldPassword + '/' + newPassword, {});
     }
 }

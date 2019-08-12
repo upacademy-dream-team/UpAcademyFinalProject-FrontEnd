@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { MainComponent } from './main/main.component';
@@ -12,6 +11,8 @@ import { CriarTestesComponent } from './criar-testes/criar-testes.component';
 import { SettingsComponent } from './settings/settings.component';
 import { IniciarTesteComponent } from './iniciar-teste/iniciar-teste.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 @NgModule({
@@ -23,13 +24,14 @@ import { ProfileComponent } from './profile/profile.component';
     CriarTestesComponent,
     SettingsComponent,
     IniciarTesteComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
     LayoutRoutingModule,
     FormsModule,
     SharedModule,
+    NgbModule
   ]
 })
 export class LayoutModule { }
