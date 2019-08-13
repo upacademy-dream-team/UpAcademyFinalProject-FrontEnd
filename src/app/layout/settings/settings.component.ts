@@ -12,7 +12,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   public users$: ReplaySubject<User[]>;
   private subscriptionUsers: Subscription;
   public iconArray: string[];
- 
+
   constructor(
     private userService: UserServiceService
     ) {
@@ -28,7 +28,4 @@ export class SettingsComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.subscriptionUsers.unsubscribe();
   }
-
-
-  
 }

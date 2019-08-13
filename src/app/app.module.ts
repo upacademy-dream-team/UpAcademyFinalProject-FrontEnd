@@ -10,6 +10,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TestingPageComponent } from './testing-page/testing-page.component';
 import { NoPermissionComponent } from './no-permission/no-permission.component';
 import { ParticlesComponent } from './particles/particles.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 
 
@@ -28,6 +29,7 @@ import { ParticlesComponent } from './particles/particles.component';
     AppRoutingModule,
     FormsModule,
     NgbModule,
+    NgxDatatableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
