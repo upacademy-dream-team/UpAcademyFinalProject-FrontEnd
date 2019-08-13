@@ -30,7 +30,7 @@ export class TablesComponent implements OnInit {
     console.log(user["id"]);
     let id=user["id"];
     //we should not be able to delete own user (to avoid an all-users delete)
-    if(event.target.classList.value=="fas fa-trash"){
+    if(event.target.classList.value=="fas fa-trash fa-lg"){
       if(this.userApi.getCurrentUser().id==id)
         console.log("CANNOT DELETE OWN ACCOUNT");
       else{
@@ -42,7 +42,7 @@ export class TablesComponent implements OnInit {
         );
       }
     }
-    else if(event.target.classList.value=="fas fa-power-off")
+    else if(event.target.classList.value=="fas fa-power-off fa-lg")
       this.userApi.resetPassword(user).subscribe(
       data => {
         console.log(data);
