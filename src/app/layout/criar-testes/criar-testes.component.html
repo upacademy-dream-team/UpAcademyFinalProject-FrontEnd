@@ -49,11 +49,20 @@
   <ngb-tab title="Gerador de Perguntas">
     <ng-template ngbTabContent>
       <br>
+      <label for="categoriaTestes">Categoria:</label>
+      <select [(ngModel)]="category" name="" id="">
+        <ng-container *ngFor="let category of categories$ | async">
+            <option value={{category.category}}> {{category.category}}
+            </option>
+        </ng-container>
+      </select>
     </ng-template>
   </ngb-tab>
   <ngb-tab title="Gerador de Categorias">
     <ng-template ngbTabContent>
         <br>
+    <label>Gerar Categoria:</label>
+    <input>
     </ng-template>
   </ngb-tab>
 </ngb-tabset>

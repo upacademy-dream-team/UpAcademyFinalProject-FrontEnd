@@ -68,6 +68,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   }
 
   public submitTest(){
+    console.log(this.allRandomQuestions);
     this.test.questions=this.allRandomQuestions;
     this.test.testName=this.testName;
     this.test.author=this.userService.getCurrentUser();
