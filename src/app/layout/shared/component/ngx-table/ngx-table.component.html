@@ -1,10 +1,5 @@
 <div>
-    <ngx-datatable class="bootstrap"
-    [columns]="columns"
-    [columnMode]="'force'"
-    [headerHeight]="50"
-    [footerHeight]="50"
-    [rowHeight]="'auto'"
-    [limit]="10"
-    [rows]="rows"></ngx-datatable>
-  </div>
+  <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+    [rowHeight]="'auto'" [limit]="10" [rows]="rows">
+  </ngx-datatable>
+</div>
