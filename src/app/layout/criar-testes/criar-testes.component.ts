@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import {NgbTabsetConfig} from '@ng-bootstrap/ng-bootstrap';
+import {NgbTabsetConfig, NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
 import { Test } from 'src/app/core/models/test';
 import { Category } from 'src/app/core/models/category';
 import { ReplaySubject, Subscription } from 'rxjs';
@@ -129,5 +129,12 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     } else {
       this.solution.splice(this.solution.indexOf(i),1);
     }
+  }
+
+  reset($event: NgbTabChangeEvent){
+    this.categoryService.getAllCategories();
+    //console.log(this.categories);
+    //console.log(this.subscriptionCategories);
+    this.categories$.subscribe(data => this.categories=data);
   }
 }
