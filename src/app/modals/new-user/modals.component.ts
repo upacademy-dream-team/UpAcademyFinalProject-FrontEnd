@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { User, UserServiceService } from '../core';
+import { User, UserServiceService } from '../../core';
 
 
 @Component({
@@ -47,11 +47,10 @@ export class ModalsComponent implements OnInit {
       },
       (error) => {
         console.log(error.error);
-        this.msg=error.error;
+        this.msg = error.error;
         this.check = 1 ;
       }
       );
-      
 
   }
 

@@ -4,7 +4,7 @@
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse justify-content-center" id="navbarNavHome" *ngIf="router.url === '/'">
+  <div class="collapse navbar-collapse justify-content-center" id="navbarNavHome" *ngIf="router.url === '/' ">
     <ul class="navbar-nav">
       <h4 class="nav-item" style="color: white">
         Bem vindo ao Aubay Tester, {{name}}
@@ -34,7 +34,7 @@
       </li>
     </ul>
   </div>
-  <span class="navbar-text mx-3 text-white" *ngIf="router.url != '/'">
+  <span class="navbar-text mx-3 text-white" *ngIf="router.url !== '/' ">
     {{name}}
   </span>
   <div ngbDropdown class="d-inline-block">

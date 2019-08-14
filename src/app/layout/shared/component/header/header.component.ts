@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
   public name: string;
   public accessType: string;
   public isAdmin: boolean;
+  public isMain = this.router.url === '/' ? true : false;
 
   constructor(
     private router: Router,

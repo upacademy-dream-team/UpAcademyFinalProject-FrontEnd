@@ -4,10 +4,13 @@ import { HeaderComponent } from './component/header/header.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './component/footer/footer.component';
-import { ModalsComponent } from 'src/app/modals/modals.component';
+import { ModalsComponent } from 'src/app/modals/new-user/modals.component';
 import { TablesComponent } from './component/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { DeleteConfirmationComponent } from 'src/app/modals/delete-confirmation/delete-confirmation.component';
+import { AlteracaoPasswordComponent } from 'src/app/modals/alteracao-password/alteracao-password.component';
+import { ChangePasswordAntigaComponent } from 'src/app/modals/change-password-antiga/change-password-antiga.component';
 
 
 
@@ -17,7 +20,10 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     HeaderComponent,
     FooterComponent,
     ModalsComponent,
-    TablesComponent
+    TablesComponent,
+    DeleteConfirmationComponent,
+    AlteracaoPasswordComponent,
+    ChangePasswordAntigaComponent,
   ],
   imports: [
     CommonModule,
@@ -30,7 +36,15 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     HeaderComponent,
     FooterComponent,
     ModalsComponent,
-    TablesComponent
+    TablesComponent,
+    DeleteConfirmationComponent,
+    AlteracaoPasswordComponent,
+    ChangePasswordAntigaComponent,
+  ],
+  entryComponents: [
+    DeleteConfirmationComponent,
+    AlteracaoPasswordComponent,
+    ChangePasswordAntigaComponent,
   ]
 })
 export class SharedModule { }

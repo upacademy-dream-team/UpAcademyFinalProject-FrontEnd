@@ -9,7 +9,7 @@
           </thead>
           <tbody class="text-center" style="font-size: 14px;">
             <tr *ngFor="let row of data$ | async">
-              <ng-container *ngIf="row.id!=this.current_id">
+              <ng-container *ngIf="row.id != this.current_id">
                 <td *ngFor="let col of header">
                     {{row[col]}}
                 </td>
