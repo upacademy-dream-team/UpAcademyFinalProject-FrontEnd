@@ -1,6 +1,6 @@
 <div class="bg-white vh-100">
   <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop-->
-  <div class="container-fluid">
+  <div class="container">
     <br/>
     <br/>
     <div class="row rounded">
@@ -21,7 +21,7 @@
             { name: 'Apagar Utilizador' },
             { name: 'Reset Password' }
             ]" 
-            [rows] = 'users$'> 
+            [rows] = 'users$ | async'> 
           </app-ngx-table>
           </div>
         </div>
