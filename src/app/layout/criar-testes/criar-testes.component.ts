@@ -23,6 +23,9 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   public allCategories=[];
   private subscriptionCategories: Subscription;
   public categories;
+  public numberOfTimes: number[]=[];
+  public options: any[]=[];
+  public solution: any[]=[];
 
   constructor(config: NgbTabsetConfig, private testService: TestServiceService, private userService: UserServiceService, private categoryService: CategoryServiceService, private questionService: QuestionServiceService) {
     config.justify = 'center';
@@ -50,6 +53,15 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   private testName: string;
   private questions: Question[];
   test= new Test();
+  
+
+  ///adding category
+  categoryString : string;
+  categoryClass = new Category();
+
+  ///adding question
+  questionString: string;
+  questionClass= new Question();
 
 
   public addInfo(){
@@ -63,7 +75,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
        // this.allRandomQuestions=[...this.allRandomQuestions, ...res];
         console.log( this.allRandomQuestions);
       }
-    );;
+    );
     return this.categories$.subscribe(/*data=> console.log(data)*/);
   }
 
@@ -76,5 +88,46 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.testService.addTest(this.test).subscribe(data => console.log(data), error => console.log(error));
   }
   //criar função que 
+  public submitCategory(){
+    this.categoryClass.category=this.categoryString;
+    this.categoryService.addCategory(this.categoryClass).subscribe(data=> console.log(data), error=>console.log(error));
+  }
 
+  public addOption(){
+    this.numberOfTimes.push(1);
+    console.log(this.options);
+    //this.addElement+='<strong>The Tortoise</strong> &amp; the Hare';
+  }
+
+  public getIDByCategory(category){
+    for(let i=0; i<this.categories.length; i++)
+      if(this.categories[i].category==category) return this.categories[i].id;
+    return -1;
+  }
+  
+  public getCategoryByName(category){
+    for(let i=0; i<this.categories.length; i++)
+      if(this.categories[i].category==category) return this.categories[i];
+    return -1;
+  }
+
+  public addQuestion(){
+    this.categoryClass=this.getCategoryByName(this.category);
+    this.questionClass.category=this.categoryClass;
+    this.questionClass.options=this.options;
+    this.questionClass.question=this.questionString;
+    this.questionClass.solution=this.solution;
+    this.questionService.addQuestion(this.questionClass).subscribe(data=> console.log(data), error=>console.log(error));
+    //console.log(this.options);
+    //console.log(this.solution);
+  }
+
+  onChange(i:number, isChecked: boolean) {
+  
+    if(isChecked) {
+      this.solution.push(i);
+    } else {
+      this.solution.splice(this.solution.indexOf(i),1);
+    }
+  }
 }

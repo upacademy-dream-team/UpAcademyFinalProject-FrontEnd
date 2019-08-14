@@ -15,15 +15,11 @@
             <option value={{category.category}}> {{category.category}}
             </option>
         </ng-container>
-        <option value="java">JAVA</option>
-        <option value="javaScript">JAVASCRIPT</option>
-        <option value="sql">SQL</option>
-        <option value="c++">C++</option>
       </select>
 
       <label for="perguntasTestes">N Perguntas:</label><input [(ngModel)]="numberOfQuestions" type="Number" placeholder="nº Perguntas">
       <div class="row">
-        <div class="col-4">
+        <div class="col-1">
             <button type="button" style="background-color:blue" class="btn w-100 text-white" (click)="addInfo()"> + </button>
         </div>
       </div>
@@ -35,10 +31,10 @@
           {{question.question}};
           <div *ngFor="let option of question.options, let i=index">
             <div *ngIf="question.solution.indexOf(i)!=-1">
-              {{option}} <input type="checkbox" checked="checked">
+              {{option}} <input type="checkbox" checked="checked" disabled="disabled">
             </div>
             <div *ngIf="question.solution.indexOf(i)==-1">
-              {{option}} <input type="checkbox">
+              {{option}} <input type="checkbox" disabled="disabled">
             </div>
           </div>
       </div>
@@ -56,13 +52,30 @@
             </option>
         </ng-container>
       </select>
+      <br>
+      <label>Introduza a pergunta: </label>
+      <input [(ngModel)]="questionString">
+      <br>
+      <input placeholder="Introduza Opção" [(ngModel)]="options[0]"><input (change)="onChange(0, $event.target.checked)" type="checkbox">
+
+     <div *ngFor="let i of numberOfTimes, let j=index">
+        <input placeholder="Introduza Opção" [(ngModel)]="options[j+1]"><input (change)="onChange(j+1, $event.target.checked)" type="checkbox">
+     </div>
+
+      <div class="row">
+        <div class="col-1">
+            <button type="button" style="background-color:blue" class="btn w-100 text-white" (click)="addOption()"> + </button>
+        </div>
+      </div>
+      <button type="button" style="background-color:orange" class="btn w-100 text-white" (click)="addQuestion()"> Gerar Pergunta </button>
     </ng-template>
   </ngb-tab>
   <ngb-tab title="Gerador de Categorias">
     <ng-template ngbTabContent>
         <br>
     <label>Gerar Categoria:</label>
-    <input>
+    <input [(ngModel)]="categoryString">
+    <button type="button" style="background-color:#e64415;" class="btn w-100 text-white" (click)="submitCategory()"> Gerar Categoria </button>
     </ng-template>
   </ngb-tab>
 </ngb-tabset>
