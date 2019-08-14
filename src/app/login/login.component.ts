@@ -19,8 +19,8 @@ export class LoginComponent implements OnInit {
     private accountApi: UserServiceService
   ) {
     // Fill email and password
-    this.user.username = 'joao';
-    this.user.password = 'CF5ACXraHD0s8g==';
+    this.user.username = 'João';
+    this.user.password = 'jhARHXeqZxk3hA==';
   }
 
   ngOnInit() {

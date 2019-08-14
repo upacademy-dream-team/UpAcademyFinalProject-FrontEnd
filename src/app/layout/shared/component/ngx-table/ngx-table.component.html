@@ -1,0 +1,60 @@
+<div>
+    <input
+        type="text"
+        style="padding:8px;margin:15px auto;width:30%;"
+        placeholder="Type to filter the name column..."
+        (keyup)='filterDatatable($event)'
+      />
+  <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+    [rowHeight]="'auto'" [limit]="10" [rows]="rows">
+    <ngx-datatable-column name="Username" [sortable]="true" [flexGrow]="1" [resizeable]="false" >
+      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+        <span (click)="sort()">{{column.name}}</span>
+      </ng-template>
+      <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
+          {{row.username}}
+      </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Permissoes" prop="accessType" [sortable]="true" [flexGrow]="1" [resizeable]="false" >
+    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+      <span (click)="sort()">{{column.name}}</span>
+    </ng-template>
+    <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.accessType}}
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column name="Ultimo Login" prop="lastLogin" [sortable]="true" [flexGrow]="1" [resizeable]="false" >
+    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+      <span (click)="sort()">{{column.name}}</span>
+    </ng-template>
+    <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.lastLogin}}
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column name="Email" prop="email" [sortable]="true" [flexGrow]="1" [resizeable]="false" >
+    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+      <span (click)="sort()">{{column.name}}</span>
+    </ng-template>
+    <ng-template let-row="row" ngx-datatable-cell-template>
+        {{row.email}}
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column name="Apagar Utilizador" [flexGrow]="1" [resizeable]="false" >
+    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+      <span>{{column.name}}</span>
+    </ng-template>
+    <ng-template let-row="row" ngx-datatable-cell-template>
+        <span><i id="icon" class="fas fa-trash"></i></span>
+    </ng-template>
+</ngx-datatable-column>
+<ngx-datatable-column name="Reset Password" [flexGrow]="1" [resizeable]="false" >
+    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+      <span>{{column.name}}</span>
+    </ng-template>
+    <ng-template let-row="row" ngx-datatable-cell-template>
+        <span><i id="icon" class="fas fa-power-off"></i></span>
+    </ng-template>
+</ngx-datatable-column>
+  </ngx-datatable>
+</div>
+

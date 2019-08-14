@@ -12,6 +12,8 @@ import { SettingsComponent } from './settings/settings.component';
 import { IniciarTesteComponent } from './iniciar-teste/iniciar-teste.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { NgxTableComponent } from './shared/component/ngx-table/ngx-table.component';
 
 
 
@@ -25,13 +27,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SettingsComponent,
     IniciarTesteComponent,
     ProfileComponent,
+    NgxTableComponent
   ],
   imports: [
     CommonModule,
     LayoutRoutingModule,
     FormsModule,
     SharedModule,
-    NgbModule
+    NgbModule,
+    NgxDatatableModule,
   ]
 })
 export class LayoutModule { }

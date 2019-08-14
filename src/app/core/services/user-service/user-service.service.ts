@@ -97,6 +97,7 @@ export class UserServiceService {
 
     // tslint:disable-next-line: ban-types
     public updaterPassword(username: String , oldPassword: String, newPassword: String) {
-      return this.http.put(this.apiUrl + 'changePassword/' + username + '/' + oldPassword + '/' + newPassword, {});
+      return this.http.put(this.apiUrl + 'changePassword/' + username + '/' + oldPassword + '/' + newPassword, {},
+       {headers: this.header , responseType: 'text'});
     }
 }

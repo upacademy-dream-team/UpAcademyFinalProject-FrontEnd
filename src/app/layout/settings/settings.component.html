@@ -1,8 +1,8 @@
 <div class="bg-white vh-100">
   <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop-->
-  <div class="container-fluid">
-    <br />
-    <br />
+  <div class="container">
+    <br/>
+    <br/>
     <div class="row rounded">
       <div class="col-sm col-md">
         <div class="pl-5 pt-5 pr-5">
@@ -12,9 +12,24 @@
               [labels]='["Username", "Permissoes", "Ultimo Login", "Email", "Apagar Utilizador","Reset Password"]'
               [data$]='users$' [icons]='iconArray'>
             </app-tables>
+            <br>
+            <app-ngx-table [columns]="[
+            { prop: 'username', name:'Username' },
+            { prop: 'accessType', name: 'Permissoes' },
+            { prop: 'lastLogin', name: 'Ultimo Login' },
+            { prop: 'email', name: 'Email' },
+            { name: 'Apagar Utilizador' },
+            { name: 'Reset Password' }
+            ]" 
+            [rows] = 'users$ | async'> 
+          </app-ngx-table>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
