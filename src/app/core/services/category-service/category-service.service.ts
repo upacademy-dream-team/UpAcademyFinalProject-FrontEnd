@@ -10,6 +10,7 @@ export class CategoryServiceService {
   private apiUrl = 'http://localhost:8080/Testes-RecemLicenciados/api/category/';
   header: HttpHeaders | { [header: string]: string | string[]; };
 
+  public Category= new Category();
   public categories$: ReplaySubject<any[]> = new ReplaySubject(1);
   private categories: any[];
 
@@ -18,6 +19,7 @@ export class CategoryServiceService {
   public getAllCategories(){
     return this.http.get(this.apiUrl+"all").subscribe(
       (res: any) => {
+        //console.log(res);
         this.categories= res;
         this.categories$.next(res);
       }
