@@ -18,6 +18,7 @@ bootstrap table theme
       background: #e64415;
       color: white;
       font-size:16px;
+      text-align: center;
       .datatable-header-cell {
         vertical-align: bottom;
         padding: 0.75rem;
@@ -40,7 +41,7 @@ bootstrap table theme
           color: #FFF;
         }
         .datatable-body-cell {
-          text-align: left;
+          text-align: center;
           vertical-align: top;
         }
       }
