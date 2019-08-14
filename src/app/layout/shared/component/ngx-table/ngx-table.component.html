@@ -1,5 +1,11 @@
 <div>
+    <input
+        type="text"
+        style="padding:8px;margin:15px auto;width:30%;"
+        placeholder="Type to filter the name column..."
+        (keyup)='filterDatatable($event)'
+      />
   <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-    [rowHeight]="'auto'" [limit]="10" [rows]="rows">
+    [rowHeight]="'auto'" [limit]="10" [rows]="rows | async">
   </ngx-datatable>
 </div>
