@@ -13,7 +13,7 @@ import { IniciarTesteComponent } from './iniciar-teste/iniciar-teste.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { NgxTableComponent } from './shared/component/ngx-table/ngx-table.component';
+import { NgxTableComponent } from './shared/component/tables/ngx-Admin-Table/ngx-table.component';
 
 
 
