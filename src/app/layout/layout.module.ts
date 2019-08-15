@@ -35,7 +35,7 @@ import { NgxTableComponent } from './shared/component/tables/ngx-Admin-Table/ngx
     FormsModule,
     SharedModule,
     NgbModule,
-    NgxDatatableModule,
+    NgxDatatableModule
   ]
 })
 export class LayoutModule { }

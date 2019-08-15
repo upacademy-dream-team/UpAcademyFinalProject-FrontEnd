@@ -12,6 +12,7 @@ import { AlteracaoPasswordComponent } from 'src/app/modals/alteracao-password/al
 import { ChangePasswordAntigaComponent } from 'src/app/modals/change-password-antiga/change-password-antiga.component';
 import { TesteLocalComponent } from 'src/app/modals/teste-local/teste-local.component';
 import { LinkGeradoComponent } from 'src/app/modals/link-gerado/link-gerado.component';
+import { NgxTestsTableComponent } from './component/tables/ngx-tests-table/ngx-tests-table.component';
 
 
 
@@ -26,6 +27,7 @@ import { LinkGeradoComponent } from 'src/app/modals/link-gerado/link-gerado.comp
     ChangePasswordAntigaComponent,
     TesteLocalComponent,
     LinkGeradoComponent,
+    NgxTestsTableComponent,
   ],
   imports: [
     CommonModule,
@@ -44,6 +46,7 @@ import { LinkGeradoComponent } from 'src/app/modals/link-gerado/link-gerado.comp
     ChangePasswordAntigaComponent,
     TesteLocalComponent,
     LinkGeradoComponent,
+    NgxTestsTableComponent
   ],
   entryComponents: [
     DeleteConfirmationComponent,

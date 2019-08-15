@@ -5,14 +5,16 @@
         <div class="col-sm col-md">
           <div class="pl-3 pt-3 pr-3">
             <div id="log">
-                <app-modals></app-modals>
-              <app-ngx-table [columns]="[
-              { prop: 'testName', name:'Nome do teste' },
-              { prop: 'accessType', name: 'Permissoes' }
+              <app-ngx-tests-table [columns]="[
+              { prop: 'testName', name:'Nome do Teste' },
+              { prop: 'category', name: 'Categoria' },
+              { prop: 'author', name: 'Autor do Teste' },
+              { prop: 'submittedTests', name: 'Nº de Testes Realizados' },
+              { prop: 'averageScore', name: 'Resultado Médio' }
               ]" 
               [rows] = 'tests$ | async'
               [temp] = 'tests$ | async' > 
-            </app-ngx-table>
+            </app-ngx-tests-table>
             </div>
           </div>
         </div>

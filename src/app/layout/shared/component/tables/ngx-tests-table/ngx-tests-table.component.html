@@ -1,0 +1,12 @@
+<input 
+    type="text"
+    style="padding:8px;margin:15px auto;width:30%;height: 38px;"
+    placeholder="Escreva para filtar por nome do teste"
+    (keyup)="updateFilter($event)"
+  
+  />
+<div>
+  <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+    [rowHeight]="'auto'" [limit]="10" [rows]="rows">
+  </ngx-datatable>
+</div>
