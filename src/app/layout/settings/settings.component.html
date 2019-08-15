@@ -1,28 +1,23 @@
-<div class="bg-white vh-100">
-  <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop-->
-  <div class="container">
-    <div class="row rounded">
-      <div class="col-sm col-md">
-        <div class="pl-3 pt-3 pr-3">
-          <div id="log">
-              <app-modals></app-modals>
-            <app-ngx-table [columns]="[
+<div class="background vh-100 d-flex position-fixed w-100">
+    <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop-->
+    <div class="container h-100">
+        <div class="row rounded">
+            <div class="col-sm col-md">
+                <div class="pl-3 pt-3 pr-3">
+                    <div id="log">
+                        <app-modals></app-modals>
+                        <app-ngx-table [columns]="[
             { prop: 'username', name:'Username' },
             { prop: 'accessType', name: 'Permissoes' },
             { prop: 'lastLogin', name: 'Ultimo Login' },
             { prop: 'email', name: 'Email' },
             { name: 'Apagar Utilizador' },
             { name: 'Reset Password' }
-            ]" 
-            [rows] = 'users$ | async'> 
-          </app-ngx-table>
-          </div>
+            ]" [rows]='users$ | async'>
+                        </app-ngx-table>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
-
-
-
-

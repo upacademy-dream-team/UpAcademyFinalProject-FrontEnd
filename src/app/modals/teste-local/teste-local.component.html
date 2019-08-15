@@ -1,14 +1,14 @@
-<div class="modal-header">
-  <h4 class="modal-title" id="modal-title">Teste Local</h4>
-  <button type="button" class="close" aria-describedby="modal-title" (click)="cancel()">
-    <span aria-hidden="true">&times;</span>
+<div class="modal-header" style="background-color: #e64415; color: white;">
+    <h4 class="modal-title" id="modal-title">Teste Local</h4>
+    <button type="button" class="close" aria-describedby="modal-title" (click)="cancel()">
+    <span style="color:white" aria-hidden="true">&times;</span>
   </button>
 </div>
-<div class="modal-body">
+<div class="modal-body" style="background-color: #FAFAFA">
 
-  <span class="text-warning">Escolha o Enunciado que deseja que seja gerado.</span><br><br>
+    <span class="text-dark">Escolha o Enunciado que deseja que seja gerado.</span><br><br>
 
-  <select class="w-100" >
+    <select class="w-100">
     <option selected disabled >Enunciado</option>
     <option value="Teste C++">Teste C++</option>
     <option value="Teste Java e SQL - Versao A">Teste Java e SQL - Versao A</option>
@@ -17,7 +17,7 @@
   </select><br><br>
 
 </div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
-  <button type="button" class="btn btn-success" (click)="iniciarTesteLocal()">Iniciar</button>
+<div class="modal-footer" style="background-color: #FAFAFA">
+    <button type="button " class="btn btn-outline-secondary" (click)="cancel() ">Cancel</button>
+    <button type="button " class="btn" style="background-color: #e64415; color: white;" (click)="iniciarTesteLocal() ">Iniciar</button>
 </div>

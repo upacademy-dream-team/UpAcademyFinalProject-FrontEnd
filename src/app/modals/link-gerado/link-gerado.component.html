@@ -1,12 +1,12 @@
-<div class="modal-header">
+<div class="modal-header" style="background-color: #e64415; color: white;">
     <h4 class="modal-title" id="modal-title">Gerar Link</h4>
     <button type="button" class="close" aria-describedby="modal-title" (click)="cancel()">
-      <span aria-hidden="true">&times;</span>
+      <span style="color:white" aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div class="modal-body">
+</div>
+<div class="modal-body" style="background-color: #FAFAFA">
 
-    <span class="text-warning">Escolha o Enunciado que deseja que seja gerado.</span><br><br>
+    <span class="text-dark">Escolha o Enunciado que deseja que seja gerado.</span><br><br>
 
     <select class="w-100">
       <option selected disabled >Enunciado</option>
@@ -20,12 +20,12 @@
 
     <p>Link Gerado pela DB!!!</p>
 
-    <form >
-      <input class="w-100" type="email" name="emailCandidato" id="emailCandidato" placeholder="Introduza Email do Candidato">
+    <form>
+        <input class="w-100" type="email" name="emailCandidato" id="emailCandidato" placeholder="Introduza Email do Candidato">
     </form><br>
 
-  </div>
-  <div class="modal-footer">
+</div>
+<div class="modal-footer">
     <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
-    <button type="button" class="btn btn-success" (click)="enviar()">Enviar</button>
-  </div>
+    <button type="button" class="btn" style="background-color: #e64415; color: white;" (click)="enviar()">Enviar</button>
+</div>
