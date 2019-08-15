@@ -13,6 +13,9 @@ export class QuestionServiceService {
 
   public questions$: ReplaySubject<any[]> = new ReplaySubject(1);
   private questions: any[];
+  public randomQuestions: any[];
+  public allRandomQuestions: any[]= [];
+  public randomQuestions$: ReplaySubject<any[]> = new ReplaySubject(1);
 
   constructor(private http: HttpClient) { }
 
@@ -36,5 +39,9 @@ export class QuestionServiceService {
 
   public editQuestion(question: Question){
     return this.http.put(this.apiUrl + 'edit', question);
+  }
+
+  public getRandomQuestions(category: String, numberOfQuestions: number){
+    return this.http.get(this.apiUrl+"questions/"+category+"/"+numberOfQuestions);
   }
 }
