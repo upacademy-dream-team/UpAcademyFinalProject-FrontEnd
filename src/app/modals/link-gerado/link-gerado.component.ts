@@ -1,30 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { User, UserServiceService } from '../../core';
-
-
+import { UserServiceService } from 'src/app/core/services/user-service/user-service.service';
 
 @Component({
-  selector: 'app-modals',
-  templateUrl: './modals.component.html',
-  styleUrls: ['./modals.component.scss']
+  selector: 'app-link-gerado',
+  templateUrl: './link-gerado.component.html',
+  styleUrls: ['./link-gerado.component.scss']
 })
-
-export class ModalsComponent implements OnInit {
+export class LinkGeradoComponent implements OnInit {
 
   closeResult: string;
-  user = new User();
-  msg: any;
-  check: number;
-
+  @Input() messageLinkGerado;
+  @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private modalService: NgbModal,
     private userApi: UserServiceService,
-  ) {
-    this.user.accessType = 'Recrutador';
-
-  }
+  ) { }
 
   ngOnInit() {
   }
@@ -36,22 +28,6 @@ export class ModalsComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-
-  }
-
-  save(user: User) {
-    this.userApi.addUser(user).subscribe(
-      data => {
-        console.log(data);
-        this.userApi.getAllUsers();
-        this.modalService.dismissAll();
-      },
-      (error) => {
-        console.log(error.error);
-        this.msg = error.error;
-        this.check = 1 ;
-      }
-      );
 
   }
 
@@ -67,9 +43,13 @@ export class ModalsComponent implements OnInit {
 
   }
 
+  enviar() {
+    this.passEntry.emit('A password vai ser resetada');
+    console.log(this.messageLinkGerado);
+    this.modalService.dismissAll();
+  }
 
-
+  cancel() {
+    this.modalService.dismissAll();
+  }
 }
-
-
-

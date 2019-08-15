@@ -44,7 +44,7 @@
       <span>{{column.name}}</span>
     </ng-template>
     <ng-template let-row="row" ngx-datatable-cell-template>
-        <span><i id="icon" class="fas fa-trash"></i></span>
+        <span><i id="icon" (click)= "onClickFas(row, $event)" class="fas fa-trash"></i></span>
     </ng-template>
 </ngx-datatable-column>
 <ngx-datatable-column name="Reset Password" [flexGrow]="1" [resizeable]="false" >
@@ -52,7 +52,7 @@
       <span>{{column.name}}</span>
     </ng-template>
     <ng-template let-row="row" ngx-datatable-cell-template>
-        <span><i id="icon" class="fas fa-power-off"></i></span>
+        <span><i id="icon" (click)= "onClickFas(row, $event)" class="fas fa-power-off"></i></span>
     </ng-template>
 </ngx-datatable-column>
   </ngx-datatable>

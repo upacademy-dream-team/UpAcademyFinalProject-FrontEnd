@@ -1,0 +1,31 @@
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Gerar Link</h4>
+    <button type="button" class="close" aria-describedby="modal-title" (click)="cancel()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <span class="text-warning">Escolha o Enunciado que deseja que seja gerado.</span><br><br>
+
+    <select class="w-100">
+      <option selected disabled >Enunciado</option>
+      <option value="Teste C++">Teste C++</option>
+      <option value="Teste Java e SQL - Versao A">Teste Java e SQL - Versao A</option>
+      <option value="Teste Java e SQL - Versao B">Teste Java e SQL - Versao B</option>
+      <option value="Teste Python">Teste Python</option>
+    </select>
+
+    <br><br>
+
+    <p>Link Gerado pela DB!!!</p>
+
+    <form >
+      <input class="w-100" type="email" name="emailCandidato" id="emailCandidato" placeholder="Introduza Email do Candidato">
+    </form><br>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
+    <button type="button" class="btn btn-success" (click)="enviar()">Enviar</button>
+  </div>

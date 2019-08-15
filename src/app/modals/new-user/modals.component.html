@@ -1,41 +1,45 @@
 <ng-template #content let-modal>
-  <div class="modal-header" id="modal-basic-header">
-    <h4 class="modal-title" id="modal-basic-title">Novo utilizador</h4>
-    <button type="button" style="color:white;" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <div class="modal-header" id="modal-basic-header">
+        <h4 class="modal-title" id="modal-basic-title">Novo utilizador</h4>
+        <button type="button" style="color:white;" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div class="modal-body">
-    <form>
-      <div class="form-group">
-        <label for="nomeUtilizador">Nome Utilizador :</label>
-        <div class="input-group">
-          <input id="nomeUtilizador" [(ngModel)]="user.username" class="form-control" placeholder="Nome Utilizador" name="nomeUtilizador" >
-        </div>
-        <br>
-        <label for="emailUtilizador">Email :</label>
-        <div class="input-group">
-          <input id="emailUtilizador" [(ngModel)]="user.email" class="form-control" placeholder="Email Utilizador" name="emailUtilizador" >
-        </div>
-        <br>
-        <label for="acessoUser">Permissoes:</label>
-        <div class="input-group">
-          <select [(ngModel)]="user.accessType" name="accessType">
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="nomeUtilizador">Nome Utilizador :</label>
+                <div class="input-group">
+                    <input id="nomeUtilizador" [(ngModel)]="user.username" class="form-control" placeholder="Nome Utilizador" name="nomeUtilizador">
+                </div>
+                <br>
+                <label for="emailUtilizador">Email :</label>
+                <div class="input-group">
+                    <input type="email" placeholder="Enter your email" id="emailUtilizador" [(ngModel)]="user.email" class="form-control" name="emailUtilizador">
+                </div>
+                <br>
+                <label for="acessoUser">Permissoes:</label>
+                <div class="input-group">
+                    <select [(ngModel)]="user.accessType" name="accessType">
             <option value="Admin">Administrator</option>
             <option value="Recrutador">Recrutador</option>
           </select>
-        </div>
-      </div>
-    </form>
-  </div>
-  <ngb-alert type="danger" *ngIf="check == 1" [dismissible]="false" class="mt-2 danger">
-    <strong>Warning!</strong> {{msg}}
-  </ngb-alert>
-  <div class="modal-footer">
-    <button id="" type="button" class="btn btn-outline-dark" (click)="save(user)">Adicionar</button>
-  </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <ngb-alert type="danger" *ngIf="check == 1" [dismissible]="false" class="mt-2 danger">
+        <strong>Warning!</strong> {{ msg }}
+    </ngb-alert>
+    <div class="modal-footer">
+        <button id="" type="button" class="btn btn-outline-dark" (click)="save(user)">
+      Adicionar
+    </button>
+    </div>
 </ng-template>
 
-<button type="button" style="color: white; background:#e64415" class="btn mt-1 mb-3" (click)="open(content)">Novo Utilizador</button>
+<button type="button" style="color: white; background:#e64415" class="btn mt-1 mb-3" (click)="open(content)">
+  Novo Utilizador
+</button>
 <!-- <pre>{{closeResult}}</pre> -->
 <p></p>
