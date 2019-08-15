@@ -17,5 +17,12 @@
         margin: 0 auto;
         width: 275px;
     }
+
+    .btn{
+        background-color:#e64415;
+        &:hover {background-color: #c53912;
+        }
+    }
+    
 }
     

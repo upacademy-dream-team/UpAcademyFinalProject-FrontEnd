@@ -20,7 +20,7 @@
         <br>
         <label for="acessoUser">Permissoes:</label>
         <div class="input-group">
-          <select [(ngModel)]="user.accessType" name="accessType">
+          <select style="height:36px" [(ngModel)]="user.accessType" name="accessType">
             <option value="Admin">Administrator</option>
             <option value="Recrutador">Recrutador</option>
           </select>
@@ -28,14 +28,14 @@
       </div>
     </form>
   </div>
-  <ngb-alert type="danger" *ngIf="check == 1" [dismissible]="false" class="mt-2 danger">
+  <ngb-alert type="danger" *ngIf="check == 1" [dismissible]="false" class="danger">
     <strong>Warning!</strong> {{msg}}
   </ngb-alert>
   <div class="modal-footer">
-    <button id="" type="button" class="btn btn-outline-dark" (click)="save(user)">Adicionar</button>
+    <button id="" type="button" class="btn" (click)="save(user)">Adicionar</button>
   </div>
 </ng-template>
 
-<button type="button" style="color: white; background:#e64415" class="btn mt-1 mb-3" (click)="open(content)">Novo Utilizador</button>
+<button type="button"  class="shadow-sm btn mr-3" (click)="open(content)">Novo Utilizador</button>
 <!-- <pre>{{closeResult}}</pre> -->
-<p></p>
+
