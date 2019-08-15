@@ -11,13 +11,14 @@ bootstrap table theme
 */
 
 .ngx-datatable.bootstrap {
-    box-shadow: none;
+    box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
     font-size: 14px;
     .datatable-header {
       height: unset !important;
       background: #e64415;
       color: white;
       font-size:16px;
+      text-align: left;
       .datatable-header-cell {
         vertical-align: bottom;
         padding: 0.75rem;
@@ -32,9 +33,8 @@ bootstrap table theme
         padding: 0.75rem;
         vertical-align: top;
         border-top: 1px solid #d1d4d7;
-        &.datatable-row-even {
-          background-color: rgba(0, 0, 0, 0.05);
-        }
+        &:hover {background-color: rgba(0,0,0,0.15);
+          }
         &.active {
           background-color: #1483ff;
           color: #FFF;

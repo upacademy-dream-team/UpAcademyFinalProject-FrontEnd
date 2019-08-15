@@ -15,7 +15,7 @@
           <input class="w-100" name="password" type="password" (click)="checkReset()" [(ngModel)]="user.password" placeholder="password" />
         </div>
       </div>
-      <button type="button" style="background-color:#e64415;" class="btn w-100 text-white" (click)="login()"> Entrar </button>
+      <button type="button" class="btn w-100 text-white" (click)="login()"> Entrar </button>
       <ngb-alert type="danger" *ngIf="check == 1" [dismissible]="false" class="mt-2 danger">
         <strong>Warning!</strong> Username ou password errada!
       </ngb-alert>

@@ -4,7 +4,10 @@
   color:white;
 }
 
-#btnModal{
-  outline: 2px outset #e64415  ;
-  color:#e64415;
+.btn{
+  background-color:#e64415;
+  color: white;
+  &:hover {background-color: #c53912;
+  }
+  
 }
