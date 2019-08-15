@@ -17,6 +17,7 @@ import { TestServiceService } from 'src/app/core/services/test-service/test-serv
 })
 export class CriarTestesComponent implements OnInit, OnDestroy {
 
+  
   public categories$: ReplaySubject<Category[]>;
   public randomQuestions$: ReplaySubject<Question[]>;
   public allRandomQuestions=[];
@@ -86,11 +87,18 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.test.author=this.userService.getCurrentUser();
     this.test.timer=this.timer;
     this.testService.addTest(this.test).subscribe(data => console.log(data), error => console.log(error));
+    
+    this.timer=null;
+    this.testName=null;
+    this.numberOfQuestions=null;
+    this.allRandomQuestions=[];
   }
   //criar função que 
   public submitCategory(){
+    console.log(this.categoryString);
     this.categoryClass.category=this.categoryString;
     this.categoryService.addCategory(this.categoryClass).subscribe(data=> console.log(data), error=>console.log(error));
+    this.categoryString=null;
   }
 
   public addOption(){
@@ -118,6 +126,11 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.questionClass.question=this.questionString;
     this.questionClass.solution=this.solution;
     this.questionService.addQuestion(this.questionClass).subscribe(data=> console.log(data), error=>console.log(error));
+    
+    this.options=[];
+    this.questionString="";
+    this.solution=[];
+    this.numberOfTimes=[];
     //console.log(this.options);
     //console.log(this.solution);
   }
@@ -136,5 +149,9 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     //console.log(this.categories);
     //console.log(this.subscriptionCategories);
     this.categories$.subscribe(data => this.categories=data);
+  }
+
+  onSubmit(){
+    console.log("hi!");
   }
 }
