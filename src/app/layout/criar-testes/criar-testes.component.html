@@ -15,8 +15,8 @@
                         <h1 class="margin-bottom">Gerador de Testes</h1>
                         <div>
                             <div class="input-group mb-5 row justify-content-around">
-                                <div class="input-group-text">
-                                    <label class="sr-only pl-1" for="inlineFormInputGroup"></label>Nome
+                                <div class="input-group-text" style="margin-left: 16px;">
+                                    <label class="sr-only" for="inlineFormInputGroup"></label>Nome
                                 </div>
                                 <input [(ngModel)]="testName" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Nome do Teste">
                             </div>
@@ -28,11 +28,11 @@
                                 <div class="col-3">
                                     <label for="categoriaTestes">Categoria:&nbsp;</label>
                                     <select [(ngModel)]="category" name="" id="">
-                          <ng-container *ngFor="let category of categories$ | async">
-                              <option value={{category.category}}> {{category.category}}
-                              </option>
-                          </ng-container>
-                        </select>
+                                        <ng-container *ngFor="let category of categories$ | async">
+                                            <option value={{category.category}}> {{category.category}}
+                                            </option>
+                                        </ng-container>
+                                    </select>
                                 </div>
                                 <div class="col">
                                     <label for="perguntasTestes">N Perguntas:&nbsp;</label><input [(ngModel)]="numberOfQuestions" type="Number" placeholder="nº Perguntas">
