@@ -16,7 +16,7 @@
                         <div>
                             <div class="input-group mb-5 row justify-content-around">
                                 <div class="input-group-text">
-                                    <label class="sr-only" for="inlineFormInputGroup">Nome</label>Nome
+                                    <label class="sr-only pl-1" for="inlineFormInputGroup"></label>Nome
                                 </div>
                                 <input [(ngModel)]="testName" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Nome do Teste">
                             </div>
@@ -131,7 +131,8 @@
                                         <input [(ngModel)]="questionString" type="text" class="form-control" aria-label="Input group example" aria-describedby="btnGroupAddon" placeholder="Introduza Pergunta">
                                     </div>
                                     <p></p>
-                                    <input placeholder="Introduza Opção" [(ngModel)]="options[0]">&nbsp;&nbsp;&nbsp;<input name="mycheckbox" (change)="onChange(0, $event.target.checked)" type="checkbox">
+                                    <textarea placeholder="Introduza Opção" class="w-75 rounded" type="text" [(ngModel)]="options[0]"></textarea>&nbsp;&nbsp;&nbsp;<input name="mycheckbox" style="zoom: 2; padding-bottom: 5px" (change)="onChange(0, $event.target.checked)"
+                                        type="checkbox">
                                     <div *ngFor="let i of numberOfTimes, let j=index">
                                         <input placeholder="Introduza Opção" [(ngModel)]="options[j+1]"><input (change)="onChange(j+1, $event.target.checked)" type="checkbox">
                                     </div>
