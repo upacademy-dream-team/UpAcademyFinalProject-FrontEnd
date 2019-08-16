@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TablesComponent } from './tables.component';
+import { NgxTestsTableComponent } from './ngx-tests-table.component';
 
-describe('TablesComponent', () => {
-  let component: TablesComponent;
-  let fixture: ComponentFixture<TablesComponent>;
+describe('NgxTestsTableComponent', () => {
+  let component: NgxTestsTableComponent;
+  let fixture: ComponentFixture<NgxTestsTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TablesComponent ]
+      declarations: [ NgxTestsTableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TablesComponent);
+    fixture = TestBed.createComponent(NgxTestsTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

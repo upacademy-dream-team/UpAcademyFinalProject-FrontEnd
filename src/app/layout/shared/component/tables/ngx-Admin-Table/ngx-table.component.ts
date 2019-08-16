@@ -1,31 +1,45 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { DatatableComponent } from '@swimlane/ngx-datatable';
 import { UserServiceService } from 'src/app/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { DeleteConfirmationComponent } from 'src/app/modals/delete-confirmation/delete-confirmation.component';
+import { DeleteConfirmationComponent } from 'src/app';
 import { AlteracaoPasswordComponent } from 'src/app/modals/alteracao-password/alteracao-password.component';
 
+
 @Component({
-  selector: 'app-tables',
-  templateUrl: './tables.component.html',
-  styleUrls: ['./tables.component.scss']
+  selector: 'app-ngx-table',
+  templateUrl: './ngx-table.component.html',
+  styleUrls: ['./ngx-table.component.scss']
 })
-export class TablesComponent implements OnInit {
-  @Input() header: any;
-  @Input() data$: any;
-  @Input() labels: any;
-  @Input() icons: any;
+export class NgxTableComponent implements OnInit {
+
+  @Input() rows: any;
+  @Input() columns: any;
+  @Input() temp: any;
   @Output() clickedRow = new EventEmitter();
+  @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
   constructor(
     private userApi: UserServiceService,
-    private modalService: NgbModal,
-  ) { }
+    private modalService: NgbModal) {
+  }
 
-  // tslint:disable-next-line: variable-name
-  private current_id: number = this.userApi.getCurrentUser().id;
 
   ngOnInit() {
-    console.log(this.current_id);
+  }
+
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    const temp = this.temp.filter(function(d) {
+      return d.username.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this.rows = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
   }
 
   clickRow(row) {
@@ -82,4 +96,5 @@ export class TablesComponent implements OnInit {
       });
     }
   }
+
 }

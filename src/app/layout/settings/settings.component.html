@@ -13,11 +13,11 @@
             { prop: 'email', name: 'Email' },
             { name: 'Apagar Utilizador' },
             { name: 'Reset Password' }
-            ]" [rows]='users$ | async'>
-                        </app-ngx-table>
-                    </div>
-                </div>
-            </div>
+            ]" 
+            [rows] = 'users$ | async'
+            [temp] = 'users$ | async' > 
+          </app-ngx-table>
+          </div>
         </div>
     </div>
 </div>

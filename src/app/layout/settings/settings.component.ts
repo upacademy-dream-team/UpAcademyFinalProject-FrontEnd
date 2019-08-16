@@ -25,7 +25,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.userService.getAllUsers();
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscriptionUsers.unsubscribe();
   }
 }

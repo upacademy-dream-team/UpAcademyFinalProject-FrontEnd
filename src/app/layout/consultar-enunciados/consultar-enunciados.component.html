@@ -1,133 +1,23 @@
-<div class="background vh-100 d-flex position-fixed w-100">
+<div class="bg-white vh-100">
     <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop-->
-    <div class="container-fluid h-100">
-        <br />
-        <br />
-        <div class="row rounded">
-            <div class="col-sm-12 col-md-3 col-lg-3">
-
-                <div id="lefttable" class="pt-5 w-75 pl-5">
-
-                    <table class="table table-bordered bg-white border-secondary">
-                        <thead class="text-center" id="thead">
-                            <tr>
-                                <th class="text-white" scope="col">Filters</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th>
-                                    <div>
-                                        <select class="text-center btn-lg btn-group w-100">
-                      <option value="Admin">Administrator</option>
-                      <option value="Recrutador">Recrutador</option>
-                    </select>
-                                    </div>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div>
-                                        <select class="text-center btn-lg btn-group w-100">
-                      <option value="Admin">Administrator</option>
-                      <option value="Recrutador">Recrutador</option>
-                    </select>
-                                    </div>
-                                </th>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <div>
-                                        <select class="text-center btn-lg btn-group w-100">
-                      <option value="Admin">Administrator</option>
-                      <option value="Recrutador">Recrutador</option>
-                    </select>
-                                    </div>
-                                </th>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+    <div class="container">
+      <div class="row rounded">
+        <div class="col-sm col-md">
+          <div class="pl-3 pt-3 pr-3">
+            <div id="log">
+              <app-ngx-tests-table [columns]="[
+              { prop: 'testName', name:'Nome do Teste' },
+              { prop: 'category', name: 'Categoria' },
+              { prop: 'author', name: 'Autor do Teste' },
+              { prop: 'submittedTests', name: 'Nº de Testes Realizados' },
+              { prop: 'averageScore', name: 'Resultado Médio' }
+              ]" 
+              [rows] = 'tests$ | async'
+              [temp] = 'tests$ | async' > 
+            </app-ngx-tests-table>
             </div>
-
-            <div class="col-sm-12 col-md-9 .offset col-md-1 col-lg-9 .offset col-lg-1 ">
-
-                <div class="pt-5 pr-5">
-                    <table class="table table-bordered bg-white border-secondary text-center" id="table">
-                        <thead class="text-white" id="thead">
-                            <tr>
-                                <th>Enunciado</th>
-                                <th>Categorias</th>
-                                <th>N testes Ralizados</th>
-                                <th>Resultado Medio</th>
-                            </tr>
-                        </thead>
-                        <tbody style="font-size: 14px;">
-                            <tr>
-                                <td>Teste C++</td>
-                                <td>C++</td>
-                                <td>25</td>
-                                <td>75%</td>
-                            </tr>
-                            <tr>
-                                <td>Teste Java e SQL - Versao A</td>
-                                <td>Java/SQL</td>
-                                <td>55</td>
-                                <td>66%</td>
-                            </tr>
-                            <tr>
-                                <td>Teste Java e SQL - Versao B</td>
-                                <td>Java/SQL</td>
-                                <td>55</td>
-                                <td>70%</td>
-                            </tr>
-
-                            <tr>
-                                <td>Teste Python</td>
-                                <td>SQL</td>
-                                <td>20</td>
-                                <td>55%</td>
-                            </tr>
-
-                            <tr>
-                                <td>Teste C#</td>
-                                <td>C#</td>
-                                <td>10</td>
-                                <td>40%</td>
-                            </tr>
-
-                            <tr>
-                                <td>Teste C++ e JavaScript</td>
-                                <td>C++/JavaScript</td>
-                                <td>5</td>
-                                <td>60%</td>
-                            </tr>
-
-                            <tr>
-                                <td>Teste PHP - Versao A</td>
-                                <td>PHP</td>
-                                <td>10</td>
-                                <td>40%</td>
-                            </tr>
-
-                            <tr>
-                                <td>Teste PHP - Versao B</td>
-                                <td>PHP</td>
-                                <td>10</td>
-                                <td>42%</td>
-                            </tr>
-
-                            <tr>
-                                <td>Teste de SWIFT</td>
-                                <td>SWIFT</td>
-                                <td>2</td>
-                                <td>55%</td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+          </div>
         </div>
     </div>
-</div>
+  </div>
+

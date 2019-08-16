@@ -2,7 +2,8 @@
     type="text"
     style="padding:8px;margin:15px auto;width:30%;height: 38px;"
     placeholder="Escreva para filtar por username"
-    (keyup)='filterDatatable($event)'
+    (keyup)="updateFilter($event)"
+  
   />
 <div>
   <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
@@ -23,7 +24,7 @@
         {{row.accessType}}
     </ng-template>
 </ngx-datatable-column>
-<ngx-datatable-column name="Ultimo Login" prop="lastLogin" [sortable]="true" [resizeable]="false" >
+<ngx-datatable-column name="Último Login" prop="lastLogin" [sortable]="true" [resizeable]="false" >
     <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
       <span (click)="sort()">{{column.name}}</span>
     </ng-template>
