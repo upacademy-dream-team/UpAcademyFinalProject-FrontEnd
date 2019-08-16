@@ -1,1 +1,42 @@
-<p>testing-page works!</p>
+<div *ngIf="!testRunning" class="not-found">
+        <div class="wrapper">
+            <div class="col-md-10 push-md-1">
+                <h1>404 - Page Not Found</h1>
+                <p class="lead">This page does not exist</p>
+            </div>
+        </div>
+</div>
+<div class="background vh-100 d-flex position-fixed w-100" style="background-image: url(assets/home-office-336378_1280.jpg)">
+<div class="container">
+        <p style="height: 60px;"></p>
+        <form>
+            <div class="vertical-center form-group rounded" style="background: rgba(143, 143, 143, 0.60); height: 500px;">
+                <h1 style="text-align: center">Teste de Java e SQL - Versão A</h1>
+                <p></p>
+                <div class="row">
+                    <div class="col-20">
+                        <b><label for="name">Nome:</label></b>
+                    </div>
+                    <div class="col-80">
+                        <input type="text" name="name">
+                    </div>
+                    <br>
+                    <br>
+                    <div class="col-20">
+                        <b><label for="email">Email:</label></b>
+                    </div>
+                    <div class="col-80">
+                        <input type="text" name="email">
+                    </div>
+                </div>
+                <p></p>
+                <p><strong>Assim que iniciar o teste, o tempo começa a contar. O teste é de escolha múltipla e tem a duração de
+                        30 minutos.</strong></p>
+
+                <p><strong>Indique todas as opções que são verdadeiras, podendo estas conter, ou não, mais que uma opção
+                        verdadeira.</strong></p>
+                <p id="centerButton"><button type="submit" class="btn btn-primary" value="Iniciar">Iniciar</button></p>
+            </div>
+        </form>
+    </div>
+</div>

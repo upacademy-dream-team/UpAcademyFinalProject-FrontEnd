@@ -13,6 +13,7 @@ import { TestServiceService } from 'src/app/core/services/test-service/test-serv
 export class TesteLocalComponent implements OnInit, OnDestroy {
   public tests$: ReplaySubject<Test[]>;
   private subscriptionTests: Subscription;
+  selectedTest: any = 'Enunciado';
   closeResult: string;
   @Input() messageTesteLocal;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
@@ -64,4 +65,9 @@ export class TesteLocalComponent implements OnInit, OnDestroy {
   cancel() {
     this.modalService.dismissAll();
    }
+
+   SaveCurrentTest(){
+    this.testService.currentTest = this.selectedTest;
+   }
+
 }
