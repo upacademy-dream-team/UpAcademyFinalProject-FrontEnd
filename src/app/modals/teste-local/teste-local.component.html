@@ -10,11 +10,11 @@
 
     <select class="w-100">
     <option selected disabled >Enunciado</option>
-    <option value="Teste C++">Teste C++</option>
-    <option value="Teste Java e SQL - Versao A">Teste Java e SQL - Versao A</option>
-    <option value="Teste Java e SQL - Versao B">Teste Java e SQL - Versao B</option>
-    <option value="Teste Python">Teste Python</option>
+    <option *ngFor="let teste$ of Testes$" [ngValue]="Testes$">
+      {{teste$.testName}}
+    </option>
   </select><br><br>
+
 
 </div>
 <div class="modal-footer" style="background-color: #FAFAFA">

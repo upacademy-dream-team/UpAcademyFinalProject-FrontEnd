@@ -7,12 +7,13 @@ import { Test } from '../../models/test';
   providedIn: 'root'
 })
 export class TestServiceService {
-  
+
   private apiUrl = 'http://localhost:8080/Testes-RecemLicenciados/api/test/';
   header: HttpHeaders | { [header: string]: string | string[]; };
 
   public tests$: ReplaySubject<any[]> = new ReplaySubject(1);
   private tests: any[];
+  public currentTest: number;
 
   constructor(private http: HttpClient) { }
 
@@ -37,4 +38,6 @@ export class TestServiceService {
   public editTest(test: Test){
     return this.http.put(this.apiUrl + 'edit', test);
   }
+
+  
 }

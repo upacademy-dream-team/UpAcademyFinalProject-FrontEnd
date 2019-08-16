@@ -1,23 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { UserServiceService } from 'src/app/core/services/user-service/user-service.service';
 import { TesteLocalComponent } from 'src/app/modals/teste-local/teste-local.component';
 import { LinkGeradoComponent } from 'src/app/modals/link-gerado/link-gerado.component';
+import { ReplaySubject, Subscription } from 'rxjs';
+import { User } from 'src/app/core';
+import { TestServiceService } from 'src/app/core/services/test-service/test-service.service';
 
 @Component({
   selector: 'app-iniciar-teste',
   templateUrl: './iniciar-teste.component.html',
   styleUrls: ['./iniciar-teste.component.scss']
 })
-export class IniciarTesteComponent implements OnInit {
+export class IniciarTesteComponent implements OnInit,OnDestroy {
+  public tests$: ReplaySubject<User[]>;
+  private subscriptionTests: Subscription;
+
 
   constructor(
+    private testService: TestServiceService,
     private modalService: NgbModal,
-    private userApi: UserServiceService,
-  ) { }
 
-  ngOnInit() {
-  }
+  ) {}
+
+  ngOnInit() {}
+
+  ngOnDestroy() {}
 
   modalTesteLocal() {
     const modalRef = this.modalService.open(TesteLocalComponent);
