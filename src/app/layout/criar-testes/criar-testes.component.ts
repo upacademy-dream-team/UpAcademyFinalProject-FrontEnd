@@ -27,6 +27,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   public numberOfTimes: number[]=[];
   public options: any[]=[];
   public solution: any[]=[];
+  maximum: any;
 
   constructor(config: NgbTabsetConfig, private testService: TestServiceService, private userService: UserServiceService, private categoryService: CategoryServiceService, private questionService: QuestionServiceService) {
     config.justify = 'center';
@@ -49,11 +50,16 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   }
 
   private numberOfQuestions: number;
-  private category: string;
+  private category: any;
+  private categoryWithNumber: any;
   private timer: number;
   private testName: string;
   private questions: Question[];
   test= new Test();
+
+  show(){
+    console.log(this.categoryWithNumber.numberOfQuestions);
+  }
   
 
   ///adding category
@@ -78,6 +84,15 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
       }
     );
     return this.categories$.subscribe(/*data=> console.log(data)*/);
+  }
+
+  public getNumberOfQuestionsByCategory(){
+    console.log("entrou aqui");
+    console.log(this.category);
+    for(let i=0; i<this.categories.length; i++)
+      if(this.categories[i].category.category==this.category)
+       this.maximum=this.categories[i].numberOfQuestions;
+    console.log(this.maximum);
   }
 
   public submitTest(){

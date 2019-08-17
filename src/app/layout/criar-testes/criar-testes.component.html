@@ -26,15 +26,15 @@
                   </div>
                   <div class="col-3">
                       <label for="categoriaTestes">Categoria:</label>
-                      <select [(ngModel)]="category" name="" id="">
+                      <select [(ngModel)]="category" (change)="getNumberOfQuestionsByCategory()" name="" id="">
                         <ng-container *ngFor="let category of categories$ | async">
-                            <option value={{category.category}}> {{category.category}}
+                            <option value={{category.category.category}}> {{category.category.category}}
                             </option>
                         </ng-container>
                       </select>
                   </div>
-                  <div class="col">
-                      <label for="perguntasTestes">N Perguntas:</label><input [(ngModel)]="numberOfQuestions" type="Number" placeholder="nº Perguntas">
+                  <div class="col" *ngIf="maximum">
+                      <label for="perguntasTestes">N Perguntas:</label><input [(ngModel)]="numberOfQuestions" type="Number" min="0" max="{{maximum}}">
                   </div>
               </div>
               <div>
@@ -115,7 +115,7 @@
                       <label for="categoriaTestes">Categoria:&nbsp;&nbsp;&nbsp;&nbsp;</label>
                       <select [(ngModel)]="category" name="thiscategory" id="">
                           <ng-container *ngFor="let category of categories$ | async">
-                              <option value={{category.category}}> {{category.category}}
+                              <option value={{category.category.category}}> {{category.category.category}}
                               </option>
                           </ng-container>
                       </select>
@@ -143,32 +143,6 @@
               </div>
             </div>
       </div>
-
-
-      <!--<label for="categoriaTestes">Categoria:</label>
-      <select [(ngModel)]="category" name="" id="">
-        <ng-container *ngFor="let category of categories$ | async">
-            <option value={{category.category}}> {{category.category}}
-            </option>
-        </ng-container>
-      </select>
-      <br>
-      <label>Introduza a pergunta: </label>
-      <input [(ngModel)]="questionString">
-      <br>
-      <input placeholder="Introduza Opção" [(ngModel)]="options[0]"><input (change)="onChange(0, $event.target.checked)" type="checkbox">
-
-     <div *ngFor="let i of numberOfTimes, let j=index">
-        <input placeholder="Introduza Opção" [(ngModel)]="options[j+1]"><input (change)="onChange(j+1, $event.target.checked)" type="checkbox">
-     </div>
-
-      <div class="row">
-        <div class="col-1">
-            <button type="button" style="background-color:blue" class="btn w-100 text-white" (click)="addOption()"> + </button>
-        </div>
-      </div>
-      <button type="button" style="background-color:orange" class="btn w-100 text-white" (click)="addQuestion()"> Gerar Pergunta </button>
-    -->
     </ng-template>
   </ngb-tab>
 
@@ -176,24 +150,23 @@
   <ngb-tab title="Gerador de Categorias">
     <ng-template ngbTabContent>
         <br>
-    <form class="container pt-3" (ngSubmit)="submitCategory()">
+    <form #categoryForm="ngForm" class="container pt-3" (ngSubmit)="submitCategory(); categoryForm.reset()">
 
         <h1>Gerador de Categorias</h1>
-        <div class="input-group">
+        <div class="form-group">
             <div class="input-group-prepend">
                 <div class="input-group-text" id="btnGroupAddon">Categoria</div>
             </div>
-            <input name="categoryString" [(ngModel)]="categoryString" type="text" class="form-control" aria-label="Input group example"
+            <input name="categoryChosen" #categoryChosen="ngModel" [(ngModel)]="categoryString" type="text" class="form-control" aria-label="Input group example"
                             aria-describedby="btnGroupAddon" required placeholder="Introduza Categoria">
+                            {{categoryChosen.className}}
+            <div [hidden]="categoryChosen.valid || categoryChosen.pristine || categoryChosen.untouched" class="alert alert-danger">
+              Name is required
+            </div>
         </div>
             <p></p>
-            <input type="submit" class="btn btn-primary orangeButton" value="Gerar Categoria">
+            <input type="submit" [disabled]="!categoryForm.form.valid" class="btn btn-primary orangeButton" value="Gerar Categoria">
       </form>
-      <!--
-    <label>Gerar Categoria:</label>
-    <input>
-    <button type="button" style="background-color:#e64415;" class="btn w-100 text-white" (click)="submitCategory()"> Gerar Categoria </button>
-      -->
   </ng-template>
   </ngb-tab>
 </ngb-tabset>
