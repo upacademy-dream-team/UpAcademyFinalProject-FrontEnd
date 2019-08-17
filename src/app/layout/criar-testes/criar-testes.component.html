@@ -1,5 +1,5 @@
-<div class="container pt-3" >
-
+<div class="vh-100 d-flex position-fixed w-100" style="background-color: #FAFAFA; overflow-y : auto;">
+  <div class="container pt-3 h-100">
 
 <ngb-tabset (tabChange)="reset($event)" [justify]="'fill'">
 
@@ -14,8 +14,8 @@
           <h1 class="margin-bottom">Gerador de Testes</h1>
           <div class="form-group">
               <div class="input-group mb-5 row justify-content-around">
-                  <div class="input-group-text">
-                      <label class="sr-only" for="inlineFormInputGroup">Nome</label>Nome
+                  <div class="input-group-text" style="margin-left: 16px;">
+                      <label class="sr-only" for="inlineFormInputGroup"></label>Nome
                   </div>
                 <input required [(ngModel)]="testName" name="testNameChosen" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Nome do Teste">
                  
@@ -23,10 +23,10 @@
               <p></p>
               <div class="row">
                   <div class="col-3">
-                  <label for="duracaoTestes">Duracao:</label> <input required [(ngModel)]="timer" name="timerChosen" id="duracaoTestes" type="Number" placeholder="minutos">
+                  <label for="duracaoTestes">Duracao:&nbsp; </label> <input required [(ngModel)]="timer" name="timerChosen" id="duracaoTestes" type="Number" placeholder="minutos">
                   </div>
                   <div class="col-3">
-                      <label for="categoriaTestes">Categoria:</label>
+                      <label for="categoriaTestes">Categoria:&nbsp; </label>
                       <select required [(ngModel)]="category" name="categoryChosen" (change)="getNumberOfQuestionsByCategory()" id="">
                         <ng-container *ngFor="let category of categories$ | async">
                             <option value={{category.category.category}}> {{category.category.category}}
@@ -35,7 +35,7 @@
                       </select>
                   </div>
                   <div class="col" *ngIf="maximum">
-                      <label for="perguntasTestes">N Perguntas:</label><input required [(ngModel)]="numberOfQuestions" name="numberOfQuestionsChosen" type="Number" min="0" max="{{maximum}}">
+                      <label for="perguntasTestes">Nº Perguntas:&nbsp; </label><input required [(ngModel)]="numberOfQuestions" name="numberOfQuestionsChosen" type="Number" min="0" max="{{maximum}}">
                   </div>
               </div>
               <div>
@@ -96,9 +96,9 @@
                               aria-describedby="btnGroupAddon" placeholder="Introduza Pergunta">
                       </div>
                       <p></p>
-                      <input required placeholder="Introduza Opção" [(ngModel)]="options[0]" name="optionWritten0" (change)="checkValidityQuestion()"><input [(ngModel)]="firstCheck" name="checkFirstCheck" name="mycheckbox" (change)="onChange(0, $event.target.checked)" type="checkbox">
+                      <textarea required class="w-75 rounded"  placeholder="Introduza Opção" [(ngModel)]="options[0]" name="optionWritten0" (change)="checkValidityQuestion()"></textarea>&nbsp;&nbsp;&nbsp;<input [(ngModel)]="firstCheck" name="checkFirstCheck" style="zoom: 2; padding-bottom: 5px"  (change)="onChange(0, $event.target.checked)" type="checkbox">
                       <div *ngFor="let i of numberOfTimes, let j=index">
-                          <input placeholder="Introduza Opção" [(ngModel)]="options[j+1]" name="optionWritten{{j+1}}" (change)="checkValidityQuestion()"><input (change)="onChange(j+1, $event.target.checked)" type="checkbox">
+                          <textarea class="w-75 rounded" placeholder="Introduza Opção" [(ngModel)]="options[j+1]" name="optionWritten{{j+1}}" (change)="checkValidityQuestion()"></textarea>&nbsp;&nbsp;&nbsp;<input (change)="onChange(j+1, $event.target.checked)" style="zoom: 2; padding-bottom: 5px" type="checkbox">
                        </div>
                       <p></p>
                       <input type="button" [disabled]="!questionFormValidity" name="" class="btn btn-primary orangeButton" (click)="addOption()" value="+">
@@ -108,6 +108,7 @@
               </div>
             </div>
         </form>
+        <div style="height: 100px"></div>
     </ng-template>
   </ngb-tab>
 
@@ -135,7 +136,7 @@
   </ngb-tab>
 </ngb-tabset>
 
-
+  </div>
 </div>
 
 
