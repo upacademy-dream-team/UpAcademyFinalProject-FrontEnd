@@ -12,8 +12,9 @@ export class TestServiceService {
   header: HttpHeaders | { [header: string]: string | string[]; };
 
   public tests$: ReplaySubject<any[]> = new ReplaySubject(1);
+  public test$: ReplaySubject<any[]> = new ReplaySubject(1);
+  public currentTest = 0;
   private tests: any[];
-  public currentTest: number;
 
   constructor(private http: HttpClient) { }
 
@@ -22,6 +23,14 @@ export class TestServiceService {
       (res: any) => {
         this.tests= res;
         this.tests$.next(res);
+      }
+    );
+  }
+
+  public getTest(id: number){
+    return this.http.get(this.apiUrl + 'get/' + id).subscribe(
+      (res:any) => {
+        this.test$.next(res);
       }
     );
   }
@@ -39,5 +48,10 @@ export class TestServiceService {
     return this.http.put(this.apiUrl + 'edit', test);
   }
 
+
+  public setCurrentTest(currentTest: number){
+    this.currentTest = currentTest;
+    console.log(this.currentTest);
+  }
   
 }

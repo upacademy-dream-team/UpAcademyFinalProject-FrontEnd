@@ -60,6 +60,7 @@ export class TesteLocalComponent implements OnInit, OnDestroy {
     this.passEntry.emit('A password vai ser resetada');
     console.log(this.messageTesteLocal);
     this.modalService.dismissAll();
+    this.SaveCurrentTest();
   }
 
   cancel() {
@@ -67,7 +68,6 @@ export class TesteLocalComponent implements OnInit, OnDestroy {
    }
 
    SaveCurrentTest(){
-    this.testService.currentTest = this.selectedTest;
-   }
+     this.testService.setCurrentTest(this.selectedTest);   }
 
 }
