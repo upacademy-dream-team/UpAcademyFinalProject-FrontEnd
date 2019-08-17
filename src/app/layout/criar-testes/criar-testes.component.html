@@ -9,24 +9,25 @@
     <ng-template ngbTabContent>
       <br>
       
-      <div class="container pt-3">
+      <form #testForm="ngForm" class="container pt-3" (submit)="submitTest(); testForm.reset()">
           <br>
           <h1 class="margin-bottom">Gerador de Testes</h1>
-          <div>
+          <div class="form-group">
               <div class="input-group mb-5 row justify-content-around">
                   <div class="input-group-text">
                       <label class="sr-only" for="inlineFormInputGroup">Nome</label>Nome
                   </div>
-                  <input [(ngModel)]="testName" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Nome do Teste">
-              </div>
+                <input required [(ngModel)]="testName" name="testNameChosen" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Nome do Teste">
+                 
+                </div>
               <p></p>
               <div class="row">
                   <div class="col-3">
-                  <label for="duracaoTestes">Duracao:</label> <input [(ngModel)]="timer" type="Number" placeholder="minutos">
+                  <label for="duracaoTestes">Duracao:</label> <input required [(ngModel)]="timer" name="timerChosen" id="duracaoTestes" type="Number" placeholder="minutos">
                   </div>
                   <div class="col-3">
                       <label for="categoriaTestes">Categoria:</label>
-                      <select [(ngModel)]="category" (change)="getNumberOfQuestionsByCategory()" name="" id="">
+                      <select required [(ngModel)]="category" name="categoryChosen" (change)="getNumberOfQuestionsByCategory()" id="">
                         <ng-container *ngFor="let category of categories$ | async">
                             <option value={{category.category.category}}> {{category.category.category}}
                             </option>
@@ -34,11 +35,11 @@
                       </select>
                   </div>
                   <div class="col" *ngIf="maximum">
-                      <label for="perguntasTestes">N Perguntas:</label><input [(ngModel)]="numberOfQuestions" type="Number" min="0" max="{{maximum}}">
+                      <label for="perguntasTestes">N Perguntas:</label><input required [(ngModel)]="numberOfQuestions" name="numberOfQuestionsChosen" type="Number" min="0" max="{{maximum}}">
                   </div>
               </div>
               <div>
-                  <button type="button" class="btn btn-primary orangeButton" value="+" (click)="addInfo()">+</button>
+                  <button [disabled]="!testForm.form.valid" type="button" class="btn btn-primary orangeButton" value="+" (click)="addInfo()">+</button>
               </div>
 
               <div *ngFor="let question of allRandomQuestions, let j=index">
@@ -57,10 +58,10 @@
                 </div>
 
               <div>
-                  <input type="button" id="margin-top" class="btn btn-primary orangeButton" value="Gerar Teste" (click)="submitTest()" >
+                  <input [disabled]="!testForm.form.valid || allRandomQuestions==0" type="submit" id="margin-top" class="btn btn-primary orangeButton" value="Gerar Teste" >
               </div>
             </div>
-      </div>
+        </form>
     </ng-template>
 
   </ngb-tab>
@@ -70,7 +71,7 @@
   <ngb-tab title="Gerador de Perguntas">
     <ng-template ngbTabContent>
       <br>
-      <form #questionForm="ngForm" class="container pt-3" (submit)="addQuestion(); questionForm.reset()">
+      <form #questionForm="ngForm" class="container pt-3" (submit)="addQuestion();">
           <h1>Gerador de Perguntas</h1>
   
           <div class="form-group">
@@ -95,14 +96,14 @@
                               aria-describedby="btnGroupAddon" placeholder="Introduza Pergunta">
                       </div>
                       <p></p>
-                      <input required placeholder="Introduza Opção" [(ngModel)]="options[0]" name="optionWritten"><input name="mycheckbox" (change)="onChange(0, $event.target.checked)" type="checkbox">
+                      <input required placeholder="Introduza Opção" [(ngModel)]="options[0]" name="optionWritten0" (change)="checkValidityQuestion()"><input [(ngModel)]="firstCheck" name="checkFirstCheck" name="mycheckbox" (change)="onChange(0, $event.target.checked)" type="checkbox">
                       <div *ngFor="let i of numberOfTimes, let j=index">
-                          <input placeholder="Introduza Opção" [(ngModel)]="options[j+1]" name="optionWritten"><input (change)="onChange(j+1, $event.target.checked)" type="checkbox">
+                          <input placeholder="Introduza Opção" [(ngModel)]="options[j+1]" name="optionWritten{{j+1}}" (change)="checkValidityQuestion()"><input (change)="onChange(j+1, $event.target.checked)" type="checkbox">
                        </div>
                       <p></p>
-                      <input type="button" name="" class="btn btn-primary orangeButton" (click)="addOption()" value="+">
+                      <input type="button" [disabled]="!questionFormValidity" name="" class="btn btn-primary orangeButton" (click)="addOption()" value="+">
                       <p></p>
-                      <input type="submit" [disabled]="!questionForm.form.valid || solution.length==0" class="btn btn-primary orangeButton" value="Gerar Pergunta">
+                      <input type="submit" [disabled]="!questionForm.form.valid || solution.length==0 || !questionFormValidity" class="btn btn-primary orangeButton" value="Gerar Pergunta">
                   </div>
               </div>
             </div>
@@ -123,7 +124,6 @@
             </div>
             <input name="categoryChosen" #categoryChosen="ngModel" [(ngModel)]="categoryString" type="text" class="form-control" aria-label="Input group example"
                             aria-describedby="btnGroupAddon" required placeholder="Introduza Categoria">
-                            {{categoryChosen.className}}
             <div [hidden]="categoryChosen.valid || categoryChosen.pristine || categoryChosen.untouched" class="alert alert-danger">
               Name is required
             </div>

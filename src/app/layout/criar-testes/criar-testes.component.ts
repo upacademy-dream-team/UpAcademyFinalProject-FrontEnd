@@ -8,6 +8,7 @@ import { Question } from 'src/app/core/models/question';
 import { QuestionServiceService } from 'src/app/core/services/question-service/question-service.service';
 import { UserServiceService } from 'src/app/core';
 import { TestServiceService } from 'src/app/core/services/test-service/test-service.service';
+import { ClassField } from '@angular/compiler';
 
 @Component({
   selector: 'app-criar-testes',
@@ -55,10 +56,22 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   private timer: number;
   private testName: string;
   private questions: Question[];
+  private questionFormValidity: boolean= false;
   test= new Test();
+  private firstCheck: boolean= false;
 
   show(){
     console.log(this.categoryWithNumber.numberOfQuestions);
+  }
+
+  public checkValidityQuestion(){
+    console.log(this.options);
+    console.log(this.solution);
+    for(let i=0; i<this.options.length; i++)
+      if(this.options[i]=="" || this.options[i]==null)
+        {this.questionFormValidity=false; return;}
+    this.questionFormValidity=true;
+    return;
   }
   
 
@@ -119,6 +132,8 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   public addOption(){
     this.numberOfTimes.push(1);
     console.log(this.options);
+    this.options.push(null);
+    this.checkValidityQuestion();
     //this.addElement+='<strong>The Tortoise</strong> &amp; the Hare';
   }
 
@@ -140,14 +155,18 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.questionClass.options=this.options;
     this.questionClass.question=this.questionString;
     this.questionClass.solution=this.solution;
-    this.questionService.addQuestion(this.questionClass).subscribe(data=> console.log(data), error=>console.log(error));
-    
-    /*this.options=[];
+    this.questionService.addQuestion(this.questionClass).subscribe(
+      data=> {console.log(data);
+      }, 
+      error=>console.log(error));
+
+    this.questionClass=new Question();
+    this.options=[];
     this.questionString="";
     this.solution=[];
-    this.numberOfTimes=[];*/
-    //console.log(this.options);
-    //console.log(this.solution);
+    this.numberOfTimes=[];
+    this.questionFormValidity=false;
+    this.firstCheck=false;
   }
 
   onChange(i:number, isChecked: boolean) {
