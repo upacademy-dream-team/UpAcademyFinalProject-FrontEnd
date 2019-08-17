@@ -70,14 +70,14 @@
   <ngb-tab title="Gerador de Perguntas">
     <ng-template ngbTabContent>
       <br>
-      <form class="container pt-3" (submit)="addQuestion()">
+      <form #questionForm="ngForm" class="container pt-3" (submit)="addQuestion(); questionForm.reset()">
           <h1>Gerador de Perguntas</h1>
   
-          <div>
+          <div class="form-group">
               <div class="margins">
                   <div>
                       <label for="categoriaTestes">Categoria:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                      <select [(ngModel)]="category" name="categoryChosen" id="">
+                      <select required [(ngModel)]="category" name="categoryChosen" id="">
                           <ng-container *ngFor="let myCategory of categories$ | async">
                               <option [value]="myCategory.category.category"> {{myCategory.category.category}}
                               </option>
@@ -91,18 +91,18 @@
                           <div class="input-group-prepend">
                               <div class="input-group-text" id="btnGroupAddon">Pergunta</div>
                           </div>
-                          <input [(ngModel)]="questionString" name="questionWritten" type="text" class="form-control" aria-label="Input group example"
+                          <input required [(ngModel)]="questionString" name="questionWritten" type="text" class="form-control" aria-label="Input group example"
                               aria-describedby="btnGroupAddon" placeholder="Introduza Pergunta">
                       </div>
                       <p></p>
-                      <input placeholder="Introduza Opção" [(ngModel)]="options[0]" name="optionWritten"><input name="mycheckbox" (change)="onChange(0, $event.target.checked)" type="checkbox">
+                      <input required placeholder="Introduza Opção" [(ngModel)]="options[0]" name="optionWritten"><input name="mycheckbox" (change)="onChange(0, $event.target.checked)" type="checkbox">
                       <div *ngFor="let i of numberOfTimes, let j=index">
                           <input placeholder="Introduza Opção" [(ngModel)]="options[j+1]" name="optionWritten"><input (change)="onChange(j+1, $event.target.checked)" type="checkbox">
                        </div>
                       <p></p>
                       <input type="button" name="" class="btn btn-primary orangeButton" (click)="addOption()" value="+">
                       <p></p>
-                      <input type="submit" class="btn btn-primary orangeButton" value="Gerar Pergunta">
+                      <input type="submit" [disabled]="!questionForm.form.valid || solution.length==0" class="btn btn-primary orangeButton" value="Gerar Pergunta">
                   </div>
               </div>
             </div>

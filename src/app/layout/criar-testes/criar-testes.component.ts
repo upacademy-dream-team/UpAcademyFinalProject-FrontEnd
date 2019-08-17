@@ -142,10 +142,10 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.questionClass.solution=this.solution;
     this.questionService.addQuestion(this.questionClass).subscribe(data=> console.log(data), error=>console.log(error));
     
-    this.options=[];
+    /*this.options=[];
     this.questionString="";
     this.solution=[];
-    this.numberOfTimes=[];
+    this.numberOfTimes=[];*/
     //console.log(this.options);
     //console.log(this.solution);
   }
