@@ -23,7 +23,7 @@
                     <p></p>
                     <div class="row">
                         <div class="col-3">
-                        <label for="duracaoTestes">Duracao:&nbsp; </label> <input required [(ngModel)]="timer" name="timerChosen" id="duracaoTestes" type="Number" placeholder="minutos">
+                        <label for="duracaoTestes">Duração:&nbsp; </label> <input required [(ngModel)]="timer" name="timerChosen" min="0" id="duracaoTestes" type="Number" placeholder="minutos">
                         </div>
                         <div class="col-3">
                             <label for="categoriaTestes">Categoria:&nbsp; </label>
@@ -62,6 +62,7 @@
                     </div>
                   </div>
               </form>
+              <div class="spacer" style="height: 100px"></div>
           </ng-template>
       
         </ngb-tab>
@@ -96,19 +97,20 @@
                                     aria-describedby="btnGroupAddon" placeholder="Introduza Pergunta">
                             </div>
                             <p></p>
-                            <textarea required class="w-75 rounded"  placeholder="Introduza Opção" [(ngModel)]="options[0]" name="optionWritten0" (change)="checkValidityQuestion()"></textarea>&nbsp;&nbsp;&nbsp;<input [(ngModel)]="firstCheck" name="checkFirstCheck" style="zoom: 2; padding-bottom: 5px"  (change)="onChange(0, $event.target.checked)" type="checkbox">
+                            <textarea required class="rounded"  style="width: 95%" placeholder="Introduza Opção" [(ngModel)]="options[0]" name="optionWritten0" (change)="checkValidityQuestion()"></textarea>&nbsp;&nbsp;&nbsp;<input [(ngModel)]="firstCheck" name="checkFirstCheck" style="zoom: 3; padding-bottom: 5px"  (change)="onChange(0, $event.target.checked)" type="checkbox">
                             <div *ngFor="let i of numberOfTimes, let j=index">
-                                <textarea class="w-75 rounded" placeholder="Introduza Opção" [(ngModel)]="options[j+1]" name="optionWritten{{j+1}}" (change)="checkValidityQuestion()"></textarea>&nbsp;&nbsp;&nbsp;<input (change)="onChange(j+1, $event.target.checked)" style="zoom: 2; padding-bottom: 5px" type="checkbox">
+                                <textarea class="rounded" style="width: 95%" placeholder="Introduza Opção" [(ngModel)]="options[j+1]" name="optionWritten{{j+1}}" (change)="checkValidityQuestion()"></textarea>&nbsp;&nbsp;&nbsp;<input (change)="onChange(j+1, $event.target.checked)" style="zoom: 3; padding-bottom: 5px" type="checkbox">
                              </div>
                             <p></p>
                             <input type="button" [disabled]="!questionFormValidity" name="" class="btn btn-primary orangeButton" (click)="addOption()" value="+">
-                            <p></p>
-                            <input type="submit" [disabled]="!questionForm.form.valid || solution.length==0 || !questionFormValidity" class="btn btn-primary orangeButton" value="Gerar Pergunta">
+                            <div>
+                                <input type="submit" [disabled]="!questionForm.form.valid || solution.length==0 || !questionFormValidity" class="btn btn-primary orangeButton" value="Gerar Pergunta">
+                            </div>
                         </div>
                     </div>
                   </div>
               </form>
-              <div style="height: 100px"></div>
+              <div class="spacer" style="height: 100px"></div>
           </ng-template>
         </ngb-tab>
       
@@ -119,16 +121,16 @@
           <form #categoryForm="ngForm" class="container pt-3" (ngSubmit)="submitCategory(); categoryForm.reset()">
       
               <h1>Gerador de Categorias</h1>
-              <div class="form-group">
+              <div class="input-group">
                   <div class="input-group-prepend">
                       <div class="input-group-text" id="btnGroupAddon">Categoria</div>
                   </div>
                   <input name="categoryChosen" #categoryChosen="ngModel" [(ngModel)]="categoryString" type="text" class="form-control" aria-label="Input group example"
                                   aria-describedby="btnGroupAddon" required placeholder="Introduza Categoria">
-                  <div [hidden]="categoryChosen.valid || categoryChosen.pristine || categoryChosen.untouched" class="alert alert-danger">
+              </div>
+              <div [hidden]="categoryChosen.valid || categoryChosen.pristine || categoryChosen.untouched" class="alert alert-danger">
                     Name is required
                   </div>
-              </div>
                   <p></p>
                   <input type="submit" [disabled]="!categoryForm.form.valid" class="btn btn-primary orangeButton" value="Gerar Categoria">
             </form>

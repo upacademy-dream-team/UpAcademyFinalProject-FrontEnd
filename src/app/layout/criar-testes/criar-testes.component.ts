@@ -83,6 +83,9 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   questionString: string;
   questionClass= new Question();
 
+  public showMessage(){
+    console.log("tem de inserir solução")
+  }
 
   public addInfo(){
     console.log(this.categories);
@@ -180,6 +183,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
 
   reset($event: NgbTabChangeEvent){
     this.categoryService.getAllCategories();
+    this.category="";
     //console.log(this.categories);
     //console.log(this.subscriptionCategories);
     this.categories$.subscribe(data => this.categories=data);
