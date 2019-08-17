@@ -61,42 +61,6 @@
               </div>
             </div>
       </div>
-    
-      <!--
-      <label for="nomeTestes">Nome:</label> <input [(ngModel)]="testName" type="text" placeholder="Nome do teste">
-      <label for="duracaoTestes">Duracao:</label> <input [(ngModel)]="timer" type="Number" placeholder="minutos">
-      <br>
-      <label for="categoriaTestes">Categoria:</label>
-      <select [(ngModel)]="category" name="" id="">
-        <ng-container *ngFor="let category of categories$ | async">
-            <option value={{category.category}}> {{category.category}}
-            </option>
-        </ng-container>
-      </select>
-
-      <label for="perguntasTestes">N Perguntas:</label><input [(ngModel)]="numberOfQuestions" type="Number" placeholder="nº Perguntas">
-      <div class="row">
-        <div class="col-1">
-            <button type="button" style="background-color:blue" class="btn w-100 text-white" (click)="addInfo()"> + </button>
-        </div>
-      </div>
-
-      <div *ngFor="let question of allRandomQuestions, let j=index">
-        <div *ngIf="j!=0 && allRandomQuestions[j-1].category.category!=allRandomQuestions[j].category.category || j==0">
-          {{question.category.category}}
-        </div>
-          {{question.question}};
-          <div *ngFor="let option of question.options, let i=index">
-            <div *ngIf="question.solution.indexOf(i)!=-1">
-              {{option}} <input type="checkbox" checked="checked" disabled="disabled">
-            </div>
-            <div *ngIf="question.solution.indexOf(i)==-1">
-              {{option}} <input type="checkbox" disabled="disabled">
-            </div>
-          </div>
-      </div>
-      <button type="button" style="background-color:#e64415;" class="btn w-100 text-white" (click)="submitTest()"> Gerar Teste </button>
-    -->
     </ng-template>
 
   </ngb-tab>

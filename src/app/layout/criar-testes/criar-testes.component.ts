@@ -124,13 +124,13 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
 
   public getIDByCategory(category){
     for(let i=0; i<this.categories.length; i++)
-      if(this.categories[i].category==category) return this.categories[i].id;
+      if(this.categories[i].category.category==category) return this.categories[i].category.id;
     return -1;
   }
   
   public getCategoryByName(category){
     for(let i=0; i<this.categories.length; i++)
-      if(this.categories[i].category==category) return this.categories[i];
+      if(this.categories[i].category.category==category) return this.categories[i].category;
     return -1;
   }
 
