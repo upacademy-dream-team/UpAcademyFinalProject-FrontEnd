@@ -99,6 +99,10 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         console.log( this.allRandomQuestions);
       }
     );
+
+    this.numberOfQuestions=0;
+    this.category="";
+    this.maximum=0;
     return this.categories$.subscribe(/*data=> console.log(data)*/);
   }
 

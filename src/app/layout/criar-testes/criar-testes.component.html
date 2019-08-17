@@ -27,7 +27,7 @@
                         </div>
                         <div class="col-3">
                             <label for="categoriaTestes">Categoria:&nbsp; </label>
-                            <select required [(ngModel)]="category" name="categoryChosen" (change)="getNumberOfQuestionsByCategory()" id="">
+                            <select required [(ngModel)]="category" name="categoryChosen" (change)="getNumberOfQuestionsByCategory(); numberOfQuestions=0" id="">
                               <ng-container *ngFor="let category of categories$ | async">
                                   <option value={{category.category.category}}> {{category.category.category}}
                                   </option>
