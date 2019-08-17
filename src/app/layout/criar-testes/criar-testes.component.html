@@ -1,203 +1,139 @@
-<div class="vh-100 d-flex position-fixed w-100" style="background-color: #FAFAFA">
-    <div class="container pt-3 h-100">
+<div class="vh-100 d-flex position-fixed w-100" style="background-color: #FAFAFA; overflow-y : auto;">
+  <div class="container pt-3 h-100">
+
+<ngb-tabset (tabChange)="reset($event)" [justify]="'fill'">
 
 
-        <ngb-tabset (tabChange)="reset($event)" [justify]="'fill'">
+  <!------------------------------------Gerador Testes---------------------------------------------------->
+  <ngb-tab title="Gerador de Testes">
+    <ng-template ngbTabContent>
+      <br>
+      
+      <form #testForm="ngForm" class="container pt-3" (submit)="submitTest(); testForm.reset()">
+          <br>
+          <h1 class="margin-bottom">Gerador de Testes</h1>
+          <div class="form-group">
+              <div class="input-group mb-5 row justify-content-around">
+                  <div class="input-group-text" style="margin-left: 16px;">
+                      <label class="sr-only" for="inlineFormInputGroup"></label>Nome
+                  </div>
+                <input required [(ngModel)]="testName" name="testNameChosen" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Nome do Teste">
+                 
+                </div>
+              <p></p>
+              <div class="row">
+                  <div class="col-3">
+                  <label for="duracaoTestes">Duracao:&nbsp; </label> <input required [(ngModel)]="timer" name="timerChosen" id="duracaoTestes" type="Number" placeholder="minutos">
+                  </div>
+                  <div class="col-3">
+                      <label for="categoriaTestes">Categoria:&nbsp; </label>
+                      <select required [(ngModel)]="category" name="categoryChosen" (change)="getNumberOfQuestionsByCategory()" id="">
+                        <ng-container *ngFor="let category of categories$ | async">
+                            <option value={{category.category.category}}> {{category.category.category}}
+                            </option>
+                        </ng-container>
+                      </select>
+                  </div>
+                  <div class="col" *ngIf="maximum">
+                      <label for="perguntasTestes">Nº Perguntas:&nbsp; </label><input required [(ngModel)]="numberOfQuestions" name="numberOfQuestionsChosen" type="Number" min="0" max="{{maximum}}">
+                  </div>
+              </div>
+              <div>
+                  <button [disabled]="!testForm.form.valid" type="button" class="btn btn-primary orangeButton" value="+" (click)="addInfo()">+</button>
+              </div>
 
-
-            <!------------------------------------Gerador Testes---------------------------------------------------->
-            <ngb-tab title="Gerador de Testes">
-                <ng-template ngbTabContent>
-                    <br>
-
-                    <div class="container pt-3">
-                        <br>
-                        <h1 class="margin-bottom">Gerador de Testes</h1>
-                        <div>
-                            <div class="input-group mb-5 row justify-content-around">
-                                <div class="input-group-text" style="margin-left: 16px;">
-                                    <label class="sr-only" for="inlineFormInputGroup"></label>Nome
-                                </div>
-                                <input [(ngModel)]="testName" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Nome do Teste">
-                            </div>
-                            <p></p>
-                            <div class="row">
-                                <div class="col-3">
-                                    <label for="duracaoTestes">Duracao:&nbsp;</label> <input [(ngModel)]="timer" type="Number" placeholder="minutos">
-                                </div>
-                                <div class="col-3">
-                                    <label for="categoriaTestes">Categoria:&nbsp;</label>
-                                    <select [(ngModel)]="category" name="" id="">
-                                        <ng-container *ngFor="let category of categories$ | async">
-                                            <option value={{category.category}}> {{category.category}}
-                                            </option>
-                                        </ng-container>
-                                    </select>
-                                </div>
-                                <div class="col">
-                                    <label for="perguntasTestes">N Perguntas:&nbsp;</label><input [(ngModel)]="numberOfQuestions" type="Number" placeholder="nº Perguntas">
-                                </div>
-                            </div>
-                            <div>
-                                <button type="button" class="btn btn-primary orangeButton" value="+" (click)="addInfo()">+</button>
-                            </div>
-
-                            <div *ngFor="let question of allRandomQuestions, let j=index">
-                                <h1 *ngIf="j!=0 && allRandomQuestions[j-1].category.category!=allRandomQuestions[j].category.category || j==0">
-                                    {{question.category.category}}
-                                </h1>
-                                <h4>{{question.question}}</h4>
-                                <div *ngFor="let option of question.options, let i=index">
-                                    <p *ngIf="question.solution.indexOf(i)!=-1">
-                                        {{option}} <input type="checkbox" checked="checked" disabled="disabled">
-                                    </p>
-                                    <p *ngIf="question.solution.indexOf(i)==-1">
-                                        {{option}} <input type="checkbox" disabled="disabled">
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div>
-                                <input type="button" id="margin-top" class="btn btn-primary orangeButton" value="Gerar Teste" (click)="submitTest()">
-                            </div>
-                        </div>
+              <div *ngFor="let question of allRandomQuestions, let j=index">
+                  <h1 *ngIf="j!=0 && allRandomQuestions[j-1].category.category!=allRandomQuestions[j].category.category || j==0">
+                    {{question.category.category}}
+                  </h1>
+                    <h4>{{question.question}}</h4>
+                    <div *ngFor="let option of question.options, let i=index">
+                      <p *ngIf="question.solution.indexOf(i)!=-1">
+                        {{option}} <input type="checkbox" checked="checked" disabled="disabled">
+                      </p>
+                      <p *ngIf="question.solution.indexOf(i)==-1">
+                        {{option}} <input type="checkbox" disabled="disabled">
+                      </p>
                     </div>
 
-                    <!--
-        <label for="nomeTestes">Nome:</label> <input [(ngModel)]="testName" type="text" placeholder="Nome do teste">
-        <label for="duracaoTestes">Duracao:</label> <input [(ngModel)]="timer" type="Number" placeholder="minutos">
-        <br>
-        <label for="categoriaTestes">Categoria:</label>
-        <select [(ngModel)]="category" name="" id="">
-          <ng-container *ngFor="let category of categories$ | async">
-              <option value={{category.category}}> {{category.category}}
-              </option>
-          </ng-container>
-        </select>
-
-        <label for="perguntasTestes">N Perguntas:</label><input [(ngModel)]="numberOfQuestions" type="Number" placeholder="nº Perguntas">
-        <div class="row">
-          <div class="col-1">
-              <button type="button" style="background-color:blue" class="btn w-100 text-white" (click)="addInfo()"> + </button>
-          </div>
-        </div>
-
-        <div *ngFor="let question of allRandomQuestions, let j=index">
-          <div *ngIf="j!=0 && allRandomQuestions[j-1].category.category!=allRandomQuestions[j].category.category || j==0">
-            {{question.category.category}}
-          </div>
-            {{question.question}};
-            <div *ngFor="let option of question.options, let i=index">
-              <div *ngIf="question.solution.indexOf(i)!=-1">
-                {{option}} <input type="checkbox" checked="checked" disabled="disabled">
-              </div>
-              <div *ngIf="question.solution.indexOf(i)==-1">
-                {{option}} <input type="checkbox" disabled="disabled">
+              <div>
+                  <input [disabled]="!testForm.form.valid || allRandomQuestions==0" type="submit" id="margin-top" class="btn btn-primary orangeButton" value="Gerar Teste" >
               </div>
             </div>
-        </div>
-        <button type="button" style="background-color:#e64415;" class="btn w-100 text-white" (click)="submitTest()"> Gerar Teste </button>
-      -->
-                </ng-template>
+        </form>
+    </ng-template>
 
-            </ngb-tab>
+  </ngb-tab>
 
 
-            <!------------------------------------Gerador Perguntas--------------------------------------------------->
-            <ngb-tab title="Gerador de Perguntas">
-                <ng-template ngbTabContent>
-                    <br>
-                    <div class="container pt-3">
-                        <h1>Gerador de Perguntas</h1>
+  <!------------------------------------Gerador Perguntas--------------------------------------------------->
+  <ngb-tab title="Gerador de Perguntas">
+    <ng-template ngbTabContent>
+      <br>
+      <form #questionForm="ngForm" class="container pt-3" (submit)="addQuestion();">
+          <h1>Gerador de Perguntas</h1>
+  
+          <div class="form-group">
+              <div class="margins">
+                  <div>
+                      <label for="categoriaTestes">Categoria:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                      <select required [(ngModel)]="category" name="categoryChosen" id="">
+                          <ng-container *ngFor="let myCategory of categories$ | async">
+                              <option [value]="myCategory.category.category"> {{myCategory.category.category}}
+                              </option>
+                          </ng-container>
+                      </select>
+                  </div>
+              </div>
+              <div>
+                  <div>
+                      <div class="input-group">
+                          <div class="input-group-prepend">
+                              <div class="input-group-text" id="btnGroupAddon">Pergunta</div>
+                          </div>
+                          <input required [(ngModel)]="questionString" name="questionWritten" type="text" class="form-control" aria-label="Input group example"
+                              aria-describedby="btnGroupAddon" placeholder="Introduza Pergunta">
+                      </div>
+                      <p></p>
+                      <textarea required class="w-75 rounded"  placeholder="Introduza Opção" [(ngModel)]="options[0]" name="optionWritten0" (change)="checkValidityQuestion()"></textarea>&nbsp;&nbsp;&nbsp;<input [(ngModel)]="firstCheck" name="checkFirstCheck" style="zoom: 2; padding-bottom: 5px"  (change)="onChange(0, $event.target.checked)" type="checkbox">
+                      <div *ngFor="let i of numberOfTimes, let j=index">
+                          <textarea class="w-75 rounded" placeholder="Introduza Opção" [(ngModel)]="options[j+1]" name="optionWritten{{j+1}}" (change)="checkValidityQuestion()"></textarea>&nbsp;&nbsp;&nbsp;<input (change)="onChange(j+1, $event.target.checked)" style="zoom: 2; padding-bottom: 5px" type="checkbox">
+                       </div>
+                      <p></p>
+                      <input type="button" [disabled]="!questionFormValidity" name="" class="btn btn-primary orangeButton" (click)="addOption()" value="+">
+                      <p></p>
+                      <input type="submit" [disabled]="!questionForm.form.valid || solution.length==0 || !questionFormValidity" class="btn btn-primary orangeButton" value="Gerar Pergunta">
+                  </div>
+              </div>
+            </div>
+        </form>
+        <div style="height: 100px"></div>
+    </ng-template>
+  </ngb-tab>
 
-                        <div>
-                            <div class="margins">
-                                <div>
-                                    <label for="categoriaTestes">Categoria:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                    <select [(ngModel)]="category" name="thiscategory" id="">
-                            <ng-container *ngFor="let category of categories$ | async">
-                                <option value={{category.category}}> {{category.category}}
-                                </option>
-                            </ng-container>
-                        </select>
-                                </div>
-                            </div>
-                            <div>
-                                <div>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text" id="btnGroupAddon">Pergunta</div>
-                                        </div>
-                                        <input [(ngModel)]="questionString" type="text" class="form-control" aria-label="Input group example" aria-describedby="btnGroupAddon" placeholder="Introduza Pergunta">
-                                    </div>
-                                    <p></p>
-                                    <textarea placeholder="Introduza Opção" class="w-75 rounded" type="text" [(ngModel)]="options[0]"></textarea>&nbsp;&nbsp;&nbsp;<input name="mycheckbox" style="zoom: 2; padding-bottom: 5px" (change)="onChange(0, $event.target.checked)"
-                                        type="checkbox">
-                                    <div *ngFor="let i of numberOfTimes, let j=index">
-                                        <input placeholder="Introduza Opção" [(ngModel)]="options[j+1]"><input (change)="onChange(j+1, $event.target.checked)" type="checkbox">
-                                    </div>
-                                    <p></p>
-                                    <input type="button" name="" class="btn btn-primary orangeButton" (click)="addOption()" value="+">
-                                    <p></p>
-                                    <input type="submit" class="btn btn-primary orangeButton" value="Gerar Pergunta" (click)="addQuestion()">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!--<label for="categoriaTestes">Categoria:</label>
-        <select [(ngModel)]="category" name="" id="">
-          <ng-container *ngFor="let category of categories$ | async">
-              <option value={{category.category}}> {{category.category}}
-              </option>
-          </ng-container>
-        </select>
+  <!------------------------------------Gerador Categorias---------------------------------------------------->
+  <ngb-tab title="Gerador de Categorias">
+    <ng-template ngbTabContent>
         <br>
-        <label>Introduza a pergunta: </label>
-        <input [(ngModel)]="questionString">
-        <br>
-        <input placeholder="Introduza Opção" [(ngModel)]="options[0]"><input (change)="onChange(0, $event.target.checked)" type="checkbox">
+    <form #categoryForm="ngForm" class="container pt-3" (ngSubmit)="submitCategory(); categoryForm.reset()">
 
-      <div *ngFor="let i of numberOfTimes, let j=index">
-          <input placeholder="Introduza Opção" [(ngModel)]="options[j+1]"><input (change)="onChange(j+1, $event.target.checked)" type="checkbox">
-      </div>
-
-        <div class="row">
-          <div class="col-1">
-              <button type="button" style="background-color:blue" class="btn w-100 text-white" (click)="addOption()"> + </button>
-          </div>
+        <h1>Gerador de Categorias</h1>
+        <div class="form-group">
+            <div class="input-group-prepend">
+                <div class="input-group-text" id="btnGroupAddon">Categoria</div>
+            </div>
+            <input name="categoryChosen" #categoryChosen="ngModel" [(ngModel)]="categoryString" type="text" class="form-control" aria-label="Input group example"
+                            aria-describedby="btnGroupAddon" required placeholder="Introduza Categoria">
+            <div [hidden]="categoryChosen.valid || categoryChosen.pristine || categoryChosen.untouched" class="alert alert-danger">
+              Name is required
+            </div>
         </div>
-        <button type="button" style="background-color:orange" class="btn w-100 text-white" (click)="addQuestion()"> Gerar Pergunta </button>
-      -->
-                </ng-template>
-            </ngb-tab>
+            <p></p>
+            <input type="submit" [disabled]="!categoryForm.form.valid" class="btn btn-primary orangeButton" value="Gerar Categoria">
+      </form>
+  </ng-template>
+  </ngb-tab>
+</ngb-tabset>
 
-            <!------------------------------------Gerador Categorias---------------------------------------------------->
-            <ngb-tab title="Gerador de Categorias">
-                <ng-template ngbTabContent>
-                    <br>
-                    <form class="container pt-3" (ngSubmit)="submitCategory()">
-
-                        <h1>Gerador de Categorias</h1>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text" id="btnGroupAddon">Categoria</div>
-                            </div>
-                            <input name="categoryString" [(ngModel)]="categoryString" type="text" class="form-control" aria-label="Input group example" aria-describedby="btnGroupAddon" required placeholder="Introduza Categoria">
-                        </div>
-                        <p></p>
-                        <input type="submit" class="btn btn-primary orangeButton" value="Gerar Categoria">
-                    </form>
-                    <!--
-      <label>Gerar Categoria:</label>
-      <input>
-      <button type="button" style="background-color:#e64415;" class="btn w-100 text-white" (click)="submitCategory()"> Gerar Categoria </button>
-        -->
-                </ng-template>
-            </ngb-tab>
-        </ngb-tabset>
-
-
-    </div>
+  </div>
 </div>

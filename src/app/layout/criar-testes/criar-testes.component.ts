@@ -8,6 +8,7 @@ import { Question } from 'src/app/core/models/question';
 import { QuestionServiceService } from 'src/app/core/services/question-service/question-service.service';
 import { UserServiceService } from 'src/app/core';
 import { TestServiceService } from 'src/app/core/services/test-service/test-service.service';
+import { ClassField } from '@angular/compiler';
 
 @Component({
   selector: 'app-criar-testes',
@@ -27,6 +28,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   public numberOfTimes: number[]=[];
   public options: any[]=[];
   public solution: any[]=[];
+  maximum: any;
 
   constructor(config: NgbTabsetConfig, private testService: TestServiceService, private userService: UserServiceService, private categoryService: CategoryServiceService, private questionService: QuestionServiceService) {
     config.justify = 'center';
@@ -49,11 +51,28 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   }
 
   private numberOfQuestions: number;
-  private category: string;
+  private category: any;
+  private categoryWithNumber: any;
   private timer: number;
   private testName: string;
   private questions: Question[];
+  private questionFormValidity: boolean= false;
   test= new Test();
+  private firstCheck: boolean= false;
+
+  show(){
+    console.log(this.categoryWithNumber.numberOfQuestions);
+  }
+
+  public checkValidityQuestion(){
+    console.log(this.options);
+    console.log(this.solution);
+    for(let i=0; i<this.options.length; i++)
+      if(this.options[i]=="" || this.options[i]==null)
+        {this.questionFormValidity=false; return;}
+    this.questionFormValidity=true;
+    return;
+  }
   
 
   ///adding category
@@ -80,6 +99,15 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     return this.categories$.subscribe(/*data=> console.log(data)*/);
   }
 
+  public getNumberOfQuestionsByCategory(){
+    console.log("entrou aqui");
+    console.log(this.category);
+    for(let i=0; i<this.categories.length; i++)
+      if(this.categories[i].category.category==this.category)
+       this.maximum=this.categories[i].numberOfQuestions;
+    console.log(this.maximum);
+  }
+
   public submitTest(){
     console.log(this.allRandomQuestions);
     this.test.questions=this.allRandomQuestions;
@@ -104,18 +132,20 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   public addOption(){
     this.numberOfTimes.push(1);
     console.log(this.options);
+    this.options.push(null);
+    this.checkValidityQuestion();
     //this.addElement+='<strong>The Tortoise</strong> &amp; the Hare';
   }
 
   public getIDByCategory(category){
     for(let i=0; i<this.categories.length; i++)
-      if(this.categories[i].category==category) return this.categories[i].id;
+      if(this.categories[i].category.category==category) return this.categories[i].category.id;
     return -1;
   }
   
   public getCategoryByName(category){
     for(let i=0; i<this.categories.length; i++)
-      if(this.categories[i].category==category) return this.categories[i];
+      if(this.categories[i].category.category==category) return this.categories[i].category;
     return -1;
   }
 
@@ -125,14 +155,18 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.questionClass.options=this.options;
     this.questionClass.question=this.questionString;
     this.questionClass.solution=this.solution;
-    this.questionService.addQuestion(this.questionClass).subscribe(data=> console.log(data), error=>console.log(error));
-    
+    this.questionService.addQuestion(this.questionClass).subscribe(
+      data=> {console.log(data);
+      }, 
+      error=>console.log(error));
+
+    this.questionClass=new Question();
     this.options=[];
     this.questionString="";
     this.solution=[];
     this.numberOfTimes=[];
-    //console.log(this.options);
-    //console.log(this.solution);
+    this.questionFormValidity=false;
+    this.firstCheck=false;
   }
 
   onChange(i:number, isChecked: boolean) {
