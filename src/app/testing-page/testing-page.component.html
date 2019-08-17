@@ -1,41 +1,58 @@
 <div *ngIf="!testRunning" class="not-found">
-        <div class="wrapper">
-            <div class="col-md-10 push-md-1">
-                <h1>404 - Page Not Found</h1>
-                <p class="lead">This page does not exist</p>
-            </div>
+    <div class="wrapper">
+        <div class="col-md-10 push-md-1">
+            <h1>404 - Page Not Found</h1>
+            <p class="lead">This page does not exist</p>
         </div>
+    </div>
 </div>
-<div class="background vh-100 d-flex position-fixed w-100" style="background-image: url(assets/home-office-336378_1280.jpg)">
-<div class="container">
-        <p style="height: 60px;"></p>
+
+<div class="background vh-100 d-flex w-100" style="background-image: url(assets/home-office-336378_1280.jpg)">
+    <div class="container">
+        <p style="height: 15px;"></p>
         <form>
-            <div class="vertical-center form-group rounded" style="background: rgba(143, 143, 143, 0.60); height: 500px;">
-                <h1 style="text-align: center">Teste de Java e SQL - Versão A</h1>
-                <p></p>
+            <div class="vertical-center form-group rounded"
+                style="background: rgba(143, 143, 143, 0.60); height: 600px;">
                 <div class="row">
-                    <div class="col-20">
-                        <b><label for="name">Nome:</label></b>
+                <img class="pl-2" src="assets\aubayCopy.png" style="width:10%; height:auto;" alt="Aubay">
+                <p></p>
+                <h1 class="align-self-center" style="margin-left: 160px;">Teste de Java e SQL - Versão A</h1>
+                </div>
+                <p></p>
+                <br>
+                <div class="row">
+                    <div class="pr-3 pl-4">
+                        <h3>
+                            <b><label for="name">Nome:</label></b>
+                        </h3>
                     </div>
                     <div class="col-80">
-                        <input type="text" name="name">
+                        <div style="height: 7px"></div>
+                        <input class="rounded" type="text" name="name">
+                        <div style="height: 30px"></div>
                     </div>
                     <br>
                     <br>
-                    <div class="col-20">
-                        <b><label for="email">Email:</label></b>
+                    <div class="pr-4 pl-4">
+                        <h3>
+                            <b><label for="email">Email:</label></b>
+                        </h3>
                     </div>
                     <div class="col-80">
-                        <input type="text" name="email">
+                        <div style="height: 5px"></div>
+                        <input class="rounded" type="text" name="email">
                     </div>
                 </div>
                 <p></p>
-                <p><strong>Assim que iniciar o teste, o tempo começa a contar. O teste é de escolha múltipla e tem a duração de
-                        30 minutos.</strong></p>
-
-                <p><strong>Indique todas as opções que são verdadeiras, podendo estas conter, ou não, mais que uma opção
-                        verdadeira.</strong></p>
-                <p id="centerButton"><button type="submit" class="btn btn-primary" value="Iniciar">Iniciar</button></p>
+                <h3 style="text-align: justify; text-justify: inter-word;" class="pl-1"><strong>Assim que iniciar o teste, 
+                    o tempo começa a contar. O teste é de escolha múltipla e tem a duração de <u>30 minutos.</u></strong></h3>
+                <br>
+                <h3 style="text-align: justify; text-justify: inter-word;"><strong>Indique todas as opções que são verdadeiras, <u>podendo estas conter, ou não, mais que uma
+                        opção
+                        verdadeira.</u></strong></h3>
+                <p style="height: 30px;"></p>
+                <p id="centerButton"><button style="width: 125px" type="submit" class="btn align-text-bottom"
+                        value="Iniciar">Iniciar</button></p>
             </div>
         </form>
     </div>

@@ -20,13 +20,22 @@
 
 input {
     border: none;
-    width: 100%;
+    width: 113%;
+    opacity: 0.8;
 }
 
 button {
     margin-left: auto;
     margin-right: auto;            
     padding: 5px 20px;
+}
+
+.btn{
+    background-color:#e64415;
+    color: white;
+    font-weight: bold;
+    &:hover {background-color: #c53912;
+    }
 }
 
 #centerButton {
