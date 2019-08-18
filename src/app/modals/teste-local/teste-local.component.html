@@ -8,7 +8,7 @@
 
   <span class="text-dark">Escolha o Enunciado do teste a iniciar.</span><br><br>
 
-  <select (click)="selectorDisable = '1'" (change)="SaveCurrentTest()" style="height: 38px" [(ngModel)]="selectedTest" class="w-100" name="Enunciado" id="">
+  <select (change)="selectorDisable = '1'" (change)="SaveCurrentTest()" style="height: 38px" [(ngModel)]="selectedTest" class="w-100" name="Enunciado" id="">
     <option selected disabled>Enunciado</option>
     <ng-container *ngFor="let test of tests$ | async">
       <option value={{test.id}}> {{test.test.testName}}
