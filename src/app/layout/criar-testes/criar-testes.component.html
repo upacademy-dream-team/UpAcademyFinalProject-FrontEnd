@@ -9,7 +9,7 @@
           <ng-template ngbTabContent>
             <br>
             
-            <form #testForm="ngForm" class="container pt-3" (submit)="submitTest(); testForm.reset()">
+            <form #testForm="ngForm" class="container pt-3" (submit)="submitTest();">
                 <br>
                 <h1 class="margin-bottom">Gerador de Testes</h1>
                 <div class="form-group">
@@ -17,17 +17,19 @@
                         <div class="input-group-text" style="margin-left: 16px;">
                             <label class="sr-only" for="inlineFormInputGroup"></label>Nome
                         </div>
-                      <input required [(ngModel)]="testName" name="testNameChosen" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Nome do Teste">
-                       
+                      <input required [(ngModel)]="testName" name="testNameChosen" #testNameChosen="ngModel" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Nome do Teste">
+                      </div>
+                      <div *ngIf='testError!=""' class="alert alert-danger">
+                        {{testError}}
                       </div>
                     <p></p>
                     <div class="row">
                         <div class="col-3">
-                        <label for="duracaoTestes">Duração:&nbsp; </label> <input required [(ngModel)]="timer" name="timerChosen" min="0" id="duracaoTestes" type="Number" placeholder="minutos">
+                        <label for="duracaoTestes">Duração:&nbsp; </label> <input required [(ngModel)]="timer" name="timerChosen" #timerChosen="ngModel" min="0" id="duracaoTestes" type="Number" placeholder="minutos">
                         </div>
                         <div class="col-3">
                             <label for="categoriaTestes">Categoria:&nbsp; </label>
-                            <select required [(ngModel)]="category" name="categoryChosen" (change)="getNumberOfQuestionsByCategory(); numberOfQuestions=0" id="">
+                            <select required [(ngModel)]="category" name="categoryChosen" #categoryChosen="ngModel" (change)="getNumberOfQuestionsByCategory(); numberOfQuestions=0" id="">
                               <ng-container *ngFor="let category of categories$ | async">
                                   <option value={{category.category.category}}> {{category.category.category}}
                                   </option>
@@ -58,7 +60,7 @@
                       </div>
       
                     <div>
-                        <input [disabled]="!testForm.form.valid || allRandomQuestions==0" type="submit" id="margin-top" class="btn btn-primary orangeButton" value="Gerar Teste" >
+                        <input [disabled]="!testNameChosen.valid || !timerChosen.valid || allRandomQuestions==0" type="submit" id="margin-top" class="btn btn-primary orangeButton" value="Gerar Teste" >
                     </div>
                   </div>
               </form>
@@ -96,6 +98,9 @@
                                 <input required [(ngModel)]="questionString" name="questionWritten" type="text" class="form-control" aria-label="Input group example"
                                     aria-describedby="btnGroupAddon" placeholder="Introduza Pergunta">
                             </div>
+                            <div *ngIf='questionError!=""' class="alert alert-danger">
+                              {{questionError}}
+                            </div>
                             <p></p>
                             <textarea required class="rounded"  style="width: 95%" placeholder="Introduza Opção" [(ngModel)]="options[0]" name="optionWritten0" (change)="checkValidityQuestion()"></textarea>&nbsp;&nbsp;&nbsp;<input [(ngModel)]="firstCheck" name="checkFirstCheck" style="zoom: 3; padding-bottom: 5px"  (change)="onChange(0, $event.target.checked)" type="checkbox">
                             <div *ngFor="let i of numberOfTimes, let j=index">
@@ -118,7 +123,7 @@
         <ngb-tab title="Gerador de Categorias">
           <ng-template ngbTabContent>
               <br>
-          <form #categoryForm="ngForm" class="container pt-3" (ngSubmit)="submitCategory(); categoryForm.reset()">
+          <form #categoryForm="ngForm" class="container pt-3" (ngSubmit)="submitCategory();">
       
               <h1>Gerador de Categorias</h1>
               <div class="input-group">
@@ -128,9 +133,12 @@
                   <input name="categoryChosen" #categoryChosen="ngModel" [(ngModel)]="categoryString" type="text" class="form-control" aria-label="Input group example"
                                   aria-describedby="btnGroupAddon" required placeholder="Introduza Categoria">
               </div>
-              <div [hidden]="categoryChosen.valid || categoryChosen.pristine || categoryChosen.untouched" class="alert alert-danger">
+              <!--<div [hidden]="categoryChosen.valid || categoryChosen.pristine || categoryChosen.untouched" class="alert alert-danger">
                     Name is required
-                  </div>
+                  </div>-->
+              <div [hidden]='categoryError==""' class="alert alert-danger">
+                    {{categoryError}}
+              </div>
                   <p></p>
                   <input type="submit" [disabled]="!categoryForm.form.valid" class="btn btn-primary orangeButton" value="Gerar Categoria">
             </form>
