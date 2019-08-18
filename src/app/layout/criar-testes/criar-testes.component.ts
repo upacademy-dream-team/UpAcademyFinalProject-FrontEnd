@@ -194,6 +194,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         this.questionFormValidity=false;
         this.firstCheck=false;
         this.questionError="";
+        this.categoryClass=new Category();
       }, 
       error=>{console.log(error.error); this.questionError=error.error;});
 
