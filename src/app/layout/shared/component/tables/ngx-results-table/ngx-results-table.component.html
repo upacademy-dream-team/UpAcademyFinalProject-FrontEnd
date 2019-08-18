@@ -24,14 +24,22 @@
       {{row.testName}}
   </ng-template>
 </ngx-datatable-column>
-<ngx-datatable-column name="Recrutador" prop="recruiter" [sortable]="true" [resizeable]="false" >
+<ngx-datatable-column name="Recrutador" prop="candidate.emailRecruiter" [sortable]="true" [resizeable]="false" >
   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
     <span (click)="sort()">{{column.name}}</span>
   </ng-template>
   <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-      {{row.recruiter}}
+      {{row.candidate.emailRecruiter}}
   </ng-template>
 </ngx-datatable-column>
+<ngx-datatable-column name="Tempo de Conclusão" prop="timeSpent" [sortable]="true" [resizeable]="false" >
+    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+      <span (click)="sort()">{{column.name}}</span>
+    </ng-template>
+    <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
+        {{row.timeSpent}}
+    </ng-template>
+  </ngx-datatable-column>
 <ngx-datatable-column name="Resultado" prop="score" [sortable]="true" [resizeable]="false" >
   <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
     <span (click)="sort()">{{column.name}}</span>

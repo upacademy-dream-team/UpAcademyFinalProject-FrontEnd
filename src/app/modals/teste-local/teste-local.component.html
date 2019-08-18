@@ -11,7 +11,7 @@
   <select (click)="selectorDisable = '1'" (change)="SaveCurrentTest()" style="height: 38px" [(ngModel)]="selectedTest" class="w-100" name="Enunciado" id="">
     <option selected disabled>Enunciado</option>
     <ng-container *ngFor="let test of tests$ | async">
-      <option value={{test.id}}> {{test.testName}}
+      <option value={{test.id}}> {{test.test.testName}}
       </option>
     </ng-container>
   </select><br><br>
