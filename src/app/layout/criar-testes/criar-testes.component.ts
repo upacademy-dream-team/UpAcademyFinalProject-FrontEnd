@@ -77,7 +77,11 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     return;
   }
   
-
+  public removeCategory(category){
+    for(let i=0; i<this.categories.length; i++)
+      if(this.categories[i].category.category==category)
+        this.categories.splice(i,1);
+  }
   ///adding category
   categoryString : string;
   categoryClass = new Category();
@@ -93,20 +97,23 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   public addInfo(){
     console.log(this.categories);
     this.allCategories.push(this.category);
-    this.categoryService.getAllCategories();
+    //this.categoryService.getAllCategories();
     this.questionService.getRandomQuestions(this.category,this.numberOfQuestions).subscribe(
       (res: any) => {
         this.allRandomQuestions.push(...res);
         this.randomQuestions$.next(this.allRandomQuestions);
-       // this.allRandomQuestions=[...this.allRandomQuestions, ...res];
-        console.log( this.allRandomQuestions);
       }
+      
     );
 
     this.numberOfQuestions=0;
+    console.log("aqui");
+    console.log(this.category);
+    this.removeCategory(this.category);
+    console.log(this.categories);
     this.category="";
     this.maximum=0;
-    return this.categories$.subscribe(/*data=> console.log(data)*/);
+   // return this.categories$.subscribe(/*data=> console.log(data)*/);
   }
 
   public getNumberOfQuestionsByCategory(){
@@ -119,6 +126,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   }
 
   public submitTest(){
+    this.categoryService.getAllCategories();
     console.log(this.allRandomQuestions);
     this.test.questions=this.allRandomQuestions;
     this.test.testName=this.testName;
@@ -161,7 +169,6 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     console.log(this.options);
     this.options.push(null);
     this.checkValidityQuestion();
-    //this.addElement+='<strong>The Tortoise</strong> &amp; the Hare';
   }
 
   public getIDByCategory(category){
@@ -197,14 +204,6 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         this.categoryClass=new Category();
       }, 
       error=>{console.log(error.error); this.questionError=error.error;});
-
-    /*this.questionClass=new Question();
-    this.options=[];
-    this.questionString="";
-    this.solution=[];
-    this.numberOfTimes=[];
-    this.questionFormValidity=false;
-    this.firstCheck=false;*/
   }
 
   onChange(i:number, isChecked: boolean) {

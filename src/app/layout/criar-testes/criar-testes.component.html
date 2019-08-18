@@ -82,7 +82,7 @@
                         <div>
                             <label for="categoriaTestes">Categoria:&nbsp;&nbsp;&nbsp;&nbsp;</label>
                             <select required [(ngModel)]="category" name="categoryChosen" id="">
-                                <ng-container *ngFor="let myCategory of categories$ | async">
+                                <ng-container *ngFor="let myCategory of categories">
                                     <option [value]="myCategory.category.category"> {{myCategory.category.category}}
                                     </option>
                                 </ng-container>
