@@ -13,7 +13,7 @@ export class TestServiceService {
 
   public tests$: ReplaySubject<any[]> = new ReplaySubject(1);
   public test$: ReplaySubject<any[]> = new ReplaySubject(1);
-  public currentTest = 0;
+  public currentTest: number;
   private tests: any[];
 
   constructor(private http: HttpClient) { }

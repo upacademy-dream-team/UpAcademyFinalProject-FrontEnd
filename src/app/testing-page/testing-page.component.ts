@@ -11,8 +11,8 @@ import { User } from '../core';
 export class TestingPageComponent implements OnInit, OnDestroy {
   public test$: ReplaySubject<User[]>;
   private subscriptionTest: Subscription;
-  private currentTest: number;
-  private testRunning = false;
+  private currentTest: number = 1;
+  private testRunning = 0;
 
   constructor(
     private testService: TestServiceService) {
@@ -21,7 +21,7 @@ export class TestingPageComponent implements OnInit, OnDestroy {
      }
 
   ngOnInit() {
-    this.currentTest = this.testService.currentTest;
+    // this.currentTest = this.testService.currentTest;
     console.log(this.currentTest);
     this.testService.getTest(this.currentTest);
     this.currentTestCheck();
@@ -32,7 +32,11 @@ export class TestingPageComponent implements OnInit, OnDestroy {
   }
 
   currentTestCheck() {
-      if ( this.currentTest !== 0) {this.testRunning = true; }
+      if ( this.currentTest !== 0) {this.testRunning = 1; }
   }
 
+  startTest() {
+    this.testRunning = 2;
+
+  }
 }
