@@ -11,8 +11,7 @@ import { TestingPageComponent } from './testing-page/testing-page.component';
 import { NoPermissionComponent } from './no-permission/no-permission.component';
 import { ParticlesComponent } from './particles/particles.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { ReactiveFormsModule } from '@angular/forms';
-
+import { CountdownModule } from 'ngx-countdown';
 
 
 
@@ -36,7 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     NgbModule,
     NgxDatatableModule,
-    ReactiveFormsModule,
+    CountdownModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
