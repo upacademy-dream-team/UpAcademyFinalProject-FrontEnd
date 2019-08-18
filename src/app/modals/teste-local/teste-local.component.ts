@@ -68,6 +68,7 @@ export class TesteLocalComponent implements OnInit, OnDestroy {
    }
 
    SaveCurrentTest(){
-     this.testService.setCurrentTest(this.selectedTest);   }
+     this.testService.setCurrentTest(this.selectedTest);
+     }
 
 }
