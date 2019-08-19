@@ -12,6 +12,7 @@ import { NoPermissionComponent } from './no-permission/no-permission.component';
 import { ParticlesComponent } from './particles/particles.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { CountdownModule } from 'ngx-countdown';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 
@@ -36,6 +37,7 @@ import { CountdownModule } from 'ngx-countdown';
     NgbModule,
     NgxDatatableModule,
     CountdownModule,
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
