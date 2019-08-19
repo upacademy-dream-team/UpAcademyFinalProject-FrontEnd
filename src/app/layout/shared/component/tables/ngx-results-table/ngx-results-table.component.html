@@ -37,7 +37,7 @@
       <span (click)="sort()">{{column.name}}</span>
     </ng-template>
     <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-        {{row.timeSpent}} min
+        {{row.timeSpent*(1./60000)}}  min
     </ng-template>
   </ngx-datatable-column>
 <ngx-datatable-column name="Resultado" prop="score" [sortable]="true" [resizeable]="false" >
