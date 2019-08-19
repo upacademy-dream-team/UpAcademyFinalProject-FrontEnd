@@ -6,13 +6,14 @@
         <div class="pl-3 pt-3 pr-3">
           <div id="log">
             <app-ngx-results-table [columns]="[
-            { prop: 'candidate', name:'Candidato' },
+            { prop: 'candidate.name', name:'Candidato' },
             { prop: 'testName', name: 'Nome do Teste' },
-            { prop: 'recrutador', name: 'Recrutador' },
+            { prop: 'cadidate.emailRecruiter', name: 'Recrutador' },
+            { prop: 'timeSpent', name: 'Tempo de Conclusão' },
             { prop: 'score', name: 'Resultado' }
             ]" 
-            [rows] = 'tests$ | async'
-            [temp] = 'tests$ | async' > 
+            [rows] = 'solvedTests$ | async'
+            [temp] = 'solvedTests$ | async' > 
           </app-ngx-results-table>
           </div>
         </div>
