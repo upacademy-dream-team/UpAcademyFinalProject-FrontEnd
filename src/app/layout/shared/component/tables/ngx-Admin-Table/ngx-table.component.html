@@ -1,14 +1,15 @@
-<div>
-<input 
+
+<input class="pt-1" 
 type="text"
 style="padding:8px;margin:15px auto;width:30%;height: 38px;"
 placeholder="Escreva para filtar por username"
 (keyup)="updateFilter($event)"
 />
-</div>
+
+
 <div>
   <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-    [rowHeight]="'auto'" [limit]="8" [rows]="rows">
+    [rowHeight]="'auto'" [limit]="10" [rows]="rows">
     <ngx-datatable-column name="Username" [sortable]="true" [resizeable]="false" >
       <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
         <span (click)="sort()">{{column.name}}</span>
