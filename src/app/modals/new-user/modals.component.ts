@@ -45,10 +45,14 @@ export class ModalsComponent implements OnInit {
         console.log(data);
         this.userApi.getAllUsers();
         this.modalService.dismissAll();
+        this.user.email=null;
+        this.user.username=null;
+        this.check=0;
       },
       (error) => {
         console.log(error.error);
-        this.msg = 'Parâmetros de utilizador em falta.Verifique se todos os dados foram inseridos';
+        this.msg = /*'Parâmetros de utilizador em falta.Verifique se todos os dados foram inseridos'*/
+        error.error;
         this.check = 1 ;
       }
       );
