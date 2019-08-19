@@ -1,0 +1,29 @@
+<div>
+    <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+        [rowHeight]="'auto'" [limit]="10" [rows]="rows">
+    <ngx-datatable-column name="Perguntas" prop="question" [sortable]="true" [resizeable]="false" >
+          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+            <span (click)="sort()">{{column.name}}</span>
+          </ng-template>
+          <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
+              {{row.question}}
+          </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Categoria" prop="questions.category.category" [sortable]="true" [resizeable]="false" >
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+              <span (click)="sort()">{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
+                {{row.category.category}}
+            </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Apagar Pergunta" [resizeable]="false" >
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+              <span>{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <span><i style="margin-left: 50px !important" id="icon" class="fas fa-trash fa-lg" (click)= "onClickFas(row, $event)"></i></span>
+            </ng-template>
+        </ngx-datatable-column>
+</ngx-datatable>
+</div>

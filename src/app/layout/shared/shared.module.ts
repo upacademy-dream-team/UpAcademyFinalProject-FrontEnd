@@ -14,6 +14,9 @@ import { TesteLocalComponent } from 'src/app/modals/teste-local/teste-local.comp
 import { LinkGeradoComponent } from 'src/app/modals/link-gerado/link-gerado.component';
 import { NgxTestsTableComponent } from './component/tables/ngx-tests-table/ngx-tests-table.component';
 import { NgxResultsTableComponent } from './component/tables/ngx-results-table/ngx-results-table.component';
+import { NgxQuestionsTableComponent } from './component/tables/ngx-questions-table/ngx-questions-table.component';
+import { NgxCategoriesTableComponent } from './component/tables/ngx-categories-table/ngx-categories-table.component';
+
 
 
 
@@ -30,6 +33,8 @@ import { NgxResultsTableComponent } from './component/tables/ngx-results-table/n
     LinkGeradoComponent,
     NgxTestsTableComponent,
     NgxResultsTableComponent,
+    NgxQuestionsTableComponent,
+    NgxCategoriesTableComponent,
   ],
   imports: [
     CommonModule,
@@ -49,7 +54,9 @@ import { NgxResultsTableComponent } from './component/tables/ngx-results-table/n
     TesteLocalComponent,
     LinkGeradoComponent,
     NgxTestsTableComponent,
-    NgxResultsTableComponent
+    NgxResultsTableComponent,
+    NgxQuestionsTableComponent,
+    NgxCategoriesTableComponent
   ],
   entryComponents: [
     DeleteConfirmationComponent,

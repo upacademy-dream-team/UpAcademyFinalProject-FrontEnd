@@ -9,6 +9,7 @@ import { AccessTypeGuard } from '../core';
 import { SettingsComponent } from './settings/settings.component';
 import { IniciarTesteComponent } from './iniciar-teste/iniciar-teste.component';
 import { ProfileComponent } from './profile/profile.component';
+import { QuestionsAndCategoriesComponent } from './questions-and-categories/questions-and-categories.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ children: [
   {path: 'startTest', component: IniciarTesteComponent},
   {path: 'createTest', component: CriarTestesComponent},
   {path: 'tests', component: ConsultarEnunciadosComponent},
+  {path: 'questions&Categories', component: QuestionsAndCategoriesComponent},
   {path: 'results', component: ConsultarResultadosComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'settings',  component: SettingsComponent, canActivate: [AccessTypeGuard]}
