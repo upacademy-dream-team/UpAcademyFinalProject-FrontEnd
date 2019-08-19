@@ -13,7 +13,8 @@ export class TestServiceService {
 
   public tests$: ReplaySubject<any[]> = new ReplaySubject(1);
   public test$: ReplaySubject<any[]> = new ReplaySubject(1);
-  public currentTest: number;
+  private currentTest: number = 0;
+  private currentRecruiter: string;
   private tests: any[];
 
   constructor(private http: HttpClient) { }
@@ -48,10 +49,20 @@ export class TestServiceService {
     return this.http.put(this.apiUrl + 'edit', test);
   }
 
+  public getCurrentTest() {
+    return this.currentTest;
+  }
 
   public setCurrentTest(currentTest: number){
     this.currentTest = currentTest;
-    console.log(this.currentTest);
   }
-  
+
+  public getCurrentRecruiter() {
+    return this.currentRecruiter;
+  }
+
+  public setCurrentRecruiter(currentRecruiter: string) {
+    this.currentRecruiter = currentRecruiter;
+  }
+
 }

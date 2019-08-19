@@ -8,7 +8,7 @@ export class SolvedTest{
     'testID':number;
     'id':number;
     'date':string;
-    'testSpent':number;
+    'timeSpent':number;
     ////falta timeSpent e date
     constructor(data?: any) {
         Object.assign(this, data)

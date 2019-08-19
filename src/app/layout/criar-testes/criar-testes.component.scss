@@ -13,42 +13,43 @@
   color: white;
 }
  */
-  
+
    ::ng-deep .nav-fill .nav-link.active {
       margin-top: -1px;
       border-top: 2px solid orangered;
       color: orangered;
   }
-  
+
    ::ng-deep a {
       color: orangered;
       text-decoration: none;
       background-color: transparent;
   }
-  
+
    ::ng-deep a:hover {
       color: coral;
   }
-  
+
    ::ng-deep .nav-pills .nav-link.active,
    ::ng-deep .nav-pills .show>.nav-link {
       color: #fff;
       background-color: orangered;
   }
-  
+
   .input-group {
       margin-top: 30px;
   }
-  
+
   .orangeButton {
       background-color: orangered;
       margin-top: 20px;
+      border: none;
   }
-  
+
   .margins {
       margin: 30px;
   }
-  
+
   .myTest {
       border-style: solid;
       border-width: 2px;
