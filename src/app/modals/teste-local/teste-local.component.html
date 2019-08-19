@@ -8,17 +8,16 @@
 
   <span class="text-dark">Escolha o Enunciado do teste a iniciar.</span><br><br>
 
-  <select (change)="selectorDisable = '1'" (change)="SaveCurrentTest()" style="height: 38px" [(ngModel)]="selectedTest" class="w-100" name="Enunciado" id="">
+  <select (change)="selectorDisable = '1'" (change)="saveCurrentTest()" style="height: 38px" [(ngModel)]="selectedTest" class="w-100" name="Enunciado" id="">
     <option selected disabled>Enunciado</option>
     <ng-container *ngFor="let test of tests$ | async">
-      <option value={{test.id}}> {{test.test.testName}}
+      <option value={{test.test.id}}> {{test.test.testName}}
       </option>
     </ng-container>
   </select><br><br>
-
 </div>
 <div class="modal-footer" style="background-color: #FAFAFA">
   <button type="button " class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
-  <a href="http://localhost:4200/testPage" target="_blank"><button [disabled]="selectorDisable !== '1'" type="button" id="orangeBtn" class="btn"
-       (click)="iniciarTesteLocal()">Iniciar</button></a>
+  <button [disabled]="selectorDisable !== '1'" type="button" id="orangeBtn" class="btn"
+       (click)="iniciarTesteLocal()" routerLink="/testPage">Iniciar</button>
 </div>

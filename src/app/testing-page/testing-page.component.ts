@@ -11,8 +11,10 @@ import { User } from '../core';
 export class TestingPageComponent implements OnInit, OnDestroy {
   public test$: ReplaySubject<User[]>;
   private subscriptionTest: Subscription;
-  private currentTest: number = 1;
+  private currentTest: number;
+  private currentRecruiter: string;
   private testRunning = 0;
+  private test;
 
   constructor(
     private testService: TestServiceService) {
@@ -21,10 +23,11 @@ export class TestingPageComponent implements OnInit, OnDestroy {
      }
 
   ngOnInit() {
-    // this.currentTest = this.testService.currentTest;
-    console.log(this.currentTest);
+    this.currentTest = this.testService.getCurrentTest();
+    this.currentRecruiter = this.testService.getCurrentRecruiter();
     this.testService.getTest(this.currentTest);
     this.currentTestCheck();
+    this.test$.subscribe(data =>{this.test = data;});
   }
 
   ngOnDestroy() {
@@ -37,6 +40,5 @@ export class TestingPageComponent implements OnInit, OnDestroy {
 
   startTest() {
     this.testRunning = 2;
-
   }
 }
