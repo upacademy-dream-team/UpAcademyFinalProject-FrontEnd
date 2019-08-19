@@ -23,6 +23,8 @@ export class TestingPageComponent implements OnInit, OnDestroy {
   private candidate= new Candidate();
   private emailRecruiter="admin@admin.pt";
   private solvedTest = new SolvedTest();
+  private startTime;
+  private finishTime;
 
   constructor(
     private testService: TestServiceService,
@@ -48,6 +50,7 @@ export class TestingPageComponent implements OnInit, OnDestroy {
   }
 
   startTest() {
+    this.startTime=new Date();
     this.testRunning = 2;
   }
 
@@ -70,10 +73,13 @@ export class TestingPageComponent implements OnInit, OnDestroy {
   }
 
   submitTest(){
+    this.finishTime=new Date();
+    let secondsPassed=this.finishTime-this.startTime;
+    console.log(secondsPassed);
     this.candidate.emailRecruiter=this.emailRecruiter;
     this.solvedTest.answer=this.answer;
     this.solvedTest.candidate=this.candidate;
-    this.solvedTest.timeSpent=10;
+    this.solvedTest.timeSpent=secondsPassed;
     this.solvedTest.testID=this.test.id;
     console.log(JSON.stringify(this.solvedTest));
     this.solvedService.addSolvedTest(this.solvedTest).subscribe(data=> console.log(data), error=>console.log(error.error));
