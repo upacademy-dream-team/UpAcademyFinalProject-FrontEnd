@@ -1,55 +1,42 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { PaginationInstance } from 'ngx-pagination';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { TestServiceService } from '../core/services/test-service/test-service.service';
+import { ReplaySubject, Subscription } from 'rxjs';
+import { User } from '../core';
 
 @Component({
   selector: 'app-testing-page',
   templateUrl: './testing-page.component.html',
-  changeDetection: ChangeDetectionStrategy.Default,
   styleUrls: ['./testing-page.component.scss']
 })
-export class TestingPageComponent implements OnInit {
+export class TestingPageComponent implements OnInit, OnDestroy {
+  public test$: ReplaySubject<User[]>;
+  private subscriptionTest: Subscription;
+  private currentTest: number = 1;
+  private testRunning = 0;
 
-  // tslint:disable-next-line: no-input-rename
-  @Input('data') meals: string[] = [];
-
-  public filter: string = '';
-  public maxSize: number = 7;
-  public directionLinks: boolean = true;
-  public autoHide: boolean = false;
-  public responsive: boolean = false;
-  public config: PaginationInstance = {
-      id: 'advanced',
-      itemsPerPage: 10,
-      currentPage: 1
-  };
-  public labels: any = {
-      previousLabel: 'Previous',
-      nextLabel: 'Next',
-      screenReaderPaginationLabel: 'Pagination',
-      screenReaderPageLabel: 'page',
-      screenReaderCurrentLabel: `You're on page`
-  };
-
-  private popped = [];
-
-  onPageChange(number: number) {
-      console.log('change to page', number);
-      this.config.currentPage = number;
-  }
-
-  pushItem() {
-      let item = this.popped.pop() || 'A newly-created meal!';
-      this.meals.push(item);
-  }
-
-  popItem() {
-      this.popped.push(this.meals.pop());
-  }
-
-  constructor() {
-  }
+  constructor(
+    private testService: TestServiceService) {
+      this.test$ = this.testService.test$;
+      this.subscriptionTest = this.test$.subscribe((a) => console.log('test$', JSON.stringify(a)));
+     }
 
   ngOnInit() {
+    // this.currentTest = this.testService.currentTest;
+    console.log(this.currentTest);
+    this.testService.getTest(this.currentTest);
+    this.currentTestCheck();
   }
 
+  ngOnDestroy() {
+    this.subscriptionTest.unsubscribe();
+  }
+
+  currentTestCheck() {
+      if ( this.currentTest !== 0) {this.testRunning = 1; }
+  }
+
+  startTest() {
+    this.testRunning = 2;
+
+  }
 }

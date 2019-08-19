@@ -1,0 +1,55 @@
+
+
+.form-group {
+    background-color: lightgray;
+    color: white;
+    padding:20px;
+}
+
+.col-20 {
+    float: left;
+    width: 20%;
+    padding-left: 30px;
+}
+
+.col-80 {
+    float: right;
+    width: 80%;
+    padding-right: 30px;
+}
+
+#input {
+    border: none;
+    width: 113%;
+    opacity: 0.8;
+}
+
+button {
+    margin-left: auto;
+    margin-right: auto;            
+    padding: 5px 20px;
+}
+
+.btn{
+    background-color:#e64415;
+    color: white;
+    font-weight: bold;
+    &:hover {background-color: #c53912;
+    }
+}
+
+#centerButton {
+    text-align: center;
+}
+
+.background{
+
+    background-size:cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+
+}
+
+
+

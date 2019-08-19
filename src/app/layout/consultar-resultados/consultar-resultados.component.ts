@@ -16,7 +16,7 @@ export class ConsultarResultadosComponent implements OnInit, OnDestroy {
     private solvedTestService: SolvedTestServiceService
   ) {
     this.solvedTests$ = this.solvedTestService.solvedTests$;
-    this.subscriptionSolvedTests = this.solvedTests$.subscribe((a) => console.log('tests$', JSON.stringify(a)));
+    this.subscriptionSolvedTests = this.solvedTests$.subscribe((a) => console.log('solvedTests$', JSON.stringify(a)));
    }
 
   ngOnInit() {

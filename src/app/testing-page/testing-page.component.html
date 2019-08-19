@@ -1,0 +1,94 @@
+<div *ngIf="testRunning === 0" class="not-found">
+    <div class="wrapper">
+        <div class="col-md-10 push-md-1">
+            <h1>404 - Page Not Found</h1>
+            <p class="lead">This page does not exist</p>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="testRunning === 1" class="background vh-100 d-flex w-100" style="background-image: url(assets/home-office-336378_1280.jpg)">
+    <div class="container">
+        <p style="height: 15px;"></p>
+        <form>
+            <div class="vertical-center form-group rounded" style="background: rgba(143, 143, 143, 0.60); height: 620px;">
+                <div class="row">
+                    <img class="col-2" src="assets\aubayCopy.png" alt="Aubay">
+                    <div class="col-8 align-self-center text-center">
+                        <h1 *ngIf="test$ | async; let test" class="align-self-center">{{ test.testName }}</h1>
+                    </div>
+                </div>
+                <p></p>
+                <br>
+                <div class="row">
+                    <div class="pr-3 pl-4">
+                        <h3>
+                            <b><label for="name">Nome:</label></b>
+                        </h3>
+                    </div>
+                    <div class="col-80">
+                        <div style="height: 7px"></div>
+                        <input id="input" class="rounded" type="text" name="name">
+                        <div style="height: 30px"></div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="pr-4 pl-4">
+                        <h3>
+                            <b><label for="email">Email:</label></b>
+                        </h3>
+                    </div>
+                    <div class="col-80">
+                        <div style="height: 5px"></div>
+                        <input id="input" class="rounded" type="text" name="email">
+                    </div>
+                </div>
+                <p></p>
+                <h3 *ngIf="test$ | async; let test" style="text-align: justify; text-justify: inter-word;" class="pl-1">
+                    <strong>Assim que iniciar o teste,
+                        o tempo começa a contar. O teste é de escolha múltipla e tem a duração de <u>{{ test.timer }}
+                            minutos.</u></strong></h3>
+                <br>
+                <h3 style="text-align: justify; text-justify: inter-word;"><strong>Indique todas as opções que são
+                        verdadeiras, <u>podendo estas conter, ou não, mais que uma
+                            opção
+                            verdadeira.</u></strong></h3>
+                <p style="height: 30px;"></p>
+                <p id="centerButton"><button (click)="startTest()" style="width: 125px" type="submit" class="btn align-text-bottom" value="Iniciar">Iniciar</button></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div *ngIf="testRunning === 2" class="background vh-100 d-flex w-100">
+    <div class="container">
+        <p style="height: 1px;"></p>
+        <form>
+            <div class="vertical-center form-group rounded" style="background: rgba(143, 143, 143, 0.80); height: 689px;">
+                <div class="row">
+                    <img class="pl-2" src="assets\aubayCopy.png" style="width:10%; height:auto;" alt="Aubay">
+                    <p></p>
+                </div>
+                <div *ngFor="let test of tests$ | async;let i = index ">
+                    <div class="row">
+                        <div class="pr-3 pl-4">
+                            <br>
+                            <h2>
+                                <b><label for="questionNumber">Pergunta {{i + 1}} </label></b>
+                            </h2>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="row pr-4 pl-5">
+                        <h3>
+                            <b><label for="question">{{test.questions[i].question}}</label></b>
+                        </h3>
+                    </div>
+                    <div>
+                        {{test.questions.options[j]}}
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

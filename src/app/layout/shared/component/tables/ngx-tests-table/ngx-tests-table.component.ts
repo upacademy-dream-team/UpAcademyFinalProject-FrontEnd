@@ -29,7 +29,7 @@ export class NgxTestsTableComponent implements OnInit {
 
     // filter our data
     const temp = this.temp.filter(function(d) {
-      return d.testName.toLowerCase().indexOf(val) !== -1 || !val;
+      return d.test.testName.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
     // update the rows

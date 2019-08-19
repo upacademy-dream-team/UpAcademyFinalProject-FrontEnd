@@ -6,18 +6,19 @@
 </div>
 <div class="modal-body" style="background-color: #FAFAFA">
 
-    <span class="text-dark">Escolha o Enunciado que deseja que seja gerado.</span><br><br>
+    <span class="text-dark">Escolha o Enunciado do teste a iniciar.</span><br><br>
 
-    <select class="w-100">
-    <option selected disabled >Enunciado</option>
-    <option value="Teste C++">Teste C++</option>
-    <option value="Teste Java e SQL - Versao A">Teste Java e SQL - Versao A</option>
-    <option value="Teste Java e SQL - Versao B">Teste Java e SQL - Versao B</option>
-    <option value="Teste Python">Teste Python</option>
+    <select (change)="selectorDisable = '1'" (change)="SaveCurrentTest()" style="height: 38px" [(ngModel)]="selectedTest" class="w-100" name="Enunciado" id="">
+    <option selected disabled>Enunciado</option>
+    <ng-container *ngFor="let test of tests$ | async">
+      <option value={{test.id}}> {{test.test.testName}}
+      </option>
+    </ng-container>
   </select><br><br>
 
 </div>
 <div class="modal-footer" style="background-color: #FAFAFA">
-    <button type="button " class="btn btn-outline-secondary" (click)="cancel() ">Cancel</button>
-    <a href="http://localhost:4200/testPage" target="_blank"><button type="button " class="btn" style="background-color: #e64415; color: white;"   (click)="iniciarTesteLocal() ">Iniciar</button></a>
+    <button type="button " class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
+    <a href="http://localhost:4200/testPage" target="_blank"><button [disabled]="selectorDisable !== '1'" type="button" id="orangeBtn" class="btn"
+       (click)="iniciarTesteLocal()">Iniciar</button></a>
 </div>
