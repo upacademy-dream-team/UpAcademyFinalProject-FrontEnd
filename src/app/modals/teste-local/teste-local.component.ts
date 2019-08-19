@@ -15,6 +15,7 @@ export class TesteLocalComponent implements OnInit, OnDestroy {
   private subscriptionTests: Subscription;
   selectedTest: any = 'Enunciado';
   closeResult: string;
+  currentRecruiter: string;
   @Input() messageTesteLocal;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
@@ -60,15 +61,21 @@ export class TesteLocalComponent implements OnInit, OnDestroy {
     this.passEntry.emit('A password vai ser resetada');
     console.log(this.messageTesteLocal);
     this.modalService.dismissAll();
-    this.SaveCurrentTest();
+    this.saveCurrentTest();
+    this.saveCurrentRecruiter();
+    this.userApi.logout();
   }
 
   cancel() {
     this.modalService.dismissAll();
    }
 
-   SaveCurrentTest(){
+   saveCurrentTest() {
      this.testService.setCurrentTest(this.selectedTest);
      }
 
+    saveCurrentRecruiter() {
+      this.currentRecruiter = this.userApi.getUserName();
+      this.testService.setCurrentRecruiter(this.currentRecruiter);
+    }
 }

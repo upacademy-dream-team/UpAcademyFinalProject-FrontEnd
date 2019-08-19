@@ -5,6 +5,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { AuthGuard } from './core';
 import { NoPermissionComponent } from './no-permission/no-permission.component';
 import { TestingPageComponent } from './testing-page/testing-page.component';
+import { GeneratedTestingPageComponent } from './generated-testing-page/generated-testing-page.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'not-found', component: NotFoundComponent},
   {path: 'no-permission', component: NoPermissionComponent},
   {path: 'testPage', component: TestingPageComponent},
+  {path: 'generatedTestPage/:id', component: GeneratedTestingPageComponent},
   {path: ' ** ', redirectTo: 'not-found'}
 
 ];

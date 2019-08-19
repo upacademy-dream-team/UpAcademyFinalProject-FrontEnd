@@ -11,8 +11,9 @@ import { TestingPageComponent } from './testing-page/testing-page.component';
 import { NoPermissionComponent } from './no-permission/no-permission.component';
 import { ParticlesComponent } from './particles/particles.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { CountdownModule } from 'ngx-countdown';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { ReactiveFormsModule } from '@angular/forms';
+import { GeneratedTestingPageComponent } from './generated-testing-page/generated-testing-page.component';
+
 
 
 
@@ -26,6 +27,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     TestingPageComponent,
     NoPermissionComponent,
     ParticlesComponent,
+    GeneratedTestingPageComponent,
 
 
   ],
