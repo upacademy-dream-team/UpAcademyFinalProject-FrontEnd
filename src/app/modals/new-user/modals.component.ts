@@ -48,7 +48,8 @@ export class ModalsComponent implements OnInit {
       },
       (error) => {
         console.log(error.error);
-        this.msg = 'Parâmetros de utilizador em falta.Verifique se todos os dados foram inseridos';
+        this.msg = /*'Parâmetros de utilizador em falta.Verifique se todos os dados foram inseridos'*/
+        error.error;
         this.check = 1 ;
       }
       );
