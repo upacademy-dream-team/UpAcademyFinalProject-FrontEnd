@@ -5,4 +5,7 @@ export class Answer{
     constructor(data?: any) {
         Object.assign(this, data)
     }
+    public setQuestionID(questionID){
+        this.questionID=questionID;
+    }
 }

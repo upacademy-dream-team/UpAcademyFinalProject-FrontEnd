@@ -11,7 +11,7 @@
     style="background-image: url(assets/home-office-336378_1280.jpg)">
     <div class="container">
         <p style="height: 15px;"></p>
-        <form>
+        <form #candidateForm="ngForm" (submit)="startTest()">
             <div class="vertical-center form-group rounded"
                 style="background: rgba(143, 143, 143, 0.80); height: 620px;">
                 <div class="row">
@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-80">
                         <div style="height: 7px"></div>
-                        <input id="input" class="rounded" type="text" name="name">
+                        <input required [(ngModel)]="candidate.name" id="input" class="rounded" type="text" name="name">
                         <div style="height: 30px"></div>
                     </div>
                     <br>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="col-80">
                         <div style="height: 5px"></div>
-                        <input id="input" class="rounded" type="text" name="email">
+                        <input required [(ngModel)]="candidate.email" id="input" class="rounded" [email]="true" name="email">
                     </div>
                 </div>
                 <p></p>
@@ -56,7 +56,8 @@
                             opção
                             verdadeira.</u></strong></h3>
                 <p style="height: 30px;"></p>
-                <p id="centerButton"><button (click)="startTest()" style="width: 125px" type="submit"
+                <!---->
+                <p id="centerButton"><button [disabled]="!candidateForm.form.valid" style="width: 125px" type="submit"
                         class="btn align-text-bottom" value="Iniciar">Iniciar</button></p>
             </div>
         </form>
@@ -66,14 +67,14 @@
 <div *ngIf="testRunning === 2" class="background vh-100 d-flex w-100">
     <div class="container">
         <p style="height: 1px;"></p>
-        <form>
+        <form #testForm="ngForm" (submit)="submitTest()">
             <div class="vertical-center form-group rounded"
-                style="background: rgba(143, 143, 143, 0.80); height: 689px;">
+                style="background: rgba(143, 143, 143, 0.80); height: 4000px;">
                 <div class="row">
                     <img class="pl-2" src="assets\aubayCopy.png" style="width:10%; height:auto;" alt="Aubay">
                     <p></p>
                 </div>
-                <div *ngFor="let test of test$ | async">
+                <div *ngFor="let question of test.questions;let i = index ">
                     <div class="row">
                         <div class="pr-3 pl-4">
                             <br>
@@ -84,13 +85,15 @@
                         </div>
                     </div>
                     <div class="row pr-4 pl-5">
-                        <h3>
-                            <b><label for="question">{{test.questions[i].question}}</label></b>
-                        </h3>
+                        <h5>
+                            <b><label for="question">{{question.question}}</label></b>
+                        </h5>
                     </div>
-                    <div>
-                            {{test.questions.options[j]}}
+                    <div *ngFor="let option of question.options, let j=index">
+                        {{option}}
+                        <input (change)="onChange(j,i,$event.target.checked)" style="padding-bottom: 5px" type="checkbox">
                     </div>
+                    <input [hidden]="i!=test.questions.length-1" type="submit" class="btn btn-primary orangeButton" value="Submeter Resolução">
                 </div>
             </div>
         </form>
