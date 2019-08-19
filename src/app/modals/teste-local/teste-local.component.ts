@@ -1,24 +1,37 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { UserServiceService } from 'src/app/core/services/user-service/user-service.service';
+import { ReplaySubject, Subscription } from 'rxjs';
+import { Test } from 'src/app/core/models/test';
+import { TestServiceService } from 'src/app/core/services/test-service/test-service.service';
 
 @Component({
   selector: 'app-teste-local',
   templateUrl: './teste-local.component.html',
   styleUrls: ['./teste-local.component.scss']
 })
-export class TesteLocalComponent implements OnInit {
-
+export class TesteLocalComponent implements OnInit, OnDestroy {
+  public tests$: ReplaySubject<Test[]>;
+  private subscriptionTests: Subscription;
+  selectedTest: any = 'Enunciado';
   closeResult: string;
   @Input() messageTesteLocal;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   constructor(
+    private testService: TestServiceService,
     private modalService: NgbModal,
     private userApi: UserServiceService,
-  ) { }
+  ) {
+    this.tests$ = this.testService.tests$;
+    this.subscriptionTests = this.tests$.subscribe((a) => console.log('tests$', JSON.stringify(a))); }
 
   ngOnInit() {
+    this.testService.getAllTests();
+  }
+
+  ngOnDestroy() {
+    this.subscriptionTests.unsubscribe();
   }
 
   open(content: any) {
@@ -47,9 +60,15 @@ export class TesteLocalComponent implements OnInit {
     this.passEntry.emit('A password vai ser resetada');
     console.log(this.messageTesteLocal);
     this.modalService.dismissAll();
+    this.SaveCurrentTest();
   }
 
   cancel() {
     this.modalService.dismissAll();
    }
+
+   SaveCurrentTest(){
+     this.testService.setCurrentTest(this.selectedTest);
+     }
+
 }

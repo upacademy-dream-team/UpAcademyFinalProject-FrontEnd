@@ -11,14 +11,12 @@ import { User } from 'src/app/core/models/user';
 export class SettingsComponent implements OnInit, OnDestroy {
   public users$: ReplaySubject<User[]>;
   private subscriptionUsers: Subscription;
-  public iconArray: string[];
 
   constructor(
     private userService: UserServiceService
     ) {
       this.users$ = this.userService.users$;
       this.subscriptionUsers = this.users$.subscribe((a) => console.log('users$', JSON.stringify(a)));
-      this.iconArray = ['fas fa-trash', 'fas fa-power-off'];
     }
 
   ngOnInit() {
