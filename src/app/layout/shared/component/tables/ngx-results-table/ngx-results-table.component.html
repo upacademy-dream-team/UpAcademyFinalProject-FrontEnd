@@ -1,6 +1,6 @@
 <input type="text" style="padding:8px;margin:15px auto;width:30%;height: 38px;" placeholder="Escreva para filtar por nome do candidato" (keyup)="updateFilter($event)" />
 <div>
-    <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]="rows">
+    <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]="rows" (activate)="onActivate($event)">
         <ngx-datatable-column name="Nome do Candidato" prop="candidate.name" [sortable]="true" [resizeable]="false">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                 <span (click)="sort()">{{column.name}}</span>
@@ -30,7 +30,7 @@
                 <span (click)="sort()">{{column.name}}</span>
             </ng-template>
             <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-                {{row.timeSpent*(1./60000)}} min
+                <span style="margin-left: 50px"> {{row.timeSpent*(1./60000)}}  min</span>
             </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Resultado" prop="score" [sortable]="true" [resizeable]="false">
@@ -39,16 +39,24 @@
             </ng-template>
             <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
                 <!-- Score color scale -->
-                <span *ngIf="row.score <= 100 && row.score > 90" style="background:#00FF00; color: white; font-weight: bold;">{{row.score}}%</span>
-                <span *ngIf="row.score <= 90 && row.score > 80" style="background:#35FF00; color: white; font-weight: bold;">{{row.score}}%</span>
-                <span *ngIf="row.score <= 80 && row.score > 70" style="background:#6AFF00; color: white; font-weight: bold;">{{row.score}}%</span>
-                <span *ngIf="row.score <= 70 && row.score > 60" style="background:#D4FF00; color: white; font-weight: bold;">{{row.score}}%</span>
-                <span *ngIf="row.score <= 60 && row.score > 50" style="background:#FFF600; color: white; font-weight: bold;">{{row.score}}%</span>
-                <span *ngIf="row.score <= 50 && row.score > 40" style="background:#FFAF00; color: white; font-weight: bold;">{{row.score}}%</span>
-                <span *ngIf="row.score <= 40 && row.score > 30" style="background:#FF8C00; color: white; font-weight: bold;">{{row.score}}%</span>
-                <span *ngIf="row.score <= 30 && row.score > 20" style="background:#FF6900; color: white; font-weight: bold;">{{row.score}}%</span>
-                <span *ngIf="row.score <= 20 && row.score > 10" style="background:#FF4600; color: white; font-weight: bold;">{{row.score}}%</span>
-                <span *ngIf="row.score <= 10 && row.score >= 0" style="background:#FF0000; color: white; font-weight: bold;">{{row.score}}%</span>
+                <span id="score" *ngIf="row.score <= 100 && row.score > 90" style="background:#00FF00;">{{row.score}}%</span>
+                <span id="score" *ngIf="row.score <= 90 && row.score > 80" style="background:#35FF00;">{{row.score}}%</span>
+                <span id="score" *ngIf="row.score <= 80 && row.score > 70" style="background:#6AFF00;">{{row.score}}%</span>
+                <span id="score" *ngIf="row.score <= 70 && row.score > 60" style="background:#D4FF00;">{{row.score}}%</span>
+                <span id="score" *ngIf="row.score <= 60 && row.score > 50" style="background:#FFF600;">{{row.score}}%</span>
+                <span id="score" *ngIf="row.score <= 50 && row.score > 40" style="background:#FFAF00;">{{row.score}}%</span>
+                <span id="score" *ngIf="row.score <= 40 && row.score > 30" style="background:#FF8C00;">{{row.score}}%</span>
+                <span id="score" *ngIf="row.score <= 30 && row.score > 20" style="background:#FF6900;">{{row.score}}%</span>
+                <span id="score" *ngIf="row.score <= 20 && row.score > 10" style="background:#FF4600;">{{row.score}}%</span>
+                <span id="score" *ngIf="row.score <= 10 && row.score >= 0" style="background:#FF0000;">{{row.score}}%</span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Apagar Resultado" [resizeable]="false">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <span>{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <span><i style="margin-left: 55px" id="icon" class="fas fa-trash fa-lg" (click)= "onClickFas(row, $event)"></i></span>
             </ng-template>
         </ngx-datatable-column>
     </ngx-datatable>
