@@ -87,4 +87,8 @@ export class TestingPageComponent implements OnInit, OnDestroy {
     console.log("done");
   }
 
+  onFinished() {
+    this.submitTest();
+  }
+
 }
