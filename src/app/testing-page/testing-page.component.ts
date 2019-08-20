@@ -25,6 +25,7 @@ export class TestingPageComponent implements OnInit, OnDestroy {
   private solvedTest = new SolvedTest();
   private startTime;
   private finishTime;
+  p: number = 1;
 
   constructor(
     private testService: TestServiceService,

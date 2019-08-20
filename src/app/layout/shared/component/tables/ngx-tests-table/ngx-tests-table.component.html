@@ -46,16 +46,16 @@
   </ng-template>
   <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
       <!-- averageScore color scale -->
-      <span id="score" *ngIf="row.test.averageScore <= 100 && row.test.averageScore > 90" style="background:#00FF00;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 90 && row.test.averageScore > 80" style="background:#35FF00;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 80 && row.test.averageScore > 70" style="background:#6AFF00;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 70 && row.test.averageScore > 60" style="background:#D4FF00;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 60 && row.test.averageScore > 50" style="background:#FFF600;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 50 && row.test.averageScore > 40" style="background:#FFAF00;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 40 && row.test.averageScore > 30" style="background:#FF8C00;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 30 && row.test.averageScore > 20" style="background:#FF6900;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 20 && row.test.averageScore > 10" style="background:#FF4600;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 10 && row.test.averageScore >= 0" style="background:#FF0000;" >{{row.test.averageScore}}%</span>
+      <span id="score" *ngIf="row.test.averageScore <= 100 && row.test.averageScore > 90" style="color:#00FF00;" >{{row.test.averageScore}}%</span>
+      <span id="score" *ngIf="row.test.averageScore <= 90 && row.test.averageScore > 80" style="color:#35FF00;" >{{row.test.averageScore}}%</span>
+      <span id="score" *ngIf="row.test.averageScore <= 80 && row.test.averageScore > 70" style="color:#6AFF00;" >{{row.test.averageScore}}%</span>
+      <span id="score" *ngIf="row.test.averageScore <= 70 && row.test.averageScore > 60" style="color:#D4FF00;" >{{row.test.averageScore}}%</span>
+      <span id="score" *ngIf="row.test.averageScore <= 60 && row.test.averageScore > 50" style="color:#FFF600;" >{{row.test.averageScore}}%</span>
+      <span id="score" *ngIf="row.test.averageScore <= 50 && row.test.averageScore > 40" style="color:#FFAF00;" >{{row.test.averageScore}}%</span>
+      <span id="score" *ngIf="row.test.averageScore <= 40 && row.test.averageScore > 30" style="color:#FF8C00;" >{{row.test.averageScore}}%</span>
+      <span id="score" *ngIf="row.test.averageScore <= 30 && row.test.averageScore > 20" style="color:#FF6900;" >{{row.test.averageScore}}%</span>
+      <span id="score" *ngIf="row.test.averageScore <= 20 && row.test.averageScore > 10" style="color:#FF4600;" >{{row.test.averageScore}}%</span>
+      <span id="score" *ngIf="row.test.averageScore <= 10 && row.test.averageScore >= 0" style="color:#FF0000;" >{{row.test.averageScore}}%</span>
   </ng-template>
    </ngx-datatable-column>
    <ngx-datatable-column name="Apagar Enunciado" [resizeable]="false" >

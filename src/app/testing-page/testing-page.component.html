@@ -70,12 +70,12 @@
                     <img class="pl-2" src="assets\aubayCopy.png" style="width:10%; height:auto;" alt="Aubay">
                     <p></p>
                 </div>
-                <div *ngFor="let question of test.questions;let i = index ">
+                <div *ngFor="let question of test.questions | paginate: { itemsPerPage: 1, currentPage: p },let i = index ">
                     <div class="row">
                         <div class="pr-3 pl-4">
                             <br>
                             <h2>
-                                <b><label for="questionNumber">Pergunta {{i + 1}} </label></b>
+                                <b><label for="questionNumber">Pergunta {{p}} </label></b>
                             </h2>
                             <br>
                         </div>
@@ -87,10 +87,13 @@
                     </div>
                     <div *ngFor="let option of question.options, let j=index">
                         {{option}}
-                        <input (change)="onChange(j,i,$event.target.checked)" style="padding-bottom: 5px" type="checkbox">
+                        <input (change)="onChange(j,p,$event.target.checked)" style="padding-bottom: 5px" type="checkbox">
                     </div>
-                    <input [hidden]="i!=test.questions.length-1" type="submit" class="btn btn-primary orangeButton" value="Submeter Resolução">
+                    <br>
+                    <input [hidden]="p-1!=test.questions.length-1" type="submit" class="btn btn-primary orangeButton" value="Submeter Resolução">
                 </div>
+                <br>
+                <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>
         </form>
     </div>

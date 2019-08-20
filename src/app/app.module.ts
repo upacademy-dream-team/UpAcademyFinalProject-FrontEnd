@@ -13,12 +13,8 @@ import { ParticlesComponent } from './particles/particles.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { GeneratedTestingPageComponent } from './generated-testing-page/generated-testing-page.component';
 import { DeleteTestComponent } from './modals/delete-test/delete-test.component';
-
-
-
-
-
-
+import {NgxPaginationModule} from 'ngx-pagination';
+import { CountdownModule } from 'ngx-countdown';
 
 @NgModule({
   declarations: [
@@ -39,8 +35,9 @@ import { DeleteTestComponent } from './modals/delete-test/delete-test.component'
     FormsModule,
     NgbModule,
     NgxDatatableModule,
-    
-  ],
+    NgxPaginationModule,
+    CountdownModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
