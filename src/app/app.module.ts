@@ -11,8 +11,8 @@ import { TestingPageComponent } from './testing-page/testing-page.component';
 import { NoPermissionComponent } from './no-permission/no-permission.component';
 import { ParticlesComponent } from './particles/particles.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { ReactiveFormsModule } from '@angular/forms';
 import { GeneratedTestingPageComponent } from './generated-testing-page/generated-testing-page.component';
+
 
 
 
@@ -27,9 +27,7 @@ import { GeneratedTestingPageComponent } from './generated-testing-page/generate
     TestingPageComponent,
     NoPermissionComponent,
     ParticlesComponent,
-    GeneratedTestingPageComponent,
-
-
+    GeneratedTestingPageComponent
   ],
   imports: [
     HttpClientModule,

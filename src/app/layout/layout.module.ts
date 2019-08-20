@@ -14,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxTableComponent } from './shared/component/tables/ngx-Admin-Table/ngx-table.component';
+import { QuestionsAndCategoriesComponent } from './questions-and-categories/questions-and-categories.component';
 
 
 
@@ -27,7 +28,8 @@ import { NgxTableComponent } from './shared/component/tables/ngx-Admin-Table/ngx
     SettingsComponent,
     IniciarTesteComponent,
     ProfileComponent,
-    NgxTableComponent
+    NgxTableComponent,
+    QuestionsAndCategoriesComponent
   ],
   imports: [
     CommonModule,
