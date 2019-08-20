@@ -71,9 +71,20 @@ export class UserServiceService {
     public setCurrentUser(currentUser: any) {
       this._currentUser = currentUser;
     }
-    public getAllUsers() {
+    public getAllUsersWithCurrentUser() {
       return this.http.get(this.apiUrl + 'all').subscribe(
         (res: any) => {
+          this.users = res;
+          this.users$.next(res);
+          console.log( 'Zre carlos', res);
+        }
+      );
+    }
+
+    public getAllUsers() {
+      return this.http.get(this.apiUrl + 'all/'+ this._currentUser.id).subscribe(
+        (res: any) => {
+          console.log(this._currentUser.id);
           this.users = res;
           this.users$.next(res);
           console.log( 'Zre carlos', res);

@@ -16,6 +16,9 @@ import { NgxTestsTableComponent } from './component/tables/ngx-tests-table/ngx-t
 import { NgxResultsTableComponent } from './component/tables/ngx-results-table/ngx-results-table.component';
 import { EnunciadosTableModalComponent } from 'src/app/modals/enunciados-table-modal/enunciados-table-modal.component';
 import { ResultadosTableModalComponent } from 'src/app/modals/resultados-table-modal/resultados-table-modal.component';
+import { NgxQuestionsTableComponent } from './component/tables/ngx-questions-table/ngx-questions-table.component';
+import { NgxCategoriesTableComponent } from './component/tables/ngx-categories-table/ngx-categories-table.component';
+
 
 
 
@@ -34,6 +37,8 @@ import { ResultadosTableModalComponent } from 'src/app/modals/resultados-table-m
     NgxResultsTableComponent,
     EnunciadosTableModalComponent,
     ResultadosTableModalComponent,
+    NgxQuestionsTableComponent,
+    NgxCategoriesTableComponent,
   ],
   imports: [
     CommonModule,
@@ -56,6 +61,8 @@ import { ResultadosTableModalComponent } from 'src/app/modals/resultados-table-m
     NgxResultsTableComponent,
     EnunciadosTableModalComponent,
     ResultadosTableModalComponent,
+    NgxQuestionsTableComponent,
+    NgxCategoriesTableComponent
   ],
   entryComponents: [
     DeleteConfirmationComponent,

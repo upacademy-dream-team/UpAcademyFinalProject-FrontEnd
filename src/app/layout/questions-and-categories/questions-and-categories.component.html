@@ -1,0 +1,21 @@
+<div class="bg-white vh-100">
+        <!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop-->
+        <div class="container">
+          <div class="row rounded">
+            <div class="col-sm col-md">
+              <div class="pl-3 pt-3 pr-3">
+                <div>
+                        <app-ngx-questions-table 
+                        [columns]="[
+            { prop: 'questions.question', name:'Perguntas' },
+            { prop: 'questions.category.category', name: 'Categoria' }
+            ]" 
+                        [rows] = 'questions$ | async'
+                        [temp] = 'questions$ | async' > 
+                      </app-ngx-questions-table>
+                        
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>

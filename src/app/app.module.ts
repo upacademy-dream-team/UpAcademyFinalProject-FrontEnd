@@ -27,7 +27,7 @@ import { GeneratedTestingPageComponent } from './generated-testing-page/generate
     TestingPageComponent,
     NoPermissionComponent,
     ParticlesComponent,
-    GeneratedTestingPageComponent,
+    GeneratedTestingPageComponent
   ],
   imports: [
     HttpClientModule,
