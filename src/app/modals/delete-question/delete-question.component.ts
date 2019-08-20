@@ -3,14 +3,14 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { UserServiceService } from 'src/app/core';
 
 @Component({
-  selector: 'app-delete-test',
-  templateUrl: './delete-test.component.html',
-  styleUrls: ['./delete-test.component.scss']
+  selector: 'app-delete-question',
+  templateUrl: './delete-question.component.html',
+  styleUrls: ['./delete-question.component.scss']
 })
-export class DeleteTestComponent implements OnInit {
+export class DeleteQuestionComponent implements OnInit {
 
   closeResult: string;
-  @Input() messageDeleteEnunciado;
+  @Input() messageDeletePergunta;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   constructor(
@@ -51,5 +51,6 @@ export class DeleteTestComponent implements OnInit {
  cancel() {
   this.modalService.dismissAll();
  }
+
 
 }
