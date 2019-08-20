@@ -18,4 +18,11 @@ export class NgxQuestionsTableComponent implements OnInit {
   ngOnInit() {
   }
 
+  set_text(string, break_point) {
+    if( string.length > break_point) {
+    string=string.slice(0,break_point)+`...`;
+    }
+    return string; 
+  }
+
 }
