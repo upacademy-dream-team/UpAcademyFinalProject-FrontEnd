@@ -10,7 +10,9 @@
               { prop: 'categories', name: 'Categorias' },
               { prop: 'test.author.username', name: 'Autor do Teste' },
               { prop: 'test.submittedTests', name: 'Nº de Testes Realizados' },
-              { prop: 'test.averageScore', name: 'Resultado Médio' }
+              { prop: 'test.averageScore', name: 'Resultado Médio' },
+              { name: 'Apagar Utilizador' },
+              { name: 'Reset Password' }
               ]" 
               [rows] = 'tests$ | async'
               [temp] = 'tests$ | async' > 
@@ -20,4 +22,5 @@
         </div>
     </div>
   </div>
+</div>
 

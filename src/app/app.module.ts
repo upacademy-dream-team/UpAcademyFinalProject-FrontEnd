@@ -38,8 +38,7 @@ import { GeneratedTestingPageComponent } from './generated-testing-page/generate
     FormsModule,
     NgbModule,
     NgxDatatableModule,
-    CountdownModule,
-    NgxPaginationModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
