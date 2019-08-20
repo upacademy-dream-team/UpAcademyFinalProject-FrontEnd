@@ -41,4 +41,10 @@ export class NgxResultsTableComponent implements OnInit {
     this.clickedRow.emit(row);
   }
 
+  onActivate(event) {
+    if(event.type == 'click') {
+        console.log(event.row);
+    }
+}
+
 }
