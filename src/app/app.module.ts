@@ -11,8 +11,8 @@ import { TestingPageComponent } from './testing-page/testing-page.component';
 import { NoPermissionComponent } from './no-permission/no-permission.component';
 import { ParticlesComponent } from './particles/particles.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { ReactiveFormsModule } from '@angular/forms';
 import { GeneratedTestingPageComponent } from './generated-testing-page/generated-testing-page.component';
+
 
 
 
@@ -28,8 +28,6 @@ import { GeneratedTestingPageComponent } from './generated-testing-page/generate
     NoPermissionComponent,
     ParticlesComponent,
     GeneratedTestingPageComponent,
-
-
   ],
   imports: [
     HttpClientModule,
@@ -38,8 +36,6 @@ import { GeneratedTestingPageComponent } from './generated-testing-page/generate
     FormsModule,
     NgbModule,
     NgxDatatableModule,
-    CountdownModule,
-    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

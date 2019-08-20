@@ -14,6 +14,8 @@ import { TesteLocalComponent } from 'src/app/modals/teste-local/teste-local.comp
 import { LinkGeradoComponent } from 'src/app/modals/link-gerado/link-gerado.component';
 import { NgxTestsTableComponent } from './component/tables/ngx-tests-table/ngx-tests-table.component';
 import { NgxResultsTableComponent } from './component/tables/ngx-results-table/ngx-results-table.component';
+import { EnunciadosTableModalComponent } from 'src/app/modals/enunciados-table-modal/enunciados-table-modal.component';
+import { ResultadosTableModalComponent } from 'src/app/modals/resultados-table-modal/resultados-table-modal.component';
 
 
 
@@ -30,6 +32,8 @@ import { NgxResultsTableComponent } from './component/tables/ngx-results-table/n
     LinkGeradoComponent,
     NgxTestsTableComponent,
     NgxResultsTableComponent,
+    EnunciadosTableModalComponent,
+    ResultadosTableModalComponent,
   ],
   imports: [
     CommonModule,
@@ -49,7 +53,9 @@ import { NgxResultsTableComponent } from './component/tables/ngx-results-table/n
     TesteLocalComponent,
     LinkGeradoComponent,
     NgxTestsTableComponent,
-    NgxResultsTableComponent
+    NgxResultsTableComponent,
+    EnunciadosTableModalComponent,
+    ResultadosTableModalComponent,
   ],
   entryComponents: [
     DeleteConfirmationComponent,
@@ -57,6 +63,8 @@ import { NgxResultsTableComponent } from './component/tables/ngx-results-table/n
     ChangePasswordAntigaComponent,
     TesteLocalComponent,
     LinkGeradoComponent,
+    EnunciadosTableModalComponent,
+    ResultadosTableModalComponent,
   ]
 })
 export class SharedModule { }
