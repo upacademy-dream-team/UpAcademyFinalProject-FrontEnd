@@ -15,11 +15,6 @@ import { GeneratedTestingPageComponent } from './generated-testing-page/generate
 import { DeleteTestComponent } from './modals/delete-test/delete-test.component';
 
 
-
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
