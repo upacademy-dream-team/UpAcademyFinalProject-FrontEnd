@@ -20,6 +20,8 @@ import { NgxQuestionsTableComponent } from './component/tables/ngx-questions-tab
 import { NgxCategoriesTableComponent } from './component/tables/ngx-categories-table/ngx-categories-table.component';
 import { DeleteTestComponent } from 'src/app/modals/delete-test/delete-test.component';
 import { DeleteResultadoCandidatoComponent } from 'src/app/modals/delete-resultado-candidato/delete-resultado-candidato.component';
+import { DeleteCategoryComponent } from 'src/app/modals/delete-category/delete-category.component';
+import { DeleteQuestionComponent } from 'src/app/modals/delete-question/delete-question.component';
 
 
 
@@ -43,6 +45,8 @@ import { DeleteResultadoCandidatoComponent } from 'src/app/modals/delete-resulta
     NgxCategoriesTableComponent,
     DeleteTestComponent,
     DeleteResultadoCandidatoComponent,
+    DeleteCategoryComponent,
+    DeleteQuestionComponent,
   ],
   imports: [
     CommonModule,
@@ -69,6 +73,8 @@ import { DeleteResultadoCandidatoComponent } from 'src/app/modals/delete-resulta
     NgxCategoriesTableComponent,
     DeleteTestComponent,
     DeleteResultadoCandidatoComponent,
+    DeleteCategoryComponent,
+    DeleteQuestionComponent,
   ],
   entryComponents: [
     DeleteConfirmationComponent,
@@ -80,6 +86,8 @@ import { DeleteResultadoCandidatoComponent } from 'src/app/modals/delete-resulta
     ResultadosTableModalComponent,
     DeleteTestComponent,
     DeleteResultadoCandidatoComponent,
+    DeleteCategoryComponent,
+    DeleteQuestionComponent,
   ]
 })
 export class SharedModule { }

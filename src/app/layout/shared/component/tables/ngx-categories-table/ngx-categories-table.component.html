@@ -1,29 +1,28 @@
 <div>
-    <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-        [rowHeight]="'auto'" [limit]="10" [rows]="rows">
-    <ngx-datatable-column name="Categorias" prop="category.category" [sortable]="true" [resizeable]="false" >
-          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-            <span (click)="sort()">{{column.name}}</span>
-          </ng-template>
-          <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-              {{row.category.category}}
-          </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="Nº de Questões" prop="numberOfQuestions" [sortable]="true" [resizeable]="false" >
+    <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" (activate)="onActivate($event)" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]="rows">
+        <ngx-datatable-column name="Categorias" prop="category.category" [sortable]="true" [resizeable]="false">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-              <span (click)="sort()">{{column.name}}</span>
+                <span (click)="sort()">{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
+                {{row.category.category}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Nº de Questões" prop="numberOfQuestions" [sortable]="true" [resizeable]="false">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <span (click)="sort()">{{column.name}}</span>
             </ng-template>
             <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
                 <span style="margin-left: 48px">{{row.numberOfQuestions}}</span>
             </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column name="Apagar Categoria" [resizeable]="false" >
-        <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-          <span>{{column.name}}</span>
-        </ng-template>
-        <ng-template let-row="row" ngx-datatable-cell-template>
-            <span><i style="margin-left: 50px" id="icon" class="fas fa-trash fa-lg" (click)= "onClickFas(row, $event)"></i></span>
-        </ng-template>
-    </ngx-datatable-column>
-</ngx-datatable>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Apagar Categoria" [resizeable]="false">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <span>{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <span><i style="margin-left: 50px" id="icon" class="fas fa-trash fa-lg" (click)= "onClickFas(row, $event)"></i></span>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
 </div>

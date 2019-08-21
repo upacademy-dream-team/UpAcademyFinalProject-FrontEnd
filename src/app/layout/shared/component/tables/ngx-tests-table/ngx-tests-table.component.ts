@@ -28,10 +28,10 @@ export class NgxTestsTableComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tests$=this.userApi.tests$;
+/*     this.tests$=this.userApi.tests$;
     this.tests$.subscribe(tests=>{
       this.rows = tests;
-    })
+    }) */
   }
 
   updateFilter(event) {
