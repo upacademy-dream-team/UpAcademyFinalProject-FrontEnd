@@ -10,7 +10,9 @@ import { UserServiceService } from 'src/app/core';
 export class DeleteTestComponent implements OnInit {
 
   closeResult: string;
-  @Input() messageDeleteEnunciado;
+  @Input()check: number;
+  @Input() messageMsg;
+  @Input() messageDeleteTest;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   constructor(
@@ -44,7 +46,7 @@ export class DeleteTestComponent implements OnInit {
 
   delete() {
 
-  this.passEntry.emit('O user vai ser apagado');
+  this.passEntry.emit('O Enunciado vai ser apagado');
 
  }
 

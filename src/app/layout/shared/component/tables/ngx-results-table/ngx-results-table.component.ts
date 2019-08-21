@@ -11,6 +11,7 @@ import { UserServiceService } from 'src/app/core';
   styleUrls: ['./ngx-results-table.component.scss']
 })
 export class NgxResultsTableComponent implements OnInit {
+  public id ;
   @Input() rows: any;
   @Input() columns: any;
   @Input() temp: any;
@@ -35,14 +36,14 @@ export class NgxResultsTableComponent implements OnInit {
       return d.candidate.name.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
-    // update the rows
     this.rows = temp;
-    // Whenever the filter changes, always go back to the first page
+
     this.table.offset = 0;
   }
 
   clickRow(row) {
     this.clickedRow.emit(row);
+
   }
 
   onActivate(event) {
@@ -51,12 +52,13 @@ export class NgxResultsTableComponent implements OnInit {
     }
   }
 
-  onClickFas(user, event) {
+  onClickFas(row, event) {
 
-    const id = user['id'];
+    this.id = row.solvedTest.id;
+
+    console.log(row);
 
     if (event.target.classList.value === 'fas fa-trash fa-lg') {
-      console.log(id);
 
       const modalRef = this.modalService.open(DeleteResultadoCandidatoComponent);
 
@@ -64,7 +66,7 @@ export class NgxResultsTableComponent implements OnInit {
 
       modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
 
-        this.userApi2.removeSolvedTest(id).subscribe(
+        this.userApi2.removeSolvedTest(this.id).subscribe(
           data => {
             console.log(data);
             this.userApi2.getAllSolvedTests();

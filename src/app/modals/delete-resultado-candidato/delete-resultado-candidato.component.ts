@@ -44,7 +44,7 @@ export class DeleteResultadoCandidatoComponent implements OnInit {
 
   delete() {
 
-  this.passEntry.emit('O user vai ser apagado');
+  this.passEntry.emit('O resultado deste Candidato vai ser apagado');
 
  }
 
