@@ -8,7 +8,7 @@ export class SessionServiceService {
 
   constructor(private http: HttpClient) { }
 
-  private apiUrl = 'http://localhost:8080/Testes-RecemLicenciados/api/test/session';
+  private apiUrl = 'http://localhost:8080/Testes-RecemLicenciados/api/test/session/';
   header: HttpHeaders | { [header: string]: string | string[]; };
 
   public addSession(sessionAdd, idTest){
