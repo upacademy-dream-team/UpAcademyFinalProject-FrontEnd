@@ -18,6 +18,8 @@ import { EnunciadosTableModalComponent } from 'src/app/modals/enunciados-table-m
 import { ResultadosTableModalComponent } from 'src/app/modals/resultados-table-modal/resultados-table-modal.component';
 import { NgxQuestionsTableComponent } from './component/tables/ngx-questions-table/ngx-questions-table.component';
 import { NgxCategoriesTableComponent } from './component/tables/ngx-categories-table/ngx-categories-table.component';
+import { DeleteTestComponent } from 'src/app/modals/delete-test/delete-test.component';
+import { DeleteResultadoCandidatoComponent } from 'src/app/modals/delete-resultado-candidato/delete-resultado-candidato.component';
 
 
 
@@ -39,6 +41,8 @@ import { NgxCategoriesTableComponent } from './component/tables/ngx-categories-t
     ResultadosTableModalComponent,
     NgxQuestionsTableComponent,
     NgxCategoriesTableComponent,
+    DeleteTestComponent,
+    DeleteResultadoCandidatoComponent,
   ],
   imports: [
     CommonModule,
@@ -62,7 +66,9 @@ import { NgxCategoriesTableComponent } from './component/tables/ngx-categories-t
     EnunciadosTableModalComponent,
     ResultadosTableModalComponent,
     NgxQuestionsTableComponent,
-    NgxCategoriesTableComponent
+    NgxCategoriesTableComponent,
+    DeleteTestComponent,
+    DeleteResultadoCandidatoComponent,
   ],
   entryComponents: [
     DeleteConfirmationComponent,
@@ -72,6 +78,8 @@ import { NgxCategoriesTableComponent } from './component/tables/ngx-categories-t
     LinkGeradoComponent,
     EnunciadosTableModalComponent,
     ResultadosTableModalComponent,
+    DeleteTestComponent,
+    DeleteResultadoCandidatoComponent,
   ]
 })
 export class SharedModule { }

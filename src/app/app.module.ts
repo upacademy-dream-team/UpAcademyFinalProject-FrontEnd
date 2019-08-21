@@ -12,7 +12,6 @@ import { NoPermissionComponent } from './no-permission/no-permission.component';
 import { ParticlesComponent } from './particles/particles.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { GeneratedTestingPageComponent } from './generated-testing-page/generated-testing-page.component';
-import { DeleteTestComponent } from './modals/delete-test/delete-test.component';
 
 
 
@@ -29,8 +28,6 @@ import { DeleteTestComponent } from './modals/delete-test/delete-test.component'
     NoPermissionComponent,
     ParticlesComponent,
     GeneratedTestingPageComponent,
-    DeleteTestComponent,
-  
   ],
   imports: [
     HttpClientModule,
@@ -39,7 +36,6 @@ import { DeleteTestComponent } from './modals/delete-test/delete-test.component'
     FormsModule,
     NgbModule,
     NgxDatatableModule,
-    
   ],
   providers: [],
   bootstrap: [AppComponent]
