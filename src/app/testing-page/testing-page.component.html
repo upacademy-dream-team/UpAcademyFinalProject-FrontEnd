@@ -62,40 +62,35 @@
 </div>
 
 <div *ngIf="testRunning === 2" class="background vh-100 d-flex w-100">
-    <div class="container">
+    <div class="container" >
         <p style="height: 1px;"></p>
-        <form #testForm="ngForm" (submit)="submitTest()">
-            <div class="vertical-center form-group rounded" style="background: rgba(143, 143, 143, 0.80); height: 689px;">
+        <form #testForm="ngForm" (submit)="submitTest()" class="rounded vh-100" style="background: rgba(143, 143, 143, 0.80);">
+            <div class="vertical-center form-group rounded">
                 <div class="row">
                     <img class="pl-2 col-1" src="assets\aubayCopy.png" alt="Aubay">
                     <p></p>
-                    <countdown class="col-11 align-self-center text-right" [config]="{leftTime: test.timer * 60}" (finished)="onFinished()"> <b>Tempo Restante: $!h!:$!m!:$!s!</b></countdown>
+                    <countdown class="col-11 align-self-center text-right" [config]="{leftTime: test.timer * 60}" (finished)="onFinished()"> <b><i class="far fa-clock"></i> Tempo Restante: $!h!:$!m!:$!s!</b></countdown>
                 </div>
-                <div *ngFor="let question of test.questions | paginate: { itemsPerPage: 1, currentPage: p },let i = index ">
+                <div *ngFor="let question of test.questions | paginate: { itemsPerPage: 1, currentPage: p }">
                     <div class="row">
                         <div class="pl-4">
                             <br>
-                            <h2>
-                                <b><label for="questionNumber">Pergunta {{p}} </label></b>
-                            </h2>
+                            <h3>
+                                <b><label style="text-justify: auto" for="questionNumber">Pergunta {{p}} - {{question.question}} <br></label></b>
+                            </h3>
                         </div>
                     </div>
-                    <div class="row pl-4">
-                        <h3>
-                            <b><label for="question">{{p}}) {{question.question}}</label></b>
-                        </h3>
-                    </div>
                     <div style="font-size: 20px;" class="pl-5" *ngFor="let option of question.options, let j=index">
-                        {{option}}
-                        <input (change)="onChange(j,p-1,$event.target.checked)" style="padding-bottom: 5px" type="checkbox">
+                            <input (change)="onChange(j,p-1,$event.target.checked)" style="padding-bottom: 5px" type="checkbox">
+                        <span class="pl-1" style="text-justify: auto">{{option}} <br></span>
                         <br>
                     </div>
                     <br>
                     <input [hidden]="p-1!=test.questions.length-1" type="submit" class="btn btn-primary orangeButton" value="Submeter Resolução">
                 </div>
                 <br>
-                <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </div>
+            <pagination-controls style="vertical-align: text-bottom;"  class="text-center" (pageChange)="p = $event"></pagination-controls>
         </form>
     </div>
 </div>
