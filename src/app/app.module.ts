@@ -14,11 +14,6 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { GeneratedTestingPageComponent } from './generated-testing-page/generated-testing-page.component';
 
 
-
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
