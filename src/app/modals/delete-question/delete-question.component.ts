@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { UserServiceService } from 'src/app/core';
+import { UserServiceService } from 'src/app/core/services/user-service/user-service.service';
+
 
 @Component({
   selector: 'app-delete-question',
@@ -10,7 +11,7 @@ import { UserServiceService } from 'src/app/core';
 export class DeleteQuestionComponent implements OnInit {
 
   closeResult: string;
-  @Input() messageDeletePergunta;
+  @Input() messageDeleteQuestion;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   constructor(
@@ -44,7 +45,7 @@ export class DeleteQuestionComponent implements OnInit {
 
   delete() {
 
-  this.passEntry.emit('O user vai ser apagado');
+  this.passEntry.emit('A pergunta vai ser apagada');
 
  }
 

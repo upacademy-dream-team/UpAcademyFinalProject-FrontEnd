@@ -1,18 +1,16 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { UserServiceService } from 'src/app/core';
+import { UserServiceService } from 'src/app/core/services/user-service/user-service.service';
 
 @Component({
-  selector: 'app-delete-test',
-  templateUrl: './delete-test.component.html',
-  styleUrls: ['./delete-test.component.scss']
+  selector: 'app-delete-resultado-candidato',
+  templateUrl: './delete-resultado-candidato.component.html',
+  styleUrls: ['./delete-resultado-candidato.component.scss']
 })
-export class DeleteTestComponent implements OnInit {
+export class DeleteResultadoCandidatoComponent implements OnInit {
 
   closeResult: string;
-  @Input()check: number;
-  @Input() messageMsg;
-  @Input() messageDeleteTest;
+  @Input() messageDeleteResultadoCandidato;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
   constructor(
@@ -46,12 +44,11 @@ export class DeleteTestComponent implements OnInit {
 
   delete() {
 
-  this.passEntry.emit('O Enunciado vai ser apagado');
+  this.passEntry.emit('O resultado deste Candidato vai ser apagado');
 
  }
 
  cancel() {
   this.modalService.dismissAll();
  }
-
 }

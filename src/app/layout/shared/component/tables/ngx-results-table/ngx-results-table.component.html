@@ -1,71 +1,63 @@
-<input 
-    type="text"
-    style="padding:8px;margin:15px auto;width:30%;height: 38px;"
-    placeholder="Escreva para filtar por nome do candidato"
-    (keyup)="updateFilter($event)"
-  
-  />
+<input type="text" style="padding:8px;margin:15px auto;width:30%;height: 38px;" placeholder="Escreva para filtar por nome do candidato" (keyup)="updateFilter($event)" />
 <div>
-  <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-    [rowHeight]="'auto'" [limit]="10" [rows]="rows" (activate)="onActivate($event)">
-    <ngx-datatable-column name="Nome do Candidato" prop="solvedTest.candidate.name" [sortable]="true" [resizeable]="false" >
-      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-        <span (click)="sort()">{{column.name}}</span>
-      </ng-template>
-      <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-          {{row.solvedTest.candidate.name}}
-      </ng-template>
-  </ngx-datatable-column>
-<ngx-datatable-column name="Nome do Teste" prop="solvedTest.testName" [sortable]="true" [resizeable]="false" >
-  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-    <span (click)="sort()">{{column.name}}</span>
-  </ng-template>
-  <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-      {{row.solvedTest.testName}}
-  </ng-template>
-</ngx-datatable-column>
-<ngx-datatable-column name="Recrutador" prop="solvedTest.candidate.emailRecruiter" [sortable]="true" [resizeable]="false" >
-  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-    <span (click)="sort()">{{column.name}}</span>
-  </ng-template>
-  <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-      {{row.solvedTest.candidate.emailRecruiter}}
-  </ng-template>
-</ngx-datatable-column>
-<ngx-datatable-column name="Tempo de Conclusão" prop="solvedTest.timeSpent" [sortable]="true" [resizeable]="false" >
-    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-      <span (click)="sort()">{{column.name}}</span>
-    </ng-template>
-    <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-        <span style="margin-left: 50px"> {{row.solvedTest.timeSpent}}  min</span>
-    </ng-template>
-  </ngx-datatable-column>
-<ngx-datatable-column name="Resultado" prop="score" [sortable]="true" [resizeable]="false" >
-  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-    <span (click)="sort()">{{column.name}}</span>
-  </ng-template>
-  <ng-template  let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-      <!-- Score color scale -->
-      <span id="score" *ngIf="row.solvedTest.score <= 100 && row.solvedTest.score > 90" style="color:#00FF00;" >{{row.solvedTest.score}}%</span>
-      <span id="score" *ngIf="row.solvedTest.score <= 90 && row.solvedTest.score > 80" style="color:#35FF00;" >{{row.solvedTest.score}}%</span>
-      <span id="score" *ngIf="row.solvedTest.score <= 80 && row.solvedTest.score > 70" style="color:#6AFF00;" >{{row.solvedTest.score}}%</span>
-      <span id="score" *ngIf="row.solvedTest.score <= 70 && row.solvedTest.score > 60" style="color:#D4FF00;" >{{row.solvedTest.score}}%</span>
-      <span id="score" *ngIf="row.solvedTest.score <= 60 && row.solvedTest.score > 50" style="color:#FFF600;" >{{row.solvedTest.score}}%</span>
-      <span id="score" *ngIf="row.solvedTest.score <= 50 && row.solvedTest.score > 40" style="color:#FFAF00;" >{{row.solvedTest.score}}%</span>
-      <span id="score" *ngIf="row.solvedTest.score <= 40 && row.solvedTest.score > 30" style="color:#FF8C00;" >{{row.solvedTest.score}}%</span>
-      <span id="score" *ngIf="row.solvedTest.score <= 30 && row.solvedTest.score > 20" style="color:#FF6900;" >{{row.solvedTest.score}}%</span>
-      <span id="score" *ngIf="row.solvedTest.score <= 20 && row.solvedTest.score > 10" style="color:#FF4600;" >{{row.solvedTest.score}}%</span>
-      <span id="score" *ngIf="row.solvedTest.score <= 10 && row.solvedTest.score >= 0" style="color:#FF0000;" >{{row.solvedTest.score}}%</span>
-  </ng-template>
-</ngx-datatable-column>
-<ngx-datatable-column name="Apagar Resultado" [resizeable]="false" >
-    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-      <span>{{column.name}}</span>
-    </ng-template>
-    <ng-template let-row="row" ngx-datatable-cell-template>
-        <span><i style="margin-left: 55px" id="icon" class="fas fa-trash fa-lg" (click)= "onClickFas(row, $event)"></i></span>
-    </ng-template>
-   </ngx-datatable-column>
-  </ngx-datatable>
+    <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]="rows" (activate)="onActivate($event)">
+        <ngx-datatable-column name="Nome do Candidato" prop="solvedTest.candidate.name" [sortable]="true" [resizeable]="false">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <span (click)="sort()">{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
+                {{row.solvedTest.candidate.name}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Nome do Teste" prop="solvedTest.testName" [sortable]="true" [resizeable]="false">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <span (click)="sort()">{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
+                {{row.solvedTest.testName}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Recrutador" prop="solvedTest.candidate.emailRecruiter" [sortable]="true" [resizeable]="false">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <span (click)="sort()">{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
+                {{row.solvedTest.candidate.emailRecruiter}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Tempo de Conclusão" prop="solvedTest.timeSpent" [sortable]="true" [resizeable]="false">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <span (click)="sort()">{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
+                <span style="margin-left: 50px"> {{row.solvedTest.timeSpent}}  min</span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Resultado" prop="score" [sortable]="true" [resizeable]="false">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <span (click)="sort()">{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
+                <!-- Score color scale -->
+                <span id="score" *ngIf="row.solvedTest.score <= 100 && row.solvedTest.score > 90" style="color:#00FF00;">{{row.solvedTest.score}}%</span>
+                <span id="score" *ngIf="row.solvedTest.score <= 90 && row.solvedTest.score > 80" style="color:#35FF00;">{{row.solvedTest.score}}%</span>
+                <span id="score" *ngIf="row.solvedTest.score <= 80 && row.solvedTest.score > 70" style="color:#6AFF00;">{{row.solvedTest.score}}%</span>
+                <span id="score" *ngIf="row.solvedTest.score <= 70 && row.solvedTest.score > 60" style="color:#D4FF00;">{{row.solvedTest.score}}%</span>
+                <span id="score" *ngIf="row.solvedTest.score <= 60 && row.solvedTest.score > 50" style="color:#FFF600;">{{row.solvedTest.score}}%</span>
+                <span id="score" *ngIf="row.solvedTest.score <= 50 && row.solvedTest.score > 40" style="color:#FFAF00;">{{row.solvedTest.score}}%</span>
+                <span id="score" *ngIf="row.solvedTest.score <= 40 && row.solvedTest.score > 30" style="color:#FF8C00;">{{row.solvedTest.score}}%</span>
+                <span id="score" *ngIf="row.solvedTest.score <= 30 && row.solvedTest.score > 20" style="color:#FF6900;">{{row.solvedTest.score}}%</span>
+                <span id="score" *ngIf="row.solvedTest.score <= 20 && row.solvedTest.score > 10" style="color:#FF4600;">{{row.solvedTest.score}}%</span>
+                <span id="score" *ngIf="row.solvedTest.score <= 10 && row.solvedTest.score >= 0" style="color:#FF0000;">{{row.solvedTest.score}}%</span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Apagar Resultado" [resizeable]="false">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <span>{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <span><i style="margin-left: 55px" id="icon" class="fas fa-trash fa-lg" (click)= "onClickFas(row, $event)"></i></span>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
 </div>
-

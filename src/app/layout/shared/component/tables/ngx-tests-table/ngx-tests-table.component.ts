@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { DatatableComponent } from '@swimlane/ngx-datatable';
-import { UserServiceService } from 'src/app/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { DeleteTestComponent } from 'src/app/modals/delete-test/delete-test.component';
+import { TestServiceService } from 'src/app/core/services/test-service/test-service.service';
+import { ReplaySubject } from 'rxjs';
 
 @Component({
   selector: 'app-ngx-tests-table',
@@ -10,6 +12,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class NgxTestsTableComponent implements OnInit {
 
+  public id;
+  msg: any;
+  check: number;
+  public tests$: ReplaySubject<any[]> = new ReplaySubject(1);
   @Input() rows: any;
   @Input() columns: any;
   @Input() temp: any;
@@ -17,11 +23,15 @@ export class NgxTestsTableComponent implements OnInit {
   @ViewChild(DatatableComponent, { static: false }) table: DatatableComponent;
 
   constructor(
-    private userApi: UserServiceService,
+    private userApi: TestServiceService,
     private modalService: NgbModal) {
   }
 
   ngOnInit() {
+/*     this.tests$=this.userApi.tests$;
+    this.tests$.subscribe(tests=>{
+      this.rows = tests;
+    }) */
   }
 
   updateFilter(event) {
@@ -40,6 +50,48 @@ export class NgxTestsTableComponent implements OnInit {
 
   clickRow(row) {
     this.clickedRow.emit(row);
+  }
+
+  onActivate(event) {
+    if (event.type === 'click') {
+      console.log(event.row);
+    }
+  }
+
+  onClickFas(row, event) {
+
+    this.id = row.test.id;
+
+    console.log(this.id);
+
+    if (event.target.classList.value === 'fas fa-trash fa-lg') {
+
+      const modalRef = this.modalService.open(DeleteTestComponent);
+
+      modalRef.componentInstance.messageDeleteTeste = 'Deseja mesmo apagar este Enunciado?';
+
+      modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+
+        this.userApi.removeTest(this.id).subscribe(
+          data => {
+            console.log(data);
+            this.userApi.getAllTests();
+            this.modalService.dismissAll();
+          } ,(error) => {
+            console.log(error.error);
+            this.msg = /*'Parâmetros de utilizador em falta.Verifique se todos os dados foram inseridos'*/
+            error.error;
+            this.check = 1 ;
+            modalRef.componentInstance.messageMsg = 'Existem testes realizados com este Enunciado!';
+            modalRef.componentInstance.check = this.check;
+            console.log(this.check);
+            console.log(this.msg);
+
+          }
+        );
+
+      });
+    }
   }
 
 }

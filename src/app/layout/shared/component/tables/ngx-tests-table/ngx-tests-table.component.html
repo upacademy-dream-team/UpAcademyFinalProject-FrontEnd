@@ -1,70 +1,63 @@
-<input 
-    type="text"
-    style="padding:8px;margin:15px auto;width:30%;height: 38px;"
-    placeholder="Escreva para filtar por Nome do Teste"
-    (keyup)="updateFilter($event)"
-  
-  />
+<input type="text" style="padding:8px;margin:15px auto;width:30%;height: 38px;" placeholder="Escreva para filtar por Nome do Teste" (keyup)="updateFilter($event)" />
 <div>
-  <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
-    [rowHeight]="'auto'" [limit]="10" [rows]="rows">
-    <ngx-datatable-column name="Nome do Teste" prop="test.testName" [sortable]="true" [resizeable]="false" >
-      <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-        <span (click)="sort()">{{column.name}}</span>
-      </ng-template>
-      <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-          {{row.test.testName}}
-      </ng-template>
-  </ngx-datatable-column>
-  <ngx-datatable-column name="Categorias" prop="categories" [sortable]="true" [resizeable]="false" >
-    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-      <span (click)="sort()">{{column.name}}</span>
-    </ng-template>
-    <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-        {{row.categories}}
-    </ng-template>
-</ngx-datatable-column>
-<ngx-datatable-column name="Autor" prop="test.author.username" [sortable]="true" [resizeable]="false" >
-  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-    <span (click)="sort()">{{column.name}}</span>
-  </ng-template>
-  <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-      {{row.test.author.username}}
-  </ng-template>
-</ngx-datatable-column>
-<ngx-datatable-column name="Nº de Testes Realizados" prop="test.submittedTests" [sortable]="true" [resizeable]="false" >
-  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-    <span (click)="sort()">{{column.name}}</span>
-  </ng-template>
-  <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-      <span style="margin-left: 75px">{{row.test.submittedTests}}</span>
-  </ng-template>
-</ngx-datatable-column>
-<ngx-datatable-column name="Resultado Médio" prop="test.averageScore" [sortable]="true" [resizeable]="false" >
-  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-    <span (click)="sort()">{{column.name}}</span>
-  </ng-template>
-  <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-      <!-- averageScore color scale -->
-      <span id="score" *ngIf="row.test.averageScore <= 100 && row.test.averageScore > 90" style="color:#00FF00;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 90 && row.test.averageScore > 80" style="color:#35FF00;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 80 && row.test.averageScore > 70" style="color:#6AFF00;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 70 && row.test.averageScore > 60" style="color:#D4FF00;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 60 && row.test.averageScore > 50" style="color:#FFF600;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 50 && row.test.averageScore > 40" style="color:#FFAF00;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 40 && row.test.averageScore > 30" style="color:#FF8C00;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 30 && row.test.averageScore > 20" style="color:#FF6900;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 20 && row.test.averageScore > 10" style="color:#FF4600;" >{{row.test.averageScore}}%</span>
-      <span id="score" *ngIf="row.test.averageScore <= 10 && row.test.averageScore >= 0" style="color:#FF0000;" >{{row.test.averageScore}}%</span>
-  </ng-template>
-   </ngx-datatable-column>
-   <ngx-datatable-column name="Apagar Enunciado" [resizeable]="false" >
-    <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-      <span>{{column.name}}</span>
-    </ng-template>
-    <ng-template let-row="row" ngx-datatable-cell-template>
-        <span><i style="margin-left: 55px" id="icon" class="fas fa-trash fa-lg" (click)= "onClickFas(row, $event)"></i></span>
-    </ng-template>
-   </ngx-datatable-column>
-  </ngx-datatable>
+    <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" (activate)="onActivate($event)" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]="rows">
+        <ngx-datatable-column name="Nome do Teste" prop="test.testName" [sortable]="true" [resizeable]="false">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <span (click)="sort()">{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
+                {{row.test.testName}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Categorias" prop="categories" [sortable]="true" [resizeable]="false">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <span (click)="sort()">{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
+                {{row.categories}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Autor" prop="test.author.username" [sortable]="true" [resizeable]="false">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <span (click)="sort()">{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
+                {{row.test.author.username}}
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Nº de Testes Realizados" prop="test.submittedTests" [sortable]="true" [resizeable]="false">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <span (click)="sort()">{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
+                <span style="margin-left: 75px">{{row.test.submittedTests}}</span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Resultado Médio" prop="test.averageScore" [sortable]="true" [resizeable]="false">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <span (click)="sort()">{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
+                <!-- averageScore color scale -->
+                <span id="score" *ngIf="row.test.averageScore <= 100 && row.test.averageScore > 90" style="color:#00FF00;">{{row.test.averageScore}}%</span>
+                <span id="score" *ngIf="row.test.averageScore <= 90 && row.test.averageScore > 80" style="color:#35FF00;">{{row.test.averageScore}}%</span>
+                <span id="score" *ngIf="row.test.averageScore <= 80 && row.test.averageScore > 70" style="color:#6AFF00;">{{row.test.averageScore}}%</span>
+                <span id="score" *ngIf="row.test.averageScore <= 70 && row.test.averageScore > 60" style="color:#D4FF00;">{{row.test.averageScore}}%</span>
+                <span id="score" *ngIf="row.test.averageScore <= 60 && row.test.averageScore > 50" style="color:#FFF600;">{{row.test.averageScore}}%</span>
+                <span id="score" *ngIf="row.test.averageScore <= 50 && row.test.averageScore > 40" style="color:#FFAF00;">{{row.test.averageScore}}%</span>
+                <span id="score" *ngIf="row.test.averageScore <= 40 && row.test.averageScore > 30" style="color:#FF8C00;">{{row.test.averageScore}}%</span>
+                <span id="score" *ngIf="row.test.averageScore <= 30 && row.test.averageScore > 20" style="color:#FF6900;">{{row.test.averageScore}}%</span>
+                <span id="score" *ngIf="row.test.averageScore <= 20 && row.test.averageScore > 10" style="color:#FF4600;">{{row.test.averageScore}}%</span>
+                <span id="score" *ngIf="row.test.averageScore <= 10 && row.test.averageScore >= 0" style="color:#FF0000;">{{row.test.averageScore}}%</span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Apagar Enunciado" [resizeable]="false">
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <span>{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+                <span><i style="margin-left: 55px" id="icon" class="fas fa-trash fa-lg" (click)= "onClickFas(row, $event)"></i></span>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
 </div>
