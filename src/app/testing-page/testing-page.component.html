@@ -81,16 +81,16 @@
                         </div>
                     </div>
                     <div style="font-size: 20px;" class="pl-5" *ngFor="let option of question.options, let j=index">
-                            <input (change)="onChange(j,p-1,$event.target.checked)" style="padding-bottom: 5px" type="checkbox">
-                        <span class="pl-1" style="text-justify: auto">{{option}} <br></span>
+                        {{option}}
+                        <input (change)="onChange(j,p-1,$event.target.checked)" [checked]="checked[p-1][j]" name="checked" style="padding-bottom: 5px" type="checkbox">
                         <br>
                     </div>
                     <br>
                     <input [hidden]="p-1!=test.questions.length-1" type="submit" class="btn btn-primary orangeButton" value="Submeter Resolução">
                 </div>
                 <br>
+                <pagination-controls (pageChange)="p = $event; print()"></pagination-controls>
             </div>
-            <pagination-controls style="vertical-align: text-bottom;"  class="text-center" (pageChange)="p = $event"></pagination-controls>
         </form>
     </div>
 </div>
