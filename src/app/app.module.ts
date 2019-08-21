@@ -12,7 +12,8 @@ import { NoPermissionComponent } from './no-permission/no-permission.component';
 import { ParticlesComponent } from './particles/particles.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { GeneratedTestingPageComponent } from './generated-testing-page/generated-testing-page.component';
-
+import { NgxPaginationModule } from 'ngx-pagination';
+import { CountdownModule } from 'ngx-countdown';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import { GeneratedTestingPageComponent } from './generated-testing-page/generate
     FormsModule,
     NgbModule,
     NgxDatatableModule,
-  ],
+    NgxPaginationModule,
+    CountdownModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

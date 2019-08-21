@@ -25,6 +25,7 @@ export class TestingPageComponent implements OnInit, OnDestroy {
   private solvedTest = new SolvedTest();
   private startTime;
   private finishTime;
+  p: number = 1;
 
   constructor(
     private testService: TestServiceService,
@@ -84,6 +85,10 @@ export class TestingPageComponent implements OnInit, OnDestroy {
     console.log(JSON.stringify(this.solvedTest));
     this.solvedService.addSolvedTest(this.solvedTest).subscribe(data=> console.log(data), error=>console.log(error.error));
     console.log("done");
+  }
+
+  onFinished() {
+    this.submitTest();
   }
 
 }
