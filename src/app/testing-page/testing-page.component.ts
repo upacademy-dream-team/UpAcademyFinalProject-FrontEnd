@@ -25,6 +25,8 @@ export class TestingPageComponent implements OnInit, OnDestroy {
   private solvedTest = new SolvedTest();
   private startTime;
   private finishTime;
+  private checked=[];
+  private myCheck=false;
   p: number = 1;
 
   constructor(
@@ -39,7 +41,7 @@ export class TestingPageComponent implements OnInit, OnDestroy {
     this.currentRecruiter = this.testService.getCurrentRecruiter();
     this.testService.getTest(this.currentTest);
     this.currentTestCheck();
-    this.test$.subscribe(data=> {this.test=data; console.log("o meu teste");this.initiateAnswersObject(this.test)});
+    this.test$.subscribe(data=> {this.test=data; console.log("o meu teste");this.initiateAnswersObject(this.test); this.initiateCheckedObject(this.test)});
   }
 
   ngOnDestroy() {
@@ -64,13 +66,31 @@ export class TestingPageComponent implements OnInit, OnDestroy {
     console.log(this.answer);
   }
 
+  initiateCheckedObject(test){
+    let numberOfQuestions=test.questions.length;
+    for(let question=0;question<numberOfQuestions; question++){
+      let questionCheckbox=[];
+      for(let option=0; option<test.questions[question].options.length; option++)
+        questionCheckbox.push(false);
+      this.checked.push(questionCheckbox);
+    }
+    console.log(this.checked);
+  }
+
   onChange(indexSelection:number, indexQuestion:number, isChecked: boolean) {
     if(isChecked) {
       this.answer[indexQuestion].givenAnswer.push(indexSelection);
+      this.checked[indexQuestion][indexSelection]=true;
     } else {
-      this.answer[indexQuestion].givenAnswer.splice(this.answer.indexOf(indexSelection),1);
+      this.answer[indexQuestion].givenAnswer.splice(this.answer[indexQuestion].givenAnswer.indexOf(indexSelection),1);
+      this.checked[indexQuestion][indexSelection]=false;
     }
+    console.log(this.checked);
     console.log(this.answer[indexQuestion]);
+
+  }
+  print(){
+    console.log(this.checked);
   }
 
   submitTest(){
