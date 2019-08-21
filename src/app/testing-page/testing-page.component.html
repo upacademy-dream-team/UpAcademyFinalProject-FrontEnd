@@ -87,14 +87,14 @@
                     </div>
                     <div style="font-size: 20px;" class="pl-5" *ngFor="let option of question.options, let j=index">
                         {{option}}
-                        <input (change)="onChange(j,p-1,$event.target.checked)" style="padding-bottom: 5px" type="checkbox">
+                        <input (change)="onChange(j,p-1,$event.target.checked)" [checked]="checked[p-1][j]" name="checked" style="padding-bottom: 5px" type="checkbox">
                         <br>
                     </div>
                     <br>
                     <input [hidden]="p-1!=test.questions.length-1" type="submit" class="btn btn-primary orangeButton" value="Submeter Resolução">
                 </div>
                 <br>
-                <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                <pagination-controls (pageChange)="p = $event; print()"></pagination-controls>
             </div>
         </form>
     </div>
