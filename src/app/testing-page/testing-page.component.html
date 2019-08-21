@@ -11,7 +11,7 @@
     <div class="container">
         <p style="height: 15px;"></p>
         <form #candidateForm="ngForm" (submit)="startTest()">
-            <div class="vertical-center form-group rounded" style="background: rgba(143, 143, 143, 0.80); height: 620px;">
+            <div class="vertical-center form-group rounded" style="background: rgba(143, 143, 143, 0.80); height: 90%;">
                 <div class="row">
                     <img class="col-2" src="assets\aubayCopy.png" alt="Aubay">
                     <div class="col-8 align-self-center text-center">
@@ -64,12 +64,12 @@
 <div *ngIf="testRunning === 2" class="background vh-100 d-flex w-100">
     <div class="container" >
         <p style="height: 1px;"></p>
-        <form #testForm="ngForm" (submit)="submitTest()" class="rounded vh-100" style="background: rgba(143, 143, 143, 0.80);">
+        <form #testForm="ngForm" (submit)="submitTest()" class="rounded" style="background: rgba(143, 143, 143, 0.80);height: 90%;">
             <div class="vertical-center form-group rounded">
                 <div class="row">
                     <img class="pl-2 col-1" src="assets\aubayCopy.png" alt="Aubay">
                     <p></p>
-                    <countdown class="col-11 align-self-center text-right" [config]="{leftTime: test.timer * 60}" (finished)="onFinished()"> <b><i class="far fa-clock"></i> Tempo Restante: $!h!:$!m!:$!s!</b></countdown>
+                    <countdown class="col-11 align-self-center text-right" [config]="{leftTime: test.timer * 60}" (finished)="onFinished()"><i class="far fa-clock fa-2x"></i><h4>Tempo Restante: $!h!:$!m!:$!s!</h4></countdown>
                 </div>
                 <div *ngFor="let question of test.questions | paginate: { itemsPerPage: 1, currentPage: p }">
                     <div class="row">
@@ -80,17 +80,28 @@
                             </h3>
                         </div>
                     </div>
-                    <div style="font-size: 20px;" class="pl-5" *ngFor="let option of question.options, let j=index">
-                        {{option}}
-                        <input (change)="onChange(j,p-1,$event.target.checked)" [checked]="checked[p-1][j]" name="checked" style="padding-bottom: 5px" type="checkbox">
+                    <br>
+                    <div style="font-size: 24px;" class="pl-5" *ngFor="let option of question.options, let j=index">
+                        <div class="row">
+                            <div class="col-11">
+                             {{getLetter(j)}}) {{option}}
+                            </div>
+                            <div class="col-1 text-right align-self-center">
+                             <input (change)="onChange(j,p-1,$event.target.checked)" [checked]="checked[p-1][j]" name="checked" style="padding-bottom: 5px;zoom: 130%;" type="checkbox">
+                            </div>
+                        </div>
                         <br>
                     </div>
                     <br>
-                    <input [hidden]="p-1!=test.questions.length-1" type="submit" class="btn btn-primary orangeButton" value="Submeter Resolução">
+                    <div class="row">
+                        <div class="col text-center">
+                    <input  [hidden]="p-1!=test.questions.length-1" class="text-center" type="submit" class="btn" value="Submeter Resolução">
+                </div>
+                </div>
                 </div>
                 <br>
-                <pagination-controls (pageChange)="p = $event; print()"></pagination-controls>
             </div>
         </form>
+        <pagination-controls class="text-center" (pageChange)="p = $event; print()"></pagination-controls>
     </div>
 </div>
