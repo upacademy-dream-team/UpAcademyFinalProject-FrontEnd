@@ -53,7 +53,7 @@ export class NgxResultsTableComponent implements OnInit {
     if(minutes==0)
       return (y < 10 ? '0' : '') + seconds + " s";
     else
-      return minutes + " min" + (y < 10 ? '0' : '') + seconds+" s";
+      return minutes + " min " + (y < 10 ? '0' : '') + seconds+" s";
   }
 
   onActivate(event) {
