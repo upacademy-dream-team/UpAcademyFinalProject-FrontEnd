@@ -46,6 +46,16 @@ export class NgxResultsTableComponent implements OnInit {
 
   }
 
+  millisToMinutesAndSeconds(millis) {
+    let minutes = Math.floor(millis / 60000);
+    let seconds = ((millis % 60000) / 1000).toFixed(0);
+    let y=+seconds;
+    if(minutes==0)
+      return (y < 10 ? '0' : '') + seconds + " s";
+    else
+      return minutes + " min" + (y < 10 ? '0' : '') + seconds+" s";
+  }
+
   onActivate(event) {
     if (event.type === 'click') {
       console.log(event.row);
