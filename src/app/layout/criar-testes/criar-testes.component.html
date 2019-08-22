@@ -27,11 +27,11 @@
                                 <p></p>
                                 <div class="row">
                                     <div class="col-3">
-                                        <label for="duracaoTestes">Duração:&nbsp;&nbsp;</label> <input required [(ngModel)]="timer" step="5" name="timerChosen" #timerChosen="ngModel" min="0" max="340" id="duracaoTestes" type="Number" placeholder="minutos">
+                                        <label for="duracaoTestes">Duração:&nbsp;&nbsp;</label> <input style="width: 80px;" required [(ngModel)]="timer" step="5" name="timerChosen" #timerChosen="ngModel" min="0" max="340" id="duracaoTestes" type="Number" placeholder="Minutos">
                                     </div>
                                     <div class="col-3">
                                         <label for="categoriaTestes">Categoria:&nbsp; </label>
-                                        <select required [(ngModel)]="category" name="categoryChosen" #categoryChosen="ngModel" (change)="getNumberOfQuestionsByCategory(); numberOfQuestions=0" id="">
+                                        <select style="height: 30px" required [(ngModel)]="category" name="categoryChosen" #categoryChosen="ngModel" (change)="getNumberOfQuestionsByCategory(); numberOfQuestions=0" id="">
                                 <ng-container *ngFor="let category of categories$ | async">
                                     <option value={{category.category.category}}> {{category.category.category}}
                                     </option>
@@ -114,13 +114,13 @@
                                             {{questionError}}
                                         </div>
                                         <p></p>
-                                        <div class="text-center align-center">
+                                        <div class="text-center align-self-center">
 
                                             <textarea required class="rounded" style="width: 95%" placeholder="Introduza Opção" [(ngModel)]="options[0]" name="optionWritten0" (change)="checkValidityQuestion()"></textarea>&nbsp;&nbsp;&nbsp;<input [(ngModel)]="firstCheck"
-                                                name="checkFirstCheck" style="zoom: 3; padding-bottom: 5px" (change)="onChange(0, $event.target.checked)" type="checkbox">
+                                                 name="checkFirstCheck" style="zoom: 1.5; padding-bottom: 5px" (change)="onChange(0, $event.target.checked)" type="checkbox">
                                             <div *ngFor="let i of numberOfTimes, let j=index">
                                                 <textarea class="rounded" style="width: 95%" placeholder="Introduza Opção" [(ngModel)]="options[j+1]" name="optionWritten{{j+1}}" (change)="checkValidityQuestion()"></textarea>&nbsp;&nbsp;&nbsp;<input (change)="onChange(j+1, $event.target.checked)"
-                                                    style="zoom: 3; padding-bottom: 5px" type="checkbox">
+                                                    style="zoom: 1.5; padding-bottom: 5px" type="checkbox">
 
                                             </div>
 
