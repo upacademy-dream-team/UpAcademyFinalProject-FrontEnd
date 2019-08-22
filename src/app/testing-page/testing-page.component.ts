@@ -117,5 +117,8 @@ export class TestingPageComponent implements OnInit, OnDestroy {
   getLetter(j:number){
     return this.letterArray[j];
   }
-  
+
+  submitPageChange(){
+    this.testRunning = 3;
+  }
 }
