@@ -11,7 +11,7 @@
     <div class="container">
         <p style="height: 15px;"></p>
         <form #candidateForm="ngForm" (submit)="startTest()">
-            <div class="vertical-center form-group rounded" style="background: rgba(143, 143, 143, 0.80); height: 620px;">
+            <div class="vertical-center form-group rounded" style="background: rgba(143, 143, 143, 0.80); height: 90%;">
                 <div class="row">
                     <img class="col-2" src="assets\aubayCopy.png" alt="Aubay">
                     <div class="col-8 align-self-center text-center">
@@ -62,39 +62,61 @@
 </div>
 
 <div *ngIf="testRunning === 2" class="background vh-100 d-flex w-100">
-    <div class="container">
+    <div class="container" >
         <p style="height: 1px;"></p>
-        <form #testForm="ngForm" (submit)="submitTest()">
-            <div class="vertical-center form-group rounded" style="background: rgba(143, 143, 143, 0.80); height: 689px;">
+        <form #testForm="ngForm" (submit)="submitTest()" class="rounded" style="background: rgba(143, 143, 143, 0.80);height: 90%;">
+            <div class="vertical-center form-group rounded">
                 <div class="row">
                     <img class="pl-2 col-1" src="assets\aubayCopy.png" alt="Aubay">
                     <p></p>
-                    <countdown class="col-11 align-self-center text-right" [config]="{leftTime: test.timer * 60}" (finished)="onFinished()"> <b>Tempo Restante: $!h!:$!m!:$!s!</b></countdown>
+                    <countdown class="col-11 align-self-center text-right" [config]="{leftTime: test.timer * 60}" (finished)="onFinished()"><i class="far fa-clock fa-2x"></i><h4>Tempo Restante: $!h!:$!m!:$!s!</h4></countdown>
                 </div>
-                <div *ngFor="let question of test.questions | paginate: { itemsPerPage: 1, currentPage: p },let i = index ">
+                <div *ngFor="let question of test.questions | paginate: { itemsPerPage: 1, currentPage: p }">
                     <div class="row">
                         <div class="pl-4">
                             <br>
-                            <h2>
-                                <b><label for="questionNumber">Pergunta {{p}} </label></b>
-                            </h2>
+                            <h3>
+                                <b><label style="text-justify: auto" for="questionNumber">Pergunta {{p}} - {{question.question}} <br></label></b>
+                            </h3>
                         </div>
                     </div>
-                    <div class="row pl-4">
-                        <h3>
-                            <b><label for="question">{{p}}) {{question.question}}</label></b>
-                        </h3>
-                    </div>
-                    <div style="font-size: 20px;" class="pl-5" *ngFor="let option of question.options, let j=index">
-                        {{option}}
-                        <input (change)="onChange(j,p-1,$event.target.checked)" [checked]="checked[p-1][j]" name="checked" style="padding-bottom: 5px" type="checkbox">
+                    <br>
+                    <div style="font-size: 24px;" class="pl-5" *ngFor="let option of question.options, let j=index">
+                        <div class="row">
+                            <div class="col-11">
+                             {{getLetter(j)}}) {{option}}
+                            </div>
+                            <div class="col-1 text-right align-self-center">
+                             <input (change)="onChange(j,p-1,$event.target.checked)" [checked]="checked[p-1][j]" name="checked" style="padding-bottom: 5px;zoom: 130%;" type="checkbox">
+                            </div>
+                        </div>
                         <br>
                     </div>
                     <br>
-                    <input [hidden]="p-1!=test.questions.length-1" type="submit" class="btn btn-primary orangeButton" value="Submeter Resolução">
+                    <div class="row">
+                        <div class="col text-center">
+                    <input (click)="submitPageChange()" [hidden]="p-1!=test.questions.length-1" class="text-center" type="submit" class="btn" value="Submeter Resolução">
+                </div>
+                </div>
                 </div>
                 <br>
-                <pagination-controls (pageChange)="p = $event; print()"></pagination-controls>
+            </div>
+        </form>
+        <pagination-controls class="text-center" (pageChange)="p = $event; print()"></pagination-controls>
+    </div>
+</div>
+
+<div *ngIf="testRunning === 3" class="background vh-100 d-flex w-100" style="background-image: url(assets/home-office-336378_1280.jpg)">
+    <div class="container">
+        <form #candidateForm="ngForm" (submit)="startTest()">
+            <p style="height: 200px;"></p>
+            <div class="vertical-center form-group rounded pt-3" style="background: rgba(143, 143, 143, 0.80); height: 100%;">
+             <div class="row" style="align-self-center">
+              <img class="col-2 text-center" src="assets\aubayCopy.png" alt="Aubay">
+            <div class="col-10">
+              <h2 style="text-justify: auto">Teste Submetido! Obrigado por teres realizado o teste {{candidate.name}}. Entraremos em contacto o mais brevemente possivel.</h2>
+            </div>
+            </div>
             </div>
         </form>
     </div>

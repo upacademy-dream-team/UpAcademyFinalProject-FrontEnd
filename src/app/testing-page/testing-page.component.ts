@@ -27,7 +27,10 @@ export class TestingPageComponent implements OnInit, OnDestroy {
   private finishTime;
   private checked=[];
   private myCheck=false;
+  private optionLetter: string;
+  letterArray = [ 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' ]
   p: number = 1;
+
 
   constructor(
     private testService: TestServiceService,
@@ -111,4 +114,11 @@ export class TestingPageComponent implements OnInit, OnDestroy {
     this.submitTest();
   }
 
+  getLetter(j:number){
+    return this.letterArray[j];
+  }
+
+  submitPageChange(){
+    this.testRunning = 3;
+  }
 }
