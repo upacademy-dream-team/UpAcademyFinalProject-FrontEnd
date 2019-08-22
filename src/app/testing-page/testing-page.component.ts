@@ -26,7 +26,6 @@ export class TestingPageComponent implements OnInit, OnDestroy {
   private startTime;
   private finishTime;
   private checked=[];
-  private myCheck=false;
   private optionLetter: string;
   letterArray = [ 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
   p: number = 1;
@@ -92,10 +91,7 @@ export class TestingPageComponent implements OnInit, OnDestroy {
     console.log(this.answer[indexQuestion]);
 
   }
-  print(){
-    console.log(this.checked);
-  }
-
+  
   submitTest(){
     this.finishTime=new Date();
     let secondsPassed=this.finishTime-this.startTime;
