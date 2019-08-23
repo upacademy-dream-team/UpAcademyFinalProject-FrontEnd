@@ -79,7 +79,7 @@ export class NgxTableComponent implements OnInit {
           this.modalService.dismissAll();
         });
       }
-    } else if (event.target.classList.value === 'fas fa-power-off fa-lg') {
+    } else if (event.target.classList.value === 'fas fa-undo-alt fa-stack-2x ') {
 
       const modalRef = this.modalService.open(AlteracaoPasswordComponent);
 
