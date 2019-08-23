@@ -41,8 +41,11 @@
                     </div>
                     <div class="col-80">
                         <div style="height: 5px"></div>
-                        <input required [(ngModel)]="candidate.email" id="input" class="rounded" [email]="true"
+                        <input required (change)="emailValid=true" [(ngModel)]="candidate.email" id="input" class="rounded" [email]="true"
                             name="email">
+                            <div [hidden]="emailValid" class="alert alert-danger">
+                                E-mail introduzido não corresponde ao e-mail fornecido à Aubay;
+                            </div>
                     </div>
                 </div>
                 <p></p>
