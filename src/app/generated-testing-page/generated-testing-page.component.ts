@@ -114,7 +114,7 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
     this.solvedTest.timeSpent=secondsPassed;
     this.solvedTest.testID=this.session.test.id;
     console.log(JSON.stringify(this.solvedTest));
-    this.solvedService.addSolvedTest(this.solvedTest).subscribe(data=> console.log(data), error=>console.log(error.error));
+    this.solvedService.addSolvedTestFromSession(this.solvedTest, this.session.sessionID).subscribe(data=> console.log(data), error=>console.log(error.error));
     console.log("done");
     this.testRunning = 3;
   }

@@ -61,6 +61,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   private questionError: string="";
   private testError: string="";
   private categoryError: string="";
+  private successMessage=false;
   test= new Test();
   private firstCheck: boolean= false;
 
@@ -140,7 +141,8 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         this.testName=null;
         this.numberOfQuestions=null;
         this.allRandomQuestions=[];
-        this.testError=""},
+        this.testError=""
+        this.showSuccessMessage(2000);},
       error => {
         console.log(error);
         this.testError=error.error;
@@ -156,12 +158,20 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         console.log(data);
         this.categoryString=null;
         this.categoryError="";
+        this.showSuccessMessage(2000);
       }, 
       error=>{
         console.log(error);
         this.categoryError=error.error;
         
       });
+  }
+
+  public showSuccessMessage(time){
+    this.successMessage=true;
+    setTimeout(()=>{    //<<<---    using ()=> syntax
+      this.successMessage = false;
+    }, time);
   }
 
   public addOption(){
@@ -202,6 +212,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         this.firstCheck=false;
         this.questionError="";
         this.categoryClass=new Category();
+        this.showSuccessMessage(2000);
       }, 
       error=>{console.log(error.error); this.questionError=error.error;});
   }

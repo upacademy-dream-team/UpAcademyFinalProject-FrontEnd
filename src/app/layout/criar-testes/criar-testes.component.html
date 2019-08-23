@@ -75,6 +75,9 @@
                         </div>
                         <div class="text-center">
                             <input [disabled]="!testNameChosen.valid || !timerChosen.valid || allRandomQuestions==0" type="submit" id="margin-top" class="btn btn-primary orangeButton" value="Gerar Teste">
+                            <div [hidden]="!successMessage" class="alert alert-success">
+                                    Success
+                            </div>
                         </div>
                     </form>
                     <div class="spacer" style="height: 100px"></div>
@@ -140,7 +143,9 @@
                         <div class="text-center">
 
                             <input type="submit" [disabled]="!questionForm.form.valid || solution.length==0 || !questionFormValidity" class="btn btn-primary orangeButton" value="Gerar Pergunta">
-
+                            <div [hidden]="!successMessage" class="alert alert-success">
+                                    Success
+                            </div>
                         </div>
 
                     </form>
@@ -171,9 +176,12 @@
                         </div>
 
                         <div class="text-center">
-
+                            <span>
                             <input type="submit" [disabled]="!categoryForm.form.valid" class="btn btn-primary orangeButton" value="Gerar Categoria">
-
+                            <div [hidden]="!successMessage" class="alert alert-success">
+                                Success
+                            </div>
+                            </span>
                         </div>
 
                     </form>

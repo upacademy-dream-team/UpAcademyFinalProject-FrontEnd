@@ -29,6 +29,10 @@ export class SolvedTestServiceService {
     return this.http.post(this.apiUrl + 'add', solved, {headers: this.header , responseType:'text'});
   }
 
+  public addSolvedTestFromSession(solved: SolvedTest, idSession: number){
+    return this.http.post(this.apiUrl + 'add/' + idSession, solved, {headers: this.header , responseType:'text'});
+  }
+
   public removeSolvedTest(id: Number){
     return this.http.delete(this.apiUrl + 'remove/' + id, {headers: this.header , responseType:'text'});
   }
