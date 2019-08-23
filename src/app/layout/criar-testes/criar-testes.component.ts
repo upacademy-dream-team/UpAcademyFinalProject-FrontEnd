@@ -27,6 +27,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   public options: any[] = [];
   public solution: any[] = [];
   maximum: any;
+  p:number = 1;
 
   // tslint:disable-next-line: max-line-length
   constructor(config: NgbTabsetConfig, private testService: TestServiceService, private userService: UserServiceService, private categoryService: CategoryServiceService, private questionService: QuestionServiceService) {
@@ -101,7 +102,6 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         this.allRandomQuestions.push(...res);
         this.randomQuestions$.next(this.allRandomQuestions);
       }
-
     );
 
     this.numberOfQuestions = 0;

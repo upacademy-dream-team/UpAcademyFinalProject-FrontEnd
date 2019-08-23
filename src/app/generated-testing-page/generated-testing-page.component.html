@@ -1,1 +1,140 @@
-<p>generated-testing-page works!</p>
+<div *ngIf="testRunning === -1" class="not-found">
+    <div class="wrapper">
+        <div class="col-md-10 push-md-1">
+            <h1>404 - Page Not Found</h1>
+            <p class="lead">This page does not exist</p>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="testRunning === 1" class="background vh-100 d-flex w-100"
+    style="background-image: url(assets/home-office-336378_1280.jpg)">
+    <div class="container">
+        <p style="height: 15px;"></p>
+        <form #candidateForm="ngForm" (submit)="startTest()">
+            <div class="vertical-center form-group rounded" style="background: rgba(143, 143, 143, 0.80); height: 90%;">
+                <div class="row">
+                    <img class="col-2" src="assets\aubayCopy.png" alt="Aubay">
+                    <div class="col-8 align-self-center text-center">
+                        <h1 class="align-self-center">{{ session.test.testName }}</h1>
+                    </div>
+                </div>
+                <p></p>
+                <br>
+                <div class="row">
+                    <div class="pr-3 pl-4">
+                        <h3>
+                            <b><label for="name">Nome:</label></b>
+                        </h3>
+                    </div>
+                    <div class="col-80">
+                        <div style="height: 7px"></div>
+                        <input required [(ngModel)]="candidate.name" id="input" class="rounded" type="text" name="name">
+                        <div style="height: 30px"></div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="pr-4 pl-4">
+                        <h3>
+                            <b><label for="email">Email:</label></b>
+                        </h3>
+                    </div>
+                    <div class="col-80">
+                        <div style="height: 5px"></div>
+                        <input required (change)="emailValid=true" [(ngModel)]="candidate.email" id="input" class="rounded" [email]="true"
+                            name="email">
+                            <div [hidden]="emailValid" class="alert alert-danger">
+                                E-mail introduzido não corresponde ao e-mail fornecido à Aubay;
+                            </div>
+                    </div>
+                </div>
+                <p></p>
+                <h3  style="text-align: justify; text-justify: inter-word;" class="pl-1">
+                    <strong>Assim que iniciar o teste,
+                        o tempo começa a contar. O teste é de escolha múltipla e tem a duração de <u>{{ session.test.timer }}
+                            minutos.</u></strong></h3>
+                <br>
+                <h3 style="text-align: justify; text-justify: inter-word;"><strong>Indique todas as opções que são
+                        verdadeiras, <u>podendo estas conter, ou não, mais que uma
+                            opção
+                            verdadeira.</u></strong></h3>
+                <p style="height: 30px;"></p>
+                <!---->
+                <p id="centerButton"><button [disabled]="!candidateForm.form.valid" style="width: 125px" type="submit"
+                        class="btn align-text-bottom" value="Iniciar">Iniciar</button></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<div *ngIf="testRunning === 2" class="background vh-100 d-flex w-100">
+        <div class="container" >
+            <p style="height: 1px;"></p>
+            <form #testForm="ngForm" (submit)="submitTest()" class="rounded" style="background: rgba(143, 143, 143);height: 90%;">
+                <div class="vertical-center form-group rounded" style="height: 90%">
+                    <div class="row">
+                        <img class="pl-2 col-1" src="assets\aubayCopy.png" alt="Aubay">
+                        <p></p>
+                        <countdown class="col-11 align-self-center text-right" [config]="{leftTime: session.test.timer * 60}" (finished)="onFinished()"><i class="far fa-clock fa-2x"></i><h4>Tempo Restante: $!h!:$!m!:$!s!</h4></countdown>
+                    </div>
+                    <div *ngFor="let question of session.test.questions | paginate: { itemsPerPage: 1, currentPage: p }">
+                        <div class="row">
+                            <div class="pl-4">
+                                <br>
+                                <h3>
+                                    <b><label style="text-justify: auto" for="questionNumber">Pergunta {{p}} - {{question.question}} <br></label></b>
+                                </h3>
+                            </div>
+                        </div>
+                        <br>
+                        <div style="font-size: 22px;" class="pl-5" *ngFor="let option of question.options, let j=index">
+                            <div class="row">
+                                <div class="col-11">
+                                 {{getLetter(j)}}) {{option}}
+                                </div>
+                                <div class="col-1 text-right align-self-center">
+                                 <input (change)="onChange(j,p-1,$event.target.checked)" [checked]="checked[p-1][j]" name="checked" style="padding-bottom: 5px;zoom: 130%;" type="checkbox">
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="row">
+                         <div class="col text-center">
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <div style="height: 5%" class="row pb-5">
+                   <div class="col-12 text-center">
+                        <input [hidden]="p-1!=session.test.questions.length-1" class="text-center" type="submit" class="btn" value="Submeter Resolução">
+                   </div>
+            </div>
+            <div style="height: 5%" class="row">
+                <div class="col-11">
+                        <pagination-controls class="text-center" (pageChange)="p = $event;"></pagination-controls>
+                        </div>
+                    </div>
+                    
+            </form>
+            
+        </div>
+    </div>
+
+    <div *ngIf="testRunning === 3" class="background vh-100 d-flex w-100" style="background-image: url(assets/home-office-336378_1280.jpg)">
+        <div class="container">
+            <form #candidateForm="ngForm" (submit)="startTest()">
+                <p style="height: 200px;"></p>
+                <div class="vertical-center form-group rounded pt-3" style="background: rgba(143, 143, 143); height: 100%;">
+                 <div class="row">
+                  <img class="col-2 text-center" src="assets\aubayCopy.png" alt="Aubay">
+                <div class="col-10 align-self-center">
+                  <h2 class="text-center">Teste Submetido! Obrigado por teres realizado o teste {{candidate.name}}. Entraremos em contacto o mais brevemente possivel.</h2>
+                </div>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>

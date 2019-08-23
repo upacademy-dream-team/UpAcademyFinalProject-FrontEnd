@@ -5,6 +5,7 @@ import { ReplaySubject, Subscription, timer } from 'rxjs';
 import { Test } from 'src/app/core/models/test';
 import { TestServiceService } from 'src/app/core/services/test-service/test-service.service';
 import { SessionServiceService } from 'src/app/core/services/session-service/session-service.service';
+import { SessionAdd } from 'src/app/core/models/sessionAdd';
 
 
 @Component({
@@ -19,10 +20,13 @@ export class LinkGeradoComponent implements OnInit, OnDestroy {
   closeResult: string;
   @Input() messageLinkGerado;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
-  testeDetails = {recruiterEmail: null, numberOfHours: 1};
+  //testeDetails = {recruiterEmail: null, numberOfHours: 1};
+  testeDetails = new SessionAdd(); 
   private linkGenerated: boolean;
   private linkId: any;
   private timer: number;
+  private candidateEmail: string;
+  private button=false;
 
 
   constructor(
@@ -65,9 +69,14 @@ export class LinkGeradoComponent implements OnInit, OnDestroy {
 
   }
 
+  print(){
+    console.log(this.candidateEmail);
+  }
+
   generateLink() {
-    this.testeDetails.numberOfHours = this.timer;
+    this.testeDetails.numberOfDays = this.timer;
     this.testeDetails.recruiterEmail = this.userApi.getemail();
+    this.testeDetails.candidateEmail = this.candidateEmail;
     this.sessionService.addSession(this.testeDetails, this.selectedTest).subscribe(
       data => this.linkId = data , error => console.log(error.error),);
     this.linkGenerated = true;

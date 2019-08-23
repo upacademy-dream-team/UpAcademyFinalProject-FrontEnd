@@ -25,10 +25,9 @@ export class TestingPageComponent implements OnInit, OnDestroy {
   private solvedTest = new SolvedTest();
   private startTime;
   private finishTime;
-  private checked = [];
-  private myCheck = false;
+  private checked=[];
   private optionLetter: string;
-  letterArray = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+  letterArray = [ 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
   p: number = 1;
 
 
@@ -92,13 +91,10 @@ export class TestingPageComponent implements OnInit, OnDestroy {
     console.log(this.answer[indexQuestion]);
 
   }
-  print() {
-    console.log(this.checked);
-  }
 
-  submitTest() {
-    this.finishTime = new Date();
-    let secondsPassed = this.finishTime - this.startTime;
+  submitTest(){
+    this.finishTime=new Date();
+    let secondsPassed=this.finishTime-this.startTime;
     console.log(secondsPassed);
     this.candidate.emailRecruiter = this.emailRecruiter;
     this.solvedTest.answer = this.answer;
@@ -108,17 +104,17 @@ export class TestingPageComponent implements OnInit, OnDestroy {
     console.log(JSON.stringify(this.solvedTest));
     this.solvedService.addSolvedTest(this.solvedTest).subscribe(data => console.log(data), error => console.log(error.error));
     console.log("done");
+    this.testRunning = 3;
   }
 
   onFinished() {
     this.submitTest();
+    this.testRunning = 3;
   }
 
   getLetter(j: number) {
     return this.letterArray[j];
   }
 
-  submitPageChange() {
-    this.testRunning = 3;
-  }
+
 }

@@ -64,8 +64,8 @@
 <div *ngIf="testRunning === 2" class="background vh-100 d-flex w-100">
     <div class="container" >
         <p style="height: 1px;"></p>
-        <form #testForm="ngForm" (submit)="submitTest()" class="rounded" style="background: rgba(143, 143, 143, 0.80);height: 90%;">
-            <div class="vertical-center form-group rounded">
+        <form #testForm="ngForm" (submit)="submitTest()" class="rounded" style="background: rgba(143, 143, 143);height: 90%;">
+            <div class="vertical-center form-group rounded" style="height: 90%">
                 <div class="row">
                     <img class="pl-2 col-1" src="assets\aubayCopy.png" alt="Aubay">
                     <p></p>
@@ -81,28 +81,44 @@
                         </div>
                     </div>
                     <br>
-                    <div style="font-size: 24px;" class="pl-5" *ngFor="let option of question.options, let j=index">
+                    <div style="font-size: 22px;" class="pl-5" *ngFor="let option of question.options, let j=index">
                         <div class="row">
                             <div class="col-11">
                              {{getLetter(j)}}) {{option}}
                             </div>
                             <div class="col-1 text-right align-self-center">
+                             <div class="pretty p-icon p-smooth">
                              <input (change)="onChange(j,p-1,$event.target.checked)" [checked]="checked[p-1][j]" name="checked" style="padding-bottom: 5px;zoom: 130%;" type="checkbox">
+                             <div class="state p-success">
+                                 <i class="icon fa fa-check"></i>
+                                 <label></label>
+                             </div>
                             </div>
+                                   
+                                </div>
                         </div>
                         <br>
                     </div>
-                    <br>
                     <div class="row">
-                        <div class="col text-center">
-                    <input (click)="submitPageChange()" [hidden]="p-1!=test.questions.length-1" class="text-center" type="submit" class="btn" value="Submeter Resolução">
+                     <div class="col text-center">
+                    </div>
                 </div>
-                </div>
-                </div>
-                <br>
             </div>
+            <br>
+        </div>
+        <div style="height: 5%" class="row pb-5">
+               <div class="col-12 text-center">
+                    <input [hidden]="p-1!=test.questions.length-1" class="text-center" type="submit" class="btn" value="Submeter Resolução">
+               </div>
+        </div>
+        <div style="height: 5%" class="row">
+            <div class="col-11">
+                    <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
+                    </div>
+                </div>
+                
         </form>
-        <pagination-controls class="text-center" (pageChange)="p = $event; print()"></pagination-controls>
+        
     </div>
 </div>
 
@@ -110,11 +126,11 @@
     <div class="container">
         <form #candidateForm="ngForm" (submit)="startTest()">
             <p style="height: 200px;"></p>
-            <div class="vertical-center form-group rounded pt-3" style="background: rgba(143, 143, 143, 0.80); height: 100%;">
-             <div class="row" style="align-self-center">
+            <div class="vertical-center form-group rounded pt-3" style="background: rgba(143, 143, 143); height: 100%;">
+             <div class="row">
               <img class="col-2 text-center" src="assets\aubayCopy.png" alt="Aubay">
-            <div class="col-10">
-              <h2 style="text-justify: auto">Teste Submetido! Obrigado por teres realizado o teste {{candidate.name}}. Entraremos em contacto o mais brevemente possivel.</h2>
+            <div class="col-10 align-self-center">
+              <h2  class="text-center">Teste Submetido! Obrigado por teres realizado o teste {{candidate.name}}. Entraremos em contacto o mais brevemente possivel.</h2>
             </div>
             </div>
             </div>
