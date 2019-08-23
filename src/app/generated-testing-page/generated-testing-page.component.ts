@@ -22,6 +22,7 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
   private optionLetter: string;
   private answer=[];
   private checked=[];
+  private emailValid=true;
   letterArray = [ 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
   p: number = 1;
 
@@ -34,7 +35,9 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
         // tslint:disable-next-line: max-line-length
         this.sessionService.getSession(Number(params.id)).subscribe(
           data => 
-          { this.session = data; 
+          { this.session = data;
+            console.log("session");
+            console.log(this.session);
             this.testCheck();this.initiateAnswersObject(this.session);
             this.initiateCheckedObject(this.session); 
             console.log(this.session); },
@@ -57,8 +60,15 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
   }
 
   startTest() {
-    this.startTime=new Date();
-    this.testRunning = 2;
+    console.log("começou o teste");
+    console.log(this.session);
+    if(this.session.candidateEmail!=this.candidate.email)
+      this.emailValid=false;
+    else{
+      this.sessionService.beginSession(this.session.sessionID).subscribe(data => console.log(data), error=> console.log(error.error));
+      this.startTime=new Date();
+      this.testRunning = 2;
+    }
   }
 
   initiateAnswersObject(session){
