@@ -63,6 +63,7 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
     if(this.session.candidateEmail!=this.candidate.email)
       this.emailValid=false;
     else{
+      this.sessionService.beginSession(this.session.id);
       this.startTime=new Date();
       this.testRunning = 2;
     }
