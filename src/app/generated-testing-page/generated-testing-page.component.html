@@ -10,7 +10,7 @@
 <div *ngIf="testRunning === 1" class="background vh-100 d-flex w-100"
     style="background-image: url(assets/home-office-336378_1280.jpg)">
     <div class="container">
-        <p style="height: 15px;"></p>
+        <p style="height: 1px;"></p>
         <form #candidateForm="ngForm" (submit)="startTest()">
             <div class="vertical-center form-group rounded" style="background: rgba(143, 143, 143, 0.80); height: 90%;">
                 <div class="row">
@@ -28,7 +28,7 @@
                         </h3>
                     </div>
                     <div class="col-80">
-                        <div style="height: 7px"></div>
+                        <div style="height: 1px"></div>
                         <input required [(ngModel)]="candidate.name" id="input" class="rounded" type="text" name="name">
                         <div style="height: 30px"></div>
                     </div>
@@ -41,11 +41,13 @@
                     </div>
                     <div class="col-80">
                         <div style="height: 5px"></div>
-                        <input required (change)="emailValid=true" [(ngModel)]="candidate.email" id="input" class="rounded" [email]="true"
+                        <input required (click)="emailValid=true" [(ngModel)]="candidate.email" id="input" class="rounded" [email]="true"
                             name="email">
-                            <div [hidden]="emailValid" class="alert alert-danger">
-                                E-mail introduzido não corresponde ao e-mail fornecido à Aubay;
-                            </div>
+                    </div>
+                    <div class="col-12">
+                    <div  [hidden]="emailValid" class="alert alert-danger text-center">
+                           <span class="text-center"> E-mail introduzido não corresponde ao e-mail fornecido à Aubay;</span>
+                    </div>
                     </div>
                 </div>
                 <p></p>
@@ -95,7 +97,13 @@
                                  {{getLetter(j)}}) {{option}}
                                 </div>
                                 <div class="col-1 text-right align-self-center">
-                                 <input (change)="onChange(j,p-1,$event.target.checked)" [checked]="checked[p-1][j]" name="checked" style="padding-bottom: 5px;zoom: 130%;" type="checkbox">
+                                    <div class="pretty p-icon p-smooth">
+                                    <input (change)="onChange(j,p-1,$event.target.checked)" [checked]="checked[p-1][j]" name="checked" style="padding-bottom: 5px;zoom: 130%;" type="checkbox">
+                                    <div class="state p-success">
+                                        <i class="icon fa fa-check"></i>
+                                        <label></label>
+                                    </div>
+                                </div>
                                 </div>
                             </div>
                             <br>
@@ -131,7 +139,7 @@
                  <div class="row">
                   <img class="col-2 text-center" src="assets\aubayCopy.png" alt="Aubay">
                 <div class="col-10 align-self-center">
-                  <h2 class="text-center">Teste Submetido! Obrigado por teres realizado o teste {{candidate.name}}. Entraremos em contacto o mais brevemente possivel.</h2>
+                  <h2 class="text-justify">Teste Submetido! Obrigado por teres realizado o teste {{candidate.name}}. Entraremos em contacto o mais brevemente possivel.</h2>
                 </div>
                 </div>
                 </div>
