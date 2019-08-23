@@ -16,7 +16,7 @@ export class SessionServiceService {
   }
 
   public beginSession(idSession){
-    return this.http.get(this.apiUrl + 'begin/'+idSession);
+    return this.http.get(this.apiUrl + 'begin/'+idSession, {headers: this.header , responseType: 'text'});
   }
 
   public getSession(idSession){

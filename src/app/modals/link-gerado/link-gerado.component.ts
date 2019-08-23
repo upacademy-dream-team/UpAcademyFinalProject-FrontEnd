@@ -73,7 +73,7 @@ export class LinkGeradoComponent implements OnInit, OnDestroy {
   }
 
   generateLink() {
-    this.testeDetails.numberOfHours = this.timer;
+    this.testeDetails.numberOfDays = this.timer;
     this.testeDetails.recruiterEmail = this.userApi.getemail();
     this.testeDetails.candidateEmail = this.candidateEmail;
     this.sessionService.addSession(this.testeDetails, this.selectedTest).subscribe(

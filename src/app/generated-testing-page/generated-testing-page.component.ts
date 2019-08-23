@@ -36,6 +36,8 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
         this.sessionService.getSession(Number(params.id)).subscribe(
           data => 
           { this.session = data;
+            console.log("session");
+            console.log(this.session);
             this.testCheck();this.initiateAnswersObject(this.session);
             this.initiateCheckedObject(this.session); 
             console.log(this.session); },
@@ -63,7 +65,7 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
     if(this.session.candidateEmail!=this.candidate.email)
       this.emailValid=false;
     else{
-      this.sessionService.beginSession(this.session.id);
+      this.sessionService.beginSession(this.session.sessionID).subscribe(data => console.log(data), error=> console.log(error.error));
       this.startTime=new Date();
       this.testRunning = 2;
     }
