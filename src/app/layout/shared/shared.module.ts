@@ -22,6 +22,8 @@ import { DeleteTestComponent } from 'src/app/modals/delete-test/delete-test.comp
 import { DeleteResultadoCandidatoComponent } from 'src/app/modals/delete-resultado-candidato/delete-resultado-candidato.component';
 import { DeleteCategoryComponent } from 'src/app/modals/delete-category/delete-category.component';
 import { DeleteQuestionComponent } from 'src/app/modals/delete-question/delete-question.component';
+import { TestShowInModalComponent } from 'src/app/modals/test-show-in-modal/test-show-in-modal.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -47,6 +49,7 @@ import { DeleteQuestionComponent } from 'src/app/modals/delete-question/delete-q
     DeleteResultadoCandidatoComponent,
     DeleteCategoryComponent,
     DeleteQuestionComponent,
+    TestShowInModalComponent,
   ],
   imports: [
     CommonModule,
@@ -54,8 +57,9 @@ import { DeleteQuestionComponent } from 'src/app/modals/delete-question/delete-q
     FormsModule,
     NgbModule,
     NgxDatatableModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule,
+    NgxPaginationModule,
+   ],
   exports: [
     HeaderComponent,
     FooterComponent,
@@ -75,6 +79,7 @@ import { DeleteQuestionComponent } from 'src/app/modals/delete-question/delete-q
     DeleteResultadoCandidatoComponent,
     DeleteCategoryComponent,
     DeleteQuestionComponent,
+    TestShowInModalComponent,
   ],
   entryComponents: [
     DeleteConfirmationComponent,
@@ -88,6 +93,7 @@ import { DeleteQuestionComponent } from 'src/app/modals/delete-question/delete-q
     DeleteResultadoCandidatoComponent,
     DeleteCategoryComponent,
     DeleteQuestionComponent,
+    TestShowInModalComponent,
   ]
 })
 export class SharedModule { }
