@@ -5,7 +5,7 @@
                 <span (click)="sort()">{{column.name}}</span>
             </ng-template>
             <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-                <span>{{set_text(row.question,50)}}</span>
+                <span placement="right" ngbTooltip="{{row.question}}">{{set_text(row.question,50)}}</span>
             </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Categoria" prop="questions.category.category" [sortable]="true" [resizeable]="false">
