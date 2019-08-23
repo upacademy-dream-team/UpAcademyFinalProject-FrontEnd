@@ -26,6 +26,7 @@ export class LinkGeradoComponent implements OnInit, OnDestroy {
   private linkId: any;
   private timer: number;
   private candidateEmail: string;
+  private button=false;
 
 
   constructor(
