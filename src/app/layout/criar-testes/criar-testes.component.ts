@@ -29,6 +29,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   public options: any[]=[];
   public solution: any[]=[];
   maximum: any;
+  p:number = 1;
 
   constructor(config: NgbTabsetConfig, private testService: TestServiceService, private userService: UserServiceService, private categoryService: CategoryServiceService, private questionService: QuestionServiceService) {
     config.justify = 'center';
@@ -103,7 +104,6 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         this.allRandomQuestions.push(...res);
         this.randomQuestions$.next(this.allRandomQuestions);
       }
-      
     );
 
     this.numberOfQuestions=0;

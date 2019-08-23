@@ -15,6 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxTableComponent } from './shared/component/tables/ngx-Admin-Table/ngx-table.component';
 import { QuestionsAndCategoriesComponent } from './questions-and-categories/questions-and-categories.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -37,7 +38,8 @@ import { QuestionsAndCategoriesComponent } from './questions-and-categories/ques
     FormsModule,
     SharedModule,
     NgbModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    NgxPaginationModule
   ]
 })
 export class LayoutModule { }
