@@ -57,14 +57,15 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   private timer: number;
   private testName: string;
   private questions: Question[];
-  private questionFormValidity: boolean = false;
-  private questionError: string = "";
-  private testError: string = "";
-  private categoryError: string = "";
-  test = new Test();
-  private firstCheck: boolean = false;
+  private questionFormValidity: boolean= false;
+  private questionError: string="";
+  private testError: string="";
+  private categoryError: string="";
+  private successMessage=false;
+  test= new Test();
+  private firstCheck: boolean= false;
 
-  show() {
+  show(){
     console.log(this.categoryWithNumber.numberOfQuestions);
   }
 
@@ -134,13 +135,13 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.testService.addTest(this.test).subscribe(
       data => {
         console.log(data);
-        this.category = "";
-        this.timer = null;
-        this.testName = null;
-        this.numberOfQuestions = null;
-        this.allRandomQuestions = [];
-        this.testError = ""
-      },
+        this.category="";
+        this.timer=null;
+        this.testName=null;
+        this.numberOfQuestions=null;
+        this.allRandomQuestions=[];
+        this.testError=""
+        this.showSuccessMessage(2000);},
       error => {
         console.log(error);
         this.testError = error.error;
@@ -154,17 +155,25 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.categoryService.addCategory(this.categoryClass).subscribe(
       data => {
         console.log(data);
-        this.categoryString = null;
-        this.categoryError = "";
-      },
-      error => {
+        this.categoryString=null;
+        this.categoryError="";
+        this.showSuccessMessage(2000);
+      }, 
+      error=>{
         console.log(error);
         this.categoryError = error.error;
 
       });
   }
 
-  public addOption() {
+  public showSuccessMessage(time){
+    this.successMessage=true;
+    setTimeout(()=>{    //<<<---    using ()=> syntax
+      this.successMessage = false;
+    }, time);
+  }
+
+  public addOption(){
     this.numberOfTimes.push(1);
     console.log(this.options);
     this.options.push(null);
@@ -193,23 +202,24 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
       data => {
         console.log("entrou em data")
         console.log(data);
-        this.category = "";
-        this.questionClass = new Question();
-        this.options = [];
-        this.questionString = "";
-        this.solution = [];
-        this.numberOfTimes = [];
-        this.questionFormValidity = false;
-        this.firstCheck = false;
-        this.questionError = "";
-        this.categoryClass = new Category();
-      },
-      error => { console.log(error.error); this.questionError = error.error; });
+        this.category="";
+        this.questionClass=new Question();
+        this.options=[];
+        this.questionString="";
+        this.solution=[];
+        this.numberOfTimes=[];
+        this.questionFormValidity=false;
+        this.firstCheck=false;
+        this.questionError="";
+        this.categoryClass=new Category();
+        this.showSuccessMessage(2000);
+      }, 
+      error=>{console.log(error.error); this.questionError=error.error;});
   }
 
-  onChange(i: number, isChecked: boolean) {
-
-    if (isChecked) {
+  onChange(i:number, isChecked: boolean) {
+  
+    if(isChecked) {
       this.solution.push(i);
     } else {
       this.solution.splice(this.solution.indexOf(i), 1);
