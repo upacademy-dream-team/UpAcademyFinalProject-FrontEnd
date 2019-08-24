@@ -24,6 +24,10 @@ export class SolvedTestServiceService {
     );
   }
 
+  public getSolvedTest(id){
+    return this.http.get(this.apiUrl+id);
+  }
+
   public addSolvedTest(solved: SolvedTest) {
     console.log(solved);
     return this.http.post(this.apiUrl + 'add', solved, {headers: this.header , responseType:'text'});
