@@ -24,6 +24,7 @@ import { DeleteCategoryComponent } from 'src/app/modals/delete-category/delete-c
 import { DeleteQuestionComponent } from 'src/app/modals/delete-question/delete-question.component';
 import { TestShowInModalComponent } from 'src/app/modals/test-show-in-modal/test-show-in-modal.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { SwapQuestionsComponent } from 'src/app/modals/swap-questions/swap-questions.component';
 
 
 
@@ -50,6 +51,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DeleteCategoryComponent,
     DeleteQuestionComponent,
     TestShowInModalComponent,
+    SwapQuestionsComponent,
   ],
   imports: [
     CommonModule,
@@ -80,6 +82,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DeleteCategoryComponent,
     DeleteQuestionComponent,
     TestShowInModalComponent,
+    SwapQuestionsComponent,
   ],
   entryComponents: [
     DeleteConfirmationComponent,
@@ -94,6 +97,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     DeleteCategoryComponent,
     DeleteQuestionComponent,
     TestShowInModalComponent,
+    SwapQuestionsComponent,
   ]
 })
 export class SharedModule { }

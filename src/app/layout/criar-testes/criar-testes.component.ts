@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { NgbTabsetConfig, NgbTabChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabsetConfig, NgbTabChangeEvent, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Test } from 'src/app/core/models/test';
 import { Category } from 'src/app/core/models/category';
 import { ReplaySubject, Subscription } from 'rxjs';
@@ -9,6 +9,7 @@ import { QuestionServiceService } from 'src/app/core/services/question-service/q
 import { UserServiceService } from 'src/app/core';
 import { TestServiceService } from 'src/app/core/services/test-service/test-service.service';
 import { ClassField } from '@angular/compiler';
+import { SwapQuestionsComponent } from 'src/app/modals/swap-questions/swap-questions.component';
 
 @Component({
   selector: 'app-criar-testes',
@@ -30,7 +31,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   p:number = 1;
 
   // tslint:disable-next-line: max-line-length
-  constructor(config: NgbTabsetConfig, private testService: TestServiceService, private userService: UserServiceService, private categoryService: CategoryServiceService, private questionService: QuestionServiceService) {
+  constructor(private modalService: NgbModal , config: NgbTabsetConfig, private testService: TestServiceService, private userService: UserServiceService, private categoryService: CategoryServiceService, private questionService: QuestionServiceService) {
     config.justify = 'center';
     config.type = 'pills';
     this.categories$ = this.categoryService.categories$;
@@ -224,4 +225,13 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   onSubmit() {
     console.log("hi!");
   }
+
+  changeQuestion() {
+
+    const modalRef = this.modalService.open(SwapQuestionsComponent);
+
+    modalRef.componentInstance.messageDeleteTeste = 'Deseja mesmo Alterar a Pergunta?';
+
+  }
+
 }
