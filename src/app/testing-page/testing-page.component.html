@@ -87,15 +87,14 @@
                              {{getLetter(j)}}) {{option}}
                             </div>
                             <div class="col-1 text-right align-self-center">
-                             <div class="pretty p-icon p-smooth">
-                             <input (change)="onChange(j,p-1,$event.target.checked)" [checked]="checked[p-1][j]" name="checked" style="padding-bottom: 5px;zoom: 130%;" type="checkbox">
-                             <div class="state p-success">
+                              <div class="pretty p-icon p-smooth">
+                               <input (change)="onChange(j,p-1,$event.target.checked)" [checked]="checked[p-1][j]" name="checked" style="padding-bottom: 5px;zoom: 130%;" type="checkbox">
+                               <div class="state p-success">
                                  <i class="icon fa fa-check"></i>
                                  <label></label>
-                             </div>
+                               </div>
+                              </div>            
                             </div>
-                                   
-                                </div>
                         </div>
                         <br>
                     </div>
