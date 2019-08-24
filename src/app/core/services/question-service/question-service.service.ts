@@ -28,6 +28,15 @@ export class QuestionServiceService {
     );
   }
 
+  public getAllQuestionsOfCategory(category){
+    return this.http.get(this.apiUrl+"filter?category="+category)/*.subscribe(
+      (res: any) => {
+        this.questions= res;
+        this.questions$.next(res);
+      }
+    );*/
+  }
+
   public addQuestion(question: Question) {
     console.log(question);
     return this.http.post(this.apiUrl + 'add', question, {headers: this.header , responseType:'text'});
