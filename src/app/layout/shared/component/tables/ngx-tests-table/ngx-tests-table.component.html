@@ -51,12 +51,12 @@
                 <span id="score" *ngIf="row.test.averageScore <= 10 && row.test.averageScore >= 0" style="color:#FF0000;">{{row.test.averageScore}}%</span>
             </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Apagar Enunciado" [resizeable]="false">
+        <ngx-datatable-column name="Apagar" [resizeable]="false">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                 <span>{{column.name}}</span>
             </ng-template>
             <ng-template let-row="row" ngx-datatable-cell-template>
-                <span><i style="margin-left: 55px" id="icon" class="fas fa-trash fa-lg" (click)= "onClickFas(row, $event)"></i></span>
+                <span><i style="margin-left: 18px" id="icon" class="fas fa-trash fa-lg" (click)= "onClickFas(row, $event)"></i></span>
             </ng-template>
         </ngx-datatable-column>
     </ngx-datatable>
