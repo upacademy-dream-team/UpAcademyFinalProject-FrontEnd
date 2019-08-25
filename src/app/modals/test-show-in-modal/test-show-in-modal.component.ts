@@ -17,6 +17,7 @@ export class TestShowInModalComponent implements OnInit {
   @Input() TestQuestions;
   @Input() TestAnswers;
   @Input() messageTestTotal;
+  public myTest;
 
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
@@ -27,7 +28,8 @@ export class TestShowInModalComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    console.log(this.messageTestTotal);
+    console.log(this.messageTestTotal.id);
+    this.testService.getTestWithSolutions(this.messageTestTotal.id).subscribe(data=> {this.myTest=data; console.log(data)});
   }
 
   open(content: any) {

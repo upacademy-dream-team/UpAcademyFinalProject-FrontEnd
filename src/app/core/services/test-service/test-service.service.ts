@@ -36,6 +36,14 @@ export class TestServiceService {
     );
   }
 
+  public getTestWithSolutions(id: number){
+    return this.http.get(this.apiUrl + 'get/' + id+'/'+true)/*.subscribe(
+      (res:any) => {
+        this.test$.next(res);
+      }
+    );*/
+  }
+
   public addTest(test: Test) {
     console.log(test);
     return this.http.post(this.apiUrl + 'add', test, {headers: this.header , responseType:'text'});
