@@ -4,6 +4,7 @@ import { QuestionServiceService } from 'src/app/core/services/question-service/q
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ReplaySubject } from 'rxjs';
 import { DeleteQuestionComponent } from 'src/app/modals/delete-question/delete-question.component';
+import { CategoryServiceService } from 'src/app/core/services/category-service/category-service.service';
 
 @Component({
   selector: 'app-ngx-questions-table',
@@ -23,6 +24,7 @@ export class NgxQuestionsTableComponent implements OnInit {
 
   constructor(
     private userApi: QuestionServiceService,
+    private userApi2: CategoryServiceService,
     private modalService: NgbModal) {
   }
 
@@ -66,6 +68,7 @@ export class NgxQuestionsTableComponent implements OnInit {
           data => {
             console.log(data);
             this.userApi.getAllQuestions();
+            this.userApi2.getAllCategories();
             this.modalService.dismissAll();
           } , (error) => {
             console.log(error.error);

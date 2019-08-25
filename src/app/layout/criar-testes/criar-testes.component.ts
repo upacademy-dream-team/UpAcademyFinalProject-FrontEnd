@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import {NgbTabsetConfig, NgbTabChangeEvent} from '@ng-bootstrap/ng-bootstrap';
+import { NgbTabsetConfig, NgbTabChangeEvent, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Test } from 'src/app/core/models/test';
 import { Category } from 'src/app/core/models/category';
 import { ReplaySubject, Subscription } from 'rxjs';
@@ -9,6 +9,7 @@ import { QuestionServiceService } from 'src/app/core/services/question-service/q
 import { UserServiceService } from 'src/app/core';
 import { TestServiceService } from 'src/app/core/services/test-service/test-service.service';
 import { ClassField } from '@angular/compiler';
+import { SwapQuestionsComponent } from 'src/app/modals/swap-questions/swap-questions.component';
 
 @Component({
   selector: 'app-criar-testes',
@@ -17,21 +18,20 @@ import { ClassField } from '@angular/compiler';
   providers: [NgbTabsetConfig]
 })
 export class CriarTestesComponent implements OnInit, OnDestroy {
-
-  
   public categories$: ReplaySubject<Category[]>;
   public randomQuestions$: ReplaySubject<Question[]>;
-  public allRandomQuestions=[];
-  public allCategories=[];
+  public allRandomQuestions = [];
+  public allCategories = [];
   private subscriptionCategories: Subscription;
   public categories;
-  public numberOfTimes: number[]=[];
-  public options: any[]=[];
-  public solution: any[]=[];
+  public numberOfTimes: number[] = [];
+  public options: any[] = [];
+  public solution: any[] = [];
   maximum: any;
   p:number = 1;
 
-  constructor(config: NgbTabsetConfig, private testService: TestServiceService, private userService: UserServiceService, private categoryService: CategoryServiceService, private questionService: QuestionServiceService) {
+  // tslint:disable-next-line: max-line-length
+  constructor(private modalService: NgbModal , config: NgbTabsetConfig, private testService: TestServiceService, private userService: UserServiceService, private categoryService: CategoryServiceService, private questionService: QuestionServiceService) {
     config.justify = 'center';
     config.type = 'pills';
     this.categories$ = this.categoryService.categories$;
@@ -42,12 +42,12 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.categoryService.getAllCategories();
-    //console.log(this.categories);
-    //console.log(this.subscriptionCategories);
-    this.categories$.subscribe(data => this.categories=data);
+    // console.log(this.categories);
+    // console.log(this.subscriptionCategories);
+    this.categories$.subscribe(data => this.categories = data);
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.subscriptionCategories.unsubscribe();
   }
 
@@ -61,6 +61,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   private questionError: string="";
   private testError: string="";
   private categoryError: string="";
+  private successMessage=false;
   test= new Test();
   private firstCheck: boolean= false;
 
@@ -68,70 +69,69 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     console.log(this.categoryWithNumber.numberOfQuestions);
   }
 
-  public checkValidityQuestion(){
+  public checkValidityQuestion() {
     console.log(this.options);
     console.log(this.solution);
-    for(let i=0; i<this.options.length; i++)
-      if(this.options[i]=="" || this.options[i]==null)
-        {this.questionFormValidity=false; return;}
-    this.questionFormValidity=true;
+    for (let i = 0; i < this.options.length; i++)
+      if (this.options[i] == "" || this.options[i] == null) { this.questionFormValidity = false; return; }
+    this.questionFormValidity = true;
     return;
   }
-  
-  public removeCategory(category){
-    for(let i=0; i<this.categories.length; i++)
-      if(this.categories[i].category.category==category)
-        this.categories.splice(i,1);
+
+  public removeCategory(category) {
+    for (let i = 0; i < this.categories.length; i++)
+      if (this.categories[i].category.category == category)
+        this.categories.splice(i, 1);
   }
   ///adding category
-  categoryString : string;
+  categoryString: string;
   categoryClass = new Category();
 
   ///adding question
   questionString: string;
-  questionClass= new Question();
+  questionClass = new Question();
 
-  public showMessage(){
+  public showMessage() {
     console.log("tem de inserir solução")
   }
 
-  public addInfo(){
+  public addInfo() {
     console.log(this.categories);
     this.allCategories.push(this.category);
     //this.categoryService.getAllCategories();
-    this.questionService.getRandomQuestions(this.category,this.numberOfQuestions).subscribe(
+    this.questionService.getRandomQuestions(this.category, this.numberOfQuestions).subscribe(
       (res: any) => {
         this.allRandomQuestions.push(...res);
         this.randomQuestions$.next(this.allRandomQuestions);
       }
     );
 
-    this.numberOfQuestions=0;
+    this.numberOfQuestions = 0;
     console.log("aqui");
     console.log(this.category);
     this.removeCategory(this.category);
     console.log(this.categories);
-    this.category="";
-    this.maximum=0;
-   // return this.categories$.subscribe(/*data=> console.log(data)*/);
+    this.category = "";
+    this.maximum = 0;
+    // return this.categories$.subscribe(/*data=> console.log(data)*/);
   }
 
-  public getNumberOfQuestionsByCategory(){
+  public getNumberOfQuestionsByCategory() {
     console.log("entrou aqui");
     console.log(this.category);
-    for(let i=0; i<this.categories.length; i++)
-      if(this.categories[i].category.category==this.category)
-       this.maximum=this.categories[i].numberOfQuestions;
+    for (let i = 0; i < this.categories.length; i++)
+      if (this.categories[i].category.category == this.category)
+        this.maximum = this.categories[i].numberOfQuestions;
     console.log(this.maximum);
   }
 
-  public submitTest(){
+  public submitTest() {
     this.categoryService.getAllCategories();
     console.log(this.allRandomQuestions);
-    this.test.questions=this.allRandomQuestions;
-    this.test.testName=this.testName;
-    this.test.author=this.userService.getCurrentUser();
-    this.test.timer=this.timer;
+    this.test.questions = this.allRandomQuestions;
+    this.test.testName = this.testName;
+    this.test.author = this.userService.getCurrentUser();
+    this.test.timer = this.timer;
     this.testService.addTest(this.test).subscribe(
       data => {
         console.log(data);
@@ -140,28 +140,37 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         this.testName=null;
         this.numberOfQuestions=null;
         this.allRandomQuestions=[];
-        this.testError=""},
+        this.testError=""
+        this.showSuccessMessage(2000);},
       error => {
         console.log(error);
-        this.testError=error.error;
-        });
-    
+        this.testError = error.error;
+      });
+
   }
-  //criar função que 
-  public submitCategory(){
+  //criar função que
+  public submitCategory() {
     console.log(this.categoryString);
-    this.categoryClass.category=this.categoryString;
+    this.categoryClass.category = this.categoryString;
     this.categoryService.addCategory(this.categoryClass).subscribe(
-      data=> {
+      data => {
         console.log(data);
         this.categoryString=null;
         this.categoryError="";
+        this.showSuccessMessage(2000);
       }, 
       error=>{
         console.log(error);
-        this.categoryError=error.error;
-        
+        this.categoryError = error.error;
+
       });
+  }
+
+  public showSuccessMessage(time){
+    this.successMessage=true;
+    setTimeout(()=>{    //<<<---    using ()=> syntax
+      this.successMessage = false;
+    }, time);
   }
 
   public addOption(){
@@ -171,26 +180,27 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.checkValidityQuestion();
   }
 
-  public getIDByCategory(category){
-    for(let i=0; i<this.categories.length; i++)
-      if(this.categories[i].category.category==category) return this.categories[i].category.id;
-    return -1;
-  }
-  
-  public getCategoryByName(category){
-    for(let i=0; i<this.categories.length; i++)
-      if(this.categories[i].category.category==category) return this.categories[i].category;
+  public getIDByCategory(category) {
+    for (let i = 0; i < this.categories.length; i++)
+      if (this.categories[i].category.category == category) return this.categories[i].category.id;
     return -1;
   }
 
-  public addQuestion(){
-    this.categoryClass=this.getCategoryByName(this.category);
-    this.questionClass.category=this.categoryClass;
-    this.questionClass.options=this.options;
-    this.questionClass.question=this.questionString;
-    this.questionClass.solution=this.solution;
+  public getCategoryByName(category) {
+    for (let i = 0; i < this.categories.length; i++)
+      if (this.categories[i].category.category == category) return this.categories[i].category;
+    return -1;
+  }
+
+  public addQuestion() {
+    this.categoryClass = this.getCategoryByName(this.category);
+    this.questionClass.category = this.categoryClass;
+    this.questionClass.options = this.options;
+    this.questionClass.question = this.questionString;
+    this.questionClass.solution = this.solution;
     this.questionService.addQuestion(this.questionClass).subscribe(
-      data=> {console.log("entrou em data")
+      data => {
+        console.log("entrou em data")
         console.log(data);
         this.category="";
         this.questionClass=new Question();
@@ -202,6 +212,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         this.firstCheck=false;
         this.questionError="";
         this.categoryClass=new Category();
+        this.showSuccessMessage(2000);
       }, 
       error=>{console.log(error.error); this.questionError=error.error;});
   }
@@ -211,17 +222,26 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     if(isChecked) {
       this.solution.push(i);
     } else {
-      this.solution.splice(this.solution.indexOf(i),1);
+      this.solution.splice(this.solution.indexOf(i), 1);
     }
   }
 
-  reset($event: NgbTabChangeEvent){
+  reset($event: NgbTabChangeEvent) {
     this.categoryService.getAllCategories();
-    this.category="";
-    this.categories$.subscribe(data => this.categories=data);
+    this.category = "";
+    this.categories$.subscribe(data => this.categories = data);
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log("hi!");
   }
+
+  changeQuestion() {
+
+    const modalRef = this.modalService.open(SwapQuestionsComponent);
+
+    modalRef.componentInstance.messageDeleteTeste = 'Deseja mesmo Alterar a Pergunta?';
+
+  }
+
 }
