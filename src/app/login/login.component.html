@@ -1,12 +1,16 @@
 <app-particles></app-particles>
-<div class="login">
-
-  <div class="wrapper">
+<div class="text-center pt-3 pb-5 row  position-fixed w-100">
+  <div class="col">
     <a href="https://www.aubay.pt//" target="_blank">
-      <img src="assets/aubayCopy.png" class="w-100" />
-    </a>
-
-    <form role="form">
+    <img src="assets\aubayCopy.png" class="w-100" style="max-width:100px; width: auto" />
+     </a>
+     <span class="font-weight-bold" style="color:rgb(38, 102, 145); font-size: 20px;"> Knownledge Testing Platform </span>
+  </div>
+</div>
+<div class="login vh-100 d-flex position-fixed w-100">
+  <div class="wrapper p-3 rounded "  style="box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);" >
+      <img src="assets\blank-profile-picture.png" class="w-100 pb-3" style="max-width:150px; width: auto" />
+    <form role="form" >
       <div class="form-content">
         <div class="form-group">
           <input class="w-100" name="username" type="username" (click)="checkReset()" [(ngModel)]="user.username" placeholder="username / email" />
@@ -22,4 +26,5 @@
       </ngb-alert>
     </form>
   </div>
+  
 

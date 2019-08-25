@@ -33,7 +33,7 @@ export class NgxResultsTableComponent implements OnInit {
 
     // filter our data
     const temp = this.temp.filter(function (d: any) {
-      return d.candidate.name.toLowerCase().indexOf(val) !== -1 || !val;
+      return d.solvedTest.candidate.name.toLowerCase().indexOf(val) !== -1 || !val;
     });
 
     this.rows = temp;
