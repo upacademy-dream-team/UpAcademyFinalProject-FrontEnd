@@ -62,11 +62,28 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   private testError: string="";
   private categoryError: string="";
   private successMessage=false;
+  private randomQuestionIDs=[];
   test= new Test();
   private firstCheck: boolean= false;
 
   show(){
     console.log(this.categoryWithNumber.numberOfQuestions);
+  }
+
+  public checkIfQuestionAlreadyInUse(question){
+    if(this.randomQuestionIDs.indexOf(question.id)==-1)
+      return false;
+    return true;
+  }
+
+  //this function is used so that one might use checkboxes as radio objects
+  public uncheckOthers(checkArray, newCheckedIndex){
+    let indexToUncheck;
+    if(checkArray.indexOf(true)==newCheckedIndex)
+      indexToUncheck=checkArray.lastIndexOf(true);
+    else
+      indexToUncheck=checkArray.indexOf(true);
+    checkArray[indexToUncheck]=false;
   }
 
   public checkValidityQuestion() {
@@ -101,16 +118,15 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     //this.categoryService.getAllCategories();
     this.questionService.getRandomQuestions(this.category, this.numberOfQuestions).subscribe(
       (res: any) => {
+        for(let i=0; i<res.length;i++)
+          this.randomQuestionIDs.push(res[i].id);
         this.allRandomQuestions.push(...res);
         this.randomQuestions$.next(this.allRandomQuestions);
       }
     );
 
     this.numberOfQuestions = 0;
-    console.log("aqui");
-    console.log(this.category);
     this.removeCategory(this.category);
-    console.log(this.categories);
     this.category = "";
     this.maximum = 0;
     // return this.categories$.subscribe(/*data=> console.log(data)*/);
