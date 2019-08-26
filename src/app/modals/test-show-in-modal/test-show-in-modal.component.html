@@ -19,7 +19,13 @@
             </div>
         </div>
     </div>
+    <canvas baseChart
+    [data]="doughnutChartData"
+    [labels]="doughnutChartLabels"
+    [chartType]="doughnutChartType">
+  </canvas>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-outline-secondary" (click)="cancel()">OK</button>
 </div>
+

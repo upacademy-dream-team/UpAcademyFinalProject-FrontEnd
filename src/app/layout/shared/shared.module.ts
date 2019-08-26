@@ -26,6 +26,7 @@ import { TestShowInModalComponent } from 'src/app/modals/test-show-in-modal/test
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SwapQuestionsComponent } from 'src/app/modals/swap-questions/swap-questions.component';
 import { SubmitTestModalComponent } from 'src/app/modals/submit-test-modal/submit-test-modal.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 
@@ -62,7 +63,8 @@ import { SubmitTestModalComponent } from 'src/app/modals/submit-test-modal/submi
     NgbModule,
     NgxDatatableModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ChartsModule
    ],
   exports: [
     HeaderComponent,

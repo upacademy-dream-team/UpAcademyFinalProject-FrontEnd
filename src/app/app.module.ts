@@ -15,6 +15,8 @@ import { GeneratedTestingPageComponent } from './generated-testing-page/generate
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CountdownModule } from 'ngx-countdown';
 import { SubmitTestModalComponent } from './modals/submit-test-modal/submit-test-modal.component';
+import { ChartsModule } from 'ng2-charts';
+
 
 
 
@@ -27,7 +29,7 @@ import { SubmitTestModalComponent } from './modals/submit-test-modal/submit-test
     NoPermissionComponent,
     ParticlesComponent,
     GeneratedTestingPageComponent,
-    SubmitTestModalComponent,
+    SubmitTestModalComponent
   ],
   imports: [
     HttpClientModule,
@@ -37,7 +39,8 @@ import { SubmitTestModalComponent } from './modals/submit-test-modal/submit-test
     NgbModule,
     NgxDatatableModule,
     NgxPaginationModule,
-    CountdownModule
+    CountdownModule,
+    ChartsModule
     ],
     exports: [
       SubmitTestModalComponent,
