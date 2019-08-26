@@ -18,6 +18,7 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
   private candidate= new Candidate();
   private solvedTest = new SolvedTest();
   private startTime;
+  private diff;
   private finishTime;
   private optionLetter: string;
   private answer=[];
@@ -65,7 +66,7 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
     if(this.session.candidateEmail!=this.candidate.email)
       this.emailValid=false;
     else{
-      this.sessionService.beginSession(this.session.sessionID).subscribe(data => console.log(data), error=> console.log(error.error));
+      this.sessionService.beginSession(this.session.sessionID).subscribe(data => this.diff=data, error=> console.log(error.error));
       this.startTime=new Date();
       this.testRunning = 2;
     }
