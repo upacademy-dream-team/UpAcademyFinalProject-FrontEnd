@@ -9,7 +9,7 @@ import { ReplaySubject } from 'rxjs';
 })
 export class UserServiceService {
 
-    private apiUrl = 'http://localhost:8080/Testes-RecemLicenciados/api/user/';
+    private apiUrl = 'http://localhost:8080/Testes-RecemLicenciados/api/users/';
 
     // tslint:disable-next-line: variable-name
     private _currentUser: User = new User();
@@ -61,7 +61,7 @@ export class UserServiceService {
 
     public addUser(user: User) {
       console.log(user);
-      return this.http.post(this.apiUrl + 'add', user, {headers: this.header , responseType: 'text'});
+      return this.http.post(this.apiUrl, user, {headers: this.header , responseType: 'text'});
     }
 
     public logout() {
@@ -72,22 +72,20 @@ export class UserServiceService {
       this._currentUser = currentUser;
     }
     public getAllUsersWithCurrentUser() {
-      return this.http.get(this.apiUrl + 'all').subscribe(
+      return this.http.get(this.apiUrl).subscribe(
         (res: any) => {
           this.users = res;
           this.users$.next(res);
-          console.log( 'Zre carlos', res);
         }
       );
     }
 
     public getAllUsers() {
-      return this.http.get(this.apiUrl + 'all/'+ this._currentUser.id).subscribe(
+      return this.http.get(this.apiUrl + 'allBut/'+ this._currentUser.id).subscribe(
         (res: any) => {
           console.log(this._currentUser.id);
           this.users = res;
           this.users$.next(res);
-          console.log( 'Zre carlos', res);
         }
       );
     }
@@ -98,12 +96,12 @@ export class UserServiceService {
     }
 
     public editUser(user: User) {
-      return this.http.put(this.apiUrl + 'edit', user);
+      return this.http.put(this.apiUrl, user);
     }
 
     // tslint:disable-next-line: ban-types
     public removeUser(id: Number ) {
-      return this.http.delete(this.apiUrl + 'remove/' + id, {headers: this.header , responseType: 'text'});
+      return this.http.delete(this.apiUrl + id, {headers: this.header , responseType: 'text'});
     }
 
     // tslint:disable-next-line: ban-types
