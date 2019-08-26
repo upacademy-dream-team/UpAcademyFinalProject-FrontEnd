@@ -83,18 +83,19 @@ export class LinkGeradoComponent implements OnInit, OnDestroy {
     this.sessionService.addSession(this.testeDetails, this.selectedTest).subscribe(
       data => {
         this.linkId = data;
-        let messageLink="http://localhost:4200/generatedTestPage/"+this.linkId;
-        let email=new Email();
-        email.body="<p>Aceda ao seguinte link para começar o teste</p><br>"+messageLink;
-        email.emailTo=this.candidateEmail;
-        email.subject="Teste da Aubay";
-        this.emailService.sendEmail(email).subscribe(data=>console.log(data), error=>console.log(error.error));
+        this.linkGenerated = true;
       }, 
       error => console.log(error.error),);
-    this.linkGenerated = true;
+
   }
 
-  sendTest() { 
+  sendTest() {
+    let messageLink="http://localhost:4200/generatedTestPage/"+this.linkId;
+    let email=new Email();
+    email.body="<p>Aceda ao seguinte link para começar o teste</p><br>"+messageLink;
+    email.emailTo=this.candidateEmail;
+    email.subject="Teste da Aubay";
+    this.emailService.sendEmail(email).subscribe(data=>console.log(data), error=>console.log(error.error));
     // this.passEntry.emit('A password vai ser resetada');
     // console.log(this.messageLinkGerado);
     this.modalService.dismissAll();
