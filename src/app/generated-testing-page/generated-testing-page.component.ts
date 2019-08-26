@@ -6,6 +6,7 @@ import { SolvedTest } from '../core/models/solvedTest';
 import { SolvedTestServiceService } from '../core/services/solvedTest-service/solved-test-service.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SubmitTestModalComponent } from '../modals/submit-test-modal/submit-test-modal.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-generated-testing-page',
@@ -27,12 +28,16 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
   private emailValid=true;
   letterArray = [ 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
   p: number = 1;
+  publicIP: string;
+  Country: any;
+
 
   constructor(
     private modalService: NgbModal,
     private route: ActivatedRoute,
     private sessionService: SessionServiceService,
-    private solvedService: SolvedTestServiceService) {
+    private solvedService: SolvedTestServiceService,
+    private http: HttpClient) {
     this.route.params.subscribe(
       params => {
         // tslint:disable-next-line: max-line-length
@@ -46,6 +51,15 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
             console.log(this.session); },
           error => { this.testRunning = -1; })
       });
+
+    /**
+     * To read public IP
+     */
+    this.http.get('https://api.ipify.org?format=json').subscribe(data => {
+      this.publicIP=data['ip']; console.log(data);  this.http.get('http://api.ipstack.com/'+ this.publicIP +'?access_key=acbb08b30d205f5018b80ebd45929e7a&fields=country_name').subscribe(country => {
+        this.Country = country; console.log(country);
+        })
+    });
 
   }
 
@@ -148,3 +162,5 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
 
 
 }
+
+ 

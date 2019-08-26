@@ -25,4 +25,19 @@
     }
     
 }
+
+.active {
+    color: white !important;
+    background-color: #ea7451;
+}
+#nav{
+
+    background:#e64415;
+
+}
+
+.dropdown-toggle::after {
+    display:none;
+}
+
     

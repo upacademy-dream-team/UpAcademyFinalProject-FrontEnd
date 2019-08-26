@@ -160,7 +160,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         this.numberOfQuestions=null;
         this.allRandomQuestions=[];
         this.testError=""
-        this.showSuccessMessage(2000);},
+        this.showSuccessMessage(3000);},
       error => {
         console.log(error);
         this.testError = error.error;
@@ -176,7 +176,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         console.log(data);
         this.categoryString=null;
         this.categoryError="";
-        this.showSuccessMessage(2000);
+        this.showSuccessMessage(3000);
       }, 
       error=>{
         console.log(error);
@@ -231,7 +231,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         this.firstCheck=false;
         this.questionError="";
         this.categoryClass=new Category();
-        this.showSuccessMessage(2000);
+        this.showSuccessMessage(3000);
       }, 
       error=>{console.log(error.error); this.questionError=error.error;});
   }
@@ -251,8 +251,19 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.categories$.subscribe(data => this.categories = data);
   }
 
+  errorAlertCategoriesReset(){
+    this.categoryError = '';
+  }
+
+  errorAlertQuestionsReset(){
+    this.questionError = '';
+  }
+
+  errorAlertTestReset() {
+    this.testError = '';
+  }
+
   onSubmit() {
-    console.log("hi!");
   }
 
   changeQuestion(nowIndex) {
