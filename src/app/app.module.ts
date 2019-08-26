@@ -14,6 +14,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { GeneratedTestingPageComponent } from './generated-testing-page/generated-testing-page.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CountdownModule } from 'ngx-countdown';
+import { SubmitTestModalComponent } from './modals/submit-test-modal/submit-test-modal.component';
 
 
 
@@ -26,6 +27,7 @@ import { CountdownModule } from 'ngx-countdown';
     NoPermissionComponent,
     ParticlesComponent,
     GeneratedTestingPageComponent,
+    SubmitTestModalComponent,
   ],
   imports: [
     HttpClientModule,
@@ -37,6 +39,12 @@ import { CountdownModule } from 'ngx-countdown';
     NgxPaginationModule,
     CountdownModule
     ],
+    exports: [
+      SubmitTestModalComponent,
+    ],
+  entryComponents: [
+    SubmitTestModalComponent,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

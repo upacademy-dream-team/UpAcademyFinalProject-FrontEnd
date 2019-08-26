@@ -1,10 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SessionServiceService } from '../core/services/session-service/session-service.service';
-import { error } from '@angular/compiler/src/util';
 import { Candidate } from '../core/models/candidate';
 import { SolvedTest } from '../core/models/solvedTest';
 import { SolvedTestServiceService } from '../core/services/solvedTest-service/solved-test-service.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SubmitTestModalComponent } from '../modals/submit-test-modal/submit-test-modal.component';
 
 @Component({
   selector: 'app-generated-testing-page',
@@ -27,6 +28,7 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
   p: number = 1;
 
   constructor(
+    private modalService: NgbModal,
     private route: ActivatedRoute,
     private sessionService: SessionServiceService,
     private solvedService: SolvedTestServiceService) {
@@ -34,12 +36,12 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
       params => {
         // tslint:disable-next-line: max-line-length
         this.sessionService.getSession(Number(params.id)).subscribe(
-          data => 
+          data =>
           { this.session = data;
             console.log("session");
             console.log(this.session);
             this.testCheck();this.initiateAnswersObject(this.session);
-            this.initiateCheckedObject(this.session); 
+            this.initiateCheckedObject(this.session);
             console.log(this.session); },
           error => { this.testRunning = -1; })
       });
@@ -79,7 +81,7 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
     }
     console.log(this.answer);
   }
-  
+
   initiateCheckedObject(session){
     let numberOfQuestions=session.test.questions.length;
     for(let question=0;question<numberOfQuestions; question++){
@@ -116,6 +118,7 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
     console.log(JSON.stringify(this.solvedTest));
     this.solvedService.addSolvedTestFromSession(this.solvedTest, this.session.sessionID).subscribe(data=> console.log(data), error=>console.log(error.error));
     console.log("done");
+    this.modalService.dismissAll();
     this.testRunning = 3;
   }
 
@@ -126,6 +129,20 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
 
   getLetter(j:number){
    return this.letterArray[j];
+  }
+
+  submitTestModaL() {
+
+    const modalRef = this.modalService.open(SubmitTestModalComponent);
+
+    modalRef.componentInstance.messageSubmitedTest = 'Deseja mesmo Submeter o Enunciado?';
+
+    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+
+      this.submitTest();
+
+    });
+
   }
 
 

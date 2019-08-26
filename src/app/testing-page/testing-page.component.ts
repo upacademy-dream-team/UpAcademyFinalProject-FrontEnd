@@ -6,6 +6,8 @@ import { Answer } from '../core/models/answer';
 import { Candidate } from '../core/models/candidate';
 import { SolvedTest } from '../core/models/solvedTest';
 import { SolvedTestServiceService } from '../core/services/solvedTest-service/solved-test-service.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SubmitTestModalComponent } from '../modals/submit-test-modal/submit-test-modal.component';
 
 @Component({
   selector: 'app-testing-page',
@@ -32,6 +34,7 @@ export class TestingPageComponent implements OnInit, OnDestroy {
 
 
   constructor(
+    private modalService: NgbModal,
     private testService: TestServiceService,
     private solvedService: SolvedTestServiceService) {
     this.test$ = this.testService.test$;
@@ -104,6 +107,7 @@ export class TestingPageComponent implements OnInit, OnDestroy {
     console.log(JSON.stringify(this.solvedTest));
     this.solvedService.addSolvedTest(this.solvedTest).subscribe(data => console.log(data), error => console.log(error.error));
     console.log("done");
+    this.modalService.dismissAll();
     this.testRunning = 3;
   }
 
@@ -116,5 +120,18 @@ export class TestingPageComponent implements OnInit, OnDestroy {
     return this.letterArray[j];
   }
 
+  submitTestModaL() {
+
+    const modalRef = this.modalService.open(SubmitTestModalComponent);
+
+    modalRef.componentInstance.messageSubmitedTest = 'Deseja mesmo Submeter o Enunciado?';
+
+    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+
+      this.submitTest();
+
+    });
+
+  }
 
 }

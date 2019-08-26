@@ -25,6 +25,8 @@ import { DeleteQuestionComponent } from 'src/app/modals/delete-question/delete-q
 import { TestShowInModalComponent } from 'src/app/modals/test-show-in-modal/test-show-in-modal.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SwapQuestionsComponent } from 'src/app/modals/swap-questions/swap-questions.component';
+import { SubmitTestModalComponent } from 'src/app/modals/submit-test-modal/submit-test-modal.component';
+
 
 
 
@@ -60,7 +62,7 @@ import { SwapQuestionsComponent } from 'src/app/modals/swap-questions/swap-quest
     NgbModule,
     NgxDatatableModule,
     ReactiveFormsModule,
-    NgxPaginationModule,
+    NgxPaginationModule
    ],
   exports: [
     HeaderComponent,
