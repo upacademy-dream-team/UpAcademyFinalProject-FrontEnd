@@ -8,7 +8,7 @@ import { Question } from '../../models/question';
 })
 export class QuestionServiceService {
 
-  private apiUrl = 'http://localhost:8080/Testes-RecemLicenciados/api/question/';
+  private apiUrl = 'http://localhost:8080/Testes-RecemLicenciados/api/questions/';
   header: HttpHeaders | { [header: string]: string | string[]; };
 
   public questions$: ReplaySubject<any[]> = new ReplaySubject(1);
@@ -20,7 +20,7 @@ export class QuestionServiceService {
   constructor(private http: HttpClient) { }
 
   public getAllQuestions(){
-    return this.http.get(this.apiUrl+"all").subscribe(
+    return this.http.get(this.apiUrl).subscribe(
       (res: any) => {
         this.questions= res;
         this.questions$.next(res);
@@ -39,18 +39,18 @@ export class QuestionServiceService {
 
   public addQuestion(question: Question) {
     console.log(question);
-    return this.http.post(this.apiUrl + 'add', question, {headers: this.header , responseType:'text'});
+    return this.http.post(this.apiUrl, question, {headers: this.header , responseType:'text'});
   }
 
   public removeQuestion(id: Number){
-    return this.http.delete(this.apiUrl + 'remove/' + id, {headers: this.header , responseType:'text'});
+    return this.http.delete(this.apiUrl + id, {headers: this.header , responseType:'text'});
   }
 
   public editQuestion(question: Question){
-    return this.http.put(this.apiUrl + 'edit', question);
+    return this.http.put(this.apiUrl, question);
   }
 
   public getRandomQuestions(category: String, numberOfQuestions: number){
-    return this.http.get(this.apiUrl+"questions/"+category+"/"+numberOfQuestions);
+    return this.http.get(this.apiUrl+category+"/"+numberOfQuestions);
   }
 }
