@@ -9,15 +9,13 @@
 
     <div *ngFor="let question of questions, let j=index">
         <br>
-        <br>
         <div class="container border border-dark rounded">
-            <br>
-            <div class="row">
+            <div class="row pt-1">
                 <div class="col-sm-1 .offset col-sm-11"></div>
             </div>
             <div class="row">
                 <h4 class="col-10">{{question.question}}</h4><br>
-                <input [hidden]="checkIfQuestionAlreadyInUse(question)" class="col-2" type="checkbox" [checked]="checkArray[j]" (change)="onChange(j,$event.target.checked); scroll(target, $event.target.checked)">
+                <input [hidden]="checkIfQuestionAlreadyInUse(question)" style="align-self: center" class="col-2" type="checkbox" [checked]="checkArray[j]" (change)="onChange(j,$event.target.checked); scroll(target, $event.target.checked)">
             </div>
 
             <!--<div *ngFor="let option of question.options, let i=index">
