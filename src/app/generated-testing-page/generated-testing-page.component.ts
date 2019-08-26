@@ -19,7 +19,7 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
   private candidate= new Candidate();
   private solvedTest = new SolvedTest();
   private startTime;
-  private diff;
+  private diff='0';
   private finishTime;
   private optionLetter: string;
   private answer=[];
