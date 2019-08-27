@@ -29,7 +29,7 @@ export class SwapQuestionsComponent implements OnInit {
     private questionService: QuestionServiceService
     ) {}
 
-  private questions;
+  protected questions;
   private checkArray=[];
   private randomQuestionIDs=[];
 

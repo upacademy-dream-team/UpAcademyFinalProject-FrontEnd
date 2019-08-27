@@ -41,7 +41,7 @@
                     <span style="margin-right: 20px"> {{row.solvedTest.date}}</span>
                 </ng-template>
             </ngx-datatable-column>
-        <ngx-datatable-column name="Resultado" prop="score" [sortable]="true" [resizeable]="false">
+        <ngx-datatable-column name="Resultado" prop="solvedTest.score" [sortable]="true" [resizeable]="false">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                 <span (click)="sort()">{{column.name}}</span>
             </ng-template>
@@ -64,7 +64,7 @@
                 <span>{{column.name}}</span>
             </ng-template>
             <ng-template let-row="row" ngx-datatable-cell-template>
-                <span><i style="margin-left: 18px" id="icon" class="fas fa-trash fa-lg" (click)= "onClickFas(row, $event)"></i></span>
+                <span><i style="margin-left: 55px" id="icon" class="fas fa-trash fa-lg"></i></span>
             </ng-template>
         </ngx-datatable-column>
     </ngx-datatable>

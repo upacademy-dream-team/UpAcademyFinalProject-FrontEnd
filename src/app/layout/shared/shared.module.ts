@@ -14,7 +14,6 @@ import { TesteLocalComponent } from 'src/app/modals/teste-local/teste-local.comp
 import { LinkGeradoComponent } from 'src/app/modals/link-gerado/link-gerado.component';
 import { NgxTestsTableComponent } from './component/tables/ngx-tests-table/ngx-tests-table.component';
 import { NgxResultsTableComponent } from './component/tables/ngx-results-table/ngx-results-table.component';
-import { EnunciadosTableModalComponent } from 'src/app/modals/enunciados-table-modal/enunciados-table-modal.component';
 import { ResultadosTableModalComponent } from 'src/app/modals/resultados-table-modal/resultados-table-modal.component';
 import { NgxQuestionsTableComponent } from './component/tables/ngx-questions-table/ngx-questions-table.component';
 import { NgxCategoriesTableComponent } from './component/tables/ngx-categories-table/ngx-categories-table.component';
@@ -26,6 +25,7 @@ import { TestShowInModalComponent } from 'src/app/modals/test-show-in-modal/test
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SwapQuestionsComponent } from 'src/app/modals/swap-questions/swap-questions.component';
 import { SubmitTestModalComponent } from 'src/app/modals/submit-test-modal/submit-test-modal.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 
@@ -44,7 +44,6 @@ import { SubmitTestModalComponent } from 'src/app/modals/submit-test-modal/submi
     LinkGeradoComponent,
     NgxTestsTableComponent,
     NgxResultsTableComponent,
-    EnunciadosTableModalComponent,
     ResultadosTableModalComponent,
     NgxQuestionsTableComponent,
     NgxCategoriesTableComponent,
@@ -62,7 +61,8 @@ import { SubmitTestModalComponent } from 'src/app/modals/submit-test-modal/submi
     NgbModule,
     NgxDatatableModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ChartsModule
    ],
   exports: [
     HeaderComponent,
@@ -75,7 +75,6 @@ import { SubmitTestModalComponent } from 'src/app/modals/submit-test-modal/submi
     LinkGeradoComponent,
     NgxTestsTableComponent,
     NgxResultsTableComponent,
-    EnunciadosTableModalComponent,
     ResultadosTableModalComponent,
     NgxQuestionsTableComponent,
     NgxCategoriesTableComponent,
@@ -92,7 +91,6 @@ import { SubmitTestModalComponent } from 'src/app/modals/submit-test-modal/submi
     ChangePasswordAntigaComponent,
     TesteLocalComponent,
     LinkGeradoComponent,
-    EnunciadosTableModalComponent,
     ResultadosTableModalComponent,
     DeleteTestComponent,
     DeleteResultadoCandidatoComponent,
