@@ -34,7 +34,7 @@ export class ResultadosTableModalComponent implements OnInit {
 
   ngOnInit() {
     
-    this.solvedService.getSolvedTest(1).subscribe(data=> 
+    this.solvedService.getSolvedTest(this.id).subscribe(data=> 
       { this.allData=data; 
         console.log(data);
         this.myTest=this.allData.solvedTest, 
