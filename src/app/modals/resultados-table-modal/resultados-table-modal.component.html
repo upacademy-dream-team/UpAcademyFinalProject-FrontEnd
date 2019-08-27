@@ -6,6 +6,26 @@
 </div>
 <div class="modal-body" style="background-color: #FAFAFA; display: flex; flex-direction: column;height: 80vh;
 overflow-y: auto;">
+
+<div class="row">
+    <div class="col-6 text-center">
+        java
+<canvas baseChart
+[data]="doughnutChartData"
+[labels]="doughnutChartLabels"
+[chartType]="doughnutChartType"
+[colors]="doughnutChartColors">
+</canvas>
+</div>
+<div class="col-6">
+<canvas baseChart
+[data]="doughnutChartData"
+[labels]="doughnutChartLabels"
+[chartType]="doughnutChartType"
+[colors]="doughnutChartColors">
+</canvas>
+</div>
+</div>
     <!--  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
         <div *ngFor="let questions of myTest.questions, let i=index">
             <ngb-panel>

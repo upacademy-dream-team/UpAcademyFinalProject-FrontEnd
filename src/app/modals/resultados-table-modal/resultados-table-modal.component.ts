@@ -2,6 +2,8 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { UserServiceService } from 'src/app/core';
 import { TestServiceService } from 'src/app/core/services/test-service/test-service.service';
+import { ChartType } from 'chart.js';
+import { MultiDataSet, Label } from 'ng2-charts';
 
 @Component({
   selector: 'app-resultados-table-modal',
@@ -18,6 +20,18 @@ export class ResultadosTableModalComponent implements OnInit {
   @Input() TestAnswers;
   @Input() messageTestTotal;
   public myTest;
+
+    // Doughnut
+    public doughnutChartLabels: Label[] = ['Java',''];
+    public doughnutChartData: MultiDataSet = [
+      [75, 25]
+    ];
+    public doughnutChartType: ChartType = 'doughnut';
+    public doughnutChartColors: Array<any> = [
+      { // all colors in order
+        backgroundColor: ['#d13537', '#b0o0b5']
+      }
+  ]
 
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
