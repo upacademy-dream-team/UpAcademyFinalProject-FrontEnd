@@ -11,7 +11,7 @@
                 {{row.username}}
             </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Permissoes" prop="accessType" [sortable]="true" [resizeable]="false">
+        <ngx-datatable-column name="Permissões" prop="accessType" [sortable]="true" [resizeable]="false">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                 <span (click)="sort()">{{column.name}}</span>
             </ng-template>

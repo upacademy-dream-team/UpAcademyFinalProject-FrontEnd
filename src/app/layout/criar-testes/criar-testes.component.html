@@ -21,9 +21,6 @@
                                     </div>
                                     <input required [(ngModel)]="testName" name="testNameChosen" #testNameChosen="ngModel" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Nome do Teste">
                                 </div>
-                                <div *ngIf='testError!=""' class="alert alert-danger">
-                                    {{testError}}
-                                </div>
                                 <p></p>
                                 <div class="row">
                                     <div class="col-3">
@@ -43,6 +40,9 @@
                                         <label for="perguntasTestes">Nº Perguntas:&nbsp; </label><input required [(ngModel)]="numberOfQuestions" name="numberOfQuestionsChosen" type="Number" min="0" max="{{maximum}}">
                                     </div>
                                 </div>
+                                <div [hidden]="!successMessage" class="alert alert-success text-center mt-3">
+                                        Teste Gerado!
+                                </div>
 
                                 <button [disabled]="!testForm.form.valid" type="button" class="btn btn-primary orangeButton" value="+" (click)="addInfo()">+</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -59,7 +59,7 @@
                                         <br>
                                         <div class="row">
                                             <div class="col-sm-1 .offset col-sm-11"></div>
-                                            <input class="btn btn-dark text-white rounded" type="button" value="Swap" (click)="changeQuestion()">
+                                            <input class="btn btn-dark text-white rounded" type="button" value="Swap" (click)="changeQuestion(p-1)">
 
                                         </div>
 
@@ -76,15 +76,16 @@
                                         <div class="text-center">
                                             <pagination-controls (pageChange)="p = $event;"></pagination-controls>
                                         </div>
+                                        <div *ngIf='testError!=""' class="alert alert-danger text-center mt-3">
+                                                Já existe um teste com esse nome!
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="text-center">
                             <input [disabled]="!testNameChosen.valid || !timerChosen.valid || allRandomQuestions==0" type="submit" id="margin-top" class="btn btn-primary orangeButton" value="Gerar Teste">
-                            <div [hidden]="!successMessage" class="alert alert-success">
-                                    Success
-                            </div>
+                         
                         </div>
                     </form>
                     <div class="spacer" style="height: 100px"></div>
@@ -119,13 +120,11 @@
                                     <div>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text" id="btnGroupAddon">Pergunta</div>
+                                                <div  class="input-group-text" id="btnGroupAddon">Pergunta</div>
                                             </div>
-                                            <input required [(ngModel)]="questionString" name="questionWritten" type="text" class="form-control" style="width: 65%" aria-label="Input group example" aria-describedby="btnGroupAddon" placeholder="Introduza Pergunta">
+                                            <input (click)="errorAlertQuestionsReset()" required [(ngModel)]="questionString" name="questionWritten" type="text" class="form-control" style="width: 65%" aria-label="Input group example" aria-describedby="btnGroupAddon" placeholder="Introduza Pergunta">
                                         </div>
-                                        <div *ngIf='questionError!=""' class="alert alert-danger">
-                                            {{questionError}}
-                                        </div>
+                                     
                                         <p></p>
                                         <div class="text-center align-self-center">
 
@@ -145,16 +144,17 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="text-center">
-
-                            <input type="submit" [disabled]="!questionForm.form.valid || solution.length==0 || !questionFormValidity" class="btn btn-primary orangeButton" value="Gerar Pergunta">
-                            <div [hidden]="!successMessage" class="alert alert-success">
-                                    Success
+                            <div *ngIf='questionError!=""' class="alert alert-danger text-center">
+                                    Essa pergunta já existe!
+                            </div>
+                            <div [hidden]="!successMessage" class="alert alert-success text-center">
+                                    Pergunta criada!
                             </div>
                         </div>
 
+                        <div class="text-center">
+                            <input type="submit" [disabled]="!questionForm.form.valid || solution.length==0 || !questionFormValidity" class="btn btn-primary orangeButton" value="Gerar Pergunta">
+                        </div>
                     </form>
                     <div class="spacer" style="height: 100px"></div>
                 </ng-template>
@@ -169,28 +169,29 @@
                             <h1>Gerador de Categorias</h1>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text" id="btnGroupAddon">Categoria</div>
+                                    <div  class="input-group-text" id="btnGroupAddon">Categoria</div>
                                 </div>
-                                <input name="categoryChosen" #categoryChosen="ngModel" [(ngModel)]="categoryString" type="text" class="form-control" aria-label="Input group example" aria-describedby="btnGroupAddon" required placeholder="Introduza Categoria">
+                                <input (click)="errorAlertCategoriesReset()" name="categoryChosen" #categoryChosen="ngModel" [(ngModel)]="categoryString" type="text" class="form-control" aria-label="Input group example" aria-describedby="btnGroupAddon" required placeholder="Introduza Categoria">
                             </div>
                             <!--<div [hidden]="categoryChosen.valid || categoryChosen.pristine || categoryChosen.untouched" class="alert alert-danger">
                       Name is required
                     </div>-->
-                            <div [hidden]='categoryError==""' class="alert alert-danger">
-                                {{categoryError}}
+                            <div [hidden]='categoryError==""' class="alert alert-danger text-center mt-3">
+                                Essa categoria já existe! 
                             </div>
-                            <br><br>
-                        </div>
-
-                        <div class="text-center">
-                            <span>
-                            <input type="submit" [disabled]="!categoryForm.form.valid" class="btn btn-primary orangeButton" value="Gerar Categoria">
-                            <div [hidden]="!successMessage" class="alert alert-success">
-                                Success
+                            <div class="text-center mt-3">
+                                    <span>
+                                        <div  [hidden]="!successMessage" class="alert alert-success">
+                                            Categoria criada!
+                                        </div>
+                                    </span>
+                                </div>
+                                <br><br>
                             </div>
-                            </span>
-                        </div>
-
+                            
+                            <div class="text-center">
+                            <input class="mt-3" type="submit" [disabled]="!categoryForm.form.valid" class="btn btn-primary orangeButton" value="Gerar Categoria">
+                            </div>    
                     </form>
                 </ng-template>
             </ngb-tab>

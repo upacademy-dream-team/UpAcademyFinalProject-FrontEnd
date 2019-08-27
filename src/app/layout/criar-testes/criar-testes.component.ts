@@ -53,6 +53,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
 
   private numberOfQuestions: number;
   private category: any;
+  private categoryToSend: any;
   private categoryWithNumber: any;
   private timer: number;
   private testName: string;
@@ -65,6 +66,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   private randomQuestionIDs=[];
   test= new Test();
   private firstCheck: boolean= false;
+  private questionsByCategory=[];
 
   show(){
     console.log(this.categoryWithNumber.numberOfQuestions);
@@ -115,6 +117,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   public addInfo() {
     console.log(this.categories);
     this.allCategories.push(this.category);
+    this.categoryToSend=this.category;
     //this.categoryService.getAllCategories();
     this.questionService.getRandomQuestions(this.category, this.numberOfQuestions).subscribe(
       (res: any) => {
@@ -157,7 +160,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         this.numberOfQuestions=null;
         this.allRandomQuestions=[];
         this.testError=""
-        this.showSuccessMessage(2000);},
+        this.showSuccessMessage(3000);},
       error => {
         console.log(error);
         this.testError = error.error;
@@ -173,7 +176,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         console.log(data);
         this.categoryString=null;
         this.categoryError="";
-        this.showSuccessMessage(2000);
+        this.showSuccessMessage(3000);
       }, 
       error=>{
         console.log(error);
@@ -228,7 +231,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         this.firstCheck=false;
         this.questionError="";
         this.categoryClass=new Category();
-        this.showSuccessMessage(2000);
+        this.showSuccessMessage(3000);
       }, 
       error=>{console.log(error.error); this.questionError=error.error;});
   }
@@ -248,15 +251,37 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.categories$.subscribe(data => this.categories = data);
   }
 
-  onSubmit() {
-    console.log("hi!");
+  errorAlertCategoriesReset(){
+    this.categoryError = '';
   }
 
-  changeQuestion() {
+  errorAlertQuestionsReset(){
+    this.questionError = '';
+  }
 
+  errorAlertTestReset() {
+    this.testError = '';
+  }
+
+  onSubmit() {
+  }
+
+  changeQuestion(nowIndex) {
+    console.log(nowIndex);
     const modalRef = this.modalService.open(SwapQuestionsComponent);
 
-    modalRef.componentInstance.messageDeleteTeste = 'Deseja mesmo Alterar a Pergunta?';
+    modalRef.componentInstance.category=this.categoryToSend;
+    modalRef.componentInstance.allRandomQuestions=this.allRandomQuestions;
+
+    ////recebido a pergunta ou -1
+    modalRef.componentInstance.passEntry.subscribe(data =>{
+      let question=data;
+      console.log(question);
+      if(question!=-1)
+        this.allRandomQuestions[nowIndex]=question;
+      this.modalService.dismissAll();
+    }
+    );
 
   }
 

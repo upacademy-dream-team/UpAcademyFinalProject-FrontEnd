@@ -1,7 +1,7 @@
 <input type="text" style="padding:8px;margin:15px auto;width:30%;height: 38px;" placeholder="Escreva para filtar por nome do candidato" (keyup)="updateFilter($event)" />
 <div>
     <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]="rows" (activate)="onActivate($event)">
-        <ngx-datatable-column name="Nome do Candidato" prop="solvedTest.candidate.name" [sortable]="true" [resizeable]="false">
+        <ngx-datatable-column name="Candidato" prop="solvedTest.candidate.name" [sortable]="true" [resizeable]="false">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                 <span (click)="sort()">{{column.name}}</span>
             </ng-template>
@@ -9,7 +9,7 @@
                 {{row.solvedTest.candidate.name}}
             </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Nome do Teste" prop="solvedTest.testName" [sortable]="true" [resizeable]="false">
+        <ngx-datatable-column name="Teste" prop="solvedTest.testName" [sortable]="true" [resizeable]="false">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                 <span (click)="sort()">{{column.name}}</span>
             </ng-template>
@@ -25,12 +25,12 @@
                 {{row.solvedTest.candidate.emailRecruiter}}
             </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Tempo de Conclusão" prop="solvedTest.timeSpent" [sortable]="true" [resizeable]="false">
+        <ngx-datatable-column name="Tempo" prop="solvedTest.timeSpent" [sortable]="true" [resizeable]="false">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                 <span (click)="sort()">{{column.name}}</span>
             </ng-template>
             <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-                <span style="margin-left: 50px"> {{millisToMinutesAndSeconds(row.solvedTest.timeSpent)}}</span>
+                <span style="margin-left: 12px"> {{millisToMinutesAndSeconds(row.solvedTest.timeSpent)}}</span>
             </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Data" prop="solvedTest.date" [sortable]="true" [resizeable]="false">
@@ -38,7 +38,7 @@
                 <span (click)="sort()">{{column.name}}</span>
             </ng-template>
             <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-                <span style="margin-left: 50px"> {{row.solvedTest.date}}</span>
+                <span style="margin-right: 20px"> {{row.solvedTest.date}}</span>
             </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Resultado" prop="score" [sortable]="true" [resizeable]="false">
@@ -59,7 +59,7 @@
                 <span id="score" *ngIf="row.solvedTest.score <= 10 && row.solvedTest.score >= 0" style="color:#FF0000;">{{row.solvedTest.score}}%</span>
             </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Apagar Resultado" [resizeable]="false">
+        <ngx-datatable-column name="Apagar" [resizeable]="false">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                 <span>{{column.name}}</span>
             </ng-template>
