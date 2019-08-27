@@ -28,9 +28,6 @@ export class ResultadosTableModalComponent implements OnInit {
 
     // Doughnut
     public doughnutChartLabels: Label[] = ['Java',''];
-    public doughnutChartData: MultiDataSet = [
-      [75, 25]
-    ];
     public doughnutChartType: ChartType = 'doughnut';
     public doughnutChartColors: Array<any> = [
       { // all colors in order
