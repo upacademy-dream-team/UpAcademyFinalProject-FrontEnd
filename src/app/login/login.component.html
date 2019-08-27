@@ -3,39 +3,36 @@
     <span>
     <a class="navbar-brand mb-0 h1 text-white" ><img src="assets/aubayCopy.png" style="max-width:50px; width: auto" /></a>
     </span>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
-      aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNavHome" >
-      <ul class="navbar-nav">
-        <h4 class="nav-item pr-5 mr-3" style="color: white">
-          Knowledge Testing Platform
-        </h4>
-      </ul>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavHome">
+        <ul class="navbar-nav">
+            <h4 class="nav-item pr-5 mr-3" style="color: white; font-size: ">
+                Knowledge Testing Platform
+            </h4>
+        </ul>
     </div>
 </nav>
 <div class="login">
-  <div class="wrapper">
-    <a href="https://www.aubay.pt//" target="_blank">
-      <img src="assets/aubayCopy.png" class="w-100" />
-    </a>
-    <form role="form">
-      <div class="form-content">
-        <div class="form-group">
-          <input class="w-100" name="username" type="username" (click)="checkReset()" [(ngModel)]="user.username" placeholder="username / email" />
-        </div>
+    <div class="wrapper">
+        <a href="https://www.aubay.pt//" target="_blank">
+            <img src="assets/aubayCopy.png" class="w-100" />
+        </a>
+        <form role="form">
+            <div class="form-content">
+                <div class="form-group">
+                    <input class="w-100" name="username" type="username" (click)="checkReset()" [(ngModel)]="user.username" placeholder="username / email" />
+                </div>
 
-        <div class="form-group">
-          <input class="w-100" name="password" type="password" (click)="checkReset()" [(ngModel)]="user.password" placeholder="password" />
-        </div>
-      </div>
-      <button type="button" class="btn w-100 text-white" (click)="login()"> Entrar </button>
-      <ngb-alert type="danger" *ngIf="check == 1" [dismissible]="false" class="mt-2 danger">
-        <strong>Warning!</strong> Username ou password errada!
-      </ngb-alert>
-    </form>
-  </div>
+                <div class="form-group">
+                    <input class="w-100" name="password" type="password" (click)="checkReset()" [(ngModel)]="user.password" placeholder="password" />
+                </div>
+            </div>
+            <button type="button" class="btn w-100 text-white" (click)="login()"> Entrar </button>
+            <ngb-alert type="danger" *ngIf="check == 1" [dismissible]="false" class="mt-2 danger">
+                <strong>Warning!</strong> Username ou password errada!
+            </ngb-alert>
+        </form>
+    </div>
 </div>
-
-
