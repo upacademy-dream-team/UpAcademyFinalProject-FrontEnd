@@ -51,7 +51,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.subscriptionCategories.unsubscribe();
   }
 
-  private numberOfQuestions: number;
+  public numberOfQuestions: number;
   private category: any;
   private categoryToSend: any;
   private categoryWithNumber: any;
@@ -177,7 +177,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         this.categoryString=null;
         this.categoryError="";
         this.showSuccessMessage(3000);
-      }, 
+      },
       error=>{
         console.log(error);
         this.categoryError = error.error;
@@ -219,26 +219,26 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.questionClass.solution = this.solution;
     this.questionService.addQuestion(this.questionClass).subscribe(
       data => {
-        console.log("entrou em data")
+        console.log('entrou em data');
         console.log(data);
-        this.category="";
-        this.questionClass=new Question();
-        this.options=[];
-        this.questionString="";
-        this.solution=[];
-        this.numberOfTimes=[];
-        this.questionFormValidity=false;
-        this.firstCheck=false;
-        this.questionError="";
-        this.categoryClass=new Category();
+        this.category = '';
+        this.questionClass = new Question();
+        this.options = [];
+        this.questionString = '';
+        this.solution = [];
+        this.numberOfTimes = [];
+        this.questionFormValidity = false;
+        this.firstCheck = false;
+        this.questionError = '';
+        this.categoryClass = new Category();
         this.showSuccessMessage(3000);
-      }, 
-      error=>{console.log(error.error); this.questionError=error.error;});
+      },
+      error=>{console.log(error.error); this.questionError = error.error;});
   }
 
   onChange(i:number, isChecked: boolean) {
-  
-    if(isChecked) {
+
+    if ( isChecked ) {
       this.solution.push(i);
     } else {
       this.solution.splice(this.solution.indexOf(i), 1);
@@ -251,11 +251,11 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.categories$.subscribe(data => this.categories = data);
   }
 
-  errorAlertCategoriesReset(){
+  errorAlertCategoriesReset() {
     this.categoryError = '';
   }
 
-  errorAlertQuestionsReset(){
+  errorAlertQuestionsReset() {
     this.questionError = '';
   }
 
@@ -268,17 +268,19 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
 
   changeQuestion(nowIndex) {
     console.log(nowIndex);
-    const modalRef = this.modalService.open(SwapQuestionsComponent);
+    const modalRef = this.modalService.open(SwapQuestionsComponent,
+      { size: 'lg', backdrop: 'static',});
 
     modalRef.componentInstance.category=this.categoryToSend;
     modalRef.componentInstance.allRandomQuestions=this.allRandomQuestions;
 
     ////recebido a pergunta ou -1
     modalRef.componentInstance.passEntry.subscribe(data =>{
-      let question=data;
+      let question = data;
       console.log(question);
-      if(question!=-1)
-        this.allRandomQuestions[nowIndex]=question;
+      if ( question !== -1 ) {
+        this.allRandomQuestions[nowIndex] = question;
+      }
       this.modalService.dismissAll();
     }
     );
