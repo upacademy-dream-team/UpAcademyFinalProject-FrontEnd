@@ -8,7 +8,6 @@ import { Question } from 'src/app/core/models/question';
 import { QuestionServiceService } from 'src/app/core/services/question-service/question-service.service';
 import { UserServiceService } from 'src/app/core';
 import { TestServiceService } from 'src/app/core/services/test-service/test-service.service';
-import { ClassField } from '@angular/compiler';
 import { SwapQuestionsComponent } from 'src/app/modals/swap-questions/swap-questions.component';
 
 @Component({
@@ -51,7 +50,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.subscriptionCategories.unsubscribe();
   }
 
-  private numberOfQuestions: number;
+  public numberOfQuestions: number;
   private category: any;
   private categoryToSend: any;
   private categoryWithNumber: any;
@@ -67,6 +66,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   test= new Test();
   private firstCheck: boolean= false;
   private questionsByCategory=[];
+  
 
   show(){
     console.log(this.categoryWithNumber.numberOfQuestions);
@@ -177,7 +177,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
         this.categoryString=null;
         this.categoryError="";
         this.showSuccessMessage(3000);
-      }, 
+      },
       error=>{
         console.log(error);
         this.categoryError = error.error;
@@ -219,26 +219,26 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.questionClass.solution = this.solution;
     this.questionService.addQuestion(this.questionClass).subscribe(
       data => {
-        console.log("entrou em data")
+        console.log('entrou em data');
         console.log(data);
-        this.category="";
-        this.questionClass=new Question();
-        this.options=[];
-        this.questionString="";
-        this.solution=[];
-        this.numberOfTimes=[];
-        this.questionFormValidity=false;
-        this.firstCheck=false;
-        this.questionError="";
-        this.categoryClass=new Category();
+        this.category = '';
+        this.questionClass = new Question();
+        this.options = [];
+        this.questionString = '';
+        this.solution = [];
+        this.numberOfTimes = [];
+        this.questionFormValidity = false;
+        this.firstCheck = false;
+        this.questionError = '';
+        this.categoryClass = new Category();
         this.showSuccessMessage(3000);
-      }, 
-      error=>{console.log(error.error); this.questionError=error.error;});
+      },
+      error=>{console.log(error.error); this.questionError = error.error;});
   }
 
   onChange(i:number, isChecked: boolean) {
-  
-    if(isChecked) {
+
+    if ( isChecked ) {
       this.solution.push(i);
     } else {
       this.solution.splice(this.solution.indexOf(i), 1);
@@ -250,12 +250,15 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.category = "";
     this.categories$.subscribe(data => this.categories = data);
   }
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({behavior: 'smooth'});
+  }
 
-  errorAlertCategoriesReset(){
+  errorAlertCategoriesReset() {
     this.categoryError = '';
   }
 
-  errorAlertQuestionsReset(){
+  errorAlertQuestionsReset() {
     this.questionError = '';
   }
 
@@ -268,17 +271,19 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
 
   changeQuestion(nowIndex) {
     console.log(nowIndex);
-    const modalRef = this.modalService.open(SwapQuestionsComponent);
+    const modalRef = this.modalService.open(SwapQuestionsComponent,
+      { size: 'lg', backdrop: 'static',});
 
     modalRef.componentInstance.category=this.categoryToSend;
     modalRef.componentInstance.allRandomQuestions=this.allRandomQuestions;
 
     ////recebido a pergunta ou -1
     modalRef.componentInstance.passEntry.subscribe(data =>{
-      let question=data;
+      let question = data;
       console.log(question);
-      if(question!=-1)
-        this.allRandomQuestions[nowIndex]=question;
+      if ( question !== -1 ) {
+        this.allRandomQuestions[nowIndex] = question;
+      }
       this.modalService.dismissAll();
     }
     );
@@ -286,3 +291,4 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   }
 
 }
+

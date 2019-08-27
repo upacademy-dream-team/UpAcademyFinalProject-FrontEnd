@@ -29,6 +29,7 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
   letterArray = [ 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
   p: number = 1;
   publicIP: string;
+  //objecto ex:{country_name:"Portugal"}
   Country: any;
 
 
@@ -126,11 +127,13 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
     let secondsPassed=this.finishTime-this.startTime;
     console.log(secondsPassed);
     this.candidate.emailRecruiter=this.session.recruiterEmail;
+    this.candidate.countryIP=this.Country.country_name;
     this.solvedTest.answer=this.answer;
     this.solvedTest.candidate=this.candidate;
     this.solvedTest.timeSpent=secondsPassed;
     this.solvedTest.testID=this.session.test.id;
     console.log(JSON.stringify(this.solvedTest));
+    console.log(this.solvedTest);
     this.solvedService.addSolvedTestFromSession(this.solvedTest, this.session.sessionID).subscribe(data=> console.log(data), error=>console.log(error.error));
     console.log("done");
     this.modalService.dismissAll();

@@ -8,7 +8,7 @@
                 <span placement="right" ngbTooltip="{{row.question}}">{{set_text(row.question,23)}}</span>
             </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Categoria" prop="questions.category.category" [sortable]="true" [resizeable]="false">
+        <ngx-datatable-column name="Categoria" prop="category.category" [sortable]="true" [resizeable]="false">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                 <span (click)="sort()">{{column.name}}</span>
             </ng-template>
