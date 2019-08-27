@@ -126,6 +126,7 @@ export class GeneratedTestingPageComponent implements OnInit, OnDestroy {
     let secondsPassed=this.finishTime-this.startTime;
     console.log(secondsPassed);
     this.candidate.emailRecruiter=this.session.recruiterEmail;
+    this.candidate.countryIP=this.Country;
     this.solvedTest.answer=this.answer;
     this.solvedTest.candidate=this.candidate;
     this.solvedTest.timeSpent=secondsPassed;
