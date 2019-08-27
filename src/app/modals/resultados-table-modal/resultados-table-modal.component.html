@@ -6,8 +6,8 @@
 </div>
 <div class="modal-body" style="background-color: #FAFAFA; display: flex; flex-direction: column;height: 80vh;
 overflow-y: auto;">
-    <!--  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-        <div *ngFor="let questions of myTest.questions, let i=index">
+    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+        <div *ngFor="let questions of enunciado.questions, let i=index">
             <ngb-panel>
                 <div class="container border border-dark rounded">
                     <br>
@@ -33,7 +33,7 @@ overflow-y: auto;">
                 </div>
             </ngb-panel>
         </div>
-    </ngb-accordion> -->
+    </ngb-accordion>
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Fechar</button>
