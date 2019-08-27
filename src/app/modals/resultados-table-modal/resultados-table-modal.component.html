@@ -8,18 +8,10 @@
 overflow-y: auto;">
 
 <div class="row">
-    <div class="col-6 text-center">
-        java
+<div class="col-6 text-center" *ngFor="let categoryScoreData of scoresData;let i = index">
+        {{categoryScoreData.category.category}}
 <canvas baseChart
-[data]="doughnutChartData"
-[labels]="doughnutChartLabels"
-[chartType]="doughnutChartType"
-[colors]="doughnutChartColors">
-</canvas>
-</div>
-<div class="col-6">
-<canvas baseChart
-[data]="doughnutChartData"
+[data]="[[categoryScoreData.score,100-categoryScoreData.score]]"
 [labels]="doughnutChartLabels"
 [chartType]="doughnutChartType"
 [colors]="doughnutChartColors">

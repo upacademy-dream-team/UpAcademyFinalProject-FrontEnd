@@ -24,7 +24,7 @@ export class ResultadosTableModalComponent implements OnInit {
   public myTest;
   public allData;
   public enunciado;
-  public categories;
+  public scoresData;
 
     // Doughnut
     public doughnutChartLabels: Label[] = ['Java',''];
@@ -56,7 +56,7 @@ export class ResultadosTableModalComponent implements OnInit {
         console.log(this.myTest);
         let ID=this.myTest.testID;
         this.testService.getTestByID(ID).subscribe(data=>{
-          this.enunciado=data; this.categories = this.allData.categoryStatistics; console.log(this.categories); 
+          this.enunciado=data; this.scoresData = this.allData.categoryStatistics; console.log(this.scoresData); 
           console.log(this.enunciado);
         });
       });
