@@ -10,7 +10,8 @@
                     <br>
 
                     <form #testForm="ngForm" class="container pt-3" (submit)="submitTest();">
-                        <div class=" container h-100 w-100" style="padding: 16px; box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);">
+                        <div class=" container h-100 w-100"
+                            style="padding: 16px; box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);">
                             <h1 class="margin-bottom">Gerador de Testes</h1>
 
 
@@ -19,25 +20,34 @@
                                     <div class="input-group-text" style="margin-left: 16px;">
                                         <label class="sr-only" for="inlineFormInputGroup"></label>Nome
                                     </div>
-                                    <input required [(ngModel)]="testName" name="testNameChosen" #testNameChosen="ngModel" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Nome do Teste">
+                                    <input required [(ngModel)]="testName" name="testNameChosen"
+                                        #testNameChosen="ngModel" type="text" class="form-control"
+                                        id="inlineFormInputGroup" placeholder="Nome do Teste">
                                 </div>
                                 <p></p>
                                 <div class="row">
                                     <div class="col-3">
-                                        <label for="duracaoTestes">Duração:&nbsp;&nbsp;</label> <input style="width: 80px;" required [(ngModel)]="timer" step="5" name="timerChosen" #timerChosen="ngModel" min="0" max="340" id="duracaoTestes" type="Number"
-                                            placeholder="Minutos">
+                                        <label for="duracaoTestes">Duração:&nbsp;&nbsp;</label> <input
+                                            style="width: 80px;" required [(ngModel)]="timer" step="5"
+                                            name="timerChosen" #timerChosen="ngModel" min="0" max="340"
+                                            id="duracaoTestes" type="Number" placeholder="Minutos">
                                     </div>
                                     <div class="col-3">
                                         <label for="categoriaTestes">Categoria:&nbsp; </label>
-                                        <select style="height: 30px" required [(ngModel)]="category" name="categoryChosen" #categoryChosen="ngModel" (change)="getNumberOfQuestionsByCategory(); numberOfQuestions=0" id="">
-                                <ng-container *ngFor="let category of categories$ | async">
-                                    <option value={{category.category.category}}> {{category.category.category}}
-                                    </option>
-                                </ng-container>
-                              </select>
+                                        <select style="height: 30px" required [(ngModel)]="category"
+                                            name="categoryChosen" #categoryChosen="ngModel"
+                                            (change)="getNumberOfQuestionsByCategory(); numberOfQuestions=0" id="">
+                                            <ng-container *ngFor="let category of categories$ | async">
+                                                <option value={{category.category.category}}>
+                                                    {{category.category.category}}
+                                                </option>
+                                            </ng-container>
+                                        </select>
                                     </div>
                                     <div class="col" *ngIf="maximum">
-                                        <label for="perguntasTestes">Nº Perguntas:&nbsp; </label><input required [(ngModel)]="numberOfQuestions" name="numberOfQuestionsChosen" type="Number" min="0" max="{{maximum}}">
+                                        <label for="perguntasTestes">Nº Perguntas:&nbsp; </label><input required
+                                            [(ngModel)]="numberOfQuestions" name="numberOfQuestionsChosen" type="Number"
+                                            min="0" max="{{maximum}}">
                                     </div>
                                 </div>
                                 <div [hidden]="!successMessage" class="alert alert-success text-center mt-3">
@@ -48,10 +58,12 @@
 
                                 <br>
 
-                                <div *ngFor="let question of allRandomQuestions | paginate: { itemsPerPage: 1, currentPage: p }, let j=index">
+                                <div
+                                    *ngFor="let question of allRandomQuestions | paginate: { itemsPerPage: 1, currentPage: p }, let j=index">
                                     <br>
 
-                                    <h2 *ngIf="j!=0 && allRandomQuestions[j-1].category.category!=allRandomQuestions[j].category.category || j==0">
+                                    <h2
+                                        *ngIf="j!=0 && allRandomQuestions[j-1].category.category!=allRandomQuestions[j].category.category || j==0">
                                         {{question.category.category}}
                                     </h2>
                                     <br>
@@ -59,18 +71,33 @@
                                         <br>
                                         <div class="row">
                                             <div class="col-sm-1 .offset col-sm-11"></div>
-                                            <input class="btn btn-dark text-white rounded" type="button" value="Swap" (click)="changeQuestion(p-1)">
+                                            <input class="btn btn-dark text-white rounded" type="button" value="Swap"
+                                                (click)="changeQuestion(p-1)">
 
                                         </div>
 
                                         <h4>{{question.question}}</h4><br>
                                         <div *ngFor="let option of question.options, let i=index">
-                                            <p class="ml-2" *ngIf="question.solution.indexOf(i)!=-1">
-                                                {{option}} <input type="checkbox" [checked]="true" disabled="disabled">
-                                            </p>
-                                            <p class="ml-2" *ngIf="question.solution.indexOf(i)==-1">
-                                                {{option}} <input type="checkbox" disabled="disabled">
-                                            </p>
+                                            <div class="ml-2" *ngIf="question.solution.indexOf(i)!=-1">
+                                                {{option}}
+                                                <div class="pretty p-icon p-smooth">
+                                                    <input type="checkbox" [checked]="true" disabled="disabled">
+                                                    <div class="state p-success">
+                                                        <i class="icon fa fa-check"></i>
+                                                        <label></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-2" *ngIf="question.solution.indexOf(i)==-1">
+                                                {{option}}
+                                                <div class="pretty p-icon p-smooth">
+                                                    <input type="checkbox" disabled="disabled">
+                                                    <div class="state p-success">
+                                                        <i class="icon fa fa-check"></i>
+                                                        <label></label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <hr>
                                         </div>
                                         <div class="text-center">
@@ -100,7 +127,8 @@
                     <br>
                     <form #questionForm="ngForm" class="container pt-3" (submit)="addQuestion();">
 
-                        <div class=" container h-100 w-100" style="padding: 16px; box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);">
+                        <div class=" container h-100 w-100"
+                            style="padding: 16px; box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);">
                             <h1>Gerador de Perguntas</h1>
 
 
@@ -109,11 +137,12 @@
                                     <div>
                                         <label for="categoriaTestes">Categoria:&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                         <select required [(ngModel)]="category" name="categoryChosen" id="">
-                                  <ng-container *ngFor="let myCategory of categories">
-                                      <option [value]="myCategory.category.category"> {{myCategory.category.category}}
-                                      </option>
-                                  </ng-container>
-                              </select>
+                                            <ng-container *ngFor="let myCategory of categories">
+                                                <option [value]="myCategory.category.category">
+                                                    {{myCategory.category.category}}
+                                                </option>
+                                            </ng-container>
+                                        </select>
                                     </div>
                                 </div>
                                 <div>
@@ -122,23 +151,45 @@
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text" id="btnGroupAddon">Pergunta</div>
                                             </div>
-                                            <input (click)="errorAlertQuestionsReset()" required [(ngModel)]="questionString" name="questionWritten" type="text" class="form-control" style="width: 65%" aria-label="Input group example" aria-describedby="btnGroupAddon" placeholder="Introduza Pergunta">
+                                            <input (click)="errorAlertQuestionsReset()" required
+                                                [(ngModel)]="questionString" name="questionWritten" type="text"
+                                                class="form-control" style="width: 65%" aria-label="Input group example"
+                                                aria-describedby="btnGroupAddon" placeholder="Introduza Pergunta">
                                         </div>
 
                                         <p></p>
                                         <div class="text-center align-self-center">
 
-                                            <textarea required class="rounded" style="width: 95%" placeholder="Introduza Opção" [(ngModel)]="options[0]" name="optionWritten0" (change)="checkValidityQuestion()"></textarea>&nbsp;&nbsp;&nbsp;<input [(ngModel)]="firstCheck"
-                                                name="checkFirstCheck" style="zoom: 1.5; padding-bottom: 5px" (change)="onChange(0, $event.target.checked)" type="checkbox">
-                                            <div *ngFor="let i of numberOfTimes, let j=index">
-                                                <textarea class="rounded" style="width: 95%" placeholder="Introduza Opção" [(ngModel)]="options[j+1]" name="optionWritten{{j+1}}" (change)="checkValidityQuestion()"></textarea>&nbsp;&nbsp;&nbsp;<input (change)="onChange(j+1, $event.target.checked)"
-                                                    style="zoom: 1.5; padding-bottom: 5px" type="checkbox">
-
+                                            <textarea required class="rounded" style="width: 95%"
+                                                placeholder="Introduza Opção" [(ngModel)]="options[0]"
+                                                name="optionWritten0"
+                                                (change)="checkValidityQuestion()"></textarea>&nbsp;&nbsp;&nbsp;
+                                            <div class="pretty p-icon p-smooth">
+                                                <input [(ngModel)]="firstCheck" name="checkFirstCheck"
+                                                    (change)="onChange(0, $event.target.checked)" type="checkbox">
+                                                <div class="state p-success">
+                                                    <i class="icon fa fa-check"></i>
+                                                    <label></label>
+                                                </div>
                                             </div>
-
+                                            <div *ngFor="let i of numberOfTimes, let j=index">
+                                                <textarea class="rounded" style="width: 95%"
+                                                    placeholder="Introduza Opção" [(ngModel)]="options[j+1]"
+                                                    name="optionWritten{{j+1}}"
+                                                    (change)="checkValidityQuestion()"></textarea>&nbsp;&nbsp;&nbsp;
+                                                <div class="pretty p-icon p-smooth">
+                                                    <input (change)="onChange(j+1, $event.target.checked)"
+                                                        style="padding-bottom: 5px" type="checkbox">
+                                                    <div class="state p-success">
+                                                        <i class="icon fa fa-check"></i>
+                                                        <label></label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <p></p>
-                                        <input type="button" [disabled]="!questionFormValidity" name="" class="btn btn-primary orangeButton" (click)="addOption()" value="+">
+                                        <input type="button" [disabled]="!questionFormValidity" name=""
+                                            class="btn btn-primary orangeButton" (click)="addOption()" value="+">
                                         <br>
 
                                     </div>
@@ -153,7 +204,9 @@
                         </div>
 
                         <div class="text-center">
-                            <input type="submit" [disabled]="!questionForm.form.valid || solution.length==0 || !questionFormValidity" class="btn btn-primary orangeButton" value="Gerar Pergunta">
+                            <input type="submit"
+                                [disabled]="!questionForm.form.valid || solution.length==0 || !questionFormValidity"
+                                class="btn btn-primary orangeButton" value="Gerar Pergunta">
                         </div>
                     </form>
                     <div class="spacer" style="height: 100px"></div>
@@ -165,13 +218,17 @@
                 <ng-template ngbTabContent>
                     <br>
                     <form #categoryForm="ngForm" class="container pt-3" (ngSubmit)="submitCategory();">
-                        <div class=" container h-100 w-100" style="padding: 16px; box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);">
+                        <div class=" container h-100 w-100"
+                            style="padding: 16px; box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);">
                             <h1>Gerador de Categorias</h1>
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text" id="btnGroupAddon">Categoria</div>
                                 </div>
-                                <input (click)="errorAlertCategoriesReset()" name="categoryChosen" #categoryChosen="ngModel" [(ngModel)]="categoryString" type="text" class="form-control" aria-label="Input group example" aria-describedby="btnGroupAddon" required placeholder="Introduza Categoria">
+                                <input (click)="errorAlertCategoriesReset()" name="categoryChosen"
+                                    #categoryChosen="ngModel" [(ngModel)]="categoryString" type="text"
+                                    class="form-control" aria-label="Input group example"
+                                    aria-describedby="btnGroupAddon" required placeholder="Introduza Categoria">
                             </div>
                             <!--<div [hidden]="categoryChosen.valid || categoryChosen.pristine || categoryChosen.untouched" class="alert alert-danger">
                       Name is required
@@ -181,10 +238,10 @@
                             </div>
                             <div class="text-center mt-3">
                                 <span>
-                                        <div  [hidden]="!successMessage" class="alert alert-success">
-                                            Categoria criada!
-                                        </div>
-                                    </span>
+                                    <div [hidden]="!successMessage" class="alert alert-success">
+                                        Categoria criada!
+                                    </div>
+                                </span>
                             </div>
                             <br><br>
                         </div>

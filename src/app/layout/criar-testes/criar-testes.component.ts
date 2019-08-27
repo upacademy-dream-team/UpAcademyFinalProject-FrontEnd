@@ -8,7 +8,6 @@ import { Question } from 'src/app/core/models/question';
 import { QuestionServiceService } from 'src/app/core/services/question-service/question-service.service';
 import { UserServiceService } from 'src/app/core';
 import { TestServiceService } from 'src/app/core/services/test-service/test-service.service';
-import { ClassField } from '@angular/compiler';
 import { SwapQuestionsComponent } from 'src/app/modals/swap-questions/swap-questions.component';
 
 @Component({
@@ -67,6 +66,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   test= new Test();
   private firstCheck: boolean= false;
   private questionsByCategory=[];
+  
 
   show(){
     console.log(this.categoryWithNumber.numberOfQuestions);
@@ -250,6 +250,9 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.category = "";
     this.categories$.subscribe(data => this.categories = data);
   }
+  scroll(el: HTMLElement) {
+    el.scrollIntoView({behavior: 'smooth'});
+  }
 
   errorAlertCategoriesReset() {
     this.categoryError = '';
@@ -288,3 +291,4 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   }
 
 }
+

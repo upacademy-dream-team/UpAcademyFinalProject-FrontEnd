@@ -34,14 +34,14 @@
             </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Data" prop="solvedTest.date" [sortable]="true" [resizeable]="false">
-            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                <span (click)="sort()">{{column.name}}</span>
-            </ng-template>
-            <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-                <span style="margin-right: 20px"> {{row.solvedTest.date}}</span>
-            </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column name="Resultado" prop="score" [sortable]="true" [resizeable]="false">
+                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    <span (click)="sort()">{{column.name}}</span>
+                </ng-template>
+                <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
+                    <span style="margin-right: 20px"> {{row.solvedTest.date}}</span>
+                </ng-template>
+            </ngx-datatable-column>
+        <ngx-datatable-column name="Resultado" prop="solvedTest.score" [sortable]="true" [resizeable]="false">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                 <span (click)="sort()">{{column.name}}</span>
             </ng-template>
