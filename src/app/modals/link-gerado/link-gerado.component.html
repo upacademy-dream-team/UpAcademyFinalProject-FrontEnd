@@ -11,7 +11,7 @@
 
     <span class="text-dark">Escolha o Enunciado que deseja que seja gerado.</span><br><br>
 
-    <select requeired (change)="selectorDisable = '1'" style="height: 38px" [(ngModel)]="selectedTest" class="w-100" name="Enunciado" id="">
+    <select required (change)="selectorDisable = '1'" style="height: 38px" [(ngModel)]="selectedTest" class="w-100" name="Enunciado" #Enunciado="ngModel" id="">
       <option selected disabled>Enunciado</option>
       <ng-container *ngFor="let test of tests$ | async">
         <option value={{test.test.id}}> {{test.test.testName}}
@@ -24,7 +24,7 @@
     <br>
     <br>
     <label for="duracaoTestes">Tempo de Expiração:&nbsp;&nbsp;</label> <input required [(ngModel)]="timer" step="1" name="timerChosen" #timerChosen="ngModel" min="0" max="340" id="" type="Number" placeholder="dias">
-    <span class="pl-3" ><button [disabled]="!createLinkForm.form.valid" id="btn" type="button" class="btn"  (click)="generateLink(); button=true;">Gerar Link </button></span>
+    <span class="pl-3" ><button [disabled]="!createLinkForm.form.valid || selectorDisable!='1'" id="btn" type="button" class="btn"  (click)="generateLink(); button=true;">Gerar Link </button></span>
     <br>
     <br>
     <div *ngIf="linkGenerated"><b>Link:</b> http://localhost:4200/generatedTestPage/{{linkId}}</div>
