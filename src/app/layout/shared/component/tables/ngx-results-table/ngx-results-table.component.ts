@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteResultadoCandidatoComponent } from 'src/app/modals/delete-resultado-candidato/delete-resultado-candidato.component';
 import { SolvedTestServiceService } from 'src/app/core/services/solvedTest-service/solved-test-service.service';
 import { UserServiceService } from 'src/app/core';
+import { ResultadosTableModalComponent } from 'src/app/modals/resultados-table-modal/resultados-table-modal.component';
 
 @Component({
   selector: 'app-ngx-results-table',
@@ -11,7 +12,7 @@ import { UserServiceService } from 'src/app/core';
   styleUrls: ['./ngx-results-table.component.scss']
 })
 export class NgxResultsTableComponent implements OnInit {
-  public id ;
+  public id;
   @Input() rows: any;
   @Input() columns: any;
   @Input() temp: any;
@@ -49,41 +50,49 @@ export class NgxResultsTableComponent implements OnInit {
   millisToMinutesAndSeconds(millis) {
     let minutes = Math.floor(millis / 60000);
     let seconds = ((millis % 60000) / 1000).toFixed(0);
-    let y=+seconds;
-    if(minutes==0)
-      return (y < 10 ? '0' : '') + seconds + " s";
-    else
-      return minutes + " min " + (y < 10 ? '0' : '') + seconds+" s";
+    let y = + seconds;
+    if (minutes === 0) {
+      return (y < 10 ? '0' : '') + seconds + ' s';
+    } else {
+      return minutes + ' min ' + (y < 10 ? '0' : '') + seconds + ' s';
+    }
   }
+
+  onClickFas(event) {
+
+    const modalRef = this.modalService.open(DeleteResultadoCandidatoComponent);
+
+    modalRef.componentInstance.messageDeleteResultadoCandidato = 'Deseja mesmo apagar o resultado do Candidato?';
+
+    modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
+
+      this.userApi2.removeSolvedTest(event.solvedTest.id).subscribe(
+        data => {
+          console.log(data);
+          this.userApi2.getAllSolvedTests();
+        }
+      );
+      this.modalService.dismissAll();
+    });
+
+  }
+
 
   onActivate(event) {
+
+    console.log(event);
+
     if (event.type === 'click') {
-      console.log(event.row);
+      if (event.event.target.classList.value === 'fas fa-trash fa-lg') {
+        this.onClickFas(event.row);
+      } else {
+        const modalRef = this.modalService.open(ResultadosTableModalComponent,
+          { size: 'lg', backdrop: 'static', });
+
+        //modalRef.componentInstance.messageTestTotal = '';
+
+      }
     }
-  }
 
-  onClickFas(row, event) {
-
-    this.id = row.solvedTest.id;
-
-    console.log(row);
-
-    if (event.target.classList.value === 'fas fa-trash fa-lg') {
-
-      const modalRef = this.modalService.open(DeleteResultadoCandidatoComponent);
-
-      modalRef.componentInstance.messageDeleteResultadoCandidato = 'Deseja mesmo apagar o Candidato?';
-
-      modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
-
-        this.userApi2.removeSolvedTest(this.id).subscribe(
-          data => {
-            console.log(data);
-            this.userApi2.getAllSolvedTests();
-          }
-        );
-        this.modalService.dismissAll();
-      });
-    }
   }
 }

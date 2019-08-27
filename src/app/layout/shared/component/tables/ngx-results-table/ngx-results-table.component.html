@@ -34,13 +34,13 @@
             </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Data" prop="solvedTest.date" [sortable]="true" [resizeable]="false">
-                <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                    <span (click)="sort()">{{column.name}}</span>
-                </ng-template>
-                <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-                    <span style="margin-left: 50px"> {{row.solvedTest.date}}</span>
-                </ng-template>
-            </ngx-datatable-column>
+            <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                <span (click)="sort()">{{column.name}}</span>
+            </ng-template>
+            <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
+                <span style="margin-left: 50px"> {{row.solvedTest.date}}</span>
+            </ng-template>
+        </ngx-datatable-column>
         <ngx-datatable-column name="Resultado" prop="score" [sortable]="true" [resizeable]="false">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                 <span (click)="sort()">{{column.name}}</span>
@@ -64,7 +64,7 @@
                 <span>{{column.name}}</span>
             </ng-template>
             <ng-template let-row="row" ngx-datatable-cell-template>
-                <span><i style="margin-left: 55px" id="icon" class="fas fa-trash fa-lg" (click)= "onClickFas(row, $event)"></i></span>
+                <span><i style="margin-left: 55px" id="icon" class="fas fa-trash fa-lg"></i></span>
             </ng-template>
         </ngx-datatable-column>
     </ngx-datatable>
