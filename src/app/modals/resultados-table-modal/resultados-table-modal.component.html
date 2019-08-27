@@ -21,13 +21,17 @@ overflow-y: auto;">
                     <ng-template ngbPanelContent>
                         <div *ngFor="let option of questions.options, let i=index">
 
-                            <p class="ml-2 text-success font-weight-bolder " *ngIf="questions.solution.indexOf(i)!=-1">
-                                {{option}}
-                                {{givenAnswerToQuestion(questions.id)}}
+                            <p class="ml-2 text-success font-weight-bolder " *ngIf="questions.solution.indexOf(i)!=-1 && givenAnswerToQuestion(questions.id).indexOf(i)!=-1">
+                                ->{{option}}
                             </p>
-                            <p class="ml-2" *ngIf="questions.solution.indexOf(i)==-1">
+                            <p class="ml-2 text-danger font-weight-bolder" *ngIf="questions.solution.indexOf(i)==-1 && givenAnswerToQuestion(questions.id).indexOf(i)!=-1">
                                 {{option}}
-                                {{givenAnswerToQuestion(questions.id)}}
+                            </p>
+                            <p class="ml-2" *ngIf="questions.solution.indexOf(i)==-1 && givenAnswerToQuestion(questions.id).indexOf(i)==-1">
+                                {{option}}
+                            </p>
+                            <p class="ml-2" *ngIf="questions.solution.indexOf(i)!=-1 && givenAnswerToQuestion(questions.id).indexOf(i)==-1">
+                                ->{{option}}
                             </p>
                         </div>
                     </ng-template>
