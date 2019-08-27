@@ -42,7 +42,7 @@ export class TestServiceService {
   }
 
   public getTestWithSolutions(id: number){
-    return this.http.get(this.apiUrl + id+'/'+true)/*.subscribe(
+    return this.http.get(this.apiUrl + id+"?solutions=true")/*.subscribe(
       (res:any) => {
         this.test$.next(res);
       }
