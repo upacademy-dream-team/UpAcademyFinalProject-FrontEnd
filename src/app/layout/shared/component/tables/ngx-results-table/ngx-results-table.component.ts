@@ -63,7 +63,6 @@ export class NgxResultsTableComponent implements OnInit {
     const modalRef = this.modalService.open(DeleteResultadoCandidatoComponent);
 
     modalRef.componentInstance.messageDeleteResultadoCandidato = 'Deseja mesmo apagar o resultado do Candidato?';
-
     modalRef.componentInstance.passEntry.subscribe((receivedEntry) => {
 
       this.userApi2.removeSolvedTest(event.solvedTest.id).subscribe(

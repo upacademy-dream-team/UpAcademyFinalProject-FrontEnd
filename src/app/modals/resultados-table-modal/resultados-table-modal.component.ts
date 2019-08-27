@@ -4,6 +4,7 @@ import { UserServiceService } from 'src/app/core';
 import { TestServiceService } from 'src/app/core/services/test-service/test-service.service';
 import { ChartType } from 'chart.js';
 import { MultiDataSet, Label } from 'ng2-charts';
+import { SolvedTestServiceService } from 'src/app/core/services/solvedTest-service/solved-test-service.service';
 
 @Component({
   selector: 'app-resultados-table-modal',
@@ -16,10 +17,13 @@ export class ResultadosTableModalComponent implements OnInit {
   @Input()check: number;
   @Input() messageMsg;
   @Input() messageTestName;
+  @Input() id;
   @Input() TestQuestions;
   @Input() TestAnswers;
   @Input() messageTestTotal;
   public myTest;
+  public allData;
+  public enunciado;
 
     // Doughnut
     public doughnutChartLabels: Label[] = ['Java',''];
@@ -39,9 +43,21 @@ export class ResultadosTableModalComponent implements OnInit {
     private modalService: NgbModal,
     private userApi: UserServiceService,
     private testService: TestServiceService,
+    private solvedService: SolvedTestServiceService,
     ) {}
 
   ngOnInit() {
+    
+    this.solvedService.getSolvedTest(1).subscribe(data=> 
+      { this.allData=data; 
+        this.myTest=this.allData.solvedTest, 
+        console.log(this.myTest);
+        let ID=this.myTest.testID;
+        this.testService.getTestByID(ID).subscribe(data=>{
+          this.enunciado=data; 
+          console.log(this.enunciado);
+        });
+      });
     /* console.log(this.messageTestTotal.id);
     this.testService.getTestWithSolutions(this.messageTestTotal.id).subscribe(data=> {this.myTest=data; console.log(data)}); */
   }

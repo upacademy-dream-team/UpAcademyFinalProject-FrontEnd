@@ -8,6 +8,7 @@ import { SolvedTest } from '../core/models/solvedTest';
 import { SolvedTestServiceService } from '../core/services/solvedTest-service/solved-test-service.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SubmitTestModalComponent } from '../modals/submit-test-modal/submit-test-modal.component';
+import { Test } from '../core/models/test';
 
 @Component({
   selector: 'app-testing-page',
@@ -15,7 +16,7 @@ import { SubmitTestModalComponent } from '../modals/submit-test-modal/submit-tes
   styleUrls: ['./testing-page.component.scss']
 })
 export class TestingPageComponent implements OnInit, OnDestroy {
-  public test$: ReplaySubject<User[]>;
+  public test$: ReplaySubject<Test[]>;
   private subscriptionTest: Subscription;
   private currentTest: number;
   private currentRecruiter: string;
