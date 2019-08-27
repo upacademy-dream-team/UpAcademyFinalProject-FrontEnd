@@ -16,24 +16,26 @@
     </div>
 </nav>
 <div class="login">
-  <div class="wrapper">
-    <a href="https://www.aubay.pt//" target="_blank">
-      <img src="assets/aubayCopy.png" class="w-100" />
-    </a>
+  <div class="wrapper p-4" style="box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12); background-color: white; height: 65%; width: 25%" >
+   
+    <br>  
+    <div style="color: black; font-size:35px" class="w-100 pb-5 pt-3 text-center font-weight-bold"><img src="assets\loginAvatarOrange.png" style="max-width:55px; width: auto" class="pb-2"/> Bem-Vindo</div>
+   
+      <br>
     <form role="form">
       <div class="form-content">
         <div class="form-group">
-          <input class="w-100" name="username" type="username" (click)="checkReset()" [(ngModel)]="user.username" placeholder="username / email" />
+          <input class="w-100 pb-1" name="username" type="username" (click)="checkReset()" [(ngModel)]="user.username" placeholder="username / email" />
         </div>
 
         <div class="form-group">
-          <input class="w-100" name="password" type="password" (click)="checkReset()" [(ngModel)]="user.password" placeholder="password" />
+          <input class="w-100 pb-1" name="password" type="password" (click)="checkReset()" [(ngModel)]="user.password" placeholder="password" />
         </div>
       </div>
-      <button type="button" class="btn w-100 text-white" (click)="login()"> Entrar </button>
+      <button type="button" class="btn w-100 text-white pb-1" (click)="login()"> Entrar </button>
       <ngb-alert type="danger" *ngIf="check == 1" [dismissible]="false" class="mt-2 danger">
-        <strong>Warning!</strong> Username ou password errada!
-      </ngb-alert>
+          Username ou password errada!
+        </ngb-alert>
     </form>
   </div>
 </div>
