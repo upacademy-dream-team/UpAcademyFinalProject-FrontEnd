@@ -51,6 +51,7 @@ export class ResultadosTableModalComponent implements OnInit {
     
     this.solvedService.getSolvedTest(1).subscribe(data=> 
       { this.allData=data; 
+        console.log(data);
         this.myTest=this.allData.solvedTest, 
         console.log(this.myTest);
         let ID=this.myTest.testID;
@@ -71,6 +72,21 @@ export class ResultadosTableModalComponent implements OnInit {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
 
+  }
+  private print(){
+    console.log("entrou");
+  }
+
+  private givenAnswerToQuestion(questionID){
+      let answers=this.myTest.answer();
+      for(let i=0; i<answers.length;i++){
+        if(answers[i].questionID==questionID){
+          console.log(i);
+          return i;
+        }
+      }
+      console.log(-1);
+      return -1;
   }
 
   private getDismissReason(reason: any): string {
