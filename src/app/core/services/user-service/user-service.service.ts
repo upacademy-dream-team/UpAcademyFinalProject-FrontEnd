@@ -45,6 +45,10 @@ export class UserServiceService {
       return this._currentUser.username;
     }
 
+    public getUserEmail(): string {
+      return this._currentUser.email;
+    }
+
     public getAccessType(): string {
       return this._currentUser.accessType;
     }

@@ -16,6 +16,7 @@ export class TesteLocalComponent implements OnInit, OnDestroy {
   selectedTest: any = 'Enunciado';
   closeResult: string;
   currentRecruiter: string;
+  recruiterEmail: string;
   @Input() messageTesteLocal;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
@@ -76,6 +77,8 @@ export class TesteLocalComponent implements OnInit, OnDestroy {
 
     saveCurrentRecruiter() {
       this.currentRecruiter = this.userApi.getUserName();
+      this.recruiterEmail = this.userApi.getUserEmail();
       this.testService.setCurrentRecruiter(this.currentRecruiter);
+      this.testService.setRecruiterEmail(this.recruiterEmail);
     }
 }

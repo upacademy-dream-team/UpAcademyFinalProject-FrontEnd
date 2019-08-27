@@ -16,7 +16,7 @@ export class SolvedTestServiceService {
   constructor(private http: HttpClient) {}
 
   public getAllSolvedTests(){
-    return this.http.get(this.apiUrl+"all").subscribe(
+    return this.http.get(this.apiUrl).subscribe(
       (res: any) => {
         this.solvedTests= res;
         this.solvedTests$.next(res);
@@ -30,15 +30,15 @@ export class SolvedTestServiceService {
 
   public addSolvedTest(solved: SolvedTest) {
     console.log(solved);
-    return this.http.post(this.apiUrl + 'add', solved, {headers: this.header , responseType:'text'});
+    return this.http.post(this.apiUrl, solved, {headers: this.header , responseType:'text'});
   }
 
   public addSolvedTestFromSession(solved: SolvedTest, idSession: number){
-    return this.http.post(this.apiUrl + 'add/' + idSession, solved, {headers: this.header , responseType:'text'});
+    return this.http.post(this.apiUrl+ idSession, solved, {headers: this.header , responseType:'text'});
   }
 
   public removeSolvedTest(id: Number){
-    return this.http.delete(this.apiUrl + 'remove/' + id, {headers: this.header , responseType:'text'});
+    return this.http.delete(this.apiUrl + id, {headers: this.header , responseType:'text'});
   }
 
 }
