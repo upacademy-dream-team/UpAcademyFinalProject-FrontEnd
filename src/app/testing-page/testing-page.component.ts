@@ -23,7 +23,7 @@ export class TestingPageComponent implements OnInit, OnDestroy {
   private test;
   private answer = [];
   private candidate = new Candidate();
-  private emailRecruiter = 'admin@admin.pt';
+  private emailRecruiter;
   private solvedTest = new SolvedTest();
   private startTime;
   private finishTime;
@@ -44,6 +44,9 @@ export class TestingPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.currentTest = this.testService.getCurrentTest();
     this.currentRecruiter = this.testService.getCurrentRecruiter();
+    this.emailRecruiter=this.testService.getRecruiterEmail();
+    console.log(this.emailRecruiter);
+    console.log("recrutador");
     this.testService.getTest(this.currentTest);
     this.currentTestCheck();
     this.test$.subscribe(data => { this.test = data; console.log("o meu teste"); this.initiateAnswersObject(this.test); this.initiateCheckedObject(this.test) });
