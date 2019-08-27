@@ -37,6 +37,10 @@ export class TestServiceService {
     );
   }
 
+  public getTestByID(id: number){
+    return this.http.get(this.apiUrl+ id+"?solutions=true" );
+  }
+
   public getTestWithSolutions(id: number){
     return this.http.get(this.apiUrl + id+'/'+true)/*.subscribe(
       (res:any) => {
