@@ -23,9 +23,11 @@ overflow-y: auto;">
 
                             <p class="ml-2 text-success font-weight-bolder " *ngIf="questions.solution.indexOf(i)!=-1">
                                 {{option}}
+                                {{givenAnswerToQuestion(questions.id)}}
                             </p>
                             <p class="ml-2" *ngIf="questions.solution.indexOf(i)==-1">
                                 {{option}}
+                                {{givenAnswerToQuestion(questions.id)}}
                             </p>
                         </div>
                     </ng-template>

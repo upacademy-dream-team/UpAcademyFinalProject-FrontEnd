@@ -63,11 +63,11 @@ export class ResultadosTableModalComponent implements OnInit {
   }
 
   private givenAnswerToQuestion(questionID){
-      let answers=this.myTest.answer();
+      let answers=this.myTest.answer;
       for(let i=0; i<answers.length;i++){
         if(answers[i].questionID==questionID){
           console.log(i);
-          return i;
+          return answers[i];
         }
       }
       console.log(-1);
