@@ -7,7 +7,7 @@
 <div class="modal-body" style="background-color: #FAFAFA">
     <p>{{messageDeleteTest}}</p>
     <p>Toda a Informação pertencente a este Enunciado será apagada permanentemente.
-        <span class="text-danger">Esta operação nao pode ser revertida.</span>
+        <span class="text-danger">Esta operação não pode ser revertida.</span>
     </p>
 
     <ngb-alert type="danger" *ngIf="check == 1" [dismissible]="false" class="danger">
@@ -16,6 +16,6 @@
 
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancelar</button>
     <button type="button" class="btn" style="background-color: #e64415; color: white;" (click)="delete()" [disabled]="check == 1">Apagar</button>
 </div>

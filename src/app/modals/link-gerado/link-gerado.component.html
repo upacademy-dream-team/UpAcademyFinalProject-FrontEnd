@@ -9,7 +9,7 @@
     <div class="modal-body" style="background-color: #FAFAFA">
 
 
-    <span class="text-dark">Escolha o Enunciado que deseja que seja gerado.</span><br><br>
+    <span class="text-dark">Escolha o enunciado que deseja que seja gerado.</span><br><br>
 
     <select required (change)="selectorDisable = '1'" style="height: 38px" [(ngModel)]="selectedTest" class="w-100" name="Enunciado" #Enunciado="ngModel" id="">
       <option selected disabled>Enunciado</option>
@@ -33,7 +33,7 @@
 
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Cancelar</button>
     <button  id="btn" [disabled]="!button" type="submit" class="btn"  (click)="print()">Enviar</button>
 </div>
 </form>

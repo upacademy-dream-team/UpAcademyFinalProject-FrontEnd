@@ -8,7 +8,7 @@
     <div class="modal-body" style="background-color: #FAFAFA">
         <form #addUserForm="ngForm" (submit)="save(user)">
             <div class="form-group">
-                <label for="nomeUtilizador">Nome Utilizador :</label>
+                <label for="nomeUtilizador">Nome utilizador :</label>
                 <div class="input-group">
                     <input required id="nomeUtilizador" [(ngModel)]="user.username" class="form-control" placeholder="Nome Utilizador" name="nomeUtilizador">
                 </div>
@@ -18,10 +18,10 @@
                     <input required [email]="true" id="emailUtilizador" [(ngModel)]="user.email" class="form-control" placeholder="Email Utilizador" name="emailUtilizador">
                 </div>
                 <br>
-                <label for="acessoUser">Permissoes:</label>
+                <label for="acessoUser">Permissões:</label>
                 <div class="input-group">
                     <select class="rounded" style="height:36px" [(ngModel)]="user.accessType" name="accessType">
-            <option value="Admin">Administrator</option>
+            <option value="Admin">Administrador</option>
             <option value="Recrutador">Recrutador</option>
           </select>
                 </div>
@@ -37,5 +37,5 @@
 
 </ng-template>
 
-<button type="button" class="shadow-sm btn mr-3" (click)="open(content)">Novo Utilizador</button>
+<button type="button" class="shadow-sm btn mr-3" (click)="open(content)">Novo utilizador</button>
 <!-- <pre>{{closeResult}}</pre> -->

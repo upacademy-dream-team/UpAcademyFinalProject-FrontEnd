@@ -6,7 +6,7 @@
 </div>
 <div class="modal-body" style="background-color: #FAFAFA">
 
-    <span class="text-dark">Escolha o Enunciado do teste a iniciar.</span><br><br>
+    <span class="text-dark">Escolha o enunciado do teste a iniciar.</span><br><br>
 
     <select (change)="selectorDisable = '1'" (change)="saveCurrentTest()" style="height: 38px" [(ngModel)]="selectedTest" class="w-100" name="Enunciado" id="">
     <option selected disabled>Enunciado</option>
@@ -17,6 +17,6 @@
   </select><br><br>
 </div>
 <div class="modal-footer" style="background-color: #FAFAFA">
-    <button type="button " class="btn btn-outline-secondary" (click)="cancel()">Cancel</button>
+    <button type="button " class="btn btn-outline-secondary" (click)="cancel()">Cancelar</button>
     <button [disabled]="selectorDisable !== '1'" type="button" id="orangeBtn" class="btn" (click)="iniciarTesteLocal()" routerLink="/testPage">Iniciar</button>
 </div>
