@@ -6,6 +6,8 @@ import { Test } from 'src/app/core/models/test';
 import { TestServiceService } from 'src/app/core/services/test-service/test-service.service';
 import { SessionServiceService } from 'src/app/core/services/session-service/session-service.service';
 import { SessionAdd } from 'src/app/core/models/sessionAdd';
+import { EmailServiceService } from 'src/app/core/services/email-service/email-service.service';
+import { Email } from 'src/app/core/models/email';
 
 
 @Component({
@@ -32,6 +34,7 @@ export class LinkGeradoComponent implements OnInit, OnDestroy {
   constructor(
     private modalService: NgbModal,
     private testService: TestServiceService,
+    private emailService: EmailServiceService,
     private userApi: UserServiceService,
     private sessionService: SessionServiceService
   ) { 
@@ -78,12 +81,21 @@ export class LinkGeradoComponent implements OnInit, OnDestroy {
     this.testeDetails.recruiterEmail = this.userApi.getemail();
     this.testeDetails.candidateEmail = this.candidateEmail;
     this.sessionService.addSession(this.testeDetails, this.selectedTest).subscribe(
-      data => this.linkId = data , error => console.log(error.error),);
-    this.linkGenerated = true;
+      data => {
+        this.linkId = data;
+        this.linkGenerated = true;
+      }, 
+      error => console.log(error.error),);
 
   }
 
-  sendTest() { 
+  sendTest() {
+    let messageLink="http://localhost:4200/generatedTestPage/"+this.linkId;
+    let email=new Email();
+    email.body="<p>Aceda ao seguinte link para começar o teste</p><br>"+messageLink;
+    email.emailTo=this.candidateEmail;
+    email.subject="Teste da Aubay";
+    this.emailService.sendEmail(email).subscribe(data=>console.log(data), error=>console.log(error.error));
     // this.passEntry.emit('A password vai ser resetada');
     // console.log(this.messageLinkGerado);
     this.modalService.dismissAll();

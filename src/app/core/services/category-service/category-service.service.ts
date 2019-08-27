@@ -7,7 +7,7 @@ import { Category } from '../../models/category';
   providedIn: 'root'
 })
 export class CategoryServiceService {
-  private apiUrl = 'http://localhost:8080/Testes-RecemLicenciados/api/category/';
+  private apiUrl = 'http://localhost:8080/Testes-RecemLicenciados/api/categories/';
   header: HttpHeaders | { [header: string]: string | string[]; };
 
   public Category = new Category();
@@ -17,7 +17,7 @@ export class CategoryServiceService {
   constructor(private http: HttpClient) {}
 
   public getAllCategories() {
-    return this.http.get(this.apiUrl + 'all').subscribe(
+    return this.http.get(this.apiUrl).subscribe(
       (res: any) => {
         // console.log(res);
         this.categories = res;
@@ -28,16 +28,16 @@ export class CategoryServiceService {
 
   public addCategory(category: Category) {
     console.log(category);
-    return this.http.post(this.apiUrl + 'add', category, {headers: this.header , responseType: 'text'});
+    return this.http.post(this.apiUrl, category, {headers: this.header , responseType: 'text'});
   }
 
   // tslint:disable-next-line: ban-types
   public removeCategory(id: Number) {
-    return this.http.delete(this.apiUrl + 'remove/' + id, {headers: this.header , responseType: 'text'});
+    return this.http.delete(this.apiUrl + id, {headers: this.header , responseType: 'text'});
   }
 
-  public editUser(category: Category) {
-    return this.http.put(this.apiUrl + 'edit', category);
+  public editCategory(category: Category) {
+    return this.http.put(this.apiUrl, category);
   }
 }
 
