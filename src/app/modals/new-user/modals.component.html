@@ -27,7 +27,7 @@
                 </div>
             </div>
             <ngb-alert type="danger" *ngIf="check == 1" [dismissible]="false" class="danger">
-                <strong>Warning!</strong> {{msg}}
+                {{msg}}
             </ngb-alert>
             <div class="modal-footer">
                 <button [disabled]="!addUserForm.form.valid" id="" type="submit" class="btn">Adicionar</button>
@@ -38,4 +38,3 @@
 </ng-template>
 
 <button type="button" class="shadow-sm btn mr-3" (click)="open(content)">Novo utilizador</button>
-<!-- <pre>{{closeResult}}</pre> -->

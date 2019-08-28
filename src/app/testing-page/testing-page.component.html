@@ -69,7 +69,9 @@
                 <div class="row">
                     <img class="pl-2 col-1" src="assets\aubayCopy.png" alt="Aubay">
                     <p></p>
-                    <countdown class="col-11 align-self-center text-right" [config]="{leftTime: test.timer * 60}" (finished)="onFinished()"><h4>Tempo Restante: $!h!:$!m!:$!s!</h4></countdown>
+                    <countdown class="col-11 align-self-center text-right" [config]="{leftTime: test.timer * 60}" (finished)="onFinished()">
+                        <h4>Tempo Restante: $!h!:$!m!:$!s!</h4>
+                    </countdown>
                 </div>
                 <div *ngFor="let question of test.questions | paginate: { itemsPerPage: 1, currentPage: p }">
                     <div class="row">
