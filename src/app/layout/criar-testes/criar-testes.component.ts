@@ -251,6 +251,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.categoryService.getAllCategories();
     this.category = "";
     this.categories$.subscribe(data => this.categories = data);
+    this.categoryService.getAllCategoriesWOS().subscribe(data=>this.categoriesAtTheMoment=data);
   }
   scroll(el: HTMLElement) {
     el.scrollIntoView({behavior: 'smooth'});
