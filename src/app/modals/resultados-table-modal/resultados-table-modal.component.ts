@@ -49,7 +49,7 @@ export class ResultadosTableModalComponent implements OnInit {
     this.solvedService.getSolvedTest(this.id).subscribe(data=> 
       { this.allData=data; 
         console.log(data);
-        this.myTest=this.allData.solvedTest, 
+        this.myTest=this.allData.solvedTest
         console.log(this.myTest);
         let ID=this.myTest.testID;
         this.testService.getTestByID(ID).subscribe(data=>{
