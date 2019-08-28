@@ -65,11 +65,13 @@
     <div class="container">
         <p style="height: 1px;"></p>
         <form #testForm="ngForm" (submit)="submitTestModaL()" class="rounded" style="background: rgba(143, 143, 143);height: 90%;">
-            <div class="vertical-center form-group rounded" style="height: 90%">
+            <div class="vertical-center form-group rounded" style="height: 86%">
                 <div class="row">
                     <img class="pl-2 col-1" src="assets\aubayCopy.png" alt="Aubay">
                     <p></p>
-                    <countdown class="col-11 align-self-center text-right" [config]="{leftTime: test.timer * 60}" (finished)="onFinished()"><h4>Tempo Restante: $!h!:$!m!:$!s!</h4></countdown>
+                    <countdown class="col-11 align-self-center text-right" [config]="{leftTime: test.timer * 60}" (finished)="onFinished()">
+                        <h4>Tempo Restante: $!h!:$!m!:$!s!</h4>
+                    </countdown>
                 </div>
                 <div *ngFor="let question of test.questions | paginate: { itemsPerPage: 1, currentPage: p }">
                     <div class="row">
@@ -105,14 +107,16 @@
                 </div>
                 <br>
             </div>
-            <div style="height: 5%" class="row pb-5">
-                <div class="col-12 text-center">
-                    <input [hidden]="p-1!=test.questions.length-1" class="text-center" type="submit" class="btn" value="Submeter Resolução">
-                </div>
-            </div>
+
             <div style="height: 5%" class="row">
                 <div class="col-11">
                     <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
+                </div>
+            </div>
+
+            <div style="height: 5%" class="row pb-5">
+                <div class="col-12 text-center">
+                    <input [hidden]="p-1!=test.questions.length-1" class="text-center" type="submit" class="btn" value="Submeter Teste">
                 </div>
             </div>
 

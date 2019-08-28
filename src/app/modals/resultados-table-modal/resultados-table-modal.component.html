@@ -6,8 +6,20 @@
 </div>
 <div class="modal-body" style="background-color: #FAFAFA; display: flex; flex-direction: column;height: 80vh;
 overflow-y: auto;">
-    <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
-        <div *ngFor="let questions of enunciado.questions, let i=index">
+
+<div class="row">
+<div class="col-6 text-center" *ngFor="let categoryScoreData of scoresData;let i = index">
+        {{categoryScoreData.category.category}}
+<canvas baseChart
+[data]="[[categoryScoreData.score,100-categoryScoreData.score]]"
+[labels]="doughnutChartLabels"
+[chartType]="doughnutChartType"
+[colors]="doughnutChartColors">
+</canvas>
+</div>
+</div>
+  <!-- <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+        <div *ngFor="let questions of myTest.questions, let i=index">
             <ngb-panel>
                 <div class="container border border-dark rounded">
                     <br>
@@ -43,4 +55,4 @@ overflow-y: auto;">
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Fechar</button>
-</div>
+</div> -->

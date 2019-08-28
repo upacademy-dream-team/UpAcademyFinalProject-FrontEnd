@@ -2,6 +2,8 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { UserServiceService } from 'src/app/core';
 import { TestServiceService } from 'src/app/core/services/test-service/test-service.service';
+import { ChartType } from 'chart.js';
+import { MultiDataSet, Label } from 'ng2-charts';
 import { SolvedTestServiceService } from 'src/app/core/services/solvedTest-service/solved-test-service.service';
 
 @Component({
@@ -22,6 +24,16 @@ export class ResultadosTableModalComponent implements OnInit {
   public myTest;
   public allData;
   public enunciado;
+  public scoresData;
+
+    // Doughnut
+    public doughnutChartLabels: Label[] = ['Java',''];
+    public doughnutChartType: ChartType = 'doughnut';
+    public doughnutChartColors: Array<any> = [
+      { // all colors in order
+        backgroundColor: ['#d13537', '#b0o0b5']
+      }
+  ]
 
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
@@ -41,7 +53,7 @@ export class ResultadosTableModalComponent implements OnInit {
         console.log(this.myTest);
         let ID=this.myTest.testID;
         this.testService.getTestByID(ID).subscribe(data=>{
-          this.enunciado=data; 
+          this.enunciado=data; this.scoresData = this.allData.categoryStatistics; console.log(this.scoresData); 
           console.log(this.enunciado);
         });
       });
