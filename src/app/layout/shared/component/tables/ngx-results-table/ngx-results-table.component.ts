@@ -87,6 +87,8 @@ export class NgxResultsTableComponent implements OnInit {
       } else {
         const modalRef = this.modalService.open(ResultadosTableModalComponent,
           { size: 'lg', backdrop: 'static', });
+        
+        modalRef.componentInstance.id = event.row.solvedTest.id;
 
         //modalRef.componentInstance.messageTestTotal = '';
 

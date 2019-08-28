@@ -46,7 +46,7 @@ export class ResultadosTableModalComponent implements OnInit {
 
   ngOnInit() {
     
-    this.solvedService.getSolvedTest(1).subscribe(data=> 
+    this.solvedService.getSolvedTest(this.id).subscribe(data=> 
       { this.allData=data; 
         console.log(data);
         this.myTest=this.allData.solvedTest, 
@@ -75,11 +75,11 @@ export class ResultadosTableModalComponent implements OnInit {
   }
 
   private givenAnswerToQuestion(questionID){
-      let answers=this.myTest.answer();
+      let answers=this.myTest.answer;
       for(let i=0; i<answers.length;i++){
         if(answers[i].questionID==questionID){
-          console.log(i);
-          return i;
+          console.log(answers[i].givenAnswer);
+          return answers[i].givenAnswer;
         }
       }
       console.log(-1);
