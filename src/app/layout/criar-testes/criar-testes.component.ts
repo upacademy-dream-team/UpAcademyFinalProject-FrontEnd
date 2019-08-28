@@ -28,6 +28,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   public solution: any[] = [];
   maximum: any;
   p:number = 1;
+  public categoriesAtTheMoment;
 
   // tslint:disable-next-line: max-line-length
   constructor(private modalService: NgbModal , config: NgbTabsetConfig, private testService: TestServiceService, private userService: UserServiceService, private categoryService: CategoryServiceService, private questionService: QuestionServiceService) {
@@ -41,9 +42,8 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.categoryService.getAllCategories();
-    // console.log(this.categories);
-    // console.log(this.subscriptionCategories);
-    this.categories$.subscribe(data => this.categories = data);
+    this.categoryService.getAllCategoriesWOS().subscribe(data=>this.categoriesAtTheMoment=data);
+    this.categories$.subscribe(data => {this.categories = data;});
   }
 
   ngOnDestroy() {
@@ -52,6 +52,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
 
   public numberOfQuestions: number;
   private category: any;
+  private categoryID: number;
   private categoryToSend: any;
   private categoryWithNumber: any;
   private timer: number;
@@ -115,11 +116,12 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   }
 
   public addInfo() {
-    console.log(this.categories);
     this.allCategories.push(this.category);
     this.categoryToSend=this.category;
-    //this.categoryService.getAllCategories();
-    this.questionService.getRandomQuestions(this.category, this.numberOfQuestions).subscribe(
+    let categoryID=this.getIDByCategory(this.category, this.categoriesAtTheMoment);
+    console.log("categoryID");
+    console.log(categoryID);
+    this.questionService.getRandomQuestions(categoryID, this.numberOfQuestions).subscribe(
       (res: any) => {
         for(let i=0; i<res.length;i++)
           this.randomQuestionIDs.push(res[i].id);
@@ -199,9 +201,9 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     this.checkValidityQuestion();
   }
 
-  public getIDByCategory(category) {
-    for (let i = 0; i < this.categories.length; i++)
-      if (this.categories[i].category.category == category) return this.categories[i].category.id;
+  public getIDByCategory(category, myCategories) {
+    for (let i = 0; i < myCategories.length; i++)
+      if (myCategories[i].category.category == category) return myCategories[i].category.id;
     return -1;
   }
 
@@ -274,7 +276,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
     const modalRef = this.modalService.open(SwapQuestionsComponent,
       { size: 'lg', backdrop: 'static',});
 
-    modalRef.componentInstance.category=this.categoryToSend;
+    modalRef.componentInstance.categoryID=this.getIDByCategory(this.categoryToSend, this.categoriesAtTheMoment);
     modalRef.componentInstance.allRandomQuestions=this.allRandomQuestions;
 
     ////recebido a pergunta ou -1

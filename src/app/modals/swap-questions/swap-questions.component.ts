@@ -14,7 +14,7 @@ export class SwapQuestionsComponent implements OnInit {
   @Input() messageMsg;
   @Input() messageDeleteTest;
   @Input() messageArray;
-  @Input() category;
+  @Input() categoryID;
   @Input() allRandomQuestions;
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 
@@ -34,14 +34,15 @@ export class SwapQuestionsComponent implements OnInit {
   private randomQuestionIDs=[];
 
   ngOnInit() {
-    this.questionService.getAllQuestionsOfCategory(this.category).subscribe(
+    this.questionService.getAllQuestionsOfCategory(this.categoryID).subscribe(
       data=> {this.questions=data;
       for(let i=0;i<this.questions.length;i++)
         this.checkArray[i]=false;
       console.log(this.checkArray.length);
     }
       );
-    console.log(this.category);
+    console.log("THIS CATEGORY ID");
+    console.log(this.categoryID);
     for(let i=0; i<this.allRandomQuestions.length;i++)
           this.randomQuestionIDs.push(this.allRandomQuestions[i].id);
   }
