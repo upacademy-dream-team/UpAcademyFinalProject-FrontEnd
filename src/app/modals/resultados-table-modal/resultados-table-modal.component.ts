@@ -31,9 +31,9 @@ export class ResultadosTableModalComponent implements OnInit {
     public doughnutChartType: ChartType = 'doughnut';
     public doughnutChartColors: Array<any> = [
       { // all colors in order
-        backgroundColor: ['#d13537', '#b0o0b5']
-      }
-  ]
+        backgroundColor: ['rgb(50,205,50,.85)', 'rgb(220,220,220,45)']
+      }]
+    public doughnutChartLegend: boolean = false;
 
   @Output() passEntry: EventEmitter<any> = new EventEmitter();
 

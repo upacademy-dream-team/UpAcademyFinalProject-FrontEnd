@@ -8,17 +8,25 @@
 overflow-y: auto;">
 
 <div class="row">
-<div class="col-6 text-center" *ngFor="let categoryScoreData of scoresData;let i = index">
-        {{categoryScoreData.category.category}}
-<canvas baseChart
+<div class="col-6 text-center pt-3 pb-3" *ngFor="let categoryScoreData of scoresData;let i = index">
+        {{categoryScoreData.category.category}} - {{categoryScoreData.score}}%
+<canvas *ngIf="categoryScoreData.score >=50" baseChart
 [data]="[[categoryScoreData.score,100-categoryScoreData.score]]"
 [labels]="doughnutChartLabels"
 [chartType]="doughnutChartType"
-[colors]="doughnutChartColors">
+[colors]="[{ backgroundColor: ['rgb(50,205,50,0.85)', 'rgb(220,220,220,0.45)']}]"
+[legend]="doughnutChartLegend">
 </canvas>
+<canvas *ngIf="categoryScoreData.score < 50" baseChart
+    [data]="[[categoryScoreData.score,100-categoryScoreData.score]]"
+    [labels]="doughnutChartLabels"
+    [chartType]="doughnutChartType"
+    [colors]="[{ backgroundColor: ['rgb(255,0,0,0.85)', 'rgb(220,220,220,0.45)']}]"
+    [legend]="doughnutChartLegend">
+    </canvas>
 </div>
 </div>
-  <!-- <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
         <div *ngFor="let questions of myTest.questions, let i=index">
             <ngb-panel>
                 <div class="container border border-dark rounded">
@@ -55,4 +63,4 @@ overflow-y: auto;">
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Fechar</button>
-</div> -->
+</div>
