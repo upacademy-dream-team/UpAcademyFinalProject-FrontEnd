@@ -26,6 +26,10 @@ export class CategoryServiceService {
     );
   }
 
+  public getAllCategoriesWOS() {
+    return this.http.get(this.apiUrl);
+  }
+
   public addCategory(category: Category) {
     console.log(category);
     return this.http.post(this.apiUrl, category, {headers: this.header , responseType: 'text'});

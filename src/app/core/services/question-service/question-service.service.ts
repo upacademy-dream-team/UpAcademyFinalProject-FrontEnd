@@ -28,8 +28,8 @@ export class QuestionServiceService {
     );
   }
 
-  public getAllQuestionsOfCategory(category){
-    return this.http.get(this.apiUrl+"filter?category="+category)/*.subscribe(
+  public getAllQuestionsOfCategory(categoryID){
+    return this.http.get(this.apiUrl+"filter?category="+categoryID)/*.subscribe(
       (res: any) => {
         this.questions= res;
         this.questions$.next(res);
@@ -50,7 +50,7 @@ export class QuestionServiceService {
     return this.http.put(this.apiUrl, question);
   }
 
-  public getRandomQuestions(category: String, numberOfQuestions: number){
-    return this.http.get(this.apiUrl+category+"/"+numberOfQuestions);
+  public getRandomQuestions(categoryID: number, numberOfQuestions: number){
+    return this.http.get(this.apiUrl+categoryID+"/"+numberOfQuestions);
   }
 }
