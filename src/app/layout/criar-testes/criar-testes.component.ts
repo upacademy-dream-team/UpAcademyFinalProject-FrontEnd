@@ -51,7 +51,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   }
 
   public numberOfQuestions: number;
-  private category: any;
+  private category= '';
   private categoryID: number;
   private categoryToSend: any;
   private categoryWithNumber: any;
@@ -67,7 +67,7 @@ export class CriarTestesComponent implements OnInit, OnDestroy {
   test= new Test();
   private firstCheck: boolean= false;
   private questionsByCategory=[];
-  
+
 
   show(){
     console.log(this.categoryWithNumber.numberOfQuestions);
