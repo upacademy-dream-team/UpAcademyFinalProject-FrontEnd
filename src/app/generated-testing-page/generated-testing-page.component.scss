@@ -73,4 +73,16 @@ button {
 }
 
 
+.my-pagination ::ng-deep .ngx-pagination a{
+    
+    color: white;
+    
+   
+ 
+}
 
+.my-pagination ::ng-deep .ngx-pagination .current  {
+        
+    background-color: #e64415;
+    font-weight: bold;
+}
