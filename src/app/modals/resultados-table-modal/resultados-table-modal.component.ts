@@ -12,6 +12,7 @@ import { SolvedTestServiceService } from 'src/app/core/services/solvedTest-servi
   styleUrls: ['./resultados-table-modal.component.scss']
 })
 export class ResultadosTableModalComponent implements OnInit {
+
   closeResult: string;
   public testRow = [];
   @Input()check: number;

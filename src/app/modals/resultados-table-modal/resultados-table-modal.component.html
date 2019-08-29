@@ -1,31 +1,25 @@
 <div class="modal-header" style="background-color: #e64415; color: white;">
-    <h4 class="modal-title" id="modal-title">{{messageTestName}}</h4>
+    <h4 class="modal-title" id="modal-title"> | {{enunciado.testName}}</h4>
     <button type="button" class="close" aria-describedby="modal-title" (click)="cancel()">
   <span aria-hidden="true" style="color: white">&times;</span>
 </button>
 </div>
 <div class="modal-body" style="background-color: #FAFAFA; display: flex; flex-direction: column;height: 80vh;
 overflow-y: auto;">
-
-<div class="row">
-<div class="col-6 text-center pt-3 pb-3" *ngFor="let categoryScoreData of scoresData;let i = index">
+<h5 class="pb-3">Resultados por categoria:</h5>
+<div class="row">   
+<div class="col-4 text-center pt-3 pb-3" *ngFor="let categoryScoreData of scoresData;let i = index">
         {{categoryScoreData.category.category}} - {{categoryScoreData.score}}%
-<canvas *ngIf="categoryScoreData.score >=50" baseChart
+<canvas baseChart
 [data]="[[categoryScoreData.score,100-categoryScoreData.score]]"
 [labels]="doughnutChartLabels"
 [chartType]="doughnutChartType"
-[colors]="[{ backgroundColor: ['rgb(50,205,50,0.85)', 'rgb(220,220,220,0.45)']}]"
+[colors]="[{ backgroundColor: ['rgb(50,205,50,0.85)', 'rgb(255,0,0,0.85)']}]"
 [legend]="doughnutChartLegend">
 </canvas>
-<canvas *ngIf="categoryScoreData.score < 50" baseChart
-    [data]="[[categoryScoreData.score,100-categoryScoreData.score]]"
-    [labels]="doughnutChartLabels"
-    [chartType]="doughnutChartType"
-    [colors]="[{ backgroundColor: ['rgb(255,0,0,0.85)', 'rgb(220,220,220,0.45)']}]"
-    [legend]="doughnutChartLegend">
-    </canvas>
 </div>
 </div>
+    <h5 class="pb-3 pt-5">Respostas:</h5>
   <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
         <div *ngFor="let questions of enunciado.questions, let i=index">
             <ngb-panel>
@@ -42,7 +36,7 @@ overflow-y: auto;">
                         <div *ngFor="let option of questions.options, let i=index">
 
                             <p class="ml-2 text-success font-weight-bolder " *ngIf="questions.solution.indexOf(i)!=-1 && givenAnswerToQuestion(questions.id).indexOf(i)!=-1">
-                                ->{{option}}
+                                    <i class="fas fa-arrow-right"></i> {{option}}
                             </p>
                             <p class="ml-2 text-danger font-weight-bolder" *ngIf="questions.solution.indexOf(i)==-1 && givenAnswerToQuestion(questions.id).indexOf(i)!=-1">
                                 {{option}}
@@ -51,7 +45,7 @@ overflow-y: auto;">
                                 {{option}}
                             </p>
                             <p class="ml-2" *ngIf="questions.solution.indexOf(i)!=-1 && givenAnswerToQuestion(questions.id).indexOf(i)==-1">
-                                ->{{option}}
+                                    <i class="fas fa-arrow-right"></i> {{option}}
                             </p>
                         </div>
                     </ng-template>
