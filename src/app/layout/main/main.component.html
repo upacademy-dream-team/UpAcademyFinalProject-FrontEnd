@@ -4,27 +4,27 @@
         <br>
         <br>
         <div class="row rounded " style="background: rgba(0,0,0,.25);height: 300px;">
-            <div class="col-sm-12 col-md-6 col-lg pt-5 text-center">
+            <div class="col-sm-4 col-md-4 col-lg pt-5 text-center">
                 <i class="icon far fa-play-circle fa-5x fa-border" [routerLinkActive]="['active']" routerLink="/startTest" style="background: #2196f3; border:#2196f3"></i>
                 <p class=" text pt-1">Iniciar Teste</p>
             </div>
-            <div class=" col-sm-12 col-md-6 col-lg pt-5 text-center">
+            <div class="col-sm-4 col-md-4 col-lg pt-5 text-center">
                 <i class="icon fas fa-align-left fa-5x fa-border" [routerLinkActive]="['active']" routerLink="/createTest" style="background:#607d8b;border:#607d8b"></i>
                 <p class=" text pt-1">Gerador</p>
             </div>
-            <div class="col-sm-12 col-md-6 col-lg pt-5 text-center">
+            <div class="col-sm-4 col-md-4 col-lg pt-5 text-center">
                 <i class="icon fas fa-file fa-5x fa-border" [routerLinkActive]="['active']" routerLink="/tests" style="background:#7b06bf; border:#7b06bf;"></i>
                 <p class=" text pt-1">Enunciados</p>
             </div>
-            <div class=" col-sm-12 col-md-6 col-lg pt-5 text-center">
+            <div class="col-sm-4 col-md-4 col-lg pt-5 text-center">
                     <i class="icon fas fa-question-circle fa-5x fa-border" [routerLinkActive]="['active']" routerLink="/questions&Categories" style="background:rgb(38, 102, 145); border:rgb(38, 102, 145)"></i>
                     <p class=" text pt-1">Questões/Categorias</p>
                 </div>
-            <div class=" col-sm-12 col-md-6 col-lg pt-5 text-center">
+            <div class="col-sm-4 col-md-4 col-lg pt-5 text-center">
                 <i class="icon fas fa-chart-bar fa-5x fa-border" [routerLinkActive]="['active']" routerLink="/results" style="background:#ffeb3b; border:#ffeb3b"></i>
                 <p class=" text pt-1">Resultados</p>
             </div>
-            <div class="col-sm-12 col-md-6 col-lg pt-5 text-center" *ngIf="isAdmin">
+            <div class="col-sm-4 col-md-4 col-lg pt-5 text-center" *ngIf="isAdmin">
                 <i class="icon fas fa-cog fa-5x fa-border" [routerLinkActive]="['active']" routerLink="/settings" style="background:#4caf50; border:#4caf50"></i>
                 <p class=" text pt-1">Definições</p>
             </div>
