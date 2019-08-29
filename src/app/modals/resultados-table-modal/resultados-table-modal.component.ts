@@ -53,8 +53,7 @@ export class ResultadosTableModalComponent implements OnInit {
         console.log(this.myTest);
         let ID=this.myTest.testID;
         this.testService.getTestByID(ID).subscribe(data=>{
-          this.enunciado=data; this.scoresData = this.allData.categoryStatistics; console.log(this.scoresData); 
-          console.log(this.enunciado);
+          this.enunciado=data; this.scoresData = this.allData.categoryStatistics; 
         });
       });
     /* console.log(this.messageTestTotal.id);
@@ -74,15 +73,21 @@ export class ResultadosTableModalComponent implements OnInit {
     console.log("entrou");
   }
 
+  private numberOfQuestionsOfCategory(category, test){
+    let count=0;
+    for(let i=0; i<test.questions.length; i++)
+      if(test.questions[i].category.category==category)
+        count+=1;
+    return count;
+  }
+
   private givenAnswerToQuestion(questionID){
       let answers=this.myTest.answer;
       for(let i=0; i<answers.length;i++){
         if(answers[i].questionID==questionID){
-          console.log(answers[i].givenAnswer);
           return answers[i].givenAnswer;
         }
       }
-      console.log(-1);
       return -1;
   }
 
