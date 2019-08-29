@@ -72,16 +72,5 @@ button {
     }
 }
 
-#alertFade {
-    opacity: 1;
-    animation: fade 0.4s linear;
-}
 
-
-@keyframes fade {
-  0%,25% { opacity: 0 }
-  25%,50% { opacity: 0.25 }
-  50%,75% { opacity: 0.5 }
-  75%,100% { opacity: 1 }
-}
 
