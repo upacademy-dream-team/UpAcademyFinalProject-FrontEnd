@@ -3,7 +3,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { UserServiceService } from 'src/app/core';
 import { TestServiceService } from 'src/app/core/services/test-service/test-service.service';
 import { ChartType } from 'chart.js';
-import { MultiDataSet, Label } from 'ng2-charts';
+import { Label } from 'ng2-charts';
 import { SolvedTestServiceService } from 'src/app/core/services/solvedTest-service/solved-test-service.service';
 
 @Component({
@@ -79,7 +79,6 @@ export class ResultadosTableModalComponent implements OnInit {
       let answers=this.myTest.answer;
       for(let i=0; i<answers.length;i++){
         if(answers[i].questionID==questionID){
-          console.log(answers[i].givenAnswer);
           return answers[i].givenAnswer;
         }
       }

@@ -1,5 +1,5 @@
 <div class="modal-header" style="background-color: #e64415; color: white;">
-    <h4 class="modal-title" id="modal-title">{{messageTestName}}</h4>
+    <h4 class="modal-title" id="modal-title">{{myTest.testName}}</h4>
     <button type="button" class="close" aria-describedby="modal-title" (click)="cancel()">
   <span aria-hidden="true" style="color: white">&times;</span>
 </button>
@@ -13,10 +13,10 @@ overflow-y: auto;">
                     <br>
 
                     <ng-template ngbPanelTitle>
-                        <span><b><h6>{{questions.question}}</h6><br></b></span>
+                        <span class="text-left"><b><h6>{{questions.question}}</h6><br></b></span>
                     </ng-template>
 
-                    <h6>{{questions.question}}</h6><br>
+                    <h6 class="text-left">{{questions.question}}</h6><br>
 
                     <ng-template ngbPanelContent>
                         <div *ngFor="let option of questions.options, let i=index">

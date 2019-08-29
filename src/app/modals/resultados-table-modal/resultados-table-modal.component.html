@@ -1,51 +1,78 @@
 <div class="modal-header" style="background-color: #e64415; color: white;">
-    <h4 class="modal-title" id="modal-title"> | {{enunciado.testName}}</h4>
+    <h4 class="modal-title" id="modal-title">{{myTest.candidate.name}} | {{enunciado.testName}}</h4>
     <button type="button" class="close" aria-describedby="modal-title" (click)="cancel()">
-  <span aria-hidden="true" style="color: white">&times;</span>
-</button>
+        <span aria-hidden="true" style="color: white">&times;</span>
+    </button>
 </div>
 <div class="modal-body" style="background-color: #FAFAFA; display: flex; flex-direction: column;height: 80vh;
 overflow-y: auto;">
-<h5 class="pb-3">Resultados por categoria:</h5>
-<div class="row">   
-<div class="col-4 text-center pt-3 pb-3" *ngFor="let categoryScoreData of scoresData;let i = index">
-        {{categoryScoreData.category.category}} - {{categoryScoreData.score}}%
-<canvas baseChart
-[data]="[[categoryScoreData.score,100-categoryScoreData.score]]"
-[labels]="doughnutChartLabels"
-[chartType]="doughnutChartType"
-[colors]="[{ backgroundColor: ['rgb(50,205,50,0.85)', 'rgb(255,0,0,0.85)']}]"
-[legend]="doughnutChartLegend">
-</canvas>
-</div>
-</div>
-    <h5 class="pb-3 pt-5">Respostas:</h5>
-  <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+
+    <ngb-tabset [justify]="'fill'">
+    <ngb-tab title="Resultados por  categoria">
+    <ng-template ngbTabContent>
+    <div class="row">
+        <div class="col-6 text-center pt-3 pb-3" *ngFor="let categoryScoreData of scoresData;let i = index">
+            {{categoryScoreData.category.category}} - {{categoryScoreData.score}}%
+            <canvas baseChart [data]="[[categoryScoreData.score,100-categoryScoreData.score]]"
+                [labels]="doughnutChartLabels" [chartType]="doughnutChartType"
+                [colors]="[{ backgroundColor: ['rgb(50,205,50,0.85)', 'rgb(255,0,0,0.85)']}]"
+                [legend]="doughnutChartLegend">
+            </canvas>
+
+        </div>
+        <div class="col-6 text-center pt-3 pb-3">
+           Total - {{myTest.score}}%
+            <canvas *ngIf="myTest.score >= 50" baseChart [data]="[[myTest.score,100-myTest.score]]"
+                [labels]="doughnutChartLabels" [chartType]="doughnutChartType"
+                [colors]="[{ backgroundColor: ['rgb(50,205,50,0.85)', 'rgb(50,205,50,0.35)']}]"
+                [legend]="doughnutChartLegend">
+            </canvas>
+            <canvas *ngIf="myTest.score < 50" baseChart [data]="[[myTest.score,100-myTest.score]]"
+                [labels]="doughnutChartLabels" [chartType]="doughnutChartType"
+                [colors]="[{ backgroundColor: ['rgb(255,0,0,0.85)', 'rgb(255,0,0,0.35)']}]"
+                [legend]="doughnutChartLegend">
+            </canvas>
+        </div>
+    </div>
+</ng-template>
+</ngb-tab>
+
+
+<ngb-tab title="Respostas">
+    <ng-template ngbTabContent>
+            <br>
+    <ngb-accordion  #acc="ngbAccordion" activeIds="ngb-panel-0">
         <div *ngFor="let questions of enunciado.questions, let i=index">
             <ngb-panel>
                 <div class="container border border-dark rounded">
                     <br>
                     <div (click)="givenAnswerToQuestion(questions.id); print();">
                         <ng-template ngbPanelTitle>
-                            <span><b><h6>{{questions.question}}</h6><br></b></span>
+                            <span><b>
+                                    <h6 class="text-left">{{questions.question}}</h6><br>
+                                </b></span>
                         </ng-template>
-                    <h6>{{questions.question}}</h6><br>
+                        <h6 class="text-left">{{questions.question}}</h6><br>
                     </div>
 
                     <ng-template ngbPanelContent>
                         <div *ngFor="let option of questions.options, let i=index">
 
-                            <p class="ml-2 text-success font-weight-bolder " *ngIf="questions.solution.indexOf(i)!=-1 && givenAnswerToQuestion(questions.id).indexOf(i)!=-1">
-                                    <i class="fas fa-arrow-right"></i> {{option}}
+                            <p class="ml-2 text-success font-weight-bolder "
+                                *ngIf="questions.solution.indexOf(i)!=-1 && givenAnswerToQuestion(questions.id).indexOf(i)!=-1">
+                                <i class="fas fa-arrow-right"></i> {{option}}
                             </p>
-                            <p class="ml-2 text-danger font-weight-bolder" *ngIf="questions.solution.indexOf(i)==-1 && givenAnswerToQuestion(questions.id).indexOf(i)!=-1">
+                            <p class="ml-2 text-danger font-weight-bolder"
+                                *ngIf="questions.solution.indexOf(i)==-1 && givenAnswerToQuestion(questions.id).indexOf(i)!=-1">
                                 {{option}}
                             </p>
-                            <p class="ml-2" *ngIf="questions.solution.indexOf(i)==-1 && givenAnswerToQuestion(questions.id).indexOf(i)==-1">
+                            <p class="ml-2"
+                                *ngIf="questions.solution.indexOf(i)==-1 && givenAnswerToQuestion(questions.id).indexOf(i)==-1">
                                 {{option}}
                             </p>
-                            <p class="ml-2" *ngIf="questions.solution.indexOf(i)!=-1 && givenAnswerToQuestion(questions.id).indexOf(i)==-1">
-                                    <i class="fas fa-arrow-right"></i> {{option}}
+                            <p class="ml-2"
+                                *ngIf="questions.solution.indexOf(i)!=-1 && givenAnswerToQuestion(questions.id).indexOf(i)==-1">
+                                <i class="fas fa-arrow-right"></i> {{option}}
                             </p>
                         </div>
                     </ng-template>
@@ -54,7 +81,10 @@ overflow-y: auto;">
             </ngb-panel>
         </div>
     </ngb-accordion>
+</ng-template>
+</ngb-tab>
+</ngb-tabset>
 </div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Fechar</button>
-</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" (click)="cancel()">Fechar</button>
+            </div>

@@ -14,23 +14,23 @@
                 <span (click)="sort()">{{column.name}}</span>
             </ng-template>
             <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-                {{row.solvedTest.testName}}
+               <span>{{row.solvedTest.testName}}</span>
             </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Recrutador" prop="solvedTest.candidate.emailRecruiter" [sortable]="true" [resizeable]="false">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                <span (click)="sort()">{{column.name}}</span>
+                <span style="margin-left: 8px;" (click)="sort()">{{column.name}}</span>
             </ng-template>
             <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-                {{row.solvedTest.candidate.emailRecruiter}}
+                <span style="margin-left: 8px;">{{row.solvedTest.candidate.emailRecruiter}}</span>
             </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Tempo" prop="solvedTest.timeSpent" [sortable]="true" [resizeable]="false">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-                <span (click)="sort()">{{column.name}}</span>
+                <span style="margin-left: 8px;" (click)="sort()">{{column.name}}</span>
             </ng-template>
             <ng-template let-row="row" let-sort="sortFn" ngx-datatable-cell-template>
-                <span style="margin-left: 12px"> {{millisToMinutesAndSeconds(row.solvedTest.timeSpent)}}</span>
+                <span style="margin-left: 15px"> {{millisToMinutesAndSeconds(row.solvedTest.timeSpent)}}</span>
             </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Data" prop="solvedTest.date" [sortable]="true" [resizeable]="false">
@@ -64,7 +64,7 @@
                 <span>{{column.name}}</span>
             </ng-template>
             <ng-template let-row="row" ngx-datatable-cell-template>
-                <span><i style="margin-left: 55px" id="icon" class="fas fa-trash fa-lg"></i></span>
+                <span><i style="margin-left: 15px" id="icon" class="fas fa-trash fa-lg"></i></span>
             </ng-template>
         </ngx-datatable-column>
     </ngx-datatable>
