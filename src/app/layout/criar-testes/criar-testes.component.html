@@ -15,27 +15,35 @@
 
 
                             <div class="form-group">
-                                <div class="input-group mb-5 row justify-content-around">
+                                <div class="input-group row justify-content-around">
                                     <div class="input-group-text" style="margin-left: 16px;">
                                         <label class="sr-only" for="inlineFormInputGroup"></label>Nome
                                     </div>
                                     <input required [(ngModel)]="testName" name="testNameChosen" #testNameChosen="ngModel" type="text" class="form-control" id="inlineFormInputGroup" placeholder="Nome do Teste">
                                 </div>
-                                <p></p>
                                 <div class="row">
-                                    <div class="col-3">
-                                        <label for="duracaoTestes">Duração:&nbsp;&nbsp;</label> <input style="width: 80px;" required [(ngModel)]="timer" step="5" name="timerChosen" #timerChosen="ngModel" min="0" max="340" id="duracaoTestes" type="Number"
-                                            placeholder="Minutos">
+                                    <div class="col-4">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text" id="btnGroupAddon" for="duracaoTestes">Duração</div>
+                                            </div>
+                                            <input style="width: 35%;" required [(ngModel)]="timer" step="5" name="timerChosen" #timerChosen="ngModel" min="0" max="340" id="duracaoTestes" type="Number" placeholder="Minutos">
+                                        </div>
                                     </div>
-                                    <div class="col-3">
-                                        <label for="categoriaTestes">Categoria:&nbsp; </label>
-                                        <select style="height: 30px" required [(ngModel)]="category" name="categoryChosen" #categoryChosen="ngModel" (change)="getNumberOfQuestionsByCategory(); numberOfQuestions=0" id="">
-                                            <ng-container *ngFor="let category of categories$ | async">
-                                                <option value={{category.category.category}}>
-                                                    {{category.category.category}}
-                                                </option>
-                                            </ng-container>
-                                        </select>
+                                    <div class="col-6">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text" id="btnGroupAddon" for="categoriaTestes">Categoria</div>
+                                            </div>
+                                            <select style="height: 38px; width: 45%; color: #495057;" required [(ngModel)]="category" name="categoryChosen" #categoryChosen="ngModel" (change)="getNumberOfQuestionsByCategory(); numberOfQuestions=0" id="">
+                                              <ng-container *ngFor="let category of categories$ | async">
+                                                  <option value="" selected disabled hidden>Escolha uma Categoria</option>
+                                                  <option value={{category.category.category}}>
+                                                      {{category.category.category}}
+                                                  </option>
+                                              </ng-container>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="col" *ngIf="maximum">
                                         <label for="perguntasTestes">Nº Perguntas:&nbsp; </label><input required [(ngModel)]="numberOfQuestions" name="numberOfQuestionsChosen" type="Number" min="0" max="{{maximum}}">
@@ -120,46 +128,69 @@
 
 
                             <div class="form-group">
-                                <div class="margins">
+                                <div>
                                     <div>
-                                        <label for="categoriaTestes">Categoria:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                        <select required [(ngModel)]="category" name="categoryChosen" id="">
-                                            <ng-container *ngFor="let myCategory of categories">
-                                                <option [value]="myCategory.category.category">
-                                                    {{myCategory.category.category}}
-                                                </option>
-                                            </ng-container>
-                                        </select>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text" id="btnGroupAddon" for="categoriaTestes">Categoria</div>
+                                            </div>
+                                            <select required [(ngModel)]="category" name="categoryChosen" aria-placeholder="opção" style="width: 91%; color: #495057; ">
+                                                <ng-container *ngFor="let myCategory of categories" >
+                                                    <option value="" selected disabled hidden>Escolha uma Categoria</option>
+                                                    <option [value]="myCategory.category.category">
+                                                        {{myCategory.category.category}}
+                                                    </option>
+                                                </ng-container>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div>
                                     <div>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text" id="btnGroupAddon">Pergunta</div>
+                                                <div class="input-group-text" id="btnGroupAddon">Pergunta </div>
                                             </div>
                                             <input (click)="errorAlertQuestionsReset()" required [(ngModel)]="questionString" name="questionWritten" type="text" class="form-control" style="width: 65%" aria-label="Input group example" aria-describedby="btnGroupAddon" placeholder="Introduza Pergunta">
                                         </div>
+                                        <br>
 
-                                        <p></p>
-                                        <div class="text-center align-self-center">
+                                        <div class="row">
+                                            <div class="col-md-11">
 
-                                            <textarea required class="rounded" style="width: 95%" placeholder="Introduza Opção" [(ngModel)]="options[0]" name="optionWritten0" (change)="checkValidityQuestion()"></textarea>&nbsp;&nbsp;&nbsp;
-                                            <div class="pretty p-icon p-smooth">
-                                                <input [(ngModel)]="firstCheck" name="checkFirstCheck" (change)="onChange(0, $event.target.checked)" type="checkbox">
-                                                <div class="state p-success">
-                                                    <i class="icon fa fa-check"></i>
-                                                    <label></label>
-                                                </div>
+                                                <textarea required class="rounded" style="width: 100%" placeholder="Introduza Opção" [(ngModel)]="options[0]" name="optionWritten0" (change)="checkValidityQuestion()"></textarea>
+
                                             </div>
-                                            <div *ngFor="let i of numberOfTimes, let j=index">
-                                                <textarea class="rounded" style="width: 95%" placeholder="Introduza Opção" [(ngModel)]="options[j+1]" name="optionWritten{{j+1}}" (change)="checkValidityQuestion()"></textarea>&nbsp;&nbsp;&nbsp;
-                                                <div class="pretty p-icon p-smooth">
-                                                    <input (change)="onChange(j+1, $event.target.checked)" style="padding-bottom: 5px" type="checkbox">
+                                            <div class="col-md-1" style="padding: 14px 0 0 25px;">
+
+                                                <div class="pretty p-icon p-smooth ">
+                                                    <input [(ngModel)]="firstCheck" name="checkFirstCheck" (change)="onChange(0, $event.target.checked)" type="checkbox">
                                                     <div class="state p-success">
                                                         <i class="icon fa fa-check"></i>
                                                         <label></label>
                                                     </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <div *ngFor="let i of numberOfTimes, let j=index">
+
+                                            <div class="row">
+                                                <div class="col-md-11">
+                                                    <textarea class="rounded" style="width: 100%" placeholder="Introduza Opção" [(ngModel)]="options[j+1]" name="optionWritten{{j+1}}" (change)="checkValidityQuestion()"></textarea>
+                                                </div>
+
+                                                <div class="col-md-1" style="padding: 14px 0 0 25px;">
+
+                                                    <div class="pretty p-icon p-smooth">
+                                                        <input (change)="onChange(j+1, $event.target.checked)" style="padding-bottom: 5px" type="checkbox">
+                                                        <div class="state p-success">
+                                                            <i class="icon fa fa-check"></i>
+                                                            <label></label>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
