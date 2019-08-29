@@ -98,7 +98,8 @@
                                             <hr>
                                         </div>
                                         <div class="text-center">
-                                            <pagination-controls id="my-pagination" (pageChange)="p = $event;"></pagination-controls>
+                                            <pagination-controls previousLabel="Anterior"
+                                            nextLabel="Próximo" class="my-pagination" (pageChange)="p = $event;"></pagination-controls>
                                         </div>
                                         <div *ngIf='testError!=""' class="alert alert-danger text-center mt-3">
                                             Já existe um teste com esse nome!

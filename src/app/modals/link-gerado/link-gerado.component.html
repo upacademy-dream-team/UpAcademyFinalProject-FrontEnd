@@ -27,7 +27,7 @@
     <span class="pl-3" ><button [disabled]="!createLinkForm.form.valid || selectorDisable!='1'" id="btn" type="button" class="btn"  (click)="generateLink(); button=true;">Gerar Link </button></span>
     <br>
     <br>
-    <div *ngIf="linkGenerated"><b>Link:</b> http://localhost:4200/generatedTestPage/{{linkId}}</div>
+    <div *ngIf="linkGenerated"> <b>Link:</b> <a href="http://localhost:4200/generatedTestPage/{{linkId}}" target="_blank"> http://localhost:4200/generatedTestPage/{{linkId}}</a></div>
   
     <br>
 
