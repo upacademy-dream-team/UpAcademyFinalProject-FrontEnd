@@ -1,5 +1,6 @@
 <div>
-    <ngx-datatable #table class="bootstrap" [columns]="columns" (activate)="onActivate($event)" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]="rows">
+        <input type="text" style="padding:8px;margin:15px auto;width:60%;height: 38px;" placeholder="Escreva para filtar por Categoria" (keyup)="updateFilter($event)" />
+    <ngx-datatable #table class="bootstrap" [columns]="columns" (activate)="onActivate($event)" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="8" [rows]="rows">
         <ngx-datatable-column name="Perguntas" prop="question" [sortable]="true" [resizeable]="false">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                 <span (click)="sort()">{{column.name}}</span>

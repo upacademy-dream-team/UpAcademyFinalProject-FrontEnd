@@ -1,5 +1,6 @@
 <div>
-    <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" (activate)="onActivate($event)" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [rows]="rows">
+    <div  style="padding:8px;margin:15px auto;height: 38px;"></div>
+    <ngx-datatable #table class="bootstrap" [columns]="columns" [columnMode]="'force'" (activate)="onActivate($event)" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="8" [rows]="rows">
         <ngx-datatable-column name="Categorias" prop="category.category" [sortable]="true" [resizeable]="false">
             <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
                 <span (click)="sort()">{{column.name}}</span>

@@ -1,0 +1,22 @@
+.modalTab ::ng-deep .nav-fill .nav-link.active {
+    margin-top: none !important;
+    border-top: none !important;
+    color: #007bff !important;
+    box-shadow: none !important;
+}
+
+.modalTab ::ng-deep a {
+    color: #007bff !important;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.modalTab ::ng-deep a:hover {
+    color:rgba(135, 206, 250, 0.863) !important;
+}
+
+.modalTab ::ng-deep .nav-pills .nav-link.active,
+ ::ng-deep .nav-pills .show>.nav-link {
+    color: #fff !important;
+    background-color: rgba(135, 206, 250, 0.863) !important;
+}

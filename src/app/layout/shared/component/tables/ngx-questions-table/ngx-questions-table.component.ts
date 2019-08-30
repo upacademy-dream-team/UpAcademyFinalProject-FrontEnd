@@ -86,5 +86,21 @@ export class NgxQuestionsTableComponent implements OnInit {
     }
   }
 
+  updateFilter(event) {
+    const val = event.target.value.toLowerCase();
+
+    // filter our data
+    // tslint:disable-next-line: only-arrow-functions
+    const temp = this.temp.filter(function(d) {
+      return d.category.category.toLowerCase().indexOf(val) !== -1 || !val;
+    });
+
+    // update the rows
+    this.rows = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.table.offset = 0;
+  }
+
+
 }
 
